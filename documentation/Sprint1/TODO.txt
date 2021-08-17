@@ -1,0 +1,2 @@
+Should contain the sprint backlog, any wireframe and notes
+developed during sprint 1 planning
