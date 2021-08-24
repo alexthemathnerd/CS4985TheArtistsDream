@@ -1,0 +1,15 @@
+Use Case Scenario: Search for Artists
+
+Context: User is logged into the system
+
+Primary Flow:
+1. User clicks on search bar
+2. User enters the username for an artist
+3. System displays the resulting artists
+
+
+Alternative Flows:
+Entered artist’s username doesn’t exist
+A3. System notifies user that a user with the entered name does not exist
+A4. User clicks out of notification
+Return to primary flow step 2
