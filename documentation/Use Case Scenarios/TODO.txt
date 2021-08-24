@@ -1,3 +1,0 @@
-Use Case Scenarios
-Use Case scenarios must be maintained as plain text files with one use case covered
-per file. The file should be named the same as the use case.
