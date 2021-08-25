@@ -1,0 +1,13 @@
+Use Case Scenario: View Artist Portfolio
+
+Context: The user is logged in
+
+Primary Flow:
+1. The user selects an artwork from the recommended art page
+2. The user clicks on the username that is displayed in the popup view of the selected artwork
+3. The user is taken to the selected artist's portfolio
+
+Alternative Scenarios:
+The user does not click on the username
+A2. The user clicks out of the selected artwork's popup window
+A3. The user is taken back to the recommended art page

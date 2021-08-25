@@ -1,0 +1,17 @@
+Use Case Scenario - View Art
+
+Context: None
+
+Primary Flow:
+1. The user logs in to the system
+2. The user sees the first page, the recommended art page, and views the first 50 artwork pieces
+3. If the user continues scrolling, the maximum amount of art allowed limit will be reached and the user will be shown a "View More" button to load and view more art into view
+
+Alternative Flows:
+The user views art from artists followed
+A2. The user navigates to the page for artists followed
+A3. The user views the art from artists followed
+
+The user views a single artwork
+A3. The user clicks on a single piece of artwork
+A4. The user sees the artwork in a larger view - a popup window

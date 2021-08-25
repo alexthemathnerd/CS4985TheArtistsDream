@@ -1,0 +1,16 @@
+Use Case Scenario: Search for Art by Name
+
+Context: The user is logged in
+
+Primary Flow:
+1. The user clicks on the search bar
+2. The user enters name of art piece they are searching for
+3. The user is presented with the first result of the search operation
+4. The user is given the option to view more results of the search operation by clicking the next arrow button if there are more results available
+
+
+Alternative Flows:
+Entered art name doesn’t exist
+A3. The user is notified that the entered art piece name does not exist.
+A4. The user dismisses out of notification.
+Return to primary flow step 2

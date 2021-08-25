@@ -1,0 +1,14 @@
+Use Case Scenario: Filter by tag
+
+Context - The user is logged in
+
+Primary Flow:
+1. The user clicks on the filter button
+2. The user enters a desired tag
+3. The user repeats step 2 until desired level of filtering is met
+
+
+Alternative Flows:
+The user wants to remove tags
+A2. The user clicks the x next to the desired tag name needed to be removed
+Returns to primary flow step 3

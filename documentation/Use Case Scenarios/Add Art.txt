@@ -1,0 +1,14 @@
+Use Case Senario: Add art
+
+Context: The user is logged in
+
+Primary Flow:
+1. The user goes to his or her portfolio
+1. The user selects the "Add Art" option
+2. The user gives the new artwork a title, any desired tags, and chooses the artwork from a file explorer
+3. The user confirms that the selected art is the desired art to add to portfolio
+
+Alternative Flows:
+The user cancels the operation
+A3. The user selects the cancel option
+A4. The user is taken back to the portfolio page

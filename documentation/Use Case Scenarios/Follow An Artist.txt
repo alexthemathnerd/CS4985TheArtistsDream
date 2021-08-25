@@ -1,0 +1,11 @@
+Use Case Scenario: Follow an Artist
+
+Context: The user is logged in
+
+Primary Flow:
+1. The user navigates to an artist's portfolio
+2. The user clicks the "Follow" button on the artist's portfolio
+
+Alternative Flow:
+The user already follows the artist
+A2. The user clicks the "Following" button, which unfollows the artist

@@ -1,0 +1,20 @@
+Use Case Scenario: Edit tags
+
+Context: The user is logged in
+
+Primary Flow:
+1. The user navigates to their portfolio page
+2. The user finds and clicks the artwork post that they would like to edit the tags for
+3. The user clicks the "Edit Tags" option
+4. The user enters additional tags or removes current tags
+5. The user confirms the changes
+
+Alternative Flows:
+The user cancels the edit tags operation
+A5. The user clicks cancel button
+A6. The user is prompted to confirm the cancellation
+A7. The user is either brought back to the edit tags window or the portfolio depending on their option
+
+The user clicks the "Remove" option
+A3. The user clicks the "Remove" option
+See Remove Tags Scenario
