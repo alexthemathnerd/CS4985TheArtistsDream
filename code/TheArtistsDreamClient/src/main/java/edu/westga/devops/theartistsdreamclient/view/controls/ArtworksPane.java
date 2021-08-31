@@ -54,3 +54,4 @@ public class ArtworksPane extends ScrollPane {
     }
 
 }
+}
