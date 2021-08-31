@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,17 +29,19 @@ public class PopupLoader {
      * @return the loaded Stage to show the FXML popup.
      * @throws IOException happens if there is an error in the controller of fxml.
      */
-    public static Stage loadPopup(URL fxml, Object controller) throws IOException {
+    public static Stage loadPopup(String title, URL fxml, String css, Object controller, Window owner) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(fxml);
         loader.setController(controller);
         Pane pane = loader.load();
         Stage popup = new Stage();
         Scene scene = new Scene(pane);
+        scene.getStylesheets().add(css);
+        // popup.initOwner(owner);
         // I might want to use this later to make the application look better but for now I am not going to have it.
-        //scene.setFill(Color.TRANSPARENT);
-        //popup.initStyle(StageStyle.TRANSPARENT);
-        popup.getIcons().add(new Image(TheArtistsDreamApplication.class.getResourceAsStream(TheArtistsDreamApplication.ICON_PATH)));
+        scene.setFill(Color.TRANSPARENT);
+        popup.initStyle(StageStyle.TRANSPARENT);
+        popup.setTitle(title);
         popup.setScene(scene);
         popup.setResizable(false);
         popup.initModality(Modality.APPLICATION_MODAL);

@@ -20,6 +20,7 @@ public class Header extends HBox {
 
     private static final String HEADER_FXML = "Header.fxml";
     private static final String FILTER_POPUP_FXML = "FilterPopup.fxml";
+    private static final String FILTER_POPUP_CSS = "filter-popup.css";
 
     @FXML
     private TextField searchTextField;
@@ -51,7 +52,7 @@ public class Header extends HBox {
     @FXML
     public void handleFilter(ActionEvent event) {
         try {
-            Stage popup = PopupLoader.loadPopup(FilterPopup.class.getResource(FILTER_POPUP_FXML), new FilterPopup());
+            Stage popup = PopupLoader.loadPopup("Filter", FilterPopup.class.getResource(FILTER_POPUP_FXML), FilterPopup.class.getResource(FILTER_POPUP_CSS).toExternalForm(), new FilterPopup(), this.getScene().getWindow());
             popup.show();
         } catch (IOException e) {
             //TODO: handle exception
