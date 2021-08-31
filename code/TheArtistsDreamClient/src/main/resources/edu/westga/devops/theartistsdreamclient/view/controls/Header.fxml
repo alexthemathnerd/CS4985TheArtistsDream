@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="CENTER" spacing="20.0" style="-fx-background-color: #1e1e24;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_CENTER" spacing="20.0" style="-fx-background-color: #1e1e24;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuButton fx:id="navMenuButton" mnemonicParsing="false" style="-fx-font-weight: BOLD; -fx-background-color: #2d2c32; -fx-background-radius: 15px;" stylesheets="@header-nav-design.css" textFill="#e01a4f">
         <items>
-          <MenuItem fx:id="recommendedMenuItem" mnemonicParsing="false" onAction="#handleRecommended" text="Recommended" />
-          <MenuItem fx:id="followingMenuItem" mnemonicParsing="false" onAction="#handleFollowing" style="-fx-background-color: #e2abdd;" text="Following" />
-            <MenuItem fx:id="inSearchOfMenuItem" mnemonicParsing="false" onAction="#handleInSearchOf" style="-fx-background-color: #e2abdd;" text="In Search Of" />
+          <MenuItem fx:id="recommendedMenuItem" mnemonicParsing="false" onAction="#handleRecommended" style="-fx-text-fill: #e01a4f; -fx-text-alignment: center;" text="Recommended" />
+          <MenuItem fx:id="followingMenuItem" mnemonicParsing="false" onAction="#handleFollowing" style="-fx-text-fill: #e01a4f; -fx-text-alignment: center;" text="Following" />
+            <MenuItem fx:id="inSearchOfMenuItem" mnemonicParsing="false" onAction="#handleInSearchOf" style="-fx-text-fill: #e01a4f; -fx-text-alignment: center;" text="In Search Of" />
         </items>
          <font>
             <Font size="13.0" />
