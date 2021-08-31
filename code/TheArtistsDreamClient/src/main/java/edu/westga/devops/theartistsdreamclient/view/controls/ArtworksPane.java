@@ -1,18 +1,16 @@
 package edu.westga.devops.theartistsdreamclient.view.controls;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.ScrollPane;
 
 import java.io.IOException;
 
 /**
  * The Controller for the Custom Control for the Artworks view of the application
  */
-public class ArtworksPane extends HBox {
+public class ArtworksPane extends ScrollPane {
 
-    public static final String ARTWORKS_PANE_FXML = "TODO";
-
-    //TODO: CODE BEHIND JUST FOR VIEWING ART.
+    public static final String ARTWORKS_PANE_FXML = "ArtworksPane.fxml";
 
     /**
      * Initializes the FXML for the ArtworksPane control
