@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="441.0" prefWidth="1025.0" style="-fx-background-color: #1e1e24;" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="441.0" prefWidth="1025.0" style="-fx-background-color: #1e1e24;" stylesheets="@scrollbar-design.css" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <content>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #1e1e24;">
+      <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #1e1e24;">
          <children>
-            <TilePane fx:id="artworksTilePane" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefRows="10">
+            <TilePane fx:id="artworksTilePane" alignment="TOP_CENTER" hgap="15.0" maxHeight="-Infinity" maxWidth="-Infinity" prefRows="10" vgap="15.0">
                <children>
                   <fx:include source="ArtworkTile.fxml" />
                   <fx:include source="ArtworkTile.fxml" />
@@ -64,8 +64,11 @@
                   <fx:include source="ArtworkTile.fxml" />
                   <fx:include source="ArtworkTile.fxml" />
                </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
             </TilePane>
-            <Button fx:id="viewMoreButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: #3A3A4B; -fx-background-radius: 12;" text="VIEW MORE" textAlignment="CENTER" textFill="#e01a4f">
+            <Button fx:id="viewMoreButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleViewMore" prefWidth="200.0" style="-fx-background-color: #3A3A4B; -fx-background-radius: 12;" text="VIEW MORE" textAlignment="CENTER" textFill="#e01a4f">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
