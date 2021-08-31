@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 
 import java.io.IOException;
 
@@ -24,6 +26,18 @@ public class Header extends HBox {
     @FXML
     private TextField searchTextField;
 
+    @FXML
+    private MenuButton navMenuButton;
+
+    @FXML
+    private MenuItem recommendedMenuItem;
+
+    @FXML
+    private MenuItem followingMenuItem;
+
+    @FXML
+    private MenuItem inSearchOfMenuItem;
+
     /**
      * Initializes the FXML for the Header control
      */
@@ -39,17 +53,17 @@ public class Header extends HBox {
     }
 
     @FXML
-    private void initialize() {
+    void initialize() {
         // TODO: Setup bindings
     }
 
     @FXML
-    public void handleSearch(ActionEvent event) {
+    void handleSearch(ActionEvent event) {
 
     }
 
     @FXML
-    public void handleFilter(ActionEvent event) {
+    void handleFilter(ActionEvent event) {
         try {
             Stage popup = PopupLoader.loadPopup(FilterPopup.class.getResource(FILTER_POPUP_FXML), new FilterPopup());
             popup.show();
@@ -61,23 +75,33 @@ public class Header extends HBox {
     }
 
     @FXML
-    public void handleLogout(ActionEvent event) {
+    void handleLogout(ActionEvent event) {
 
     }
 
     @FXML
-    public void handleMessages(ActionEvent event) {
+    void handleMessages(ActionEvent event) {
 
     }
 
     @FXML
-    public void handleViewProfile(ActionEvent event) {
+    void handleViewProfile(ActionEvent event) {
 
     }
 
     @FXML
-    public void handleNavDropdown(ActionEvent event) {
-        //TODO make dropdown
+    void handleRecommended(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleFollowing(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleInSearchOf(ActionEvent event) {
+
     }
 
 }
