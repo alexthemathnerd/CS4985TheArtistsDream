@@ -15,7 +15,7 @@
    <children>
       <MenuButton fx:id="navMenuButton" mnemonicParsing="false" style="-fx-font-weight: BOLD; -fx-background-color: #2d2c32; -fx-background-radius: 15px;" stylesheets="@header-nav-design.css" textFill="#e01a4f">
         <items>
-          <MenuItem fx:id="recommendedMenuItem" mnemonicParsing="false" onAction="#handleRecommended" style="-fx-text-fill: #e01a4f; -fx-text-alignment: center;" text="Recommended" />
+          <MenuItem fx:id="recommendedMenuItem" mnemonicParsing="false" onAction="#handleRecommended" style="-fx-text-fill: #e01a4f; fx-padding: 2;" text="Recommended" />
           <MenuItem fx:id="followingMenuItem" mnemonicParsing="false" onAction="#handleFollowing" style="-fx-text-fill: #e01a4f; -fx-text-alignment: center;" text="Following" />
             <MenuItem fx:id="inSearchOfMenuItem" mnemonicParsing="false" onAction="#handleInSearchOf" style="-fx-text-fill: #e01a4f; -fx-text-alignment: center;" text="In Search Of" />
         </items>

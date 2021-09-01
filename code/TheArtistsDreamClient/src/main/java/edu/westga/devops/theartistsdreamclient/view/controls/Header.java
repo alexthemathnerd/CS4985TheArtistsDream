@@ -65,7 +65,7 @@ public class Header extends HBox {
     @FXML
     void handleFilter(ActionEvent event) {
         try {
-            Stage popup = PopupLoader.loadPopup(FilterPopup.class.getResource(FILTER_POPUP_FXML), new FilterPopup());
+            Stage popup = PopupLoader.loadPopup("Filter", FilterPopup.class.getResource(FILTER_POPUP_FXML), FilterPopup.class.getResource("filter-popup.css").toExternalForm(), new FilterPopup(), this.getScene().getWindow());
             popup.show();
         } catch (IOException e) {
             //TODO: handle exception
@@ -91,7 +91,7 @@ public class Header extends HBox {
 
     @FXML
     void handleRecommended(ActionEvent event) {
-
+	    
     }
 
     @FXML

@@ -12,8 +12,10 @@ import java.io.IOException;
 
 /**
  * The Controller for the Custom Control for each single piece of artwork shown in the application
+ * 
  * @author Aznella Joseph
  * @version Fall 2021
+ *
  */
 
 public class ArtworkTile extends VBox {
@@ -46,7 +48,7 @@ public class ArtworkTile extends VBox {
 
 	@FXML
 	void initialize(){
-		//TODO: Bindings
+
 		}
 
 	@FXML

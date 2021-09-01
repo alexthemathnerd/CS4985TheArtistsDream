@@ -27,6 +27,7 @@ public class ArtworksPane extends ScrollPane {
     @FXML
     private Button viewMoreButton;
 
+
     /**
      * Initializes the FXML for the ArtworksPane control
      */
@@ -50,8 +51,7 @@ public class ArtworksPane extends ScrollPane {
     void handleViewMore(ActionEvent event){
 	    this.artworksTilePane.setPrefRows(this.artworksTilePane.getPrefRows() + 2);
 	    for(int i = 0; i < 10; i++) {
-		    //this.artworksTilePane.getChildren().add(new ArtworkTile());
+		    this.artworksTilePane.getChildren().add(new ArtworkTile());
+	    }
     }
-
-}
 }
