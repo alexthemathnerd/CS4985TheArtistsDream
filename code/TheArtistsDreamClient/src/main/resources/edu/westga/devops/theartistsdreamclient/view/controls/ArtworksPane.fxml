@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="441.0" prefWidth="1025.0" style="-fx-background-color: #1e1e24;" stylesheets="@scrollbar-design.css" type="ScrollPane" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.devops.theartistsdreamclient.view.controls.ArtworksPane">
+<fx:root fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="441.0" style="-fx-background-color: #1e1e24;" stylesheets="@scrollbar-design.css" type="ScrollPane" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.devops.theartistsdreamclient.view.controls.ArtworksPane">
    <content>
       <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #1e1e24;">
          <children>

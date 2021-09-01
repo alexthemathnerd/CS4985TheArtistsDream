@@ -10,6 +10,8 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
+import edu.westga.devops.theartistsdreamclient.model.Artwork;
+
 /**
  * The Controller for the Custom Control for each single piece of artwork shown in the application
  * 
@@ -44,6 +46,17 @@ public class ArtworkTile extends VBox {
 		}catch(IOException e){
 			throw new RuntimeException(e);
 		}
+	}
+
+	/**
+	 * Creates an ArtworkTile with a specified artwork
+	 *
+	 * @precondition artwork != null
+	 * @postcondition none
+	 */
+	public ArtworkTile(Artwork artwork){
+		this.artworkImageView.setImage(artwork.getArtworkImage());
+		this.titleLabel.setText(artwork.getArtworkTitle());
 	}
 
 	@FXML

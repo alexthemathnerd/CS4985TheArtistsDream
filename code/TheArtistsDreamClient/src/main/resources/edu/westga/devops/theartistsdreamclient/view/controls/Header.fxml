@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="TOP_CENTER" spacing="20.0" style="-fx-background-color: #1e1e24;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" spacing="20.0" style="-fx-background-color: #1e1e24; -fx-border-color: black;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuButton fx:id="navMenuButton" mnemonicParsing="false" style="-fx-font-weight: BOLD; -fx-background-color: #2d2c32; -fx-background-radius: 15px;" stylesheets="@header-nav-design.css" textFill="#e01a4f">
         <items>

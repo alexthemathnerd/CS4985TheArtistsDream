@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="TOP_CENTER" prefHeight="179.0" prefWidth="267.0" style="-fx-border-color: black; -fx-background-color: #1e1e24; -fx-border-radius: 12;" type="VBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.devops.theartistsdreamclient.view.controls.ArtworkTile">
+<fx:root alignment="TOP_CENTER" prefHeight="120.0" prefWidth="239.0" style="-fx-border-color: black; -fx-background-color: #1e1e24; -fx-border-radius: 12;" type="VBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.devops.theartistsdreamclient.view.controls.ArtworkTile">
    <children>
       <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="170.0" style="-fx-font-weight: BOLD;" textAlignment="CENTER" textFill="#e01a4f" wrapText="true">
          <font>
