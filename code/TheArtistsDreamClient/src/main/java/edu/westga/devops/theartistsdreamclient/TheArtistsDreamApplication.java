@@ -13,7 +13,7 @@ public class TheArtistsDreamApplication extends Application {
 
 	public static final String ICON_PATH = "icon.png";
 
-	public static final String LOGIN_FXML = "view/TODO.fxml";
+	public static final String LOGIN_FXML = "view/Login.fxml";
 
 	// TODO: SINGLETONS
 
@@ -26,7 +26,6 @@ public class TheArtistsDreamApplication extends Application {
 		primaryStage.setTitle("The Artist's Dream");
 		primaryStage.setScene(scene);
 		primaryStage.getIcons().add(new Image(TheArtistsDreamApplication.class.getResourceAsStream(ICON_PATH)));
-		primaryStage.setMaximized(true);
 		primaryStage.show();
 	}
 
