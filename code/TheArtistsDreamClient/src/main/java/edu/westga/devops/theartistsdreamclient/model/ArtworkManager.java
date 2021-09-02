@@ -1,6 +1,7 @@
 package edu.westga.devops.theartistsdreamclient.model;
 
 import java.util.List;
+import java.util.ArrayList;
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 
 /**
@@ -21,11 +22,8 @@ public abstract class ArtworkManager {
 	 *
 	 * @throws IllegalArgumentException if artworks is null
 	 */
-	public ArtworkManager(List<Artwork> artworks) {
-		if (artworks == null) {
-			throw new IllegalArgumentException();
-		}
-		this.artworks = artworks;
+	public ArtworkManager() {
+		this.artworks = new ArrayList<Artwork>();
 	}
 
 	/**

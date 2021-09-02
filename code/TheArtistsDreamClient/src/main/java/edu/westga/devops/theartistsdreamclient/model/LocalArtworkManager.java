@@ -1,5 +1,10 @@
 package edu.westga.devops.theartistsdreamclient.model;
 
+import edu.westga.devops.theartistsdreamclient.model.LocalArtwork;
+import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
+import java.util.List;
+import java.util.ArrayList;
+
 /**
  * Local Implementation of Collection Class ArtworkManager
  *
@@ -7,13 +12,6 @@ package edu.westga.devops.theartistsdreamclient.model;
  * @version Fall 2021
  *
  */
-
-import java.util.List;
-import java.util.ArrayList;
-
-import edu.westga.devops.theartistsdreamclient.model.LocalArtwork;
-import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
-
 public class LocalArtworkManager extends ArtworkManager {
 
 	private List<LocalArtwork> artworks;
@@ -25,10 +23,9 @@ public class LocalArtworkManager extends ArtworkManager {
 	 * @postcondition none
 	 *
 	 */
-	public LocalArtworkManager(List<LocalArtwork> artworks){
-		super(new ArrayList<Artwork>()); //TODO: Change to <LocalArtwork>
-
-		this.artworks = artworks;
+	public LocalArtworkManager() {
+		super();
+		this.artworks = new ArrayList<LocalArtwork>();
 	}
 		
 }

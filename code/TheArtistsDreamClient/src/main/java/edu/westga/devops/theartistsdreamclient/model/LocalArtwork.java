@@ -6,7 +6,7 @@ import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import java.util.List;
 
 /**
- * Artwork Model Class
+ * Local Implementation of Model Class Artwork
  *
  * @author Aznella Joseph
  * @version Fall 2021
