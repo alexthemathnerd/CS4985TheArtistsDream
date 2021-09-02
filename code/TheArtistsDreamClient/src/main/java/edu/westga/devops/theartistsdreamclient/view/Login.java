@@ -1,23 +1,15 @@
 package edu.westga.devops.theartistsdreamclient.view;
 
 
-import java.net.URL;
-
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
+import edu.westga.devops.theartistsdreamclient.view.controls.Header;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.layout.HBox;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TitledPane;
-import javafx.scene.image.ImageView;
-import javafx.event.ActionEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.Parent;
-import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * The Controller for the login
@@ -28,7 +20,6 @@ import javafx.scene.image.Image;
 public class Login {
 	public static final String ICON_PATH = "icon.png";
 	public static final String HEADER_FXML = "view/controls/Header.fxml";
-	public static final String CREATE_ACCOUNT_FXML = "view/CreateAccount.fxml";
 
     @FXML
     private TextField usernameTextField;
@@ -71,17 +62,16 @@ public class Login {
     
   @FXML
   void handleLoginButtonClick(ActionEvent event) throws Exception {
-      if (this.loginButton.getText() == "CANCEL") {
+    if (this.loginButton.getText() == "CANCEL") {
         this.confirmPasswordTextField.setVisible(false);
         this.emailTextField.setVisible(false);
         this.loginButton.setText("LOGIN");
-      } else {
-    Parent resource = FXMLLoader.load(TheArtistsDreamApplication.class.getResource(HEADER_FXML));
-    TheArtistsDreamApplication.PRIMARY_STAGE.setTitle("Test");
-    TheArtistsDreamApplication.PRIMARY_STAGE.setScene(new Scene(resource));
-    TheArtistsDreamApplication.PRIMARY_STAGE.getIcons().add(new Image(TheArtistsDreamApplication.class.getResourceAsStream(ICON_PATH)));
-    TheArtistsDreamApplication.PRIMARY_STAGE.show();
-      }
+    } else {
+        TheArtistsDreamApplication.PRIMARY_STAGE.setTitle("The Artists Dream");
+        TheArtistsDreamApplication.PRIMARY_STAGE.setScene(new Scene(new Header()));
+        TheArtistsDreamApplication.PRIMARY_STAGE.getIcons().add(new Image(TheArtistsDreamApplication.class.getResourceAsStream(ICON_PATH)));
+        TheArtistsDreamApplication.PRIMARY_STAGE.show();
+    }
   }
 
 }
