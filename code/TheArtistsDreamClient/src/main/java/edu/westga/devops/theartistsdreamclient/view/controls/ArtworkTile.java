@@ -55,8 +55,8 @@ public class ArtworkTile extends VBox {
 	 * @postcondition none
 	 */
 	public ArtworkTile(Artwork artwork){
-		this.artworkImageView.setImage(artwork.getArtworkImage());
-		this.titleLabel.setText(artwork.getArtworkTitle());
+		this.artworkImageView.setImage(artwork.getImage());
+		this.titleLabel.setText(artwork.getTitle());
 	}
 
 	@FXML
