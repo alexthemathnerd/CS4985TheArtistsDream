@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="441.0" style="-fx-background-color: #1e1e24;" stylesheets="@scrollbar-design.css" type="ScrollPane" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.devops.theartistsdreamclient.view.controls.ArtworksPane">
+   <content>
+      <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #1e1e24;">
+         <children>
+            <TilePane fx:id="artworksTilePane" alignment="TOP_CENTER" hgap="15.0" maxHeight="-Infinity" maxWidth="-Infinity" prefRows="10" vgap="15.0">
+               <children>
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+                  <fx:include source="ArtworkTile.fxml" />
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </TilePane>
+            <Button fx:id="viewMoreButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleViewMore" prefWidth="200.0" style="-fx-background-color: #3A3A4B; -fx-background-radius: 12;" text="VIEW MORE" textAlignment="CENTER" textFill="#e01a4f">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </content>
+</fx:root>

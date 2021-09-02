@@ -1,9 +1,7 @@
 package edu.westga.devops.theartistsdreamclient.view.popups;
 
-import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
