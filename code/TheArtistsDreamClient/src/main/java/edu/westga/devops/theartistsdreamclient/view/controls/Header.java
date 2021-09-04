@@ -51,6 +51,7 @@ public class Header extends HBox {
         loader.setController(this);
         try {
             loader.load();
+            this.toFront();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

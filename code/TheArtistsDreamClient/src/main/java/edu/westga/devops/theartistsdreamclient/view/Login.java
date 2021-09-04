@@ -77,8 +77,9 @@ public class Login {
 	    FXMLLoader loader = new FXMLLoader(TheArtistsDreamApplication.class.getResource(RECOMMENDED_PAGE_FXML));
 	    try {
 		    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.setMaximized(true);
 		    WindowLoader.changeScene(currentStage, RECOMMENDED_PAGE_FXML, null, "The Artist's Dream");
-	    } catch (IOException e) {
+        } catch (IOException e) {
 		    throw new RuntimeException(e);
 	    }
     }

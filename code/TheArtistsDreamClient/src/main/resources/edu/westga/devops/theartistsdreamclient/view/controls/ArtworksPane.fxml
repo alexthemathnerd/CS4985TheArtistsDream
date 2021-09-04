@@ -7,66 +7,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<fx:root fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="441.0" style="-fx-background-color: #1e1e24;" stylesheets="@scrollbar-design.css" type="javafx.scene.control.ScrollPane" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="441.0" style="-fx-background-color: #1e1e24;" stylesheets="@scrollbar-design.css" type="javafx.scene.control.ScrollPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <content>
-      <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #1e1e24;">
+      <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="20.0" style="-fx-background-color: #1e1e24;">
          <children>
-            <TilePane fx:id="artworksTilePane" alignment="TOP_CENTER" hgap="15.0" maxHeight="-Infinity" maxWidth="-Infinity" prefRows="10" vgap="15.0">
-               <children>
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-                  <fx:include source="ArtworkTile.fxml" />
-               </children>
+            <TilePane fx:id="artworksTilePane" alignment="TOP_CENTER" hgap="20.0" maxWidth="-Infinity" prefRows="10" tileAlignment="TOP_LEFT" vgap="20.0" VBox.vgrow="ALWAYS">
+               <!--Don't add Artwork Tile Manually add it when you initialize ArtworksPane-->
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets />
                </VBox.margin>
             </TilePane>
             <Button fx:id="viewMoreButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleViewMore" prefWidth="200.0" style="-fx-background-color: #3A3A4B; -fx-background-radius: 12;" text="VIEW MORE" textAlignment="CENTER" textFill="#e01a4f">
@@ -74,10 +22,13 @@
                   <Font name="System Bold" size="18.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="20.0" top="20.0" />
+                  <Insets />
                </VBox.margin>
             </Button>
          </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
       </VBox>
    </content>
 </fx:root>

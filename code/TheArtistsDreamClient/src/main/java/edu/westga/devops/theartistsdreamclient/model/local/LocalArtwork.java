@@ -1,4 +1,4 @@
-package edu.westga.devops.theartistsdreamclient.model;
+package edu.westga.devops.theartistsdreamclient.model.local;
 
 import javafx.scene.image.Image;
 import edu.westga.devops.theartistsdreamclient.model.Tag;

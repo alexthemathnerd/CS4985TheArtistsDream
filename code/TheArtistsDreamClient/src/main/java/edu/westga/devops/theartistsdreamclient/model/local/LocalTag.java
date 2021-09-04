@@ -2,11 +2,22 @@ package edu.westga.devops.theartistsdreamclient.model.local;
 
 import edu.westga.devops.theartistsdreamclient.model.Tag;
 
+/**
+ * A local implementation of the {@link Tag} class
+ *
+ * @author Alexander Schmidt
+ * @version Fall2021
+ */
 public class LocalTag extends Tag {
 
     private final String name;
     private int useCount;
 
+    /**
+     *  Creates a Local tag with a given name
+     *
+     * @param name the name of the tag
+     */
     public LocalTag(String name) {
         this.name = name.toLowerCase();
         this.useCount = 1;
