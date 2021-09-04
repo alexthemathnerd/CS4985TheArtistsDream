@@ -1,6 +1,5 @@
 package edu.westga.devops.theartistsdreamclient.view;
 
-
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import edu.westga.devops.theartistsdreamclient.view.controls.Header;
 import javafx.event.ActionEvent;
@@ -12,7 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 
 /**
- * The Controller for the login
+ * The Controller for the login and Create Account
  *
  * @author Jamia Echols
  * @version Fall 2021
@@ -52,7 +51,9 @@ public class Login {
     @FXML
     void handleCreateAccountButtonClick(ActionEvent event) {
         if (this.confirmPasswordTextField.isVisible() && this.emailTextField.isVisible()) {
+            if (this.validateCreateAccount()) {
 
+            }
         } else {
             this.confirmPasswordTextField.setVisible(true);
             this.emailTextField.setVisible(true);
@@ -60,6 +61,22 @@ public class Login {
         }
     }
     
+    private boolean validateCreateAccount() {
+        if (!this.emailTextField.getText().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$"))  {
+            return false;
+        }
+        if (this.passwordTextField.getText().length() < 7) {
+            return false;
+        }
+        if (!this.passwordTextField.getText().equals(this.confirmPasswordTextField.getText())) {
+            return false;
+        }
+        if (this.usernameTextField.getText().length() < 7) {
+            return false;
+        }
+        return true;
+    }
+
   @FXML
   void handleLoginButtonClick(ActionEvent event) throws Exception {
     if (this.loginButton.getText() == "CANCEL") {
@@ -67,6 +84,7 @@ public class Login {
         this.emailTextField.setVisible(false);
         this.loginButton.setText("LOGIN");
     } else {
+        //TODO Validate login crediatuals
         TheArtistsDreamApplication.PRIMARY_STAGE.setTitle("The Artists Dream");
         TheArtistsDreamApplication.PRIMARY_STAGE.setScene(new Scene(new Header()));
         TheArtistsDreamApplication.PRIMARY_STAGE.getIcons().add(new Image(TheArtistsDreamApplication.class.getResourceAsStream(ICON_PATH)));
