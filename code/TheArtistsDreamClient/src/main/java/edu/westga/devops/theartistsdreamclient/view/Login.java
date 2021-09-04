@@ -10,6 +10,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import edu.westga.devops.theartistsdreamclient.view.controls.ArtworksPane;
+import javafx.fxml.FXMLLoader;
+import java.io.IOException;
+import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
+import javafx.scene.Node;
+import javafx.stage.Stage;
 
 /**
  * The Controller for the login
@@ -19,7 +26,7 @@ import javafx.scene.layout.AnchorPane;
  */
 public class Login {
 	public static final String ICON_PATH = "icon.png";
-	public static final String HEADER_FXML = "view/controls/Header.fxml";
+	public static final String RECOMMENDED_PAGE_FXML = "RecommendedPage.fxml";
 
     @FXML
     private TextField usernameTextField;
@@ -67,10 +74,13 @@ public class Login {
         this.emailTextField.setVisible(false);
         this.loginButton.setText("LOGIN");
     } else {
-        TheArtistsDreamApplication.PRIMARY_STAGE.setTitle("The Artists Dream");
-        TheArtistsDreamApplication.PRIMARY_STAGE.setScene(new Scene(new Header()));
-        TheArtistsDreamApplication.PRIMARY_STAGE.getIcons().add(new Image(TheArtistsDreamApplication.class.getResourceAsStream(ICON_PATH)));
-        TheArtistsDreamApplication.PRIMARY_STAGE.show();
+	    FXMLLoader loader = new FXMLLoader(TheArtistsDreamApplication.class.getResource(RECOMMENDED_PAGE_FXML));
+	    try {
+		    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		    WindowLoader.changeScene(currentStage, RECOMMENDED_PAGE_FXML, null, "The Artist's Dream");
+	    } catch (IOException e) {
+		    throw new RuntimeException(e);
+	    }
     }
   }
 

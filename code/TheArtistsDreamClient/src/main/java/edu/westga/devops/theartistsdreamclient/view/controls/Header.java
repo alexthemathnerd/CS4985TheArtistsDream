@@ -12,7 +12,8 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.util.List;
 

@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" spacing="20.0" style="-fx-background-color: #1e1e24; -fx-border-color: black;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="82.0" prefWidth="710.0" spacing="20.0" style="-fx-background-color: #1e1e24; -fx-border-color: black;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <MenuButton fx:id="navMenuButton" mnemonicParsing="false" style="-fx-font-weight: BOLD; -fx-background-color: #2d2c32; -fx-background-radius: 15px;" stylesheets="@header-nav-design.css" textFill="#e01a4f">
+      <MenuButton fx:id="navMenuButton" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-font-weight: BOLD; -fx-background-color: #2d2c32; -fx-background-radius: 50%;" stylesheets="@header-design.css" textFill="#e01a4f">
         <items>
           <MenuItem fx:id="recommendedMenuItem" mnemonicParsing="false" onAction="#handleRecommended" style="-fx-text-fill: #e01a4f; fx-padding: 2;" text="Recommended" />
           <MenuItem fx:id="followingMenuItem" mnemonicParsing="false" onAction="#handleFollowing" style="-fx-text-fill: #e01a4f; -fx-text-alignment: center;" text="Following" />
@@ -23,23 +23,51 @@
             <Font size="13.0" />
          </font>
          <graphic>
-            <ImageView fitHeight="26.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../../../../MenuIcon.jpg" />
+                  <Image url="@../icons/nav-icon.png" />
                </image>
             </ImageView>
          </graphic>
       </MenuButton>
       <Region HBox.hgrow="ALWAYS" />
-      <TextField fx:id="searchTextField" promptText="SEARCH" style="-fx-background-color: #2d2c32; -fx-prompt-text-fill: #e01a4f;" />
-      <Button mnemonicParsing="false" onAction="#handleFilter" text="FILTER" />
-      <Button mnemonicParsing="false" onAction="#handleSearch" text="SEARCH" />
+      <TextField fx:id="searchTextField" prefHeight="26.0" prefWidth="204.0" promptText="SEARCH" style="-fx-background-color: #2d2c32; -fx-prompt-text-fill: #e01a4f;" />
+      <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleFilter" prefHeight="40.0" prefWidth="40.0" stylesheets="@header-design.css">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/filter-icon.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="40.0" prefWidth="40.0" stylesheets="@header-design.css">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/search-icon.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
       <Region HBox.hgrow="ALWAYS" />
-      <Button mnemonicParsing="false" onAction="#handleLogout" text="LOGOUT" />
-      <Button mnemonicParsing="false" onAction="#handleMessages" text="MESSAGES" />
-      <Button mnemonicParsing="false" onAction="#handleViewProfile" text="PROFILE" />
+      <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="40.0" prefWidth="40.0" stylesheets="@header-design.css">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+         </graphic></Button>
+      <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleMessages" prefHeight="40.0" prefWidth="40.0" stylesheets="@header-design.css">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/msg-icon.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleViewProfile" prefHeight="40.0" prefWidth="40.0" stylesheets="@header-design.css">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+         </graphic></Button>
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
+
 </fx:root>
