@@ -37,8 +37,7 @@ public class PopupLoader {
         Stage popup = new Stage();
         Scene scene = new Scene(pane);
         scene.getStylesheets().add(css);
-        // popup.initOwner(owner);
-        // I might want to use this later to make the application look better but for now I am not going to have it.
+        popup.initOwner(owner);
         scene.setFill(Color.TRANSPARENT);
         popup.initStyle(StageStyle.TRANSPARENT);
         popup.setTitle(title);

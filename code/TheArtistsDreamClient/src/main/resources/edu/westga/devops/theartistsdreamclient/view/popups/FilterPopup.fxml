@@ -9,6 +9,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import edu.westga.devops.theartistsdreamclient.view.controls.TagsPane?>
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" styleClass="root" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="400.0" spacing="20.0" style="-fx-background-color: #1e1e24; -fx-background-radius: 20; -fx-border-radius: 20;">
@@ -16,11 +18,11 @@
             <TextField fx:id="searchTagsTextField" prefHeight="30.0" prefWidth="360.0" promptText="SEARCH TAGS" VBox.vgrow="NEVER" />
             <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <content>
-                  <FlowPane fx:id="tagsFlowPane" alignment="TOP_CENTER" hgap="5.0" prefWidth="357.0" rowValignment="TOP" vgap="5.0">
+                  <TagsPane fx:id="tagsPane" alignment="TOP_LEFT" hgap="5.0" prefWidth="357.0" rowValignment="TOP" vgap="5.0">
                      <padding>
-                        <Insets bottom="5.0" top="5.0" />
+                        <Insets bottom="10.0" top="10.0" left="10" right="10" />
                      </padding>
-                  </FlowPane>
+                  </TagsPane>
                </content>
             </ScrollPane>
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="360.0" spacing="20.0">
