@@ -1,20 +1,15 @@
 package edu.westga.devops.theartistsdreamclient.view;
 
+
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
+import edu.westga.devops.theartistsdreamclient.view.controls.Header;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.event.ActionEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 /**
  * The Controller for the login
@@ -22,11 +17,9 @@ import java.io.IOException;
  * @author Jamia Echols
  * @version Fall 2021
  */
-
 public class Login {
-
-    @FXML
-    private TextField emailTextField;
+	public static final String ICON_PATH = "icon.png";
+	public static final String HEADER_FXML = "view/controls/Header.fxml";
 
     @FXML
     private TextField usernameTextField;
@@ -35,30 +28,50 @@ public class Login {
     private TextField passwordTextField;
 
     @FXML
-    private Button createAccountButton;
+    private TextField emailTextField;
+
+    @FXML
+    private TextField confirmPasswordTextField;
 
     @FXML
     private Button loginButton;
 
     @FXML
-    private ImageView IconImage;
+    private AnchorPane thePane;
+    
+    public Login() {
+    	
+    }
 
+    @FXML
+    public void initialize() {
+        this.confirmPasswordTextField.setVisible(false);
+        this.emailTextField.setVisible(false);
+    }
+    
     @FXML
     void handleCreateAccountButtonClick(ActionEvent event) {
+        if (this.confirmPasswordTextField.isVisible() && this.emailTextField.isVisible()) {
 
+        } else {
+            this.confirmPasswordTextField.setVisible(true);
+            this.emailTextField.setVisible(true);
+            this.loginButton.setText("CANCEL");
+        }
     }
-
-    @FXML
-    void handleLoginButtonClick(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(TheArtistsDreamApplication.class.getResource("view/TODO.fxml"));
-        loader.load();
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(loader.getRoot());
-        stage.setTitle("The Artist's Dream");
-        stage.setScene(scene);
-        stage.setMaximized(true);
-        stage.show();
+    
+  @FXML
+  void handleLoginButtonClick(ActionEvent event) throws Exception {
+    if (this.loginButton.getText() == "CANCEL") {
+        this.confirmPasswordTextField.setVisible(false);
+        this.emailTextField.setVisible(false);
+        this.loginButton.setText("LOGIN");
+    } else {
+        TheArtistsDreamApplication.PRIMARY_STAGE.setTitle("The Artists Dream");
+        TheArtistsDreamApplication.PRIMARY_STAGE.setScene(new Scene(new Header()));
+        TheArtistsDreamApplication.PRIMARY_STAGE.getIcons().add(new Image(TheArtistsDreamApplication.class.getResourceAsStream(ICON_PATH)));
+        TheArtistsDreamApplication.PRIMARY_STAGE.show();
     }
+  }
 
 }

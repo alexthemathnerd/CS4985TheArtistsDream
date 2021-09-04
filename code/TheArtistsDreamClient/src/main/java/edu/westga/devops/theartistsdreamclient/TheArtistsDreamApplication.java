@@ -17,6 +17,8 @@ public class TheArtistsDreamApplication extends Application {
 
 	public static final String LOGIN_FXML = "view/Login.fxml";
 
+
+	public static Stage PRIMARY_STAGE;
 	// TODO: SINGLETONS
 	public static TagManager tagManager;
 
@@ -30,6 +32,8 @@ public class TheArtistsDreamApplication extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.getIcons().add(new Image(TheArtistsDreamApplication.class.getResourceAsStream(ICON_PATH)));
 		primaryStage.show();
+
+		TheArtistsDreamApplication.PRIMARY_STAGE = primaryStage;
 	}
 
 	/**
