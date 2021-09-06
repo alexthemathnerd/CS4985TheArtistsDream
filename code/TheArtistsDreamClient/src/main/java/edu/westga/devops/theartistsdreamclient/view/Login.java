@@ -77,11 +77,17 @@ public class Login {
         if (this.confirmPasswordTextField.isVisible() && this.emailTextField.isVisible()) {
             if (this.validateCreateAccount()) {
                 this.viewModel.addUser();
+                Alert alert = new Alert( AlertType.CONFIRMATION, "Account has been created");
+                alert.show();
+                this.confirmPasswordTextField.setVisible(false);
+                this.emailTextField.setVisible(false);
+                this.loginButton.setText("LOGIN");
             }
-        }
+        } else {
             this.confirmPasswordTextField.setVisible(true);
             this.emailTextField.setVisible(true);
             this.loginButton.setText("CANCEL");
+        }
     }
     
     private boolean validateCreateAccount() {
