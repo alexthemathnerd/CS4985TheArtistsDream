@@ -3,6 +3,7 @@ package edu.westga.devops.theartistsdreamclient.view.controls;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
 
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
@@ -15,7 +16,7 @@ import edu.westga.devops.theartistsdreamclient.model.Artwork;
 
 /**
  * The Controller for the Custom Control for each single piece of artwork shown in the application
- * 
+ *
  * @author Aznella Joseph
  * @version Fall 2021
  *
@@ -33,7 +34,7 @@ public class ArtworkTile extends VBox {
 
 	/**
 	 * Initializes the FXML for the ArtworkTile Control
-	 * 
+	 *
 	 * @precondition none
 	 * @postcondition none
 	 *
@@ -44,6 +45,7 @@ public class ArtworkTile extends VBox {
 		loader.setController(this);
 		try{
 			loader.load();
+			this.artworkImageView.setCursor(Cursor.HAND);
 		}catch(IOException e){
 			throw new RuntimeException(e);
 		}
@@ -65,6 +67,7 @@ public class ArtworkTile extends VBox {
 			throw new RuntimeException(e);
 		}
 		this.artworkImageView.setImage(artwork.getImage());
+		this.artworkImageView.setCursor(Cursor.HAND);
 		this.titleLabel.setText(artwork.getTitle());
 	}
 

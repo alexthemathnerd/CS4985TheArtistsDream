@@ -5,10 +5,9 @@ package edu.westga.devops.theartistsdreamclient.viewmodel;
  *
  * @author Aznella Joseph
  * @version Fall 2021
- *
  */
 public class ArtworkTileViewModel {
 
-	public ArtworkTileViewModel(){
-	}
+    public ArtworkTileViewModel() {
+    }
 }

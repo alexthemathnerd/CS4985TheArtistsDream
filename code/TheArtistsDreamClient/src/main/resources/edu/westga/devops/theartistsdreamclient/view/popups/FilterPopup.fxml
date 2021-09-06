@@ -5,13 +5,13 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <?import edu.westga.devops.theartistsdreamclient.view.controls.TagsPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" styleClass="root" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<?import java.net.URL?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" styleClass="main" stylesheets="@../core-design.css, @filter-popup-design.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="400.0" spacing="20.0" style="-fx-background-color: #1e1e24; -fx-background-radius: 20; -fx-border-radius: 20;">
          <children>
@@ -37,4 +37,9 @@
          </padding>
       </VBox>
    </children>
+   <stylesheets>
+      <URL value="@../core-design.css" />
+      <URL value="@popup-design.css" />
+      <URL value="@filter-popup-design.css" />
+   </stylesheets>
 </AnchorPane>

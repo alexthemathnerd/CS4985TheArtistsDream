@@ -12,15 +12,13 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.VBox;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * The Controller for the Custom Control for the Header of the application
  *
  * @author Alexander Schmidt
+ * @version Fall2021
  */
 public class Header extends HBox {
 
@@ -70,13 +68,9 @@ public class Header extends HBox {
     @FXML
     void handleFilter(ActionEvent event) {
         try {
-            Stage popup = PopupLoader.loadPopup("Filter", FilterPopup.class.getResource(FILTER_POPUP_FXML), FilterPopup.class.getResource("filter-popup.css").toExternalForm(), new FilterPopup(), this.getScene().getWindow());
+            Stage popup = PopupLoader.loadPopup("Filter", FilterPopup.class.getResource(FILTER_POPUP_FXML), new FilterPopup(), this.getScene().getWindow());
             popup.setOnCloseRequest((event2) -> {
                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                List<Tag> tags = (List<Tag>) currentStage.getUserData();
-                for (Tag aTag: tags) {
-                    System.out.println(aTag.getName());
-                }
             });
             popup.show();
         } catch (IOException e) {
@@ -103,7 +97,7 @@ public class Header extends HBox {
 
     @FXML
     void handleRecommended(ActionEvent event) {
-	    
+
     }
 
     @FXML

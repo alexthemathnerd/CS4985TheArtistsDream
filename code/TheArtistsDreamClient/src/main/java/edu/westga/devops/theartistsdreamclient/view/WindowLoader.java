@@ -3,19 +3,19 @@ package edu.westga.devops.theartistsdreamclient.view;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 
 public class WindowLoader {
 
 
-
-	/**
+    /**
      * Change scene.
      *
-     * @param currentStage the current stage
+     * @param currentStage    the current stage
      * @param fxmlOfNewWindow the fxml of new window
-     * @param controller the controller
-     * @param newWindowTitle the new window title
+     * @param controller      the controller
+     * @param newWindowTitle  the new window title
      * @throws IOException Signals that an I/O exception has occurred.
      */
     public static void changeScene(Stage currentStage, String fxmlOfNewWindow, Object controller, String newWindowTitle)

@@ -14,7 +14,10 @@ public class LocalTag extends Tag {
     private int useCount;
 
     /**
-     *  Creates a Local tag with a given name
+     * Creates a Local tag with a given name
+     *
+     * @precondition name != null
+     * @postcondition none
      *
      * @param name the name of the tag
      */
@@ -40,6 +43,9 @@ public class LocalTag extends Tag {
 
     @Override
     public int compareTo(Tag otherTag) {
+        if (otherTag == null) {
+            throw new NullPointerException();
+        }
         return otherTag.getUseCount() - this.useCount;
     }
 }

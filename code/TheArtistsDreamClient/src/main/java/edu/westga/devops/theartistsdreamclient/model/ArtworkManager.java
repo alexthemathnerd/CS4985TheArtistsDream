@@ -12,7 +12,7 @@ import edu.westga.devops.theartistsdreamclient.model.Artwork;
  */
 public abstract class ArtworkManager {
 
-	private List<Artwork> artworks;
+	private final List<Artwork> artworks;
 
 	/**
 	 * Creates a new ArtworkManager
@@ -42,7 +42,7 @@ public abstract class ArtworkManager {
 	 *
 	 * @precondition none
 	 * @postcondition none
-	 * 
+	 *
 	 * @param id the id of the artwork to get
 	 *
 	 * @return the artwork specified by the id

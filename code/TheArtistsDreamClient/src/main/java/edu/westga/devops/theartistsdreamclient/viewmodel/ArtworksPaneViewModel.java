@@ -7,8 +7,8 @@ package edu.westga.devops.theartistsdreamclient.viewmodel;
  * @version Fall 2021
  */
 public class ArtworksPaneViewModel {
-	
-	public ArtworksPaneViewModel(){
-	}
+
+    public ArtworksPaneViewModel() {
+    }
 }
 

@@ -7,7 +7,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="441.0" style="-fx-background-color: #1e1e24;" stylesheets="@scrollbar-design.css" type="javafx.scene.control.ScrollPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<?import java.net.URL?>
+<fx:root fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="441.0" style="-fx-background-color: #1e1e24;" stylesheets="@artworks-pane-design.css" type="javafx.scene.control.ScrollPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="20.0" style="-fx-background-color: #1e1e24;">
          <children>
@@ -17,7 +18,7 @@
                   <Insets />
                </VBox.margin>
             </TilePane>
-            <Button fx:id="viewMoreButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleViewMore" prefWidth="200.0" style="-fx-background-color: #3A3A4B; -fx-background-radius: 12;" text="VIEW MORE" textAlignment="CENTER" textFill="#e01a4f">
+            <Button fx:id="viewMoreButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleViewMore" prefWidth="200.0" text="VIEW MORE" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -31,4 +32,8 @@
          </padding>
       </VBox>
    </content>
+   <stylesheets>
+      <URL value="@../core-design.css" />
+      <URL value="@artworks-pane-design.css"/>
+   </stylesheets>
 </fx:root>

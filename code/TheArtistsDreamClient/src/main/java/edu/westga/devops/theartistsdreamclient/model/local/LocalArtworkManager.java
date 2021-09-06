@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class LocalArtworkManager extends ArtworkManager {
 
-	private List<LocalArtwork> artworks;
+	private final List<LocalArtwork> artworks;
 
 	/**
 	 * Creates a new Artworks Collection

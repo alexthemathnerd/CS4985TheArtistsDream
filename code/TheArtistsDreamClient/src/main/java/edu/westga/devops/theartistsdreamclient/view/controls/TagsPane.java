@@ -1,23 +1,31 @@
 package edu.westga.devops.theartistsdreamclient.view.controls;
 
 import edu.westga.devops.theartistsdreamclient.model.Tag;
-import javafx.beans.property.ListProperty;
 import javafx.beans.property.SetProperty;
-import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleSetProperty;
-import javafx.collections.ObservableList;
 import javafx.scene.layout.FlowPane;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
+/**
+ * A class for a custom control to handle displaying a set of tags.
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ */
 public class TagsPane extends FlowPane {
 
     private final SetProperty<Tag> tagsSetProperty;
     private final List<TagButton> selectedTagsButtons;
 
+    /**
+     * Creates a TagPane object
+     *
+     * @precondition none
+     * @postcondition getStyleClass().contains(' tags - pane ') && tagsSetProperty().isEmpty()
+     */
     public TagsPane() {
         this.getStyleClass().add("tags-pane");
         this.tagsSetProperty = new SimpleSetProperty<Tag>();
@@ -37,9 +45,9 @@ public class TagsPane extends FlowPane {
             if (!this.selectedTagsButtons.contains(button)) {
                 button.selectedProperty().addListener((observable, oldValue, newValue) -> {
                     if (newValue) {
-                        selectedTagsButtons.add(button);
+                        this.selectedTagsButtons.add(button);
                     } else {
-                        selectedTagsButtons.remove(button);
+                        this.selectedTagsButtons.remove(button);
                     }
                 });
                 this.getChildren().add(button);
@@ -47,8 +55,14 @@ public class TagsPane extends FlowPane {
         }
     }
 
+    /**
+     * Get the tags set property
+     *
+     * @return the tagsSet Property
+     * @preconditon none
+     * @postcondtion none
+     */
     public SetProperty<Tag> tagsSetProperty() {
         return this.tagsSetProperty;
     }
-
 }

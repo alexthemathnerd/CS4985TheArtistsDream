@@ -1,25 +1,47 @@
 package edu.westga.devops.theartistsdreamclient.view.controls;
 
 import edu.westga.devops.theartistsdreamclient.model.Tag;
-import javafx.beans.property.*;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.ToggleButton;
 
+/**
+ * A custom control for a tag button.
+ *
+ * @author Alexander Schmidt
+ * @version Fall2021
+ * @see Tag
+ */
 public class TagButton extends ToggleButton {
 
     private final ObjectProperty<Tag> tagProperty;
 
     /**
      * Initializes the FXML for the TagButton control
+     *
+     * @precondition tag != null
+     * @postcondition getText().equals(tag.getName()) && getStyleClass().contains("tag-button") && tagProperty().get().equals(tag)
+     *
+     * @param tag the tag to be stored in the button
      */
     public TagButton(Tag tag) {
-        super(tag.getName());
+        super();
+        if (tag == null) {
+            throw new IllegalArgumentException();
+        }
+        this.setText(tag.getName());
         this.getStyleClass().add("tag-button");
         this.tagProperty = new SimpleObjectProperty<Tag>(tag);
     }
 
+    /**
+     * Gets the tag property of the button
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return the tag property
+     */
     public ObjectProperty<Tag> tagProperty() {
         return this.tagProperty;
     }
