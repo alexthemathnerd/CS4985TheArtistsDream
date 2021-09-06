@@ -3,6 +3,7 @@ package edu.westga.devops.theartistsdreamclient.view.controls;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
 
+import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -55,6 +56,14 @@ public class ArtworkTile extends VBox {
 	 * @postcondition none
 	 */
 	public ArtworkTile(Artwork artwork){
+		FXMLLoader loader = new FXMLLoader(Header.class.getResource(ARTWORK_TILE_FXML));
+		loader.setRoot(this);
+		loader.setController(this);
+		try{
+			loader.load();
+		}catch(IOException e){
+			throw new RuntimeException(e);
+		}
 		this.artworkImageView.setImage(artwork.getImage());
 		this.titleLabel.setText(artwork.getTitle());
 	}
@@ -62,7 +71,7 @@ public class ArtworkTile extends VBox {
 	@FXML
 	void initialize(){
 
-		}
+	}
 
 	@FXML
 	void handleViewImage(MouseEvent event) {

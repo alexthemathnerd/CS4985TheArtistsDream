@@ -3,6 +3,7 @@ package edu.westga.devops.theartistsdreamclient.view.controls;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
 
+import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Button;
 import javafx.scene.layout.TilePane;
