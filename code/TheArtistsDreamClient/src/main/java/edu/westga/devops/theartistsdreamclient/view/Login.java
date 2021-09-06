@@ -53,9 +53,9 @@ public class Login {
     }
 
     private void setupBindings() {
-        this.emailTextField.textProperty().bind(this.viewModel.emailStringProperty());
-        this.passwordTextField.textProperty().bind(this.viewModel.passwordStringProperty());
-        this.usernameTextField.textProperty().bind(this.viewModel.usernameStringProperty());
+        this.emailTextField.textProperty().bindBidirectional(this.viewModel.emailStringProperty());
+        this.passwordTextField.textProperty().bindBidirectional(this.viewModel.passwordStringProperty());
+        this.usernameTextField.textProperty().bindBidirectional(this.viewModel.usernameStringProperty());
     }
 
     @FXML
@@ -71,11 +71,10 @@ public class Login {
             if (this.validateCreateAccount()) {
                 this.viewModel.addUser();
             }
-        } else {
+        }
             this.confirmPasswordTextField.setVisible(true);
             this.emailTextField.setVisible(true);
             this.loginButton.setText("CANCEL");
-        }
     }
     
     private boolean validateCreateAccount() {
