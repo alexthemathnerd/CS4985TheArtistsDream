@@ -1,15 +1,21 @@
 package edu.westga.devops.theartistsdreamclient;
 
+import edu.westga.devops.theartistsdreamclient.model.Artwork;
+import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
+import edu.westga.devops.theartistsdreamclient.model.Tag;
 import edu.westga.devops.theartistsdreamclient.model.TagManager;
+import edu.westga.devops.theartistsdreamclient.model.local.LocalArtwork;
+import edu.westga.devops.theartistsdreamclient.model.local.LocalArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalTagManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+
+import java.io.File;
+import java.net.URL;
+import java.util.ArrayList;
 
 /**
  * Handle Setting up The Artist's Dream Application.
@@ -18,9 +24,12 @@ import javafx.stage.StageStyle;
  */
 public class TheArtistsDreamApplication extends Application {
     public static final String ICON_PATH = "icon.png";
+
     public static final String LOGIN_FXML = "view/Login.fxml";
 
-    public static Scene main = null;
+    public static final String LOCAL_ARTWORKS_PATH = "view/local-images/";
+
+    public static ArtworkManager artworkManager;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -46,6 +55,7 @@ public class TheArtistsDreamApplication extends Application {
 
     private static void setupSingletons() {
         setupLocalTagManager();
+	setupLocalArtworkManager();
     }
 
     private static void setupLocalTagManager() {
@@ -78,5 +88,23 @@ public class TheArtistsDreamApplication extends Application {
         tagManager.addTag("A");
         tagManager.addTag("3D");
         TagManager.setTagManager(tagManager);
+    }
+
+    private static void setupLocalArtworkManager() {
+	    artworkManager = new LocalArtworkManager();
+
+	    URL artworksFolderResource = TheArtistsDreamApplication.class.getResource(TheArtistsDreamApplication.LOCAL_ARTWORKS_PATH);
+
+	    try {
+		    File artworksFolder = new File(artworksFolderResource.toURI());
+
+		    for(File artwork : artworksFolder.listFiles()) {
+			    Artwork currentArtwork = new LocalArtwork(new Image(artwork.toURI().toURL().toString()), artwork.getName().substring(0, artwork.getName().indexOf('.')), "John Doe", new ArrayList<Tag>(), 1);
+			    artworkManager.addArtwork(currentArtwork);
+		    }
+
+	    } catch (Exception e) {
+		    e.printStackTrace();
+	    }
     }
 }
