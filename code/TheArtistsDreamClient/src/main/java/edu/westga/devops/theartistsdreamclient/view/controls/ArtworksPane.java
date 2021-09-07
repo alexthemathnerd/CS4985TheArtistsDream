@@ -1,5 +1,7 @@
 package edu.westga.devops.theartistsdreamclient.view.controls;
 
+import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
+import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
 
@@ -45,6 +47,11 @@ public class ArtworksPane extends ScrollPane {
 
     @FXML
     void initialize(){
+
+	    for(Artwork artwork : TheArtistsDreamApplication.artworkManager.getArtworks()){
+		    this.artworksTilePane.getChildren().add(new ArtworkTile(artwork));
+	    }
+
 	    //TODO: bindings
     }
 

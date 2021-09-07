@@ -4,11 +4,18 @@ import edu.westga.devops.theartistsdreamclient.model.TagManager;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalTagManager;
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalArtworkManager;
+import edu.westga.devops.theartistsdreamclient.model.Artwork;
+import edu.westga.devops.theartistsdreamclient.model.local.LocalArtwork;
+import edu.westga.devops.theartistsdreamclient.model.Tag;
+import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import java.net.URL;
+import java.net.URISyntaxException;
+import java.io.File;
 
 /**
  * Handle Setting up The Artist's Dream Application.
@@ -21,6 +28,8 @@ public class TheArtistsDreamApplication extends Application {
     public static final String LOGIN_FXML = "view/Login.fxml";
 
     public static final String LOCAL_ARTWORKS_PATH = "view/local-images/";
+
+    public static ArtworkManager artworkManager;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -82,8 +91,20 @@ public class TheArtistsDreamApplication extends Application {
     }
 
     private static void setupLocalArtworkManager() {
-	    ArtworkManager artworkManager = new LocalArtworkManager();
+	    artworkManager = new LocalArtworkManager();
 
+	    URL artworksFolderResource = TheArtistsDreamApplication.class.getResource(TheArtistsDreamApplication.LOCAL_ARTWORKS_PATH);
 
+	    try {
+		    File artworksFolder = new File(artworksFolderResource.toURI());
+
+		    for(File artwork : artworksFolder.listFiles()) {
+			    Artwork currentArtwork = new LocalArtwork(new Image(artwork.toURI().toURL().toString()), artwork.getName().substring(0, artwork.getName().indexOf('.')), "John Doe", new ArrayList<Tag>(), 1);
+			    artworkManager.addArtwork(currentArtwork);
+		    }
+
+	    } catch (Exception e) {
+		    e.printStackTrace();
+	    }
     }
 }
