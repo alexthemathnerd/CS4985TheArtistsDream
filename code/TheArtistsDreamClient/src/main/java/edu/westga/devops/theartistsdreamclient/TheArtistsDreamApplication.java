@@ -2,6 +2,8 @@ package edu.westga.devops.theartistsdreamclient;
 
 import edu.westga.devops.theartistsdreamclient.model.TagManager;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalTagManager;
+import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
+import edu.westga.devops.theartistsdreamclient.model.local.LocalArtworkManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,6 +19,8 @@ public class TheArtistsDreamApplication extends Application {
     public static final String ICON_PATH = "icon.png";
 
     public static final String LOGIN_FXML = "view/Login.fxml";
+
+    public static final String LOCAL_ARTWORKS_PATH = "view/local-images/";
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -42,6 +46,7 @@ public class TheArtistsDreamApplication extends Application {
 
     private static void setupSingletons() {
         setupLocalTagManager();
+	setupLocalArtworkManager();
     }
 
     private static void setupLocalTagManager() {
@@ -74,5 +79,11 @@ public class TheArtistsDreamApplication extends Application {
         tagManager.addTag("A");
         tagManager.addTag("3D");
         TagManager.setTagManager(tagManager);
+    }
+
+    private static void setupLocalArtworkManager() {
+	    ArtworkManager artworkManager = new LocalArtworkManager();
+
+
     }
 }
