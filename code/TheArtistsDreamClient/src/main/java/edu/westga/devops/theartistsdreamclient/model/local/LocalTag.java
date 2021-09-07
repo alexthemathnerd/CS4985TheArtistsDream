@@ -22,6 +22,9 @@ public class LocalTag extends Tag {
      * @param name the name of the tag
      */
     public LocalTag(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException();
+        }
         this.name = name.toLowerCase();
         this.useCount = 1;
     }
@@ -46,6 +49,11 @@ public class LocalTag extends Tag {
         if (otherTag == null) {
             throw new NullPointerException();
         }
-        return otherTag.getUseCount() - this.useCount;
+        int result = otherTag.getUseCount() - this.useCount;
+
+        if (result == 0) {
+            return this.getName().compareTo(otherTag.getName());
+        }
+        return result;
     }
 }

@@ -2,7 +2,7 @@
     -fx-background-color: #1E1E24;
 }
 
-.text-field {
+.text-field, .password-field {
     -fx-background-color: #2C2C32;
     -fx-background-radius: 20;
     -fx-border-radius: 20;
@@ -20,4 +20,5 @@
 .button:hover {
      -fx-background-color: #E01A4F;
      -fx-text-fill: white;
+     -fx-cursor: HAND;
 }

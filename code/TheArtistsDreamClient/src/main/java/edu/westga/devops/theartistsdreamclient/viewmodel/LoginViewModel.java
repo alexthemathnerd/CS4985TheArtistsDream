@@ -18,9 +18,9 @@ public class LoginViewModel {
 
 
     public LoginViewModel() {
-        this.usernameStringProperty = new SimpleStringProperty();
-        this.passwordStringProperty = new SimpleStringProperty();
-        this.emailStringProperty = new SimpleStringProperty();
+        this.usernameStringProperty = new SimpleStringProperty("");
+        this.passwordStringProperty = new SimpleStringProperty("");
+        this.emailStringProperty = new SimpleStringProperty("");
         this.userManager = new LocalUserManager();
     }
 

@@ -44,7 +44,7 @@ public class FilterPopup {
     public void handleFilter(ActionEvent event) {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Stage ownerStage = (Stage) currentStage.getOwner();
-        ownerStage.setUserData(this.viewModel.addedTagsSetProperty());
+        currentStage.setUserData(this.tagsPane.addedTagsSetProperty());
         currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
         currentStage.close();
     }
@@ -52,6 +52,7 @@ public class FilterPopup {
     @FXML
     public void handleCancel(ActionEvent event) {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
         currentStage.close();
     }
 }

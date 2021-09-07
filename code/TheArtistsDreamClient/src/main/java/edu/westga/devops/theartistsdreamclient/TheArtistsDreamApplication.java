@@ -6,7 +6,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * Handle Setting up The Artist's Dream Application.
@@ -15,8 +18,9 @@ import javafx.stage.Stage;
  */
 public class TheArtistsDreamApplication extends Application {
     public static final String ICON_PATH = "icon.png";
-
     public static final String LOGIN_FXML = "view/Login.fxml";
+
+    public static Scene main = null;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
