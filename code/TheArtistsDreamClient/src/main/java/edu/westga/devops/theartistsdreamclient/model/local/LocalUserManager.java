@@ -39,10 +39,18 @@ public class LocalUserManager<E> extends UserManager<E> {
 	}
 
 	@Override
+	public LocalUser getUser(int userId) {
+		for (LocalUser currentUser : this.users) {
+			if (userId == currentUser.getUserId()) {
+				return currentUser;
+			}
+		}
+		return null;
+	}
+
 	public LocalUser getUser(String username, String password) {
 		for (LocalUser currentUser : this.users) {
-			if (username.equals(currentUser.getUserName())
-					&& password.equals(currentUser.getPassword())) {
+			if (username.equals(currentUser.getUserName()) && password.equals(currentUser.getPassword())) {
 				return currentUser;
 			}
 		}
@@ -59,9 +67,9 @@ public class LocalUserManager<E> extends UserManager<E> {
 	}
 
 	@Override
-	public boolean checkForUser(String username) {
+	public boolean checkForUser(int id) {
 		for (LocalUser currentUser : this.users) {
-			if (username.equals(currentUser.getUserName())) {
+			if (id == currentUser.getUserId()) {
 				return true;
 			}
 		}
@@ -74,13 +82,15 @@ public class LocalUserManager<E> extends UserManager<E> {
 	}
 	
 	/**
-	 * Gets the users.
-	 *
-	 * @return the users
+	 * Gets the amount of users in the manager
+	 * 
+	 * @return the amount of users in the manager
 	 */
-	public ArrayList<LocalUser> getUsers() {
-		return this.users;
+	public int size() {
+		return this.users.size();
 	}
+
+
 
 	@Override
 	public Iterator<E> iterator() {

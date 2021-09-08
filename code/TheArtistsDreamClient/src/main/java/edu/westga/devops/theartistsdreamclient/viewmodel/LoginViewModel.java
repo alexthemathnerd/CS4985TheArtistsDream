@@ -55,11 +55,11 @@ public class LoginViewModel {
     }
 
 	public boolean checkIfUserAlreadyExists(LocalUser user) {
-		return this.userManager.getUsers().contains(user);
+		return this.userManager.checkForUser(user.getUserId());
     }
 
     public void addUser() {
-        LocalUser newUser = new LocalUser(this.emailStringProperty.get(), this.usernameStringProperty.get(), this.passwordStringProperty.get());
+        LocalUser newUser = new LocalUser(this.userManager.size(), this.emailStringProperty.get(), this.usernameStringProperty.get(), this.passwordStringProperty.get());
         if (!this.checkIfUserAlreadyExists(newUser)) {
             this.userManager.addUser(newUser);
         } else {

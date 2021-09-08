@@ -9,14 +9,16 @@ import edu.westga.devops.theartistsdreamclient.model.User;
  * @version Fall 2021
  */
 public class LocalUser extends User {
+    private int userId;
     private String email;
     private String username;
     private String password;
 
-    public LocalUser(String email, String username, String password) {
+    public LocalUser(int userId, String email, String username, String password) {
         this.email = email;
         this.username = username;
         this.password = password;
+        this.userId = userId;
     }
 
     public String getEmail() {
@@ -29,5 +31,9 @@ public class LocalUser extends User {
 
     public String getPassword() {
         return this.password;
+    }
+
+    public int getUserId() {
+        return this.userId;
     }
 }
