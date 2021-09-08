@@ -27,6 +27,7 @@ public class WindowLoader {
 
         Scene scene = new Scene(loader.getRoot());
         currentStage.setScene(scene);
+        currentStage.setMaximized(true);
         currentStage.setTitle(newWindowTitle);
     }
 

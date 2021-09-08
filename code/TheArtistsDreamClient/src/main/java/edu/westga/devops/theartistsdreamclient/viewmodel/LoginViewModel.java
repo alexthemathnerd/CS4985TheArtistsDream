@@ -28,6 +28,7 @@ public class LoginViewModel {
         this.emailStringProperty = new SimpleStringProperty("");
         this.errorLabelStringProperty = new SimpleStringProperty("");
         this.userManager = new LocalUserManager<LocalUser>();
+        this.userManager.loadLocalUsers();
     }
 
     public StringProperty errorLabelStringProperty() {

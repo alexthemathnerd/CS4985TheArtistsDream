@@ -97,4 +97,11 @@ public class LocalUserManager<E> extends UserManager<E> {
 		return (Iterator<E>) this.users.iterator();
 	}
 	
+	public void loadLocalUsers() {
+		this.users.add(new LocalUser(0, "jechols5@my.westga.edu","jamiaechols1","JamiaEchols1"));
+		this.users.add(new LocalUser(1,"ajoseph7@my.westga.edu","AznellaJoseph","AznellaJoseph1"));
+		this.users.add(new LocalUser(2,"aschmid3@my.westga.edu", "alexthemathnerd", "AlexSchmidt1"));
+		this.users.add(new LocalUser(3,"jcorely@westga.edu","jcorely1","JonCorely1"));
+		this.users.add(new LocalUser(4, "randomArtist@gmail.com","randomArtist5","RandomArtist1"));
+	}
 }
