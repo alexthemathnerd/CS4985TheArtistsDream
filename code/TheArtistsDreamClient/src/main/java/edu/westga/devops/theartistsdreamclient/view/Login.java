@@ -122,7 +122,7 @@ public class Login {
                 Alert alert = new Alert(AlertType.ERROR, ErrorMessages.USER_NOT_FOUND);
                 alert.show();
             } else {
-               FXMLLoader loader = new FXMLLoader(TheArtistsDreamApplication.class.getResource(RECOMMENDED_PAGE_FXML));
+               new FXMLLoader(TheArtistsDreamApplication.class.getResource(RECOMMENDED_PAGE_FXML));
                 try {
                     Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
