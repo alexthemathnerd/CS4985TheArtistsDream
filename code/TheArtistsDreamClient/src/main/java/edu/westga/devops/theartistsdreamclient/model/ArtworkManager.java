@@ -1,7 +1,6 @@
 package edu.westga.devops.theartistsdreamclient.model;
 
 import java.util.List;
-import java.util.ArrayList;
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 
 /**
@@ -10,32 +9,16 @@ import edu.westga.devops.theartistsdreamclient.model.Artwork;
  * @author Aznella Joseph
  * @version Fall 2021
  */
-public abstract class ArtworkManager {
-
-	private final List<Artwork> artworks;
+public abstract class ArtworkManager implements Iterable<Artwork> {
 
 	/**
-	 * Creates a new ArtworkManager
-	 *
-	 * @precondition artworks != null
-	 * @postcondition getArtworks() == artworks
-	 *
-	 * @throws IllegalArgumentException if artworks is null
-	 */
-	public ArtworkManager() {
-		this.artworks = new ArrayList<Artwork>();
-	}
-
-	/**
-	 * Gets the artworks
+	 * Gets the first fifty artworks
 	 *
 	 * @precondition none
 	 * @postcondition none
-	 * @return the artworks
+	 * @return the first 50 artworks
 	 */
-	public List<Artwork> getArtworks() {
-		return this.artworks;
-	}
+	public abstract List<Artwork> getFirstFiftyArtworks();
 
 	/**
 	 * Gets the artwork specified by the id
@@ -47,14 +30,7 @@ public abstract class ArtworkManager {
 	 *
 	 * @return the artwork specified by the id
 	 */
-	public Artwork getArtwork(int id) {
-		for (Artwork artwork : this.artworks) {
-			if(artwork.getID() == id){
-				return artwork;
-			}
-		}
-		return null;
-	}
+	public abstract Artwork getArtwork(int id);
 
 	/**
 	 * Adds the artwork
@@ -66,9 +42,7 @@ public abstract class ArtworkManager {
 	 *
 	 * @return true if the artwork was successfully added, false otherwise
 	 */
-	public boolean addArtwork(Artwork artwork) {
-		return this.artworks.add(artwork);
-	}
+	public abstract boolean addArtwork(Artwork artwork);
 
 	/**
 	 * Removes the artwork specified by the id
@@ -78,16 +52,9 @@ public abstract class ArtworkManager {
 	 *
 	 * @param id the id of the artwork to remove
 	 *
-	 * @return trueif the artwork was successfully removed, false otherwise
+	 * @return true if the artwork was successfully removed, false otherwise
 	 */
-	public boolean removeArtwork(int id) {
-		for (Artwork artwork: this.artworks) {
-			if (artwork.getID() == id) {
-				return this.artworks.remove(artwork);
-			}
-		}
-		return false;
-	}
+	public abstract boolean removeArtwork(int id);
 
 	/**
 	 * Edits the artwork of the specified id by changing its title and tags
@@ -101,21 +68,7 @@ public abstract class ArtworkManager {
 	 *
 	 * @return true if the artwork was successfully edited, false otherwise
 	 */
-	public boolean editArtwork(int id, String newTitle, List<Tag> newTags){
-		if (newTitle == null) {
-			throw new IllegalArgumentException();
-		}
-		if (newTitle.isEmpty()) {
-			throw new IllegalArgumentException();
-		}
-		if (newTags == null) {
-			throw new IllegalArgumentException();
-		}
-		Artwork artworkToEdit = this.getArtwork(id);
-		artworkToEdit.setTitle(newTitle);
-		artworkToEdit.setTags(newTags);
-		return true;
-	}
+	public abstract boolean editArtwork(int id, String newTitle, List<Integer> newTagIDs);
 
 	/**
 	 * Gets the artworks of the artists the user follows
@@ -127,9 +80,7 @@ public abstract class ArtworkManager {
 	 *
 	 * @return a list of the artworks from the artists followed
 	 */
-	public List<Artwork> getFollowingArtworks(int userId) {
-		return null;
-	}
+	public abstract List<Artwork> getFollowingArtworks(int userId);
 
 	/**
 	 * Gets the artworks of the user specified by the id
@@ -141,7 +92,5 @@ public abstract class ArtworkManager {
 	 *
 	 * @return the artworks from the specified artist
 	 */
-	public List<Artwork> getArtworksOfArtist(int userId) {
-		return null;
-	}
+	public abstract List<Artwork> getArtworksOfArtist(int userId);
 }

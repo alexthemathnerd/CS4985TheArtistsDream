@@ -15,7 +15,9 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
+import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Handle Setting up The Artist's Dream Application.
@@ -81,12 +83,14 @@ public class TheArtistsDreamApplication extends Application {
         tagManager.addTag("Happy");
         tagManager.addTag("Happy");
         tagManager.addTag("Nature");
-        tagManager.addTag("Pets");
+        tagManager.addTag("Animals");
         tagManager.addTag("Portrait");
-        tagManager.addTag("Nature");
         tagManager.addTag("Landscapes");
-        tagManager.addTag("A");
+        tagManager.addTag("Abstract");
         tagManager.addTag("3D");
+	tagManager.addTag("Sci-Fi");
+	tagManager.addTag("Material");
+	tagManager.addTag("Contemporary");
         TagManager.setTagManager(tagManager);
     }
 
@@ -99,7 +103,19 @@ public class TheArtistsDreamApplication extends Application {
 		    File artworksFolder = new File(artworksFolderResource.toURI());
 
 		    for(File artwork : artworksFolder.listFiles()) {
-			    Artwork currentArtwork = new LocalArtwork(new Image(artwork.toURI().toURL().toString()), artwork.getName().substring(0, artwork.getName().indexOf('.')), "John Doe", new ArrayList<Tag>(), 1);
+
+			    String artworkURLPath = artwork.toURI().toURL().toString();
+			    String[] artworkParts = artwork.getName().substring(0, artwork.getName().indexOf(".")).split("_");
+			    String artworkName = artworkParts[0];
+			    int artistID = Integer.parseInt(artworkParts[1]);
+			    String[] artworkTags = artworkParts[2].split(",");
+			    List<Integer> artworkTagIDs = new ArrayList<Integer>();
+			    for(String tag : artworkTags) {
+			    	artworkTagIDs.add(Integer.parseInt(tag));
+			    	}
+			    int artworkID = Integer.parseInt(artworkParts[3]);
+
+			    Artwork currentArtwork = new LocalArtwork(new Image(artworkURLPath), artworkName, artistID, artworkTagIDs, artworkID);
 			    artworkManager.addArtwork(currentArtwork);
 		    }
 

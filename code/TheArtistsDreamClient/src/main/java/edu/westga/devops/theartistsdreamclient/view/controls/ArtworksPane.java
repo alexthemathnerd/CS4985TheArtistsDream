@@ -47,7 +47,7 @@ public class ArtworksPane extends ScrollPane {
     @FXML
     void initialize() {
 
-        for (Artwork artwork : TheArtistsDreamApplication.artworkManager.getArtworks()) {
+        for (Artwork artwork : TheArtistsDreamApplication.artworkManager.getFirstFiftyArtworks()) {
             this.artworksTilePane.getChildren().add(new ArtworkTile(artwork));
         }
 
