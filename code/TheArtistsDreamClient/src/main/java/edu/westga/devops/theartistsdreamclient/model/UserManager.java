@@ -1,12 +1,15 @@
 package edu.westga.devops.theartistsdreamclient.model;
+
+import edu.westga.devops.theartistsdreamclient.model.local.LocalUser;
+
 /**
  * The userManager class
  * 
  * @author Jamia Echols
  * @version Fall 2021
  */
-public abstract class UserManager {
-    private static UserManager userManager = null;
+public abstract class UserManager<E> implements Iterable<E> {
+    private UserManager<E> userManager = null;
 
 	/**
 	 * Gets the UserManager
@@ -15,10 +18,9 @@ public abstract class UserManager {
 	 * @postcondition none
 	 * @return the user manager
 	 */
-	public static UserManager getUserManager() {
-		return UserManager.userManager;
+	UserManager<E> getUserManager() {
+		return this.userManager;
 	}
-
 	/**
 	 * Sets the UserManager
 	 * 
@@ -26,8 +28,8 @@ public abstract class UserManager {
 	 * @postcondition getUserManager() == userManager
 	 * @param userManager the new user manager
 	 */
-	public static void setUserManager(UserManager userManager) {
-		UserManager.userManager = userManager;
+	public void setUserManager(UserManager<E> userManager) {
+		this.userManager = userManager;
 	}
 
 	/**
@@ -46,15 +48,13 @@ public abstract class UserManager {
 	/**
 	 * Gets the user with the given username and password
 	 * 
-	 * @precondition !username.isEmpty() && username != null && !password.isEmpty()
-	 *               && password != null
+	 * @precondition 
 	 * @postcondition none
 	 * 
-	 * @param username the username of the user to get
-	 * @param password the password of the user to get
+	 * @param userid the userId of the user to get
 	 * @return the user with the given username and password
 	 */
-	public abstract User getUser(String username, String password);
+	public abstract LocalUser getUser(int userId);
 
 	/**
 	 * Adds a user with the given username and password.
@@ -65,17 +65,17 @@ public abstract class UserManager {
 	 *               && password != null
 	 * @postcondition none
 	 */
-	public abstract boolean addUser(User user);
+	public abstract boolean addUser(LocalUser user);
 
 	/**
 	 * Checks if a user has the given username
 	 * 
-	 * @precondition !username.isEmpty() && username != null
+	 * @precondition 
 	 * @postcondition none
-	 * @param username the username to look for
-	 * @return true if the user with the given username exists, false otherwise
+	 * @param userId the id to look for
+	 * @return true if the user with the given userId exists, false otherwise
 	 */
-	public abstract boolean checkForUser(String username);
+	public abstract boolean checkForUser(int userId);
 
 	/**
 	 * Updates the users information
@@ -85,5 +85,5 @@ public abstract class UserManager {
 	 * @param user the user to update
 	 * @return true if the user has been updated, false otherwise
 	 */
-	public abstract boolean updateUser(User user);
+	public abstract boolean updateUser(LocalUser user);
 }

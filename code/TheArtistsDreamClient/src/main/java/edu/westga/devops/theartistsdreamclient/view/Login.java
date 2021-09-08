@@ -1,23 +1,22 @@
 package edu.westga.devops.theartistsdreamclient.view;
 
+import java.io.IOException;
+
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
+import edu.westga.devops.theartistsdreamclient.model.local.LocalUser;
 import edu.westga.devops.theartistsdreamclient.viewmodel.LoginViewModel;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.Label;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Alert;
-import edu.westga.devops.theartistsdreamclient.model.User;
 import javafx.fxml.FXMLLoader;
-
-import java.io.IOException;
-
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -53,17 +52,21 @@ public class Login {
 
     private LoginViewModel viewModel;
 
-    private BooleanProperty isCreateingAccount;
-
+    private BooleanProperty isCreatingAccount;
+    /**
+     * Initiailizes ViewModel for Login
+     */
     public Login() {
         this.viewModel = new LoginViewModel();
-        this.isCreateingAccount = new SimpleBooleanProperty(false);
+        this.isCreatingAccount = new SimpleBooleanProperty(false);
     }
 
     private void setupBindings() {
         this.emailTextField.textProperty().bindBidirectional(this.viewModel.emailStringProperty());
         this.passwordTextField.textProperty().bindBidirectional(this.viewModel.passwordStringProperty());
         this.usernameTextField.textProperty().bindBidirectional(this.viewModel.usernameStringProperty());
+        this.confirmPasswordTextField.textProperty().bindBidirectional(this.viewModel.confirmPasswordStringProperty());
+        this.errorMessageLabel.textProperty().bindBidirectional(this.viewModel.errorLabelStringProperty());
     }
 
     @FXML
@@ -75,7 +78,7 @@ public class Login {
         this.emailTextField.setVisible(false);
         this.setupBindings();
         this.emailTextField.setManaged(false);
-        this.isCreateingAccount.addListener((observable, oldValue, newValue) -> {
+        this.isCreatingAccount.addListener((observable, oldValue, newValue) -> {
             if (newValue) {
                 this.confirmPasswordTextField.setVisible(true);
                 this.confirmPasswordTextField.setDisable(false);
@@ -99,37 +102,21 @@ public class Login {
 
     @FXML
     void handleCreateAccountButtonClick(ActionEvent event) {
-        if (this.isCreateingAccount.get()) {
-            if (this.validateCreateAccount()) {
-                this.isCreateingAccount.set(false);
+        if (this.isCreatingAccount.get()) {
+            if (this.viewModel.validateCreateAccount()) {
+                this.isCreatingAccount.set(false);
             }
         } else {
-            this.isCreateingAccount.set(true);
+            this.isCreatingAccount.set(true);
         }
-    }
-
-    private boolean validateCreateAccount() {
-        if (!this.emailTextField.getText().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")) {
-            this.errorMessageLabel.setText("Must enter a valid email.");
-            return false;
-        }
-        if (this.passwordTextField.getText().length() < 7) {
-            this.emailTextField.setText("Password length must be greater than 7");
-            return false;
-        }
-        if (!this.passwordTextField.getText().equals(this.confirmPasswordTextField.getText())) {
-            this.errorMessageLabel.setText("Passwords must match");
-            return false;
-        }
-        return true;
     }
 
     @FXML
     void handleLoginButtonClick(ActionEvent event) throws Exception {
-        if (this.isCreateingAccount.get()) {
-            this.isCreateingAccount.set(false);
+        if (this.isCreatingAccount.get()) {
+            this.isCreatingAccount.set(false);
         } else {
-            User user = this.viewModel.getUser();
+            LocalUser user = this.viewModel.getUser();
             if (user == null) {
                 Alert alert = new Alert(AlertType.ERROR, "User not found");
                 alert.show();

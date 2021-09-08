@@ -2,6 +2,7 @@ package edu.westga.devops.theartistsdreamclient.model.local;
 
 import edu.westga.devops.theartistsdreamclient.model.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 /**
@@ -12,9 +13,9 @@ import java.util.ArrayList;
  * @version Fall 2021
  *
  */
-public class LocalUserManager extends UserManager {
+public class LocalUserManager<E> extends UserManager<E> {
 
-	private ArrayList<User> users;
+	private ArrayList<LocalUser> users;
 
 	/**
 	 * Instantiates a new LocalUserManager
@@ -23,12 +24,12 @@ public class LocalUserManager extends UserManager {
 	 * @postcondition none
 	 */
 	public LocalUserManager() {
-		this.users = new ArrayList<User>();
+		this.users = new ArrayList<LocalUser>();
 	}
 
 	@Override
 	public boolean verifyCredentials(String username, String password) {
-		for (User currentUser : this.users) {
+		for (LocalUser currentUser : this.users) {
 			if (username.equals(currentUser.getUserName())
 					&& password.equals(currentUser.getPassword())) {
 				return true;
@@ -38,10 +39,18 @@ public class LocalUserManager extends UserManager {
 	}
 
 	@Override
-	public User getUser(String username, String password) {
-		for (User currentUser : this.users) {
-			if (username.equals(currentUser.getUserName())
-					&& password.equals(currentUser.getPassword())) {
+	public LocalUser getUser(int userId) {
+		for (LocalUser currentUser : this.users) {
+			if (userId == currentUser.getUserId()) {
+				return currentUser;
+			}
+		}
+		return null;
+	}
+
+	public LocalUser getUser(String username, String password) {
+		for (LocalUser currentUser : this.users) {
+			if (username.equals(currentUser.getUserName()) && password.equals(currentUser.getPassword())) {
 				return currentUser;
 			}
 		}
@@ -49,7 +58,7 @@ public class LocalUserManager extends UserManager {
 	}
 
 	@Override
-	public boolean addUser(User user) {
+	public boolean addUser(LocalUser user) {
 		if (user != null) {
 			this.users.add(user);
 		}
@@ -57,9 +66,9 @@ public class LocalUserManager extends UserManager {
 	}
 
 	@Override
-	public boolean checkForUser(String username) {
-		for (User currentUser : this.users) {
-			if (username.equals(currentUser.getUserName())) {
+	public boolean checkForUser(int id) {
+		for (LocalUser currentUser : this.users) {
+			if (id == currentUser.getUserId()) {
 				return true;
 			}
 		}
@@ -67,17 +76,24 @@ public class LocalUserManager extends UserManager {
 	}
 
 	@Override
-	public boolean updateUser(User username) {
+	public boolean updateUser(LocalUser username) {
 		return false;
 	}
 	
 	/**
-	 * Gets the users.
-	 *
-	 * @return the users
+	 * Gets the amount of users in the manager
+	 * 
+	 * @return the amount of users in the manager
 	 */
-	public ArrayList<User> getUsers() {
-		return this.users;
+	public int size() {
+		return this.users.size();
+	}
+
+
+
+	@Override
+	public Iterator<E> iterator() {
+		return (Iterator<E>) this.users.iterator();
 	}
 	
 }
