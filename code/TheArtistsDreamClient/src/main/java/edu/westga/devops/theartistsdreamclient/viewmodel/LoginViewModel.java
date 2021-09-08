@@ -2,6 +2,7 @@ package edu.westga.devops.theartistsdreamclient.viewmodel;
 
 import javafx.beans.property.*;
 import edu.westga.devops.theartistsdreamclient.model.*;
+import edu.westga.devops.theartistsdreamclient.model.local.LocalUser;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalUserManager;
 
 /**
@@ -13,15 +14,23 @@ import edu.westga.devops.theartistsdreamclient.model.local.LocalUserManager;
 public class LoginViewModel {
     private StringProperty usernameStringProperty;
     private StringProperty passwordStringProperty;
+    private StringProperty confirmPasswordStringProperty;
     private StringProperty emailStringProperty;
+    private StringProperty errorLabelStringProperty;
     private LocalUserManager userManager;
 
 
     public LoginViewModel() {
         this.usernameStringProperty = new SimpleStringProperty();
         this.passwordStringProperty = new SimpleStringProperty();
+        this.confirmPasswordStringProperty = new SimpleStringProperty();
         this.emailStringProperty = new SimpleStringProperty();
+        this.errorLabelStringProperty = new SimpleStringProperty();
         this.userManager = new LocalUserManager();
+    }
+
+    public StringProperty errorLabelStringProperty() {
+        return this.errorLabelStringProperty;
     }
 
     public StringProperty usernameStringProperty() {
@@ -32,6 +41,10 @@ public class LoginViewModel {
         return this.passwordStringProperty;
     }
 
+    public StringProperty confirmPasswordStringProperty() {
+        return this.confirmPasswordStringProperty;
+    }
+
     public StringProperty emailStringProperty() {
         return this.emailStringProperty;
     }
@@ -40,21 +53,33 @@ public class LoginViewModel {
         return this.userManager;
     }
 
-	public boolean checkIfUserAlreadyExists(User user) {
-		if (this.userManager.getUsers().contains(user)) {
-			return true;
-		}
-		return false;
+	public boolean checkIfUserAlreadyExists(LocalUser user) {
+		return this.userManager.getUsers().contains(user);
     }
 
     public void addUser() {
-        User newUser = new User(this.emailStringProperty.get(), this.usernameStringProperty.get(), this.passwordStringProperty.get());
+        LocalUser newUser = new LocalUser(this.emailStringProperty.get(), this.usernameStringProperty.get(), this.passwordStringProperty.get());
         if (!this.checkIfUserAlreadyExists(newUser)) {
             this.userManager.addUser(newUser);
+        } else {
+            this.errorLabelStringProperty.set("User already exisits");
         }
     }
 
-    public User getUser() {
+    public LocalUser getUser() {
         return this.userManager.getUser(this.usernameStringProperty.get(), this.passwordStringProperty.get());
+    }
+
+    public String validateCreateAccount() {
+        if (!this.emailStringProperty.get().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")) {
+            return "Must enter a valid email.";
+        }
+        if (this.passwordStringProperty.get().length() < 7) {
+            return "Password length must be greater than 7";
+        }
+        if (!this.passwordStringProperty.get().equals(this.confirmPasswordStringProperty.get())) {
+            return "Passwords must match";
+        }
+        return "";
     }
 }

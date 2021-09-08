@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class LocalUserManager extends UserManager {
 
-	private ArrayList<User> users;
+	private ArrayList<LocalUser> users;
 
 	/**
 	 * Instantiates a new LocalUserManager
@@ -23,12 +23,12 @@ public class LocalUserManager extends UserManager {
 	 * @postcondition none
 	 */
 	public LocalUserManager() {
-		this.users = new ArrayList<User>();
+		this.users = new ArrayList<LocalUser>();
 	}
 
 	@Override
 	public boolean verifyCredentials(String username, String password) {
-		for (User currentUser : this.users) {
+		for (LocalUser currentUser : this.users) {
 			if (username.equals(currentUser.getUserName())
 					&& password.equals(currentUser.getPassword())) {
 				return true;
@@ -38,8 +38,8 @@ public class LocalUserManager extends UserManager {
 	}
 
 	@Override
-	public User getUser(String username, String password) {
-		for (User currentUser : this.users) {
+	public LocalUser getUser(String username, String password) {
+		for (LocalUser currentUser : this.users) {
 			if (username.equals(currentUser.getUserName())
 					&& password.equals(currentUser.getPassword())) {
 				return currentUser;
@@ -49,7 +49,7 @@ public class LocalUserManager extends UserManager {
 	}
 
 	@Override
-	public boolean addUser(User user) {
+	public boolean addUser(LocalUser user) {
 		if (user != null) {
 			this.users.add(user);
 		}
@@ -59,7 +59,7 @@ public class LocalUserManager extends UserManager {
 
 	@Override
 	public boolean checkForUser(String username) {
-		for (User currentUser : this.users) {
+		for (LocalUser currentUser : this.users) {
 			if (username.equals(currentUser.getUserName())) {
 				return true;
 			}
@@ -68,7 +68,7 @@ public class LocalUserManager extends UserManager {
 	}
 
 	@Override
-	public boolean updateUser(User username) {
+	public boolean updateUser(LocalUser username) {
 		return false;
 	}
 	
@@ -77,7 +77,7 @@ public class LocalUserManager extends UserManager {
 	 *
 	 * @return the users
 	 */
-	public ArrayList<User> getUsers() {
+	public ArrayList<LocalUser> getUsers() {
 		return this.users;
 	}
 	

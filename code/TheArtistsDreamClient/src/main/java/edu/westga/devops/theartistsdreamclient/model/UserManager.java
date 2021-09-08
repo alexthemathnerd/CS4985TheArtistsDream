@@ -1,4 +1,7 @@
 package edu.westga.devops.theartistsdreamclient.model;
+
+import edu.westga.devops.theartistsdreamclient.model.local.LocalUser;
+
 /**
  * The userManager class
  * 
@@ -54,7 +57,7 @@ public abstract class UserManager {
 	 * @param password the password of the user to get
 	 * @return the user with the given username and password
 	 */
-	public abstract User getUser(String username, String password);
+	public abstract LocalUser getUser(String username, String password);
 
 	/**
 	 * Adds a user with the given username and password.
@@ -65,7 +68,7 @@ public abstract class UserManager {
 	 *               && password != null
 	 * @postcondition none
 	 */
-	public abstract boolean addUser(User user);
+	public abstract boolean addUser(LocalUser user);
 
 	/**
 	 * Checks if a user has the given username
@@ -85,5 +88,5 @@ public abstract class UserManager {
 	 * @param user the user to update
 	 * @return true if the user has been updated, false otherwise
 	 */
-	public abstract boolean updateUser(User user);
+	public abstract boolean updateUser(LocalUser user);
 }

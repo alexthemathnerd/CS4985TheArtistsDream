@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import edu.westga.devops.theartistsdreamclient.model.*;
+import edu.westga.devops.theartistsdreamclient.model.local.LocalUser;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
@@ -57,6 +58,9 @@ public class Login {
 
     private LoginViewModel viewModel;
 
+    /**
+     * Initiailizes ViewModel for Login
+     */
     public Login() {
         this.viewModel = new LoginViewModel();
     }
@@ -65,6 +69,8 @@ public class Login {
         this.emailTextField.textProperty().bindBidirectional(this.viewModel.emailStringProperty());
         this.passwordTextField.textProperty().bindBidirectional(this.viewModel.passwordStringProperty());
         this.usernameTextField.textProperty().bindBidirectional(this.viewModel.usernameStringProperty());
+        this.confirmPasswordTextField.textProperty().bindBidirectional(this.viewModel.confirmPasswordStringProperty());
+        this.errorMessageLabel.textProperty().bindBidirectional(this.viewModel.errorLabelStringProperty());
     }
 
     @FXML
@@ -81,7 +87,7 @@ public class Login {
     @FXML
     void handleCreateAccountButtonClick(ActionEvent event) {
         if (this.confirmPasswordTextField.isVisible() && this.emailTextField.isVisible()) {
-
+            this.errorMessageLabel.setText(this.viewModel.validateCreateAccount());
         } else {
             this.confirmPasswordTextField.setVisible(true);
             this.emailTextField.setVisible(true);
@@ -95,7 +101,7 @@ public class Login {
             return false;
         }
         if (this.passwordTextField.getText().length() < 7) {
-            this.emailTextField.setText("Password length must be greater than 7");
+            this.errorMessageLabel.setText("Password length must be greater than 7");
             return false;
         }
         if (!this.passwordTextField.getText().equals(this.confirmPasswordTextField.getText())) {
@@ -112,7 +118,7 @@ public class Login {
             this.emailTextField.setVisible(false);
             this.loginButton.setText("LOGIN");
         } else {
-            User user = this.viewModel.getUser();
+            LocalUser user = this.viewModel.getUser();
             if (user == null) {
                 Alert alert = new Alert(AlertType.ERROR, "User not found");
                 alert.show();
@@ -129,28 +135,6 @@ public class Login {
                 throw new RuntimeException(e);
             }
 
-        }
-    }
-
-    @FXML
-    void handleLogin(ActionEvent event) throws Exception {
-        if (this.loginButton.getText() == "CANCEL") {
-            this.confirmPasswordTextField.setVisible(false);
-            this.confirmPasswordTextField.setDisable(true);
-            this.confirmPasswordTextField.setManaged(false);
-            this.emailTextField.setDisable(true);
-            this.emailTextField.setVisible(false);
-            this.emailTextField.setManaged(false);
-            this.loginButton.setText("LOGIN");
-        } else {
-            FXMLLoader loader = new FXMLLoader(TheArtistsDreamApplication.class.getResource(RECOMMENDED_PAGE_FXML));
-            try {
-                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                currentStage.setMaximized(true);
-                WindowLoader.changeScene(currentStage, RECOMMENDED_PAGE_FXML, null, "The Artist's Dream");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
         }
     }
 
