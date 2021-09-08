@@ -1,4 +1,4 @@
-package Utils;
+package edu.westga.devops.theartistsdreamclient.utils;
 
 public class ErrorMessages {
     public static String INVALID_EMAIL = "Must enter a valid email";
