@@ -13,9 +13,9 @@ import java.util.Iterator;
  * @version Fall 2021
  *
  */
-public class LocalUserManager<E> extends UserManager<E> {
+public class LocalUserManager extends UserManager {
 
-	private ArrayList<LocalUser> users;
+	private ArrayList<User> users;
 
 	/**
 	 * Instantiates a new LocalUserManager
@@ -24,13 +24,13 @@ public class LocalUserManager<E> extends UserManager<E> {
 	 * @postcondition none
 	 */
 	public LocalUserManager() {
-		this.users = new ArrayList<LocalUser>();
+		this.users = new ArrayList<User>();
 	}
 
 	@Override
 	public boolean verifyCredentials(String username, String password) {
-		for (LocalUser currentUser : this.users) {
-			if (username.equals(currentUser.getUserName())
+		for (User currentUser : this.users) {
+			if (username.equals(currentUser.getUsername())
 					&& password.equals(currentUser.getPassword())) {
 				return true;
 			}
@@ -39,8 +39,8 @@ public class LocalUserManager<E> extends UserManager<E> {
 	}
 
 	@Override
-	public LocalUser getUser(int userId) {
-		for (LocalUser currentUser : this.users) {
+	public User getUser(int userId) {
+		for (User currentUser : this.users) {
 			if (userId == currentUser.getUserId()) {
 				return currentUser;
 			}
@@ -48,9 +48,9 @@ public class LocalUserManager<E> extends UserManager<E> {
 		return null;
 	}
 
-	public LocalUser getUser(String username, String password) {
-		for (LocalUser currentUser : this.users) {
-			if (username.equals(currentUser.getUserName()) && password.equals(currentUser.getPassword())) {
+	public User getUser(String username, String password) {
+		for (User currentUser : this.users) {
+			if (username.equals(currentUser.getUsername()) && password.equals(currentUser.getPassword())) {
 				return currentUser;
 			}
 		}
@@ -68,7 +68,7 @@ public class LocalUserManager<E> extends UserManager<E> {
 
 	@Override
 	public boolean checkForUser(int id) {
-		for (LocalUser currentUser : this.users) {
+		for (User currentUser : this.users) {
 			if (id == currentUser.getUserId()) {
 				return true;
 			}
@@ -93,8 +93,8 @@ public class LocalUserManager<E> extends UserManager<E> {
 
 
 	@Override
-	public Iterator<E> iterator() {
-		return (Iterator<E>) this.users.iterator();
+	public Iterator<User> iterator() {
+		return this.users.iterator();
 	}
 	
 	public void loadLocalUsers() {
