@@ -1,8 +1,15 @@
 package edu.westga.devops.theartistsdreamclient.view.popups;
 
+import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.Effect;
+import javafx.scene.effect.GaussianBlur;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -35,21 +42,24 @@ public class PopupLoader {
      * @return the loaded Stage to show the FXML popup
      * @throws IOException happens if there is an error in the controller of fxml.
      */
-    public static Stage loadPopup(String title, URL fxml, Object controller, Window owner) throws IOException {
+    public static Stage loadPopup(String title, URL fxml, Object controller, Parent parent) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(fxml);
         loader.setController(controller);
         Pane pane = loader.load();
         Stage popup = new Stage();
         Scene scene = new Scene(pane);
-        scene.getStylesheets().add("-fx-backgroud-radius: 20; -fx-border-radius: 20;");
-        popup.initOwner(owner);
+        ColorAdjust adj = new ColorAdjust(0, 0, -0.5, 0);
+        parent.setEffect(adj);
+
         scene.setFill(Color.TRANSPARENT);
+        popup.initOwner(parent.getScene().getWindow());
         popup.initStyle(StageStyle.TRANSPARENT);
         popup.setTitle(title);
         popup.setScene(scene);
         popup.setResizable(false);
         popup.initModality(Modality.APPLICATION_MODAL);
+
         return popup;
     }
 }

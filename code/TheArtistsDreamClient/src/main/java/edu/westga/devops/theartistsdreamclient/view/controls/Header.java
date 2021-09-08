@@ -3,10 +3,12 @@ package edu.westga.devops.theartistsdreamclient.view.controls;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
 import edu.westga.devops.theartistsdreamclient.view.popups.FilterPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
+import javafx.beans.property.SetProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -68,13 +70,14 @@ public class Header extends HBox {
     @FXML
     void handleFilter(ActionEvent event) {
         try {
-            Stage popup = PopupLoader.loadPopup("Filter", FilterPopup.class.getResource(FILTER_POPUP_FXML), new FilterPopup(), this.getScene().getWindow());
+            Node mainFrame = ((Node) event.getSource()).getParent().getParent();
+            Stage popup = PopupLoader.loadPopup("Filter", FilterPopup.class.getResource(FILTER_POPUP_FXML), new FilterPopup(), (Parent) mainFrame);
             popup.setOnCloseRequest((event2) -> {
-                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                mainFrame.setEffect(null);
+                System.out.println(popup.getUserData());
             });
             popup.show();
         } catch (IOException e) {
-            //TODO: handle exception
             e.printStackTrace();
         }
 

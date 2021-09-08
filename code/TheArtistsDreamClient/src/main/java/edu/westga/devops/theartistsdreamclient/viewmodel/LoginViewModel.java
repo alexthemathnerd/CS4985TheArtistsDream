@@ -1,7 +1,6 @@
 package edu.westga.devops.theartistsdreamclient.viewmodel;
 
 import javafx.beans.property.*;
-import edu.westga.devops.theartistsdreamclient.model.*;
 import Utils.ErrorMessages;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalUser;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalUserManager;
@@ -24,6 +23,7 @@ public class LoginViewModel {
     public LoginViewModel() {
         this.usernameStringProperty = new SimpleStringProperty("");
         this.passwordStringProperty = new SimpleStringProperty("");
+
         this.confirmPasswordStringProperty = new SimpleStringProperty("");
         this.emailStringProperty = new SimpleStringProperty("");
         this.errorLabelStringProperty = new SimpleStringProperty("");

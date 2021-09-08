@@ -1,21 +1,21 @@
 package edu.westga.devops.theartistsdreamclient;
 
-import edu.westga.devops.theartistsdreamclient.model.TagManager;
-import edu.westga.devops.theartistsdreamclient.model.local.LocalTagManager;
-import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
-import edu.westga.devops.theartistsdreamclient.model.local.LocalArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
-import edu.westga.devops.theartistsdreamclient.model.local.LocalArtwork;
+import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
-import java.util.ArrayList;
+import edu.westga.devops.theartistsdreamclient.model.TagManager;
+import edu.westga.devops.theartistsdreamclient.model.local.LocalArtwork;
+import edu.westga.devops.theartistsdreamclient.model.local.LocalArtworkManager;
+import edu.westga.devops.theartistsdreamclient.model.local.LocalTagManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import java.net.URL;
-import java.net.URISyntaxException;
+
 import java.io.File;
+import java.net.URL;
+import java.util.ArrayList;
 
 /**
  * Handle Setting up The Artist's Dream Application.

@@ -1,8 +1,9 @@
 package edu.westga.devops.theartistsdreamclient.view;
 
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
-import edu.westga.devops.theartistsdreamclient.view.controls.Header;
-import edu.westga.devops.theartistsdreamclient.viewmodel.*;
+import edu.westga.devops.theartistsdreamclient.viewmodel.LoginViewModel;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -12,16 +13,15 @@ import edu.westga.devops.theartistsdreamclient.model.*;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalUser;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import edu.westga.devops.theartistsdreamclient.view.controls.ArtworksPane;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Alert;
+import edu.westga.devops.theartistsdreamclient.model.User;
 import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 
-import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
@@ -39,30 +39,32 @@ public class Login {
     private TextField usernameTextField;
 
     @FXML
-    private TextField passwordTextField;
+    private PasswordField passwordTextField;
 
     @FXML
     private TextField emailTextField;
 
     @FXML
-    private TextField confirmPasswordTextField;
+    private PasswordField confirmPasswordTextField;
 
     @FXML
     private Button loginButton;
 
     @FXML
-    private AnchorPane thePane;
+    private Button createAccountButton;
 
     @FXML
     private Label errorMessageLabel;
 
     private LoginViewModel viewModel;
 
+    private BooleanProperty isCreatingAccount;
     /**
      * Initiailizes ViewModel for Login
      */
     public Login() {
         this.viewModel = new LoginViewModel();
+        this.isCreatingAccount = new SimpleBooleanProperty(false);
     }
 
     private void setupBindings() {
@@ -82,28 +84,43 @@ public class Login {
         this.emailTextField.setVisible(false);
         this.setupBindings();
         this.emailTextField.setManaged(false);
+        this.isCreatingAccount.addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                this.confirmPasswordTextField.setVisible(true);
+                this.confirmPasswordTextField.setDisable(false);
+                this.confirmPasswordTextField.setManaged(true);
+                this.emailTextField.setDisable(false);
+                this.emailTextField.setVisible(true);
+                this.emailTextField.setManaged(true);
+                this.loginButton.setText("CANCEL");
+            } else {
+                this.confirmPasswordTextField.setVisible(false);
+                this.confirmPasswordTextField.setDisable(true);
+                this.confirmPasswordTextField.setManaged(false);
+                this.emailTextField.setDisable(true);
+                this.emailTextField.setVisible(false);
+                this.emailTextField.setManaged(false);
+                this.loginButton.setText("LOGIN");
+                this.errorMessageLabel.setText("");
+            }
+        });
     }
 
     @FXML
     void handleCreateAccountButtonClick(ActionEvent event) {
-        if (this.confirmPasswordTextField.isVisible() && this.emailTextField.isVisible()) {
-           if (this.viewModel.validateCreateAccount()) {
-               //TODO
-           }
+        if (this.isCreatingAccount.get()) {
+            if (this.viewModel.validateCreateAccount()) {
+                this.isCreatingAccount.set(false);
+            }
         } else {
-            this.confirmPasswordTextField.setVisible(true);
-            this.confirmPasswordTextField.setDisable(false);
-            this.emailTextField.setVisible(true);
-            this.loginButton.setText("CANCEL");
+            this.isCreatingAccount.set(true);
         }
     }
 
     @FXML
     void handleLoginButtonClick(ActionEvent event) throws Exception {
-        if (this.loginButton.getText() == "CANCEL") {
-            this.confirmPasswordTextField.setVisible(false);
-            this.emailTextField.setVisible(false);
-            this.loginButton.setText("LOGIN");
+        if (this.isCreatingAccount.get()) {
+            this.isCreatingAccount.set(false);
         } else {
             LocalUser user = this.viewModel.getUser();
             if (user == null) {
@@ -117,12 +134,10 @@ public class Login {
             try {
                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 currentStage.setMaximized(true);
-                WindowLoader.changeScene(currentStage, RECOMMENDED_PAGE_FXML, null, "The Artist's Dream");
+                WindowLoader.changeScene(currentStage, RECOMMENDED_PAGE_FXML, new RecommendedPage(), "The Artist's Dream");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
         }
     }
-
 }

@@ -17,8 +17,9 @@ import java.util.Set;
  */
 public class TagsPane extends FlowPane {
 
-    private final SetProperty<Tag> tagsSetProperty;
-    private final List<TagButton> selectedTagsButtons;
+    private SetProperty<Tag> tagsSetProperty;
+    private SetProperty<Tag> addedTagsSetProperty;
+    private List<TagButton> selectedTagsButtons;
 
     /**
      * Creates a TagPane object
@@ -29,6 +30,7 @@ public class TagsPane extends FlowPane {
     public TagsPane() {
         this.getStyleClass().add("tags-pane");
         this.tagsSetProperty = new SimpleSetProperty<Tag>();
+        this.addedTagsSetProperty = new SimpleSetProperty<Tag>();
         this.selectedTagsButtons = new ArrayList<TagButton>();
         this.tagsSetProperty.addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -65,4 +67,17 @@ public class TagsPane extends FlowPane {
     public SetProperty<Tag> tagsSetProperty() {
         return this.tagsSetProperty;
     }
+
+
+    /**
+     * Get the added tags set property
+     *
+     * @return the addedTagsSet Property
+     * @preconditon none
+     * @postcondtion none
+     */
+    public SetProperty<Tag> addedTagsSetProperty() {
+        return this.addedTagsSetProperty;
+    }
+
 }
