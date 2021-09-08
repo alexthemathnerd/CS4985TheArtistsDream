@@ -2,10 +2,10 @@ package edu.westga.devops.theartistsdreamclient.view;
 
 import java.io.IOException;
 
-import Utils.ErrorMessages;
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
-import edu.westga.devops.theartistsdreamclient.model.local.LocalUser;
+import edu.westga.devops.theartistsdreamclient.Utils.ErrorMessages;
 import edu.westga.devops.theartistsdreamclient.viewmodel.LoginViewModel;
+import edu.westga.devops.theartistsdreamclient.model.*;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
@@ -117,7 +117,7 @@ public class Login {
         if (this.isCreatingAccount.get()) {
             this.isCreatingAccount.set(false);
         } else {
-            LocalUser user = this.viewModel.getUser();
+            User user = this.viewModel.getUser();
             if (user == null) {
                 Alert alert = new Alert(AlertType.ERROR, ErrorMessages.USER_NOT_FOUND);
                 alert.show();
