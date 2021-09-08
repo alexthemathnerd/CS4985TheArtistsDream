@@ -5,7 +5,6 @@ import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
 
-import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Button;
 import javafx.scene.layout.TilePane;
@@ -46,20 +45,20 @@ public class ArtworksPane extends ScrollPane {
     }
 
     @FXML
-    void initialize(){
+    void initialize() {
 
-	    for(Artwork artwork : TheArtistsDreamApplication.artworkManager.getArtworks()){
-		    this.artworksTilePane.getChildren().add(new ArtworkTile(artwork));
-	    }
+        for (Artwork artwork : TheArtistsDreamApplication.artworkManager.getArtworks()) {
+            this.artworksTilePane.getChildren().add(new ArtworkTile(artwork));
+        }
 
-	    //TODO: bindings
+        //TODO: bindings
     }
 
     @FXML
-    void handleViewMore(ActionEvent event){
-	    this.artworksTilePane.setPrefRows(this.artworksTilePane.getPrefRows() + 2);
-	    for(int i = 0; i < 10; i++) {
-		    this.artworksTilePane.getChildren().add(new ArtworkTile());
-	    }
+    void handleViewMore(ActionEvent event) {
+        this.artworksTilePane.setPrefRows(this.artworksTilePane.getPrefRows() + 2);
+        for (int i = 0; i < 10; i++) {
+            this.artworksTilePane.getChildren().add(new ArtworkTile());
+        }
     }
 }

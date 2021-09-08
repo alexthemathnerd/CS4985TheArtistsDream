@@ -1,0 +1,63 @@
+.text-field {
+    -fx-background-color: #3A3A4B;
+    -fx-text-fill: #e01a4f;
+    -fx-prompt-text-fill: #dd4970;
+    -fx-background-radius: 20;
+}
+
+.button {
+    -fx-background-color: #3A3A4B;
+    -fx-text-fill: #e01a4f;
+    -fx-background-radius: 20;
+}
+
+.scroll-pane {
+    -fx-background-color: #3A3A4B;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .track-background {
+    -fx-background-color: #3A3A4B;
+
+}
+
+.scroll-pane .thumb {
+	-fx-background-color: #e01a4f;
+	-fx-border-radius: 20;
+	-fx-background-radius: 20;
+}
+
+.scroll-pane .track {
+    -fx-background-color: transparent;
+}
+
+.tags-pane {
+    -fx-background-color: transparent;
+}
+
+.tags-pane .tag-button {
+    -fx-padding: 10;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-text-fill: white;
+    -fx-content-display: right;
+    -fx-background-color: #1E1E24;
+    -fx-graphic-text-gap: 10;
+    -fx-graphic: url('./../icons/add-icon.png');
+}
+
+.tags-pane .tag-button:selected {
+    -fx-background-color: #E01A4F;
+    -fx-graphic: url('./../icons/remove-icon.png')
+}
+
+.root {
+    -fx-background-color: #1e1e24;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+}

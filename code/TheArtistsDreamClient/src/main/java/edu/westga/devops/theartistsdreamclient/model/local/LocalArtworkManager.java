@@ -1,7 +1,6 @@
 package edu.westga.devops.theartistsdreamclient.model.local;
 
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
-import edu.westga.devops.theartistsdreamclient.model.local.LocalArtwork;
 
 import java.util.List;
 import java.util.ArrayList;

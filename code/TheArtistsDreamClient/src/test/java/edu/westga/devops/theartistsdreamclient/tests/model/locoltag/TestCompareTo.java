@@ -18,7 +18,7 @@ public class TestCompareTo {
 
     @Test
     public void testWhenNull() {
-        LocalTag tag = new LocalTag("test");
+        LocalTag tag = new LocalTag(0,"test");
         assertThrows(NullPointerException.class, () -> {
             tag.compareTo(null);
         });
@@ -26,8 +26,8 @@ public class TestCompareTo {
 
     @Test
     public void testWhenLessThanNotEqualUseCount() {
-        LocalTag tag1 = new LocalTag("test1");
-        LocalTag tag2 = new LocalTag("test1");
+        LocalTag tag1 = new LocalTag(0,"test1");
+        LocalTag tag2 = new LocalTag(1,"test1");
         tag1.incrementUseCount();
         int result = tag1.compareTo(tag2);
         assertTrue(result < 0);
@@ -35,32 +35,32 @@ public class TestCompareTo {
 
     @Test
     public void testWhenLessThanEqualUseCount() {
-        LocalTag tag1 = new LocalTag("test1");
-        LocalTag tag2 = new LocalTag("test2");
+        LocalTag tag1 = new LocalTag(0,"test1");
+        LocalTag tag2 = new LocalTag(1,"test2");
         int result = tag1.compareTo(tag2);
         assertTrue(result < 0);
     }
 
     @Test
     public void testWhenEqual() {
-        LocalTag tag1 = new LocalTag("test1");
-        LocalTag tag2 = new LocalTag("test1");
+        LocalTag tag1 = new LocalTag(0,"test1");
+        LocalTag tag2 = new LocalTag(0,"test1");
         int result = tag1.compareTo(tag2);
         assertTrue(result == 0);
     }
 
     @Test
     public void testWhenGreaterThanEqualUseCount() {
-        LocalTag tag1 = new LocalTag("test1");
-        LocalTag tag2 = new LocalTag("test0");
+        LocalTag tag1 = new LocalTag(1,"test1");
+        LocalTag tag2 = new LocalTag(0,"test0");
         int result = tag1.compareTo(tag2);
         assertTrue(result > 0);
     }
 
     @Test
     public void testWhenGreaterThanNotEqualUseCount() {
-        LocalTag tag1 = new LocalTag("test1");
-        LocalTag tag2 = new LocalTag("test1");
+        LocalTag tag1 = new LocalTag(0,"test1");
+        LocalTag tag2 = new LocalTag(1,"test1");
         tag2.incrementUseCount();
         int result = tag1.compareTo(tag2);
         assertTrue(result > 0);

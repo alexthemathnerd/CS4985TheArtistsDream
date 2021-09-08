@@ -15,15 +15,22 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestConstructor {
 
     @Test
+    public void testNegativeId() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new LocalTag(-1, "test");
+        });
+    }
+
+    @Test
     public void testNullName() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new LocalTag(null);
+            new LocalTag(0, null);
         });
     }
 
     @Test
     public void testSuccessfulConstruction() {
-        LocalTag tag = new LocalTag("test");
+        LocalTag tag = new LocalTag(0,"test");
         assertAll(() -> {
             assertEquals("test", tag.getName());
             assertEquals(1, tag.getUseCount());

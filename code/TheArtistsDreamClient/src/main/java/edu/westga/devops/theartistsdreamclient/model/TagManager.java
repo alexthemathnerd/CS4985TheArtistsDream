@@ -26,13 +26,14 @@ public abstract class TagManager implements Iterable<Tag> {
     public abstract List<Tag> getTopTags(int amount, String content);
 
     /**
-     * Adds a tag to the tag manager
+     * Adds a tag to the tag manager and returns it id.
      *
      * @param name the name of the tag
      * @precondition name != null && !name.isEmpty()
      * @postcondition none
+     * @return the id of the added tag
      */
-    public abstract void addTag(String name);
+    public abstract int addTag(String name);
 
     /**
      * Gets the singleton of the tag manager
