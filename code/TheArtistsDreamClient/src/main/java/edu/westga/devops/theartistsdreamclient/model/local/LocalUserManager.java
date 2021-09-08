@@ -2,6 +2,7 @@ package edu.westga.devops.theartistsdreamclient.model.local;
 
 import edu.westga.devops.theartistsdreamclient.model.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 /**
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  * @version Fall 2021
  *
  */
-public class LocalUserManager extends UserManager {
+public class LocalUserManager<E> implements UserManager<E> {
 
 	private ArrayList<LocalUser> users;
 
@@ -79,6 +80,12 @@ public class LocalUserManager extends UserManager {
 	 */
 	public ArrayList<LocalUser> getUsers() {
 		return this.users;
+	}
+
+	@Override
+	public Iterator<E> iterator() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
