@@ -3,9 +3,9 @@ package edu.westga.devops.theartistsdreamclient.view;
 import java.io.IOException;
 
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
-import edu.westga.devops.theartistsdreamclient.Utils.ErrorMessages;
 import edu.westga.devops.theartistsdreamclient.viewmodel.LoginViewModel;
 import edu.westga.devops.theartistsdreamclient.model.*;
+import edu.westga.devops.theartistsdreamclient.utils.ErrorMessages;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;

@@ -1,7 +1,7 @@
 package edu.westga.devops.theartistsdreamclient.viewmodel;
 
 import javafx.beans.property.*;
-import edu.westga.devops.theartistsdreamclient.Utils.ErrorMessages;
+import edu.westga.devops.theartistsdreamclient.utils.ErrorMessages;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalUser;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalUserManager;
 import edu.westga.devops.theartistsdreamclient.model.*;
