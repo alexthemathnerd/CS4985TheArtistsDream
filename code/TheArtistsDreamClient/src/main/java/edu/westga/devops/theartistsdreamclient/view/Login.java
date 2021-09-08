@@ -87,28 +87,15 @@ public class Login {
     @FXML
     void handleCreateAccountButtonClick(ActionEvent event) {
         if (this.confirmPasswordTextField.isVisible() && this.emailTextField.isVisible()) {
-            this.errorMessageLabel.setText(this.viewModel.validateCreateAccount());
+           if (this.viewModel.validateCreateAccount()) {
+               //TODO
+           }
         } else {
             this.confirmPasswordTextField.setVisible(true);
+            this.confirmPasswordTextField.setDisable(false);
             this.emailTextField.setVisible(true);
             this.loginButton.setText("CANCEL");
         }
-    }
-
-    private boolean validateCreateAccount() {
-        if (!this.emailTextField.getText().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")) {
-            this.errorMessageLabel.setText("Must enter a valid email.");
-            return false;
-        }
-        if (this.passwordTextField.getText().length() < 7) {
-            this.errorMessageLabel.setText("Password length must be greater than 7");
-            return false;
-        }
-        if (!this.passwordTextField.getText().equals(this.confirmPasswordTextField.getText())) {
-            this.errorMessageLabel.setText("Passwords must match");
-            return false;
-        }
-        return true;
     }
 
     @FXML

@@ -8,8 +8,8 @@ import edu.westga.devops.theartistsdreamclient.model.local.LocalUser;
  * @author Jamia Echols
  * @version Fall 2021
  */
-public abstract class UserManager<User> implements Iterable<E> {
-    private static UserManager<User> userManager = null;
+public abstract class UserManager<E> implements Iterable<E> {
+    private UserManager<E> userManager = null;
 
 	/**
 	 * Gets the UserManager
@@ -18,10 +18,9 @@ public abstract class UserManager<User> implements Iterable<E> {
 	 * @postcondition none
 	 * @return the user manager
 	 */
-	UserManager<User> getUserManager() {
-		return UserManager.userManager;
+	UserManager<E> getUserManager() {
+		return this.userManager;
 	}
-
 	/**
 	 * Sets the UserManager
 	 * 
@@ -29,8 +28,8 @@ public abstract class UserManager<User> implements Iterable<E> {
 	 * @postcondition getUserManager() == userManager
 	 * @param userManager the new user manager
 	 */
-	public static void setUserManager(UserManager userManager) {
-		UserManager.userManager = userManager;
+	public void setUserManager(UserManager<E> userManager) {
+		this.userManager = userManager;
 	}
 
 	/**

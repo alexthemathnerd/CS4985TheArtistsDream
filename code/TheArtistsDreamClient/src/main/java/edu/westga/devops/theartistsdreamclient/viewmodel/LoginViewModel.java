@@ -2,6 +2,7 @@ package edu.westga.devops.theartistsdreamclient.viewmodel;
 
 import javafx.beans.property.*;
 import edu.westga.devops.theartistsdreamclient.model.*;
+import Utils.ErrorMessages;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalUser;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalUserManager;
 
@@ -17,16 +18,16 @@ public class LoginViewModel {
     private StringProperty confirmPasswordStringProperty;
     private StringProperty emailStringProperty;
     private StringProperty errorLabelStringProperty;
-    private LocalUserManager userManager;
+    private LocalUserManager<LocalUser> userManager;
 
 
     public LoginViewModel() {
-        this.usernameStringProperty = new SimpleStringProperty();
-        this.passwordStringProperty = new SimpleStringProperty();
-        this.confirmPasswordStringProperty = new SimpleStringProperty();
-        this.emailStringProperty = new SimpleStringProperty();
-        this.errorLabelStringProperty = new SimpleStringProperty();
-        this.userManager = new LocalUserManager();
+        this.usernameStringProperty = new SimpleStringProperty("");
+        this.passwordStringProperty = new SimpleStringProperty("");
+        this.confirmPasswordStringProperty = new SimpleStringProperty("");
+        this.emailStringProperty = new SimpleStringProperty("");
+        this.errorLabelStringProperty = new SimpleStringProperty("");
+        this.userManager = new LocalUserManager<LocalUser>();
     }
 
     public StringProperty errorLabelStringProperty() {
@@ -49,7 +50,7 @@ public class LoginViewModel {
         return this.emailStringProperty;
     }
 
-    public LocalUserManager getUserManager() {
+    public LocalUserManager<LocalUser> getUserManager() {
         return this.userManager;
     }
 
@@ -62,7 +63,7 @@ public class LoginViewModel {
         if (!this.checkIfUserAlreadyExists(newUser)) {
             this.userManager.addUser(newUser);
         } else {
-            this.errorLabelStringProperty.set("User already exisits");
+            this.errorLabelStringProperty.set(ErrorMessages.USER_EXISTS);
         }
     }
 
@@ -70,16 +71,19 @@ public class LoginViewModel {
         return this.userManager.getUser(this.usernameStringProperty.get(), this.passwordStringProperty.get());
     }
 
-    public String validateCreateAccount() {
+    public boolean validateCreateAccount() {
         if (!this.emailStringProperty.get().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")) {
-            return "Must enter a valid email.";
+            this.errorLabelStringProperty.set(ErrorMessages.INVALID_EMAIL);
+            return false;
         }
         if (this.passwordStringProperty.get().length() < 7) {
-            return "Password length must be greater than 7";
+            this.errorLabelStringProperty.set(ErrorMessages.INVALID_PASSWORD);
+            return false;
         }
         if (!this.passwordStringProperty.get().equals(this.confirmPasswordStringProperty.get())) {
-            return "Passwords must match";
+            this.errorLabelStringProperty.set(ErrorMessages.MISMATCH_PASSWORD);
+            return false;
         }
-        return "";
+        return true;
     }
 }

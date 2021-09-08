@@ -13,7 +13,7 @@ import java.util.Iterator;
  * @version Fall 2021
  *
  */
-public class LocalUserManager<E> implements UserManager<E> {
+public class LocalUserManager<E> extends UserManager<E> {
 
 	private ArrayList<LocalUser> users;
 
@@ -84,8 +84,7 @@ public class LocalUserManager<E> implements UserManager<E> {
 
 	@Override
 	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return (Iterator<E>) this.users.iterator();
 	}
 	
 }
