@@ -33,23 +33,51 @@ public class LocalTagManager extends TagManager {
 
     @Override
     public List<Tag> getTopTags(int amount, String content) {
-        List<Tag> tagsWithName = FilterManager.filterTagsByName(this, content);
+        if (amount < 0) {
+            throw new IllegalArgumentException();
+        }
+        if (content == null) {
+            throw new IllegalArgumentException();
+        }
+        List<Tag> tagsWithName = this.getSearchTags(content);
+        Collections.sort(tagsWithName);
         if (tagsWithName.size() <= amount) {
             return tagsWithName;
         }
-        Collections.sort(tagsWithName);
-        return tagsWithName.subList(0, 10);
+
+        return tagsWithName.subList(0, amount);
+    }
+
+    private List<Tag> getSearchTags(String content) {
+        List<Tag> filteredTags = new ArrayList<Tag>();
+        if (content.isEmpty()) {
+            return filteredTags;
+        }
+        for (Tag aTag: this) {
+            if (aTag.getName().contains(content.toLowerCase())) {
+                filteredTags.add(aTag);
+            }
+        }
+        return filteredTags;
     }
 
     @Override
-    public void addTag(String name) {
+    public int addTag(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException();
+        }
+        if (name.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
         for (Tag aTag : this.tags) {
             if (aTag.getName().equals(name.toLowerCase())) {
                 aTag.incrementUseCount();
-                return;
+                return aTag.getId();
             }
         }
-        this.tags.add(new LocalTag(name));
+        int id = this.tags.size();
+        this.tags.add(new LocalTag(id, name));
+        return id;
     }
 
     @Override

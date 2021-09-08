@@ -29,19 +29,35 @@
 			<version>5.7.2</version>
 			<scope>test</scope>
 		</dependency>
-		
-		<!-- Use for unit/integration testing (ASK CORLEY) 
-		
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.7.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Use for unit/integration testing
 			GUIDE: https://www.toptal.com/java/unit-integration-junit-tests
-		
 		-->
-		
-        <!-- dependency>
+        <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>3.9.0</version>
+            <version>3.12.4</version>
             <scope>test</scope>
-        </dependency -->
+        </dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-inline</artifactId>
+			<version>3.12.4</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>3.12.4</version>
+			<scope>test</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>org.zeromq</groupId>
 			<artifactId>jeromq</artifactId>

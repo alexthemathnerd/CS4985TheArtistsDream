@@ -54,7 +54,6 @@ public class LocalUserManager extends UserManager {
 			this.users.add(user);
 		}
 		return false;
-
 	}
 
 	@Override

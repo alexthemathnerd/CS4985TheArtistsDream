@@ -55,7 +55,7 @@ public class TheArtistsDreamApplication extends Application {
 
     private static void setupSingletons() {
         setupLocalTagManager();
-	setupLocalArtworkManager();
+	    setupLocalArtworkManager();
     }
 
     private static void setupLocalTagManager() {

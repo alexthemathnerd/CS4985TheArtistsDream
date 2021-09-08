@@ -16,7 +16,7 @@ public class TestIncrementUseCount {
 
     @Test
     public void testSuccesfulIncrement() {
-        LocalTag tag = new LocalTag("Test");
+        LocalTag tag = new LocalTag(0,"Test");
         tag.incrementUseCount();
         assertEquals(2, tag.getUseCount());
     }

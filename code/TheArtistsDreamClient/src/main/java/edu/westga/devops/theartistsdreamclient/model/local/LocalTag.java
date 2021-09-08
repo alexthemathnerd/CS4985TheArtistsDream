@@ -10,23 +10,34 @@ import edu.westga.devops.theartistsdreamclient.model.Tag;
  */
 public class LocalTag extends Tag {
 
-    private final String name;
+    private int id;
+    private String name;
     private int useCount;
 
     /**
      * Creates a Local tag with a given name
      *
-     * @precondition name != null
-     * @postcondition none
+     * @precondition id >= 0 &&  name != null
+     * @postcondition getId() == id && getName().equals(name.toLowerCase()) && getUseCount() == 1
      *
+     * @param id the id of the tag
      * @param name the name of the tag
      */
-    public LocalTag(String name) {
+    public LocalTag(int id, String name) {
+        if (id < 0) {
+            throw new IllegalArgumentException();
+        }
         if (name == null) {
             throw new IllegalArgumentException();
         }
+        this.id = id;
         this.name = name.toLowerCase();
         this.useCount = 1;
+    }
+
+    @Override
+    public int getId() {
+        return this.id;
     }
 
     @Override

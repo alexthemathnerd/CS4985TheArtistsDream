@@ -9,6 +9,15 @@ package edu.westga.devops.theartistsdreamclient.model;
 public abstract class Tag implements Comparable<Tag> {
 
     /**
+     * Gets the id of the tag.
+     *
+     * @return the id of the tag
+     * @precondition none
+     * @postcondition none
+     */
+    public abstract int getId();
+
+    /**
      * Gets the name of the tag
      *
      * @return the name of the tag
@@ -33,5 +42,11 @@ public abstract class Tag implements Comparable<Tag> {
      * @postcondition none
      */
     public abstract int getUseCount();
+
+    @Override
+    public boolean equals(Object obj) {
+        Tag tag = (Tag) obj;
+        return this.getId() == tag.getId();
+    }
 
 }
