@@ -3,6 +3,7 @@ package edu.westga.devops.theartistsdreamclient.model.local;
 import edu.westga.devops.theartistsdreamclient.model.FilterManager;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
 import edu.westga.devops.theartistsdreamclient.model.TagManager;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,10 +35,10 @@ public class LocalTagManager extends TagManager {
     @Override
     public List<Tag> getTopTags(int amount, String content) {
         if (amount < 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(UI.ErrorMessages.NEGATIVE_AMOUNT);
         }
         if (content == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(UI.ErrorMessages.CONTENT_NULL);
         }
         List<Tag> tagsWithName = this.getSearchTags(content);
         Collections.sort(tagsWithName);
@@ -63,12 +64,6 @@ public class LocalTagManager extends TagManager {
 
     @Override
     public int addTag(String name) {
-        if (name == null) {
-            throw new IllegalArgumentException();
-        }
-        if (name.isEmpty()) {
-            throw new IllegalArgumentException();
-        }
         for (Tag aTag : this.tags) {
             if (aTag.getName().equals(name.toLowerCase())) {
                 aTag.incrementUseCount();

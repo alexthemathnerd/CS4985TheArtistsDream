@@ -1,6 +1,7 @@
 package edu.westga.devops.theartistsdreamclient.model.local;
 
 import edu.westga.devops.theartistsdreamclient.model.Tag;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
 
 /**
  * A local implementation of the {@link Tag} class
@@ -25,10 +26,13 @@ public class LocalTag extends Tag {
      */
     public LocalTag(int id, String name) {
         if (id < 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(UI.ErrorMessages.NEGATIVE_ID);
         }
         if (name == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(UI.ErrorMessages.TAG_NAME_NULL);
+        }
+        if (name.isEmpty()) {
+            throw new IllegalArgumentException(UI.ErrorMessages.TAG_NAME_EMPTY);
         }
         this.id = id;
         this.name = name.toLowerCase();

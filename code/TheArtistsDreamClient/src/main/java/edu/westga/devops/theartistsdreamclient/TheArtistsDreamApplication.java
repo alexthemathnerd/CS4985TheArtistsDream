@@ -6,7 +6,11 @@ import edu.westga.devops.theartistsdreamclient.model.Tag;
 import edu.westga.devops.theartistsdreamclient.model.TagManager;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalArtwork;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalArtworkManager;
+import edu.westga.devops.theartistsdreamclient.model.local.LocalTag;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalTagManager;
+import edu.westga.devops.theartistsdreamclient.model.network.Communicator;
+import edu.westga.devops.theartistsdreamclient.model.network.Request;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,7 +19,13 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Formatter;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
 
 /**
  * Handle Setting up The Artist's Dream Application.
@@ -24,10 +34,10 @@ import java.util.ArrayList;
  */
 public class TheArtistsDreamApplication extends Application {
     public static final String ICON_PATH = "icon.png";
-
     public static final String LOGIN_FXML = "view/Login.fxml";
-
     public static final String LOCAL_ARTWORKS_PATH = "view/local-images/";
+
+    public static final Logger LOGGER = Logger.getLogger("The Artist's Dream Client");
 
     public static ArtworkManager artworkManager;
 
@@ -49,13 +59,22 @@ public class TheArtistsDreamApplication extends Application {
      * @param args the args for running the application
      */
     public static void main(String[] args) {
+        LOGGER.setUseParentHandlers(false);
+        ConsoleHandler handler = new ConsoleHandler();
+        handler.setFormatter(new Formatter() {
+            @Override
+            public String format(LogRecord record) {
+                return "[%s] %s %tF %tr: %s".formatted(record.getLevel().getName(), record.getLoggerName(), LocalDate.now(), LocalTime.now(), record.getMessage()) + System.lineSeparator();
+            }
+        });
+        LOGGER.addHandler(handler);
         setupSingletons();
         launch(args);
     }
 
     private static void setupSingletons() {
         setupLocalTagManager();
-	    setupLocalArtworkManager();
+        setupLocalArtworkManager();
     }
 
     private static void setupLocalTagManager() {
@@ -91,20 +110,18 @@ public class TheArtistsDreamApplication extends Application {
     }
 
     private static void setupLocalArtworkManager() {
-	    artworkManager = new LocalArtworkManager();
+        artworkManager = new LocalArtworkManager();
 
-	    URL artworksFolderResource = TheArtistsDreamApplication.class.getResource(TheArtistsDreamApplication.LOCAL_ARTWORKS_PATH);
+        URL artworksFolderResource = TheArtistsDreamApplication.class.getResource(TheArtistsDreamApplication.LOCAL_ARTWORKS_PATH);
 
-	    try {
-		    File artworksFolder = new File(artworksFolderResource.toURI());
-
-		    for(File artwork : artworksFolder.listFiles()) {
-			    Artwork currentArtwork = new LocalArtwork(new Image(artwork.toURI().toURL().toString()), artwork.getName().substring(0, artwork.getName().indexOf('.')), "John Doe", new ArrayList<Tag>(), 1);
-			    artworkManager.addArtwork(currentArtwork);
-		    }
-
-	    } catch (Exception e) {
-		    e.printStackTrace();
-	    }
+        try {
+            File artworksFolder = new File(artworksFolderResource.toURI());
+            for (File artwork : artworksFolder.listFiles()) {
+                Artwork currentArtwork = new LocalArtwork(new Image(artwork.toURI().toURL().toString()), artwork.getName().substring(0, artwork.getName().indexOf('.')), "John Doe", new ArrayList<Tag>(), 1);
+                artworkManager.addArtwork(currentArtwork);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

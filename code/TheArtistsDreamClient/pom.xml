@@ -10,6 +10,19 @@
 
     <artifactId>the-artists-dream-client</artifactId>
     <name>The Artist's Dream Client</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-graphics</artifactId>
+			<version>16</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-fxml</artifactId>
+			<version>16</version>
+		</dependency>
+	</dependencies>
     <build>
         <plugins>
             <plugin>

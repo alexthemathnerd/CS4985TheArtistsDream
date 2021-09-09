@@ -1,7 +1,7 @@
 package edu.westga.devops.theartistsdreamclient.viewmodel;
 
+import edu.westga.devops.theartistsdreamclient.utils.UI;
 import javafx.beans.property.*;
-import edu.westga.devops.theartistsdreamclient.utils.ErrorMessages;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalUser;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalUserManager;
 
@@ -63,7 +63,7 @@ public class LoginViewModel {
         if (!this.checkIfUserAlreadyExists(newUser)) {
             this.userManager.addUser(newUser);
         } else {
-            this.errorLabelStringProperty.set(ErrorMessages.USER_EXISTS);
+            this.errorLabelStringProperty.set(UI.GuiMessages.USER_EXISTS);
         }
     }
 
@@ -73,15 +73,15 @@ public class LoginViewModel {
 
     public boolean validateCreateAccount() {
         if (!this.emailStringProperty.get().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")) {
-            this.errorLabelStringProperty.set(ErrorMessages.INVALID_EMAIL);
+            this.errorLabelStringProperty.set(UI.GuiMessages.INVALID_EMAIL);
             return false;
         }
         if (this.passwordStringProperty.get().length() < 7) {
-            this.errorLabelStringProperty.set(ErrorMessages.INVALID_PASSWORD);
+            this.errorLabelStringProperty.set(UI.GuiMessages.INVALID_PASSWORD);
             return false;
         }
         if (!this.passwordStringProperty.get().equals(this.confirmPasswordStringProperty.get())) {
-            this.errorLabelStringProperty.set(ErrorMessages.MISMATCH_PASSWORD);
+            this.errorLabelStringProperty.set(UI.GuiMessages.MISMATCH_PASSWORD);
             return false;
         }
         return true;

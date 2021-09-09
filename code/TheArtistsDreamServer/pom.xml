@@ -21,7 +21,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<mainClass>
-								edu.westga.devops.theartistsdreamserver.TheArtistDreamServer
+								edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer
 							</mainClass>
 						</manifest>
 					</archive>
