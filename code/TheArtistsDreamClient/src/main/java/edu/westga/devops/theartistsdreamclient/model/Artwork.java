@@ -12,54 +12,6 @@ import javafx.scene.image.Image;
  */
 public abstract class Artwork {
 
-    private final Image image;
-    private String title;
-    private final String artistUsername;
-    private List<Tag> tags;
-    private final int id;
-
-
-    /**
-     * Creates a new Artwork
-     *
-     * @param image          the image of the artwork
-     * @param title          the title of the artwork
-     * @param artistUsername the artist of the artwork's username
-     * @param tags           the tags of the artwork
-     * @param id             the id of the artwork
-     * @throws IllegalArgumentException if a precondition is not met
-     * @precondition image != null && !title.isEmpty() && title != null && !artistUsername.isEmpty() && artistUsername != null && tags != null && id > 0
-     * @postcondition getImage() == image && getTitle == title && getArtistUsername() == artistUsername && getTags() == tags && getID == id
-     */
-    public Artwork(Image image, String title, String artistUsername, List<Tag> tags, int id) {
-        if (image == null) {
-            throw new IllegalArgumentException();
-        }
-        if (title == null) {
-            throw new IllegalArgumentException();
-        }
-        if (title.isEmpty()) {
-            throw new IllegalArgumentException();
-        }
-        if (artistUsername == null) {
-            throw new IllegalArgumentException();
-        }
-        if (artistUsername.isEmpty()) {
-            throw new IllegalArgumentException();
-        }
-        if (tags == null) {
-            throw new IllegalArgumentException();
-        }
-        if (id <= 0) {
-            throw new IllegalArgumentException();
-        }
-        this.image = image;
-        this.title = title;
-        this.artistUsername = artistUsername;
-        this.tags = tags;
-        this.id = id;
-    }
-
     /**
      * Gets the image of the Artwork
      *
@@ -67,9 +19,7 @@ public abstract class Artwork {
      * @precondition none
      * @postcondition none
      */
-    public Image getImage() {
-        return this.image;
-    }
+    public abstract Image getImage();
 
     /**
      * Gets the title of the artwork
@@ -78,9 +28,7 @@ public abstract class Artwork {
      * @precondition none
      * @postcondition none
      */
-    public String getTitle() {
-        return this.title;
-    }
+    public abstract String getTitle();
 
     /**
      * Gets the artist of the artwork's username
@@ -89,9 +37,7 @@ public abstract class Artwork {
      * @precondition none
      * @postcondition none
      */
-    public String getArtistUsername() {
-        return this.artistUsername;
-    }
+    public abstract int getArtistID();
 
     /**
      * Gets the tags of the artwork
@@ -100,9 +46,7 @@ public abstract class Artwork {
      * @precondition none
      * @postcondition none
      */
-    public List<Tag> getTags() {
-        return this.tags;
-    }
+    public abstract List<Integer> getTagIDs();
 
     /**
      * Gets the id of the artwork
@@ -111,27 +55,24 @@ public abstract class Artwork {
      * @precondition none
      * @postcondition none
      */
-    public int getID() {
-        return this.id;
-    }
+    public abstract int getID();
 
     /**
      * Changes the title of the artwork
+     * @param newTitle the new title of the artwork
      *
      * @precondition newTitle != null && !newTitle.isEmpty()
      * @postcondition getTitle() == newTitle
      */
-    public void setTitle(String newTitle) {
-        this.title = newTitle;
-    }
+    public abstract void setTitle(String newTitle);
 
     /**
      * Changes the tags of the artwork
      *
+     * @param newTagIDs the ids of the new tags of the artwork
+     *
      * @precondition newTags != null
-     * @postcondition getTags() == newTags
+     * @postcondition getTagIDs() == newTagIDs
      */
-    public void setTags(List<Tag> newTags) {
-        this.tags = newTags;
-    }
+    public abstract void setTags(List<Integer> newTagIDs);
 }

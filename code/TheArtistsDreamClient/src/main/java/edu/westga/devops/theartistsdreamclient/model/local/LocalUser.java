@@ -25,7 +25,7 @@ public class LocalUser extends User {
         return this.email;
     }  
 
-    public String getUserName() {
+    public String getUsername() {
         return this.username;
     }  
 

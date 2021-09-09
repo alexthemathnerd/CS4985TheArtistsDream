@@ -1,4 +1,4 @@
-package edu.westga.devops.theartistsdreamclient.tests.model.locoltag;
+package edu.westga.devops.theartistsdreamclient.tests.model.localtag;
 
 import edu.westga.devops.theartistsdreamclient.model.local.LocalTag;
 import org.junit.jupiter.api.Test;

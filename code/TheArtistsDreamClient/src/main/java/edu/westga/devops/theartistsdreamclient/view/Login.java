@@ -3,8 +3,9 @@ package edu.westga.devops.theartistsdreamclient.view;
 import java.io.IOException;
 
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
-import edu.westga.devops.theartistsdreamclient.model.local.LocalUser;
 import edu.westga.devops.theartistsdreamclient.viewmodel.LoginViewModel;
+import edu.westga.devops.theartistsdreamclient.model.*;
+import edu.westga.devops.theartistsdreamclient.utils.ErrorMessages;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
@@ -116,22 +117,20 @@ public class Login {
         if (this.isCreatingAccount.get()) {
             this.isCreatingAccount.set(false);
         } else {
-            LocalUser user = this.viewModel.getUser();
+            User user = this.viewModel.getUser();
             if (user == null) {
-                Alert alert = new Alert(AlertType.ERROR, "User not found");
+                Alert alert = new Alert(AlertType.ERROR, ErrorMessages.USER_NOT_FOUND);
                 alert.show();
             } else {
-                Alert alert = new Alert(AlertType.CONFIRMATION, "User found:" + user.getUserName());
-                alert.show();
-            }
-            FXMLLoader loader = new FXMLLoader(TheArtistsDreamApplication.class.getResource(RECOMMENDED_PAGE_FXML));
-            try {
-                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                currentStage.setMaximized(true);
-                WindowLoader.changeScene(currentStage, RECOMMENDED_PAGE_FXML, new RecommendedPage(), "The Artist's Dream");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+               new FXMLLoader(TheArtistsDreamApplication.class.getResource(RECOMMENDED_PAGE_FXML));
+                try {
+                    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                    WindowLoader.changeScene(currentStage, RECOMMENDED_PAGE_FXML, new RecommendedPage(), "The Artist's Dream");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }   
         }
     }
 }

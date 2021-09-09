@@ -11,4 +11,10 @@ public abstract class User {
 	public static User getUser() {
 		return User.user;
 	}
+
+    public abstract String getUsername();
+
+    public abstract String getPassword();
+
+    public abstract int getUserId();
 }

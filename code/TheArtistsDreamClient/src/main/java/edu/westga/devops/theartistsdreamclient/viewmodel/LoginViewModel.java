@@ -4,6 +4,7 @@ import edu.westga.devops.theartistsdreamclient.utils.UI;
 import javafx.beans.property.*;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalUser;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalUserManager;
+import edu.westga.devops.theartistsdreamclient.model.*;
 
 /**
  * The Login View Model
@@ -17,7 +18,7 @@ public class LoginViewModel {
     private StringProperty confirmPasswordStringProperty;
     private StringProperty emailStringProperty;
     private StringProperty errorLabelStringProperty;
-    private LocalUserManager<LocalUser> userManager;
+    private LocalUserManager userManager;
 
 
     public LoginViewModel() {
@@ -27,7 +28,8 @@ public class LoginViewModel {
         this.confirmPasswordStringProperty = new SimpleStringProperty("");
         this.emailStringProperty = new SimpleStringProperty("");
         this.errorLabelStringProperty = new SimpleStringProperty("");
-        this.userManager = new LocalUserManager<LocalUser>();
+        this.userManager = new LocalUserManager();
+        this.userManager.loadLocalUsers();
     }
 
     public StringProperty errorLabelStringProperty() {
@@ -50,7 +52,7 @@ public class LoginViewModel {
         return this.emailStringProperty;
     }
 
-    public LocalUserManager<LocalUser> getUserManager() {
+    public LocalUserManager getUserManager() {
         return this.userManager;
     }
 
@@ -67,7 +69,7 @@ public class LoginViewModel {
         }
     }
 
-    public LocalUser getUser() {
+    public User getUser() {
         return this.userManager.getUser(this.usernameStringProperty.get(), this.passwordStringProperty.get());
     }
 
