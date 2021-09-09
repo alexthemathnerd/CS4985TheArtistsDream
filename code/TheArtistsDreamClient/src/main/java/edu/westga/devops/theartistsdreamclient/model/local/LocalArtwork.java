@@ -84,11 +84,20 @@ public class LocalArtwork extends Artwork {
 
 	@Override
 	public void setTags(List<Integer> newTagIDs) {
+		if(newTagIDs == null) {
+			throw new IllegalArgumentException();
+		}
 		this.tagIDs = newTagIDs;
 	}
 
 	@Override
 	public void setTitle(String newTitle) {
+		if(newTitle == null) {
+			throw new IllegalArgumentException();
+		}
+		if(newTitle.isEmpty()) {
+			throw new IllegalArgumentException();
+		}
         	this.title = newTitle;
 	}
 
