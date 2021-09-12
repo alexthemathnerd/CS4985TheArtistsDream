@@ -3,7 +3,7 @@ package edu.westga.devops.theartistsdreamserver.model;
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
-import edu.westga.devops.theartistsdreamserver.utils.UI;
+import edu.westga.devops.theartistsdreamserver.utils.*;
 import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;

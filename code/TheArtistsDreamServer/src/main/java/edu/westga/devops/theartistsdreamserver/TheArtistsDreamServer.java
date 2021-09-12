@@ -1,7 +1,5 @@
 package edu.westga.devops.theartistsdreamserver;
 
-import edu.westga.devops.theartistsdreamserver.model.Receiver;
-
 import java.io.Console;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -10,6 +8,8 @@ import java.util.logging.ConsoleHandler;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
+
+import edu.westga.devops.theartistsdreamserver.model.*;
 
 public class TheArtistsDreamServer {
 
