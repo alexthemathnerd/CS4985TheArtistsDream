@@ -77,5 +77,15 @@ public class Communicator implements Closeable {
         this.close();
     }
 
-
+    /**
+     * Checks if communicator is closed
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return true if communicator is closed; false otherwise
+     */
+    public boolean isClosed() {
+        return this.context.isClosed();
+    }
 }
