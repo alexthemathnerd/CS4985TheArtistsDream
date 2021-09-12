@@ -21,6 +21,7 @@ public class UI {
         public static final String INVALID_PASSWORD = "Password must be at least 7 characters long";
         public static final String MISMATCH_PASSWORD = "Passwords must match";
         public static final String USER_EXISTS = "User already exists";
+        public static final String USER_DOES_NOT_EXIST = "User does not exist";
     }
 
 }

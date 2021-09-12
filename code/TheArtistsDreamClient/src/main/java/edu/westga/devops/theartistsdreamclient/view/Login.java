@@ -5,7 +5,7 @@ import java.io.IOException;
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import edu.westga.devops.theartistsdreamclient.viewmodel.LoginViewModel;
 import edu.westga.devops.theartistsdreamclient.model.*;
-import edu.westga.devops.theartistsdreamclient.utils.ErrorMessages;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
@@ -119,7 +119,7 @@ public class Login {
         } else {
             User user = this.viewModel.getUser();
             if (user == null) {
-                Alert alert = new Alert(AlertType.ERROR, ErrorMessages.USER_NOT_FOUND);
+                Alert alert = new Alert(AlertType.ERROR, UI.GuiMessages.USER_DOES_NOT_EXIST);
                 alert.show();
             } else {
                new FXMLLoader(TheArtistsDreamApplication.class.getResource(RECOMMENDED_PAGE_FXML));
