@@ -14,7 +14,9 @@ public class UI {
         public static final String TAG_NAME_EMPTY = "tag name cannot be empty";
         public static final String SEVER_CONNECTION = "server connection failed, check address";
         public static final String CODE_NULL = "server code cannot be null";
-        public static final String USER_NOT_FOUND = "";
+        public static final String USER_NOT_FOUND = "User is not found";
+        public static final String COMMUNICATOR_NULL = "Communicator cannot be null";
+        public static final String COMMUNICATOR_IS_CLOSED = "Communicator must be open";
     }
 
     public static class GuiMessages {
