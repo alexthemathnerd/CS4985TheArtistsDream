@@ -58,7 +58,7 @@ public class LocalUserManager extends UserManager {
 	}
 
 	@Override
-	public boolean addUser(LocalUser user) {
+	public boolean addUser(User user) {
 		if (user != null) {
 			this.users.add(user);
 		}
@@ -76,7 +76,7 @@ public class LocalUserManager extends UserManager {
 	}
 
 	@Override
-	public boolean updateUser(LocalUser username) {
+	public boolean updateUser(User username) {
 		return false;
 	}
 	
