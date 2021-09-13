@@ -6,5 +6,8 @@ package edu.westga.devops.theartistsdreamclient.utils;
  * @version Fall 2021
  */
 public class Validation {
+
+    public Validation(){}
+    
     
 }

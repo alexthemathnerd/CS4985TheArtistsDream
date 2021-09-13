@@ -3,9 +3,10 @@ package edu.westga.devops.theartistsdreamclient.view;
 import java.io.IOException;
 
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
 import edu.westga.devops.theartistsdreamclient.viewmodel.LoginViewModel;
 import edu.westga.devops.theartistsdreamclient.model.*;
-import edu.westga.devops.theartistsdreamclient.utils.UI;
+import edu.westga.devops.theartistsdreamclient.utils.UI.ErrorMessages;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
@@ -54,6 +55,7 @@ public class Login {
     private LoginViewModel viewModel;
 
     private BooleanProperty isCreatingAccount;
+
     /**
      * Initiailizes ViewModel for Login
      */
@@ -119,10 +121,9 @@ public class Login {
         } else {
             User user = this.viewModel.getUser();
             if (user == null) {
-                Alert alert = new Alert(AlertType.ERROR, UI.GuiMessages.USER_DOES_NOT_EXIST);
+                Alert alert = new Alert(AlertType.ERROR, UI.ErrorMessages.USER_NOT_FOUND);
                 alert.show();
             } else {
-               new FXMLLoader(TheArtistsDreamApplication.class.getResource(RECOMMENDED_PAGE_FXML));
                 try {
                     Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
