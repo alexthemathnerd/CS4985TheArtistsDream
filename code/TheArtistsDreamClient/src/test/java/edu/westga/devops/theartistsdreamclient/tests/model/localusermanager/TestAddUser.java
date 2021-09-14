@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
  * @version Fall 2021
  */
 public class TestAddUser {
-
     @Test
     public void testNullUser() {
         LocalUserManager testUserManager = new LocalUserManager();

@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.model.UserManager;
+import edu.westga.devops.theartistsdreamclient.model.network.Communicator;
 
 /**
  * Tne NetworkUserManager class

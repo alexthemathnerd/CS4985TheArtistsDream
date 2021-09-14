@@ -2,16 +2,13 @@ package edu.westga.devops.theartistsdreamclient.view;
 
 import java.io.IOException;
 
-import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import edu.westga.devops.theartistsdreamclient.utils.UI;
 import edu.westga.devops.theartistsdreamclient.viewmodel.LoginViewModel;
-import edu.westga.devops.theartistsdreamclient.model.*;
-import edu.westga.devops.theartistsdreamclient.utils.UI.ErrorMessages;
+import edu.westga.devops.theartistsdreamclient.model.User;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;

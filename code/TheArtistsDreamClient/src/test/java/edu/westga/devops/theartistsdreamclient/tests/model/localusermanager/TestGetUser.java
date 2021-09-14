@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @version Fall 2021
  */
 public class TestGetUser {
-    
     @Test
     public void testNullUsername() {
         LocalUserManager testUserManager = new LocalUserManager();
@@ -82,5 +81,4 @@ public class TestGetUser {
         LocalUserManager testUserManager = new LocalUserManager();
         assertEquals(null, testUserManager.getUser(0));     
     }
-
 }
