@@ -1,7 +1,5 @@
 package edu.westga.devops.theartistsdreamclient.model;
 
-import edu.westga.devops.theartistsdreamclient.model.local.LocalUser;
-
 /**
  * The userManager class
  * 
@@ -65,7 +63,7 @@ public abstract class UserManager implements Iterable<User> {
 	 *               && password != null
 	 * @postcondition none
 	 */
-	public abstract boolean addUser(LocalUser user);
+	public abstract boolean addUser(User user);
 
 	/**
 	 * Checks if a user has the given username
@@ -77,13 +75,4 @@ public abstract class UserManager implements Iterable<User> {
 	 */
 	public abstract boolean checkForUser(int userId);
 
-	/**
-	 * Updates the users information
-	 * 
-	 * @precondition user != null
-	 * @postcondition none
-	 * @param user the user to update
-	 * @return true if the user has been updated, false otherwise
-	 */
-	public abstract boolean updateUser(LocalUser user);
 }

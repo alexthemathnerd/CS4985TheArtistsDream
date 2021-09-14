@@ -1,6 +1,7 @@
 package edu.westga.devops.theartistsdreamclient.model.local;
 
 import edu.westga.devops.theartistsdreamclient.model.User;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
 
 /**
  * The User Class
@@ -15,6 +16,27 @@ public class LocalUser extends User {
     private String password;
 
     public LocalUser(int userId, String email, String username, String password) {
+        if (userId < 0) {
+            throw new IllegalArgumentException(UI.ErrorMessages.NEGATIVE_ID);
+        }
+        if (email == null) {
+            throw new IllegalArgumentException(UI.ErrorMessages.EMAIL_NULL);
+        }
+        if (username == null) {
+            throw new IllegalArgumentException(UI.ErrorMessages.USERNAME_NULL);
+        }
+        if (password == null) {
+            throw new IllegalArgumentException(UI.ErrorMessages.PASSWORD_NULL);
+        }
+        if (email.isEmpty()) {
+            throw new IllegalArgumentException(UI.ErrorMessages.EMAIL_EMPTY);
+        }
+        if (username.isEmpty()) {
+            throw new IllegalArgumentException(UI.ErrorMessages.EMAIL_EMPTY);
+        }
+        if (password.isEmpty()) {
+            throw new IllegalArgumentException(UI.ErrorMessages.PASSWORD_EMPTY);
+        }
         this.email = email;
         this.username = username;
         this.password = password;
