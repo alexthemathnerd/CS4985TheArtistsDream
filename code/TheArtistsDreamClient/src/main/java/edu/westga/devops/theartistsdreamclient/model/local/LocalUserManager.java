@@ -1,6 +1,8 @@
 package edu.westga.devops.theartistsdreamclient.model.local;
 
 import edu.westga.devops.theartistsdreamclient.model.*;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -29,6 +31,18 @@ public class LocalUserManager extends UserManager {
 
 	@Override
 	public boolean verifyCredentials(String username, String password) {
+		if (username == null) {
+			throw new IllegalArgumentException(UI.ErrorMessages.USERNAME_NULL);
+		}
+		if (password == null) {
+			throw new IllegalArgumentException(UI.ErrorMessages.PASSWORD_NULL);
+		}
+		if (username.isEmpty()) {
+			throw new IllegalArgumentException(UI.ErrorMessages.USERNAME_EMPTY);
+		}
+		if (password.isEmpty()) {
+			throw new IllegalArgumentException(UI.ErrorMessages.PASSWORD_EMPTY);
+		}
 		for (User currentUser : this.users) {
 			if (username.equals(currentUser.getUsername())
 					&& password.equals(currentUser.getPassword())) {
@@ -40,6 +54,9 @@ public class LocalUserManager extends UserManager {
 
 	@Override
 	public User getUser(int userId) {
+		if (userId < 0) {
+			throw new IllegalArgumentException(UI.ErrorMessages.NEGATIVE_ID);
+		}
 		for (User currentUser : this.users) {
 			if (userId == currentUser.getUserId()) {
 				return currentUser;
@@ -49,6 +66,18 @@ public class LocalUserManager extends UserManager {
 	}
 
 	public User getUser(String username, String password) {
+		if (username == null) {
+			throw new IllegalArgumentException(UI.ErrorMessages.USERNAME_NULL);
+		}
+		if (password == null) {
+			throw new IllegalArgumentException(UI.ErrorMessages.PASSWORD_NULL);
+		}
+		if (username.isEmpty()) {
+			throw new IllegalArgumentException(UI.ErrorMessages.USERNAME_EMPTY);
+		}
+		if (password.isEmpty()) {
+			throw new IllegalArgumentException(UI.ErrorMessages.PASSWORD_EMPTY);
+		}
 		for (User currentUser : this.users) {
 			if (username.equals(currentUser.getUsername()) && password.equals(currentUser.getPassword())) {
 				return currentUser;
@@ -59,24 +88,25 @@ public class LocalUserManager extends UserManager {
 
 	@Override
 	public boolean addUser(User user) {
-		if (user != null) {
-			this.users.add(user);
+		if (user == null) {
+			throw new IllegalArgumentException(UI.ErrorMessages.USER_NULL);
 		}
-		return false;
+		if (this.checkForUser(user.getUserId())) {
+			throw new IllegalArgumentException(UI.GuiMessages.USER_EXISTS);
+		}
+		return this.users.add(user);
 	}
 
 	@Override
 	public boolean checkForUser(int id) {
+		if (id < 0) {
+			throw new IllegalArgumentException(UI.ErrorMessages.NEGATIVE_ID);
+		}
 		for (User currentUser : this.users) {
 			if (id == currentUser.getUserId()) {
 				return true;
 			}
 		}
-		return false;
-	}
-
-	@Override
-	public boolean updateUser(User username) {
 		return false;
 	}
 	

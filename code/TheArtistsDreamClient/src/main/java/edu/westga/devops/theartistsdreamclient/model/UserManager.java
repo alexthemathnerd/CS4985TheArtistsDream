@@ -75,13 +75,4 @@ public abstract class UserManager implements Iterable<User> {
 	 */
 	public abstract boolean checkForUser(int userId);
 
-	/**
-	 * Updates the users information
-	 * 
-	 * @precondition user != null
-	 * @postcondition none
-	 * @param user the user to update
-	 * @return true if the user has been updated, false otherwise
-	 */
-	public abstract boolean updateUser(User user);
 }

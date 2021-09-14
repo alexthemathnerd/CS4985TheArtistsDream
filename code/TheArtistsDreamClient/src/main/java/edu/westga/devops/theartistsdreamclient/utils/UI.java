@@ -23,6 +23,7 @@ public class UI {
         public static final String USERNAME_EMPTY = "Username cannot be empty";
         public static final String PASSWORD_NULL = "Password cannot be null";
         public static final String PASSWORD_EMPTY = "Password cannot be empty";
+        public static final String USER_NULL = "User cannot be null";
     }
 
     public static class GuiMessages {
