@@ -11,7 +11,7 @@ import edu.westga.devops.theartistsdreamclient.utils.UI.ServerCodes;
  */
 public class Request {
     private ServerCodes code;
-    private Object data;
+    private Object[] data;
 
     /**
      * Creates a request object
@@ -21,7 +21,7 @@ public class Request {
      * @precondition code != null
      * @postcondition getCode() == code && getData() == data
      */
-    public Request(ServerCodes code, Object data) {
+    public Request(ServerCodes code, Object[] data) {
         if (code == null) {
             throw new IllegalArgumentException(UI.ErrorMessages.CODE_NULL);
         }
@@ -48,7 +48,7 @@ public class Request {
      * @precondition none
      * @postcondition none
      */
-    public Object getData() {
+    public Object[] getData() {
         return this.data;
     }
 

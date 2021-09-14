@@ -3,7 +3,9 @@ package edu.westga.devops.theartistsdreamclient.utils;
 public class UI {
 
     public enum ServerCodes {
-        TODO;
+        TODO,
+        ADD_TAG,
+        GET_TOP_TAGS;
     }
 
     public static class ErrorMessages {

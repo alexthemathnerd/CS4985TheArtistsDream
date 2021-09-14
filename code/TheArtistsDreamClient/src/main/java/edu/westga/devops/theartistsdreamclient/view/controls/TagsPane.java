@@ -1,13 +1,12 @@
 package edu.westga.devops.theartistsdreamclient.view.controls;
 
 import edu.westga.devops.theartistsdreamclient.model.Tag;
-import javafx.beans.property.SetProperty;
-import javafx.beans.property.SimpleSetProperty;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.scene.layout.FlowPane;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * A class for a custom control to handle displaying a set of tags.
@@ -17,8 +16,8 @@ import java.util.Set;
  */
 public class TagsPane extends FlowPane {
 
-    private SetProperty<Tag> tagsSetProperty;
-    private SetProperty<Tag> addedTagsSetProperty;
+    private ListProperty<Tag> tagsListProperty;
+    private ListProperty<Tag> addedTagsListProperty;
     private List<TagButton> selectedTagsButtons;
 
     /**
@@ -29,10 +28,10 @@ public class TagsPane extends FlowPane {
      */
     public TagsPane() {
         this.getStyleClass().add("tags-pane");
-        this.tagsSetProperty = new SimpleSetProperty<Tag>();
-        this.addedTagsSetProperty = new SimpleSetProperty<Tag>();
+        this.tagsListProperty = new SimpleListProperty<Tag>();
+        this.addedTagsListProperty = new SimpleListProperty<Tag>();
         this.selectedTagsButtons = new ArrayList<TagButton>();
-        this.tagsSetProperty.addListener((observable, oldValue, newValue) -> {
+        this.tagsListProperty.addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 this.getChildren().clear();
                 this.getChildren().addAll(this.selectedTagsButtons);
@@ -41,7 +40,8 @@ public class TagsPane extends FlowPane {
         });
     }
 
-    private void setupSearchedButtons(Set<Tag> tags) {
+    private void setupSearchedButtons(List<Tag> tags) {
+        System.out.println(tags);
         for (Tag aTag : tags) {
             TagButton button = new TagButton(aTag);
             if (!this.selectedTagsButtons.contains(button)) {
@@ -64,8 +64,8 @@ public class TagsPane extends FlowPane {
      * @preconditon none
      * @postcondtion none
      */
-    public SetProperty<Tag> tagsSetProperty() {
-        return this.tagsSetProperty;
+    public ListProperty<Tag> tagsListProperty() {
+        return this.tagsListProperty;
     }
 
 
@@ -80,8 +80,8 @@ public class TagsPane extends FlowPane {
      * @preconditon none
      * @postcondtion none
      */
-    public SetProperty<Tag> addedTagsSetProperty() {
-        return this.addedTagsSetProperty;
+    public ListProperty<Tag> addedTagsSetProperty() {
+        return this.addedTagsListProperty;
     }
 
 }

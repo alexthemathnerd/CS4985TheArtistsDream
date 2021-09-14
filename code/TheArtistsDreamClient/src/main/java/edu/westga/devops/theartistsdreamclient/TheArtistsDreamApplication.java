@@ -6,6 +6,7 @@ import edu.westga.devops.theartistsdreamclient.model.TagManager;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalArtwork;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalTagManager;
+import edu.westga.devops.theartistsdreamclient.model.network.NetworkTagManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,6 +17,7 @@ import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.logging.ConsoleHandler;
@@ -69,43 +71,45 @@ public class TheArtistsDreamApplication extends Application {
     }
 
     private static void setupSingletons() {
-        setupLocalTagManager();
+        NetworkTagManager tagManager = new NetworkTagManager();
+        TagManager.setTagManager(tagManager);
+        //setupLocalTagManager();
         setupLocalArtworkManager();
     }
 
-    private static void setupLocalTagManager() {
-        TagManager tagManager = new LocalTagManager();
-        tagManager.addTag("Pop");
-        tagManager.addTag("Pop");
-        tagManager.addTag("Pop");
-        tagManager.addTag("Pop");
-        tagManager.addTag("Pop");
-        tagManager.addTag("Pop");
-        tagManager.addTag("Green");
-        tagManager.addTag("Green");
-        tagManager.addTag("Green");
-        tagManager.addTag("Green");
-        tagManager.addTag("Oil");
-        tagManager.addTag("Oil");
-        tagManager.addTag("Oil");
-        tagManager.addTag("Oil");
-        tagManager.addTag("Sad");
-        tagManager.addTag("Sad");
-        tagManager.addTag("Sad");
-        tagManager.addTag("Happy");
-        tagManager.addTag("Happy");
-        tagManager.addTag("Happy");
-        tagManager.addTag("Nature");
-        tagManager.addTag("Animals");
-        tagManager.addTag("Portrait");
-        tagManager.addTag("Landscapes");
-        tagManager.addTag("Abstract");
-        tagManager.addTag("3D");
-        tagManager.addTag("Sci-Fi");
-        tagManager.addTag("Material");
-        tagManager.addTag("Contemporary");
-        TagManager.setTagManager(tagManager);
-    }
+//    private static void setupLocalTagManager() {
+//        TagManager tagManager = new LocalTagManager();
+//        tagManager.addTag("Pop");
+//        tagManager.addTag("Pop");
+//        tagManager.addTag("Pop");
+//        tagManager.addTag("Pop");
+//        tagManager.addTag("Pop");
+//        tagManager.addTag("Pop");
+//        tagManager.addTag("Green");
+//        tagManager.addTag("Green");
+//        tagManager.addTag("Green");
+//        tagManager.addTag("Green");
+//        tagManager.addTag("Oil");
+//        tagManager.addTag("Oil");
+//        tagManager.addTag("Oil");
+//        tagManager.addTag("Oil");
+//        tagManager.addTag("Sad");
+//        tagManager.addTag("Sad");
+//        tagManager.addTag("Sad");
+//        tagManager.addTag("Happy");
+//        tagManager.addTag("Happy");
+//        tagManager.addTag("Happy");
+//        tagManager.addTag("Nature");
+//        tagManager.addTag("Animals");
+//        tagManager.addTag("Portrait");
+//        tagManager.addTag("Landscapes");
+//        tagManager.addTag("Abstract");
+//        tagManager.addTag("3D");
+//        tagManager.addTag("Sci-Fi");
+//        tagManager.addTag("Material");
+//        tagManager.addTag("Contemporary");
+//        TagManager.setTagManager(tagManager);
+//    }
 
     private static void setupLocalArtworkManager() {
         artworkManager = new LocalArtworkManager();
@@ -118,6 +122,7 @@ public class TheArtistsDreamApplication extends Application {
             for (File artwork : artworksFolder.listFiles()) {
 
                 String artworkURLPath = artwork.toURI().toURL().toString();
+
                 String[] artworkParts = artwork.getName().substring(0, artwork.getName().indexOf(".")).split("_");
                 String artworkName = artworkParts[0];
                 int artistID = Integer.parseInt(artworkParts[1]);

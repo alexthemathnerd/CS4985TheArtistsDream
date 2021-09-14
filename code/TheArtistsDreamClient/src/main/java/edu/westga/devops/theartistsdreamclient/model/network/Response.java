@@ -6,10 +6,10 @@ package edu.westga.devops.theartistsdreamclient.model.network;
  * @author Alexander Schmidt
  * @version Fall 2021
  */
-public class Response {
+public class Response<T> {
 
     private String error;
-    private Object data;
+    private T data;
 
     /**
      * Creates a response. Should only be used by Gson
@@ -20,7 +20,7 @@ public class Response {
      * @postcondition getError() == error && getData() == data
      * @see com.google.gson.Gson
      */
-    public Response(String error, Object data) {
+    public Response(String error, T data) {
         this.error = error;
         this.data = data;
     }
@@ -43,7 +43,7 @@ public class Response {
      * @precondition none
      * @postcondition none
      */
-    public Object getData() {
+    public T getData() {
         return this.data;
     }
 }

@@ -11,11 +11,26 @@
 <?import edu.westga.devops.theartistsdreamclient.view.controls.TagsPane?>
 
 <?import java.net.URL?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" styleClass="main" stylesheets="@../core-design.css, @filter-popup-design.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="400.0" spacing="20.0" style="-fx-background-color: #1e1e24; -fx-background-radius: 20; -fx-border-radius: 20;">
          <children>
-            <TextField fx:id="searchTagsTextField" prefHeight="30.0" prefWidth="360.0" promptText="SEARCH TAGS" VBox.vgrow="NEVER" />
+            <HBox VBox.vgrow="NEVER">
+               <children>
+                  <TextField fx:id="searchTagsTextField" prefHeight="30.0" prefWidth="360.0" promptText="SEARCH TAGS" HBox.hgrow="ALWAYS" />
+                  <Button onAction="#handleSearch">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/search-icon.png"/>
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
             <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <content>
                   <TagsPane fx:id="tagsPane" alignment="TOP_LEFT" hgap="5.0" prefWidth="357.0" rowValignment="TOP" vgap="5.0">

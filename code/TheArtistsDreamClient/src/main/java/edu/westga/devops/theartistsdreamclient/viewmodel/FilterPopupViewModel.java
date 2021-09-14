@@ -5,14 +5,11 @@ import edu.westga.devops.theartistsdreamclient.model.Tag;
 import edu.westga.devops.theartistsdreamclient.model.TagManager;
 import edu.westga.devops.theartistsdreamclient.view.popups.FilterPopup;
 
-import javafx.beans.property.SetProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.property.SimpleSetProperty;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.*;
 
 import javafx.collections.FXCollections;
 
-import java.util.TreeSet;
+import java.util.List;
 
 /**
  * The ViewModel for handleing the logic behind the {@link FilterPopup}
@@ -26,7 +23,7 @@ import java.util.TreeSet;
 public class FilterPopupViewModel {
 
     private final StringProperty searchStringProperty;
-    private final SetProperty<Tag> searchTagsSetProperty;
+    private final ListProperty<Tag> searchTagsListProperty;
     private final SetProperty<Tag> addedTagsSetProperty;
 
     /**
@@ -37,8 +34,8 @@ public class FilterPopupViewModel {
      * addedTagsSetProperty().isNotNull()
      */
     public FilterPopupViewModel() {
-        this.searchStringProperty = new SimpleStringProperty();
-        this.searchTagsSetProperty = new SimpleSetProperty<Tag>();
+        this.searchStringProperty = new SimpleStringProperty("");
+        this.searchTagsListProperty = new SimpleListProperty<Tag>();
         this.addedTagsSetProperty = new SimpleSetProperty<Tag>();
     }
 
@@ -50,8 +47,8 @@ public class FilterPopupViewModel {
      * @postcondition searchTagsSetProperty().isNotEmpty()
      */
     public void searchTags(int amount) {
-        TreeSet<Tag> tags = new TreeSet<Tag>(TagManager.getTagManager().getTopTags(amount, this.searchStringProperty.get()));
-        this.searchTagsSetProperty.setValue(FXCollections.observableSet(tags));
+        List<Tag> tags = TagManager.getTagManager().getTopTags(amount, this.searchStringProperty.get());
+        this.searchTagsListProperty.setValue(FXCollections.observableList(tags));
     }
 
     /**
@@ -72,8 +69,8 @@ public class FilterPopupViewModel {
      * @precondition none
      * @postcondition none
      */
-    public SetProperty<Tag> searchTagsSetProperty() {
-        return this.searchTagsSetProperty;
+    public ListProperty<Tag> searchTagsListProperty() {
+        return this.searchTagsListProperty;
     }
 
     /**

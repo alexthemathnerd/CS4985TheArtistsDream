@@ -6,9 +6,9 @@ import edu.westga.devops.theartistsdreamserver.utils.UI;
 public class Response {
 
     private UI.ServerCodes code;
-    private Object data;
+    private Object[] data;
 
-    public Response(UI.ServerCodes code, Object data) {
+    public Response(UI.ServerCodes code, Object[] data) {
         if (code == null) {
             throw new IllegalArgumentException(UI.ErrorMessages.CODE_NULL);
         }

@@ -23,7 +23,7 @@ public class Receiver extends Thread {
         try (ZContext context = new ZContext(1)) {
             ZMQ.Socket socket = context.createSocket(SocketType.REP);
             TheArtistsDreamServer.LOGGER.info("Connecting Reciever on " + this.address);
-            if (!socket.bind("tcp://localhost:4444")) {
+            if (!socket.bind(this.address)) {
                 TheArtistsDreamServer.LOGGER.severe("server was not able to establish on" + this.address);
                 throw new IllegalStateException(UI.ErrorMessages.SERVER_START);
             }

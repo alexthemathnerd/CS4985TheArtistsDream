@@ -34,10 +34,12 @@ public class FilterPopup {
     @FXML
     public void initialize() {
         this.searchTagsTextField.textProperty().bindBidirectional(this.viewModel.searchStringProperty());
-        this.tagsPane.tagsSetProperty().bindBidirectional(this.viewModel.searchTagsSetProperty());
-        this.searchTagsTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            this.viewModel.searchTags(5);
-        });
+        this.tagsPane.tagsListProperty().bindBidirectional(this.viewModel.searchTagsListProperty());
+    }
+
+    @FXML
+    public void handleSearch(ActionEvent event) {
+        this.viewModel.searchTags(5);
     }
 
     @FXML

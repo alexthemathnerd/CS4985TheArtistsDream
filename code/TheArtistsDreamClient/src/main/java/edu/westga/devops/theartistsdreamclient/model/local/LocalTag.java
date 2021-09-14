@@ -9,9 +9,8 @@ import edu.westga.devops.theartistsdreamclient.utils.UI;
  * @author Alexander Schmidt
  * @version Fall2021
  */
-public class LocalTag extends Tag {
+public class LocalTag {
 
-    private int id;
     private String name;
     private int useCount;
 
@@ -34,41 +33,35 @@ public class LocalTag extends Tag {
         if (name.isEmpty()) {
             throw new IllegalArgumentException(UI.ErrorMessages.TAG_NAME_EMPTY);
         }
-        this.id = id;
         this.name = name.toLowerCase();
         this.useCount = 1;
     }
-
-    @Override
-    public int getId() {
-        return this.id;
-    }
-
-    @Override
-    public String getName() {
-        return this.name;
-    }
-
-    @Override
-    public void incrementUseCount() {
-        this.useCount++;
-    }
-
-    @Override
-    public int getUseCount() {
-        return this.useCount;
-    }
-
-    @Override
-    public int compareTo(Tag otherTag) {
-        if (otherTag == null) {
-            throw new NullPointerException();
-        }
-        int result = otherTag.getUseCount() - this.useCount;
-
-        if (result == 0) {
-            return this.getName().compareTo(otherTag.getName());
-        }
-        return result;
-    }
+//
+//    @Override
+//    public String getName() {
+//        return this.name;
+//    }
+//
+//    @Override
+//    public void incrementUseCount() {
+//        this.useCount++;
+//    }
+//
+//    @Override
+//    public int getUseCount() {
+//        return this.useCount;
+//    }
+//
+//    @Override
+//    public int compareTo(Tag otherTag) {
+//        if (otherTag == null) {
+//            throw new NullPointerException();
+//        }
+//        int result = otherTag.getUseCount() - this.useCount;
+//
+//        if (result == 0) {
+//            return this.getName().compareTo(otherTag.getName());
+//        }
+//        return result;
+//    }
 }

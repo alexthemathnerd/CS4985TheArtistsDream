@@ -6,7 +6,23 @@ package edu.westga.devops.theartistsdreamclient.model;
  * @author Alexander Schmidt
  * @version Fall 2021
  */
-public abstract class Tag implements Comparable<Tag> {
+public class Tag {
+
+    private int id;
+    private String name;
+    private int useCount;
+
+    public Tag(int id, String name) {
+        this.id = id;
+        this.name = name;
+        this.useCount = 1;
+    }
+
+    public Tag(int id, String name, int useCount) {
+        this.id = id;
+        this.name = name;
+        this.useCount = useCount;
+    }
 
     /**
      * Gets the id of the tag.
@@ -15,7 +31,9 @@ public abstract class Tag implements Comparable<Tag> {
      * @precondition none
      * @postcondition none
      */
-    public abstract int getId();
+    public final int getId() {
+        return this.id;
+    }
 
     /**
      * Gets the name of the tag
@@ -24,15 +42,9 @@ public abstract class Tag implements Comparable<Tag> {
      * @precondition none
      * @postcondtion none
      */
-    public abstract String getName();
-
-    /**
-     * Increments the use count of the tag
-     *
-     * @precondition none
-     * @postcondition getUseCount() == getUseCount()@prev + 1
-     */
-    public abstract void incrementUseCount();
+    public final String getName() {
+        return this.name;
+    }
 
     /**
      * Gets the use count of the tag
@@ -41,7 +53,9 @@ public abstract class Tag implements Comparable<Tag> {
      * @precondition none
      * @postcondition none
      */
-    public abstract int getUseCount();
+    public final int getUseCount() {
+        return this.useCount;
+    }
 
     @Override
     public boolean equals(Object obj) {

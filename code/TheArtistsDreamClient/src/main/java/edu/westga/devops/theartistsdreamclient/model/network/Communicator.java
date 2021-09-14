@@ -1,6 +1,9 @@
 package edu.westga.devops.theartistsdreamclient.model.network;
 
 import com.google.gson.Gson;
+import com.google.gson.internal.LinkedTreeMap;
+import com.google.gson.reflect.TypeToken;
+
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import edu.westga.devops.theartistsdreamclient.utils.UI;
 import org.zeromq.SocketType;
@@ -8,6 +11,7 @@ import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
 import java.io.Closeable;
+import java.lang.reflect.Type;
 
 /**
  * A class to handle communication with the server. Example of use:
@@ -51,12 +55,13 @@ public class Communicator implements Closeable {
      * Requests to the server with the given request and returns its response
      *
      * @param request the request to be sent to the server
+     * @param <T> the
      * @return the response from the server
      * @precondition server must be connected
      * @postcondition none
      * @see Response
      */
-    public Response request(Request request) {
+    public <T> Response<T> request(Request request, Type type) {
         if (this.context.isClosed()) {
             throw new IllegalStateException();
         }
@@ -64,7 +69,24 @@ public class Communicator implements Closeable {
         String json = gson.toJson(request);
         this.socket.send(json);
         String reply = this.socket.recvStr(0);
-        return gson.fromJson(reply, Response.class);
+        Response<T> conf = gson.fromJson(reply, type);
+        System.out.println(conf.getData() instanceof T);
+        return conf;
+    }
+
+    public <T> Response<T> request(Request request) {
+        if (this.context.isClosed()) {
+            throw new IllegalStateException();
+        }
+        Gson gson = new Gson();
+        String json = gson.toJson(request);
+        this.socket.send(json);
+        String reply = this.socket.recvStr(0);
+        Type type = new TypeToken<Response<T>>() {
+        }.getType();
+        Response<T> conf = gson.fromJson(reply, type);
+        System.out.println(conf.getData() instanceof T);
+        return conf;
     }
 
     @Override
@@ -80,10 +102,9 @@ public class Communicator implements Closeable {
     /**
      * Checks if communicator is closed
      *
+     * @return true if communicator is closed; false otherwise
      * @precondition none
      * @postcondition none
-     *
-     * @return true if communicator is closed; false otherwise
      */
     public boolean isClosed() {
         return this.context.isClosed();

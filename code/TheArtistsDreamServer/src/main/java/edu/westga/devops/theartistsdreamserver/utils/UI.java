@@ -1,11 +1,15 @@
 package edu.westga.devops.theartistsdreamserver.utils;
 
+import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
 import edu.westga.devops.theartistsdreamserver.model.Request;
+import edu.westga.devops.theartistsdreamserver.model.TagManager;
 
 public class UI {
 
     public enum ServerCodes {
-        TODO((response) -> new Request("error", null));
+        TODO((response) -> new Request("error", null)),
+        ADD_TAG(TagManager::addTag),
+        GET_TOP_TAGS(TagManager::getTopTags);
 
         private ServerAction action;
 
@@ -13,13 +17,13 @@ public class UI {
             this.action = action;
         }
 
-        public Request execute(Object data) {
+        public Request execute(Object[] data) {
             return this.action.execute(data);
         }
 
         public interface ServerAction {
 
-            Request execute(Object data);
+            Request execute(Object[] data);
 
         }
     }
