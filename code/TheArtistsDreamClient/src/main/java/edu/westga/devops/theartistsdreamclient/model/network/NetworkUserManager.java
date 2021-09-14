@@ -5,12 +5,24 @@ import java.util.Iterator;
 import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.model.UserManager;
 
+/**
+ * Tne NetworkUserManager class
+ * 
+ * @author Jamia Echols
+ * @version Fall 2021
+ */
 public class NetworkUserManager extends UserManager {
 
     private Communicator communicator;
 
+    /**
+     * Initailizes a network User manager
+     * 
+     * @precondition none
+     * @postcondition none
+     */
     public NetworkUserManager() {
-        this.communicator = new Communicator("tcp//localHost:4444");
+        this.communicator = new Communicator("tcp://localHost:4444");
     }
 
     @Override
