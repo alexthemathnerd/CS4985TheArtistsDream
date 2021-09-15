@@ -23,6 +23,7 @@ import java.util.logging.ConsoleHandler;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
+import java.time.LocalDate;
 
 /**
  * Handle Setting up The Artist's Dream Application.
@@ -131,8 +132,8 @@ public class TheArtistsDreamApplication extends Application {
                     artworkTagIDs.add(Integer.parseInt(tag));
                 }
                 int artworkID = Integer.parseInt(artworkParts[3]);
-
-                Artwork currentArtwork = new Artwork(new Image(artworkURLPath), artworkName, artistID, artworkTagIDs, artworkID);
+		LocalDate artworkDate = LocalDate.parse(artworkParts[4]);
+                Artwork currentArtwork = new Artwork(new Image(artworkURLPath), artworkName, artistID, artworkTagIDs, artworkID, artworkDate);
                 artworkManager.addArtwork(currentArtwork);
             }
 
