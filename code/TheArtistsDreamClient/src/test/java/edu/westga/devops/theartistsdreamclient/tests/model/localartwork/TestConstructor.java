@@ -50,6 +50,4 @@ public class TestConstructor {
 		assertThrows(IllegalArgumentException.class, () -> new LocalArtwork(new Image("icon.png"), "title", 1, new ArrayList<Integer>(), -4));
 	}
 
-	//TODO: Add valid parameter test case. Use icon image
-
 }

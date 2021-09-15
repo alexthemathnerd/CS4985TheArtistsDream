@@ -12,6 +12,8 @@ import javafx.scene.layout.TilePane;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
+import javafx.beans.binding.Bindings;
+import edu.westga.devops.theartistsdreamclient.viewmodel.ArtworksPaneViewModel;
 
 /**
  * The Controller for the Custom Control for the Artworks view of the application
@@ -29,11 +31,13 @@ public class ArtworksPane extends ScrollPane {
     @FXML
     private Button viewMoreButton;
 
+   private ArtworksPaneViewModel viewModel;
 
     /**
      * Initializes the FXML for the ArtworksPane control
      */
     public ArtworksPane() {
+	    this.viewModel = new ArtworksPaneViewModel();
         FXMLLoader loader = new FXMLLoader(Header.class.getResource(ARTWORKS_PANE_FXML));
         loader.setRoot(this);
         loader.setController(this);
@@ -46,19 +50,19 @@ public class ArtworksPane extends ScrollPane {
 
     @FXML
     void initialize() {
-
-        for (Artwork artwork : TheArtistsDreamApplication.artworkManager.getFirstFiftyArtworks()) {
+        for (Artwork artwork : this.viewModel.artworksProperty()) {
             this.artworksTilePane.getChildren().add(new ArtworkTile(artwork));
         }
-
-        //TODO: bindings
+	this.viewMoreButton.disableProperty().bind(this.viewModel.indexProperty().isEqualTo(TheArtistsDreamApplication.artworkManager.size()));
     }
 
     @FXML
     void handleViewMore(ActionEvent event) {
         this.artworksTilePane.setPrefRows(this.artworksTilePane.getPrefRows() + 2);
-        for (int i = 0; i < 10; i++) {
-            this.artworksTilePane.getChildren().add(new ArtworkTile());
-        }
+	this.viewModel.viewMoreArtworks();
+	this.artworksTilePane.getChildren().clear();
+	for(Artwork artwork : this.viewModel.artworksProperty()){
+		this.artworksTilePane.getChildren().add(new ArtworkTile(artwork));
+	}
     }
 }

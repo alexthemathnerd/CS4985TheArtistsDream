@@ -32,7 +32,13 @@ public class LocalArtworkManager extends ArtworkManager {
 	@Override
 	public List<Artwork> getFirstFiftyArtworks() {
 		List<Artwork> abstractArtworks = (List)new ArrayList<LocalArtwork>(this.artworks);
-		return abstractArtworks;
+		return abstractArtworks.subList(0, 50);
+	}
+
+	@Override
+	public List<Artwork> getNextTenArtworks(int startingIndex) {
+		List<Artwork> abstractArtworks = (List)new ArrayList<LocalArtwork>(this.artworks);
+		return abstractArtworks.subList(startingIndex, startingIndex + 10);
 	}
 
 	@Override
@@ -90,6 +96,11 @@ public class LocalArtworkManager extends ArtworkManager {
 	@Override
 	public Iterator iterator() {
 		return this.artworks.iterator();
+	}
+
+	@Override
+	public int size() {
+		return this.artworks.size();
 	}
 		
 }

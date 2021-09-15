@@ -20,6 +20,29 @@ public abstract class ArtworkManager implements Iterable<Artwork> {
 	 */
 	public abstract List<Artwork> getFirstFiftyArtworks();
 
+
+	/**
+	 * Gets the next ten artworks
+	 *
+	 * @precondition none
+	 * @postcondition none
+	 *
+	 * @param startingIndex the starting index to get the next 10 artworks from
+	 *
+	 * @return the next ten artworks from the starting index
+	 */
+	public abstract List<Artwork> getNextTenArtworks(int startingIndex);
+
+	/**
+	 * Gets the size
+	 *
+	 * @precondition none
+	 * @postcondition none
+	 *
+	 * @return the size of the artwork manager
+	 */
+	public abstract int size();
+
 	/**
 	 * Gets the artwork specified by the id
 	 *
