@@ -17,7 +17,6 @@
 .menu-item {
 	-fx-text-fill: #e01a4f;
 	-fx-background-color: #2d2c32;
-	-fx-background-radius: 50%;
 	-fx-alignment: center;
 }
 
