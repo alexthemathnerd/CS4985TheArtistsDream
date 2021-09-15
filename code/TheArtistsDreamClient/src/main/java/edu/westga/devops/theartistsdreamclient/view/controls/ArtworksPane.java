@@ -53,7 +53,7 @@ public class ArtworksPane extends ScrollPane {
         for (Artwork artwork : this.viewModel.artworksProperty()) {
             this.artworksTilePane.getChildren().add(new ArtworkTile(artwork));
         }
-	this.viewMoreButton.disableProperty().bind(this.viewModel.indexProperty().isEqualTo(TheArtistsDreamApplication.artworkManager.size()));
+	this.viewMoreButton.disableProperty().bind(this.viewModel.indexProperty().isEqualTo(this.viewModel.maxIndexProperty()));
     }
 
     @FXML
