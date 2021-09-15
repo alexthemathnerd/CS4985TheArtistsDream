@@ -3,7 +3,6 @@ package edu.westga.devops.theartistsdreamclient;
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.TagManager;
-import edu.westga.devops.theartistsdreamclient.model.local.LocalArtwork;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalTagManager;
 import edu.westga.devops.theartistsdreamclient.model.network.NetworkTagManager;
@@ -133,7 +132,7 @@ public class TheArtistsDreamApplication extends Application {
                 }
                 int artworkID = Integer.parseInt(artworkParts[3]);
 
-                Artwork currentArtwork = new LocalArtwork(new Image(artworkURLPath), artworkName, artistID, artworkTagIDs, artworkID);
+                Artwork currentArtwork = new Artwork(new Image(artworkURLPath), artworkName, artistID, artworkTagIDs, artworkID);
                 artworkManager.addArtwork(currentArtwork);
             }
 

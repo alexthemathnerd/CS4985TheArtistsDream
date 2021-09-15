@@ -16,7 +16,7 @@ import java.util.Iterator;
  */
 public class LocalArtworkManager extends ArtworkManager {
 
-	private final List<LocalArtwork> artworks;
+	private final List<Artwork> artworks;
 
 	/**
 	 * Creates a new Artworks Collection
@@ -26,26 +26,24 @@ public class LocalArtworkManager extends ArtworkManager {
 	 *
 	 */
 	public LocalArtworkManager() {
-		this.artworks = new ArrayList<LocalArtwork>();
+		this.artworks = new ArrayList<Artwork>();
 	}
 
 	@Override
 	public List<Artwork> getFirstFiftyArtworks() {
-		List<Artwork> abstractArtworks = (List)new ArrayList<LocalArtwork>(this.artworks);
-		return abstractArtworks.subList(0, 50);
+		return this.artworks.subList(0, 50);
 	}
 
 	@Override
 	public List<Artwork> getNextTenArtworks(int startingIndex) {
-		List<Artwork> abstractArtworks = (List)new ArrayList<LocalArtwork>(this.artworks);
-		return abstractArtworks.subList(startingIndex, startingIndex + 10);
+		return this.artworks.subList(startingIndex, startingIndex + 10);
 	}
 
 	@Override
 	public Artwork getArtwork(int id) {
-		for (LocalArtwork artwork : this.artworks) {
+		for (Artwork artwork : this.artworks) {
 			if(artwork.getID() == id){
-				return (Artwork)artwork;
+				return artwork;
 			}
 		}
 		return null;
@@ -53,12 +51,12 @@ public class LocalArtworkManager extends ArtworkManager {
 
 	@Override
 	public boolean addArtwork(Artwork artwork) {
-		return this.artworks.add((LocalArtwork)artwork);
+		return this.artworks.add(artwork);
 	}
 
 	@Override
 	public boolean removeArtwork(int id) {
-		for (LocalArtwork artwork: this.artworks) {
+		for (Artwork artwork: this.artworks) {
 			if (artwork.getID() == id) {
 				return this.artworks.remove(artwork);
 			}
