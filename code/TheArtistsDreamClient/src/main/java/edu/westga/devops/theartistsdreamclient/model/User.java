@@ -1,20 +1,61 @@
 package edu.westga.devops.theartistsdreamclient.model;
+
+import edu.westga.devops.theartistsdreamclient.model.User;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
+
 /**
- *  The abstract user  class
+ * The User Class
  * 
  * @author Jamia Echols
  * @version Fall 2021
  */
-public abstract class User {
-    private static User user = null;
+public class User {
+    private int userId;
+    private String email;
+    private String username;
+    private String password;
 
-	public static User getUser() {
-		return User.user;
-	}
+    public User(int userId, String email, String username, String password) {
+        if (userId < 0) {
+            throw new IllegalArgumentException(UI.ErrorMessages.NEGATIVE_ID);
+        }
+        if (email == null) {
+            throw new IllegalArgumentException(UI.ErrorMessages.EMAIL_NULL);
+        }
+        if (username == null) {
+            throw new IllegalArgumentException(UI.ErrorMessages.USERNAME_NULL);
+        }
+        if (password == null) {
+            throw new IllegalArgumentException(UI.ErrorMessages.PASSWORD_NULL);
+        }
+        if (email.isEmpty()) {
+            throw new IllegalArgumentException(UI.ErrorMessages.EMAIL_EMPTY);
+        }
+        if (username.isEmpty()) {
+            throw new IllegalArgumentException(UI.ErrorMessages.EMAIL_EMPTY);
+        }
+        if (password.isEmpty()) {
+            throw new IllegalArgumentException(UI.ErrorMessages.PASSWORD_EMPTY);
+        }
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.userId = userId;
+    }
 
-    public abstract String getUsername();
+    public String getEmail() {
+        return this.email;
+    }  
 
-    public abstract String getPassword();
+    public String getUsername() {
+        return this.username;
+    }  
 
-    public abstract int getUserId();
+    public String getPassword() {
+        return this.password;
+    }
+
+    public int getUserId() {
+        return this.userId;
+    }
 }

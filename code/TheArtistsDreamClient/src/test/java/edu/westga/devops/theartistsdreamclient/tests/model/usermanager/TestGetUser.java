@@ -1,9 +1,11 @@
-package edu.westga.devops.theartistsdreamclient.tests.model.localusermanager;
+package edu.westga.devops.theartistsdreamclient.tests.model.usermanager;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import edu.westga.devops.theartistsdreamclient.model.local.LocalUserManager;
-import edu.westga.devops.theartistsdreamclient.model.local.LocalUser;
+
+import edu.westga.devops.theartistsdreamclient.model.User;
+import edu.westga.devops.theartistsdreamclient.model.UserManager;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -15,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TestGetUser {
     @Test
     public void testNullUsername() {
-        LocalUserManager testUserManager = new LocalUserManager();
+        UserManager testUserManager = new UserManager();
         assertThrows(IllegalArgumentException.class, () -> {
             testUserManager.getUser(null,"password");
         });
@@ -23,7 +25,7 @@ public class TestGetUser {
 
     @Test
     public void testNullPassword() {
-        LocalUserManager testUserManager = new LocalUserManager();
+        UserManager testUserManager = new UserManager();
         assertThrows(IllegalArgumentException.class, () -> {
             testUserManager.getUser("username",null);
         });
@@ -31,7 +33,7 @@ public class TestGetUser {
 
     @Test
     public void testEmptyUsername() {
-        LocalUserManager testUserManager = new LocalUserManager();
+        UserManager testUserManager = new UserManager();
         assertThrows(IllegalArgumentException.class, () -> {
             testUserManager.getUser("","password");
         });
@@ -39,7 +41,7 @@ public class TestGetUser {
 
     @Test
     public void testEmptyPassword() {
-        LocalUserManager testUserManager = new LocalUserManager();
+        UserManager testUserManager = new UserManager();
         assertThrows(IllegalArgumentException.class, () -> {
             testUserManager.getUser("username","");
         });
@@ -47,7 +49,7 @@ public class TestGetUser {
 
     @Test
     public void testNegativeId() {
-        LocalUserManager testUserManager = new LocalUserManager();
+        UserManager testUserManager = new UserManager();
         assertThrows(IllegalArgumentException.class, () -> {
             testUserManager.getUser(-1);
         });
@@ -55,30 +57,30 @@ public class TestGetUser {
 
     @Test
     public void testGetUserById() {
-            LocalUserManager testUserManager = new LocalUserManager();
-            LocalUser testUser = new LocalUser(0, "test@gmail.com","test","test1");
+            UserManager testUserManager = new UserManager();
+            User testUser = new User(0, "test@gmail.com","test","test1");
             testUserManager.addUser(testUser);
              assertEquals(testUser, testUserManager.getUser(0));         
     }
 
     @Test
     public void testGetUserByUsernameAndPassword() {
-        LocalUserManager testUserManager = new LocalUserManager();
-        LocalUser testUser = new LocalUser(0, "test@gmail.com","test","test1");
+        UserManager testUserManager = new UserManager();
+        User testUser = new User(0, "test@gmail.com","test","test1");
         testUserManager.addUser(testUser);
         assertEquals(testUser, testUserManager.getUser(testUser.getUsername(), testUser.getPassword()));     
     }
 
     @Test
     public void testGetUserByUsernameAndPasswordNotFound() {
-        LocalUserManager testUserManager = new LocalUserManager();
-        LocalUser testUser = new LocalUser(0, "test@gmail.com","test","test1");
+        UserManager testUserManager = new UserManager();
+        User testUser = new User(0, "test@gmail.com","test","test1");
         assertEquals(null, testUserManager.getUser(testUser.getUsername(), testUser.getPassword()));     
     }
 
     @Test
     public void testGetUserByIdNotFound() {
-        LocalUserManager testUserManager = new LocalUserManager();
+        UserManager testUserManager = new UserManager();
         assertEquals(null, testUserManager.getUser(0));     
     }
 }

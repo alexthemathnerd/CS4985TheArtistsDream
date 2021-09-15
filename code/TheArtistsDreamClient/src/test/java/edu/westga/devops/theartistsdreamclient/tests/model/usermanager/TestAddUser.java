@@ -1,10 +1,11 @@
-package edu.westga.devops.theartistsdreamclient.tests.model.localusermanager;
+package edu.westga.devops.theartistsdreamclient.tests.model.usermanager;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import edu.westga.devops.theartistsdreamclient.model.local.LocalUser;
-import edu.westga.devops.theartistsdreamclient.model.local.LocalUserManager;
+
+import edu.westga.devops.theartistsdreamclient.model.User;
+import edu.westga.devops.theartistsdreamclient.model.UserManager;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +18,7 @@ import org.junit.jupiter.api.Test;
 public class TestAddUser {
     @Test
     public void testNullUser() {
-        LocalUserManager testUserManager = new LocalUserManager();
+        UserManager testUserManager = new UserManager();
         assertThrows(IllegalArgumentException.class, () -> {
             testUserManager.addUser(null);
         });
@@ -25,8 +26,8 @@ public class TestAddUser {
 
     @Test
     public void testAddDuplicateUser() {
-        LocalUserManager testUserManager = new LocalUserManager();
-        LocalUser testUser = new LocalUser(0, "test@gmail.com","test","test1");
+        UserManager testUserManager = new UserManager();
+        User testUser = new User(0, "test@gmail.com","test","test1");
         testUserManager.addUser(testUser);
         assertThrows(IllegalArgumentException.class, () -> {
             testUserManager.addUser(testUser);
@@ -35,8 +36,8 @@ public class TestAddUser {
 
     @Test
     public void testAddValidUser() {
-        LocalUserManager testUserManager = new LocalUserManager();
-        LocalUser testUser = new LocalUser(0, "test@gmail.com","test","test1");
+        UserManager testUserManager = new UserManager();
+        User testUser = new User(0, "test@gmail.com","test","test1");
         testUserManager.addUser(testUser);
         assertAll(() -> {
             assertEquals(1, testUserManager.size());

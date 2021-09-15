@@ -1,14 +1,15 @@
-package edu.westga.devops.theartistsdreamclient.tests.model.localusermanager;
+package edu.westga.devops.theartistsdreamclient.tests.model.usermanager;
 
 import org.junit.jupiter.api.Test;
 
+import edu.westga.devops.theartistsdreamclient.model.UserManager;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import edu.westga.devops.theartistsdreamclient.model.local.LocalUserManager;
 
 public class TestLoadLocalUsers {
     @Test
     public void TestLoadedLocalUsers() {
-        LocalUserManager testUserManager = new LocalUserManager();
+        UserManager testUserManager = new UserManager();
         testUserManager.loadLocalUsers();
         assertEquals(5, testUserManager.size());
     }

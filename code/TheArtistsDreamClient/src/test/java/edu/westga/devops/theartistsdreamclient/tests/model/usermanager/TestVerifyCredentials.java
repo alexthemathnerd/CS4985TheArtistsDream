@@ -1,11 +1,12 @@
-package edu.westga.devops.theartistsdreamclient.tests.model.localusermanager;
+package edu.westga.devops.theartistsdreamclient.tests.model.usermanager;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import edu.westga.devops.theartistsdreamclient.model.local.LocalUser;
-import edu.westga.devops.theartistsdreamclient.model.local.LocalUserManager;
+
+import edu.westga.devops.theartistsdreamclient.model.User;
+import edu.westga.devops.theartistsdreamclient.model.UserManager;
 
 /**
  * Test class for the method verify credentials in the local manager class
@@ -16,7 +17,7 @@ import edu.westga.devops.theartistsdreamclient.model.local.LocalUserManager;
 public class TestVerifyCredentials {
     @Test
     public void testNullUsername() {
-        LocalUserManager testUserManager = new LocalUserManager();
+        UserManager testUserManager = new UserManager();
         assertThrows(IllegalArgumentException.class, () -> {
             testUserManager.verifyCredentials(null, "password");
         });
@@ -24,7 +25,7 @@ public class TestVerifyCredentials {
 
     @Test
     public void testNullPassword() {
-        LocalUserManager testUserManager = new LocalUserManager();
+        UserManager testUserManager = new UserManager();
         assertThrows(IllegalArgumentException.class, () -> {
             testUserManager.verifyCredentials("username", null);
         });
@@ -32,7 +33,7 @@ public class TestVerifyCredentials {
 
     @Test
     public void testEmptyUsername() {
-        LocalUserManager testUserManager = new LocalUserManager();
+        UserManager testUserManager = new UserManager();
         assertThrows(IllegalArgumentException.class, () -> {
             testUserManager.verifyCredentials("", "password");
         });
@@ -40,7 +41,7 @@ public class TestVerifyCredentials {
 
     @Test
     public void testEmptyPassword() {
-        LocalUserManager testUserManager = new LocalUserManager();
+        UserManager testUserManager = new UserManager();
         assertThrows(IllegalArgumentException.class, () -> {
             testUserManager.verifyCredentials("username", "");
         });
@@ -48,15 +49,15 @@ public class TestVerifyCredentials {
 
     @Test
     public void testCredentialsNotFound() {
-        LocalUserManager testUserManager = new LocalUserManager();
-        LocalUser testUser = new LocalUser(0, "test@gmail.com", "test", "test1");
+        UserManager testUserManager = new UserManager();
+        User testUser = new User(0, "test@gmail.com", "test", "test1");
         assertEquals(false, testUserManager.verifyCredentials(testUser.getUsername(), testUser.getPassword()));
     }
 
     @Test
     public void testCredentialsFound() {
-        LocalUserManager testUserManager = new LocalUserManager();
-        LocalUser testUser = new LocalUser(0, "test@gmail.com", "test", "test1");
+        UserManager testUserManager = new UserManager();
+        User testUser = new User(0, "test@gmail.com", "test", "test1");
         testUserManager.addUser(testUser);
         assertEquals(true, testUserManager.verifyCredentials(testUser.getUsername(), testUser.getPassword()));
 
