@@ -3,6 +3,7 @@ package edu.westga.devops.theartistsdreamclient.viewmodel;
 import edu.westga.devops.theartistsdreamclient.utils.UI;
 import javafx.beans.property.*;
 import edu.westga.devops.theartistsdreamclient.model.*;
+import edu.westga.devops.theartistsdreamclient.model.network.*;
 
 /**
  * The Login View Model
@@ -16,7 +17,7 @@ public class LoginViewModel {
     private StringProperty confirmPasswordStringProperty;
     private StringProperty emailStringProperty;
     private StringProperty errorLabelStringProperty;
-    private UserManager userManager;
+    private NetworkUserManager userManager;
 
 
     public LoginViewModel() {
@@ -26,8 +27,8 @@ public class LoginViewModel {
         this.confirmPasswordStringProperty = new SimpleStringProperty("");
         this.emailStringProperty = new SimpleStringProperty("");
         this.errorLabelStringProperty = new SimpleStringProperty("");
-        this.userManager = new UserManager();
-        this.userManager.loadLocalUsers();
+        this.userManager = new NetworkUserManager();
+        //this.userManager.loadLocalUsers();
     }
 
     public StringProperty errorLabelStringProperty() {
@@ -59,12 +60,13 @@ public class LoginViewModel {
     }
 
     public void addUser() {
-        User newUser = new User(this.userManager.size(), this.emailStringProperty.get(), this.usernameStringProperty.get(), this.passwordStringProperty.get());
-        if (!this.checkIfUserAlreadyExists(newUser)) {
-            this.userManager.addUser(newUser);
-        } else {
-            this.errorLabelStringProperty.set(UI.GuiMessages.USER_EXISTS);
-        }
+        this.userManager.addUser(this.usernameStringProperty.get(), this.emailStringProperty.get(), this.passwordStringProperty.get());
+       
+        // if (!this.checkIfUserAlreadyExists(newUser)) {
+        //     //this.userManager.addUser(newUser);
+        //      } else {
+        //     this.errorLabelStringProperty.set(UI.GuiMessages.USER_EXISTS);
+        // }
     }
 
     public User getUser() {

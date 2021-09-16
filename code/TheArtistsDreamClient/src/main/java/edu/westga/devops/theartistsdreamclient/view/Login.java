@@ -105,6 +105,7 @@ public class Login {
         if (this.isCreatingAccount.get()) {
             if (this.viewModel.validateCreateAccount()) {
                 this.isCreatingAccount.set(false);
+                this.viewModel.addUser();
             }
         } else {
             this.isCreatingAccount.set(true);
@@ -123,7 +124,6 @@ public class Login {
             } else {
                 try {
                     Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
                     WindowLoader.changeScene(currentStage, RECOMMENDED_PAGE_FXML, new RecommendedPage(), "The Artist's Dream");
                 } catch (IOException e) {
                     throw new RuntimeException(e);

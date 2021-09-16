@@ -5,7 +5,9 @@ public class UI {
     public enum ServerCodes {
         TODO,
         ADD_TAG,
-        GET_TOP_TAGS;
+        GET_TOP_TAGS,
+        ADD_USER,
+        GET_USER;
     }
 
     public static class ErrorMessages {
