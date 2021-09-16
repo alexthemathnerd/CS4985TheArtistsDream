@@ -10,9 +10,15 @@ public class UI {
     public enum ServerCodes {
         TODO((response) -> new Request("error", null)),
         ADD_TAG(TagManager::addTag),
-        GET_TOP_TAGS(TagManager::getTopTags),
         ADD_USER(UserManager::addUser),
-        GET_USER(UserManager::getUser);
+        GET_USER(UserManager::getUser)
+        GET_TOP_TAGS(TagManager::getTopTags), 
+        GET_FIRST_FIFTY_ARTWORKS(ArtworkManager::getFirstFiftyArtworks),
+         GET_NEXT_TEN_ARTWORKS(ArtworkManager::getNextTenArtworks), 
+         ADD_ARTWORK(ArtworkManager::addArtwork), 
+         REMOVE_ARTWORK(ArtworkManager::removeArtwork), 
+         EDIT_ARTWORK(ArtworkManager::editArtwork);
+
 
         private ServerAction action;
 
