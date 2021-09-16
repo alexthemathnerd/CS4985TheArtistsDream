@@ -3,13 +3,16 @@ package edu.westga.devops.theartistsdreamserver.utils;
 import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
 import edu.westga.devops.theartistsdreamserver.model.Request;
 import edu.westga.devops.theartistsdreamserver.model.TagManager;
+import edu.westga.devops.theartistsdreamserver.model.UserManager;
 
 public class UI {
 
     public enum ServerCodes {
         TODO((response) -> new Request("error", null)),
         ADD_TAG(TagManager::addTag),
-        GET_TOP_TAGS(TagManager::getTopTags);
+        GET_TOP_TAGS(TagManager::getTopTags),
+        ADD_USER(UserManager::addUser),
+        GET_USER(UserManager::getUser);
 
         private ServerAction action;
 
