@@ -10,8 +10,8 @@
         <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
               AnchorPane.topAnchor="0.0">
             <children>
-                <Header viewOrder="0" VBox.vgrow="NEVER"/>
-                <ArtworksPane viewOrder="1" VBox.vgrow="ALWAYS" />
+                <Header fx:id='header' viewOrder="0" VBox.vgrow="NEVER"/>
+                <ArtworksPane fx:id="artworksPane" viewOrder="1" VBox.vgrow="ALWAYS" />
             </children>
         </VBox>
     </children>

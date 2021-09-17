@@ -116,4 +116,6 @@ public abstract class ArtworkManager implements Iterable<Artwork> {
 	 * @return the artworks from the specified artist
 	 */
 	public abstract List<Artwork> getArtworksOfArtist(int userId);
+
+	public abstract List<Artwork> getArtworksOfTags(List<Tag> tags);
 }

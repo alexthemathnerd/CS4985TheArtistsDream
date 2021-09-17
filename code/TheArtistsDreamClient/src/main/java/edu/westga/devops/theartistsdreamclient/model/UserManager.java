@@ -125,5 +125,6 @@ public class UserManager {
 		this.users.add(new User(2,"aschmid3@my.westga.edu", "alexthemathnerd", "AlexSchmidt1"));
 		this.users.add(new User(3,"jcorely@westga.edu","jcorely1","JonCorely1"));
 		this.users.add(new User(4, "randomArtist@gmail.com","randomArtist5","RandomArtist1"));
+		this.users.add(new User(5, "admin@admin.com", "admin", "admin"));
 	}
 }
