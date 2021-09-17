@@ -4,6 +4,7 @@ import edu.westga.devops.theartistsdreamclient.utils.UI;
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
+import edu.westga.devops.theartistsdreamclient.model.Tag;
 
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
@@ -141,6 +142,11 @@ public class NetworkArtworkManager extends ArtworkManager {
 
 	@Override
 	public Iterator iterator(){
+		return null;
+	}
+
+	@Override
+	public List<Artwork> getArtworksOfTags(List<Tag> tags){
 		return null;
 	}
 
