@@ -13,12 +13,13 @@ import java.time.LocalDate;
  */
 public class Artwork {
 	
-	private Image image;
+	private byte[] imageData;
+	private transient Image image;
 	private String title;
 	private int artistID;
 	private List<Integer> tagIDs;
 	private int id;
-	private LocalDate date;
+	private String date;
   
     /**
      * Creates a new Artwork
@@ -32,7 +33,7 @@ public class Artwork {
      * @precondition image != null && !title.isEmpty() && title != null && artistID >= 0&& tagIDs != null && id >= 0 && date != null
      * @postcondition getImage() == image && getTitle == title && getArtistID() == artistID && getTagIDs() == tagIDs && getID == id && getDate() == date
      */
-    public Artwork(Image image, String title, int artistID, List<Integer> tagIDs, int id, LocalDate date) {
+    public Artwork(Image image, String title, int artistID, List<Integer> tagIDs, int id, String date) {
         if (image == null) {
             throw new IllegalArgumentException();
         }
@@ -130,7 +131,7 @@ public class Artwork {
      *
      * @return the date of the artwork
      */
-    public LocalDate getDate() {
+    public String getDate() {
 	    return this.date;
     }
 

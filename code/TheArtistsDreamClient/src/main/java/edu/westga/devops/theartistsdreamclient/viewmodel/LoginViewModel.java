@@ -29,6 +29,7 @@ public class LoginViewModel {
         this.errorLabelStringProperty = new SimpleStringProperty("");
         this.userManager = new NetworkUserManager();
         //this.userManager.loadLocalUsers();
+	this.userManager.addUser("admin", "admin@a.com", "admin");
     }
 
     public StringProperty errorLabelStringProperty() {

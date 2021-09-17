@@ -3,6 +3,7 @@ package edu.westga.devops.theartistsdreamserver;
 import edu.westga.devops.theartistsdreamserver.model.Receiver;
 import edu.westga.devops.theartistsdreamserver.model.Tag;
 import edu.westga.devops.theartistsdreamserver.model.User;
+import edu.westga.devops.theartistsdreamserver.model.Artwork;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -18,6 +19,7 @@ public class TheArtistsDreamServer {
     public static final Logger LOGGER = Logger.getLogger("The Artist's Dream Server");
     public static final List<Tag> TAGS = new ArrayList<Tag>();
     public static final List<User> USERS = new ArrayList<User>();
+    public static final List<Artwork> ARTWORKS = new ArrayList<Artwork>();
 
     public static void main(String[] args) {
         LOGGER.setUseParentHandlers(false);

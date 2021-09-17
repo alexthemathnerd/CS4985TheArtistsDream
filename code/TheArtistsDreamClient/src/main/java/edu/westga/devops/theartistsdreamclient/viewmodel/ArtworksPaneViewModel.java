@@ -2,6 +2,7 @@ package edu.westga.devops.theartistsdreamclient.viewmodel;
 
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
+import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
 
 import javafx.collections.FXCollections;
 import javafx.beans.property.ListProperty;
@@ -28,9 +29,9 @@ public class ArtworksPaneViewModel {
 	 * @postcondition artworksProperty() != null && indexProperty().getValue() == 50 && maxIndexProperty().getValue() > 0
 	 */
     public ArtworksPaneViewModel() {
-	    this.artworksProperty = new SimpleListProperty<Artwork>(FXCollections.observableArrayList(TheArtistsDreamApplication.artworkManager.getFirstFiftyArtworks()));
+	    this.artworksProperty = new SimpleListProperty<Artwork>(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getFirstFiftyArtworks()));
 	   this.indexProperty = new SimpleIntegerProperty(50);
-	    this.maxIndexProperty = new SimpleIntegerProperty(TheArtistsDreamApplication.artworkManager.size());
+	    this.maxIndexProperty = new SimpleIntegerProperty(ArtworkManager.getArtworkManager().size());
     }
 
     /**
@@ -77,7 +78,7 @@ public class ArtworksPaneViewModel {
      *
      */
     public void viewMoreArtworks(){
-	    this.artworksProperty.addAll(FXCollections.observableArrayList(TheArtistsDreamApplication.artworkManager.getNextTenArtworks(this.indexProperty.getValue())));
+	    this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue())));
 	    this.indexProperty.setValue(this.indexProperty.getValue() + 10);
     }
 }

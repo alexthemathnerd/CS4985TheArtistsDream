@@ -17,4 +17,12 @@ public class Request {
     public Request(Object data) {
         this(null, data);
     }
+
+    public String getError() {
+	return this.error;
+    }
+
+    public Object getData() {
+	return this.data;
+    }
 }

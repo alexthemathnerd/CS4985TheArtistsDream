@@ -1,11 +1,12 @@
-package edu.westga.devops.theartistsdreamclient.model.local;
+package edu.westga.devops.theartistsdreamserver.model;
 
-import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
-import edu.westga.devops.theartistsdreamclient.model.Artwork;
+import edu.westga.devops.theartistsdreamserver.model.Artwork;
+import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
 
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.time.LocalDate;
 
 /**
  * Collection Class ArtworkManager
@@ -16,73 +17,197 @@ import java.util.Iterator;
  */
 public class ArtworkManager {
 
+	/**
+	 * Gets the first fifty artworks
+	 *
+	 * @precondition data != null
+	 * @postcondition none
+	 *
+	 * @return a request for the first 50 artworks
+	 */
 	public static Request getFirstFiftyArtworks(Object[] data) {
-		return this.artworks.subList(0, 50);
+		if (TheArtistsDreamServer.ARTWORKS.size() < 50) {
+			return new Request(TheArtistsDreamServer.ARTWORKS);
+		}
+		return new Request(TheArtistsDreamServer.ARTWORKS.subList(0, 50));
 	}
 
+	/**
+	 * Gets the next ten artworks
+	 *
+	 * @precondition data != null
+	 * @postcondition none
+	 *
+	 * @return a request for the next 10 artworks
+	 */
 	public static Request getNextTenArtworks(Object[] data) {
 		int startingIndex;
-		return this.artworks.subList(startingIndex, startingIndex + 10);
-	}
-
-	public static Request getArtwork(Object[] data) {
-		int id;
-		List<Artwork> artworks = new ArrayList<Artwork>();
 		try {
-			id = ((Double) data[0]).intValue());
+			startingIndex = ((Double) data[0]).intValue();
 		} catch (ClassCastException e) {
 			return new Request("Invalid Format");
 		}
-		for (Artwork artwork : artworks) {
+		return new Request(TheArtistsDreamServer.ARTWORKS.subList(startingIndex, startingIndex+10));
+
+	}
+
+	/**
+	 * Gets the artwork specified by the data
+	 *
+	 * @precondition data != null
+	 * @postcondition none
+	 *
+	 * @return a request for the artwork to get
+	 */
+	public static Request getArtwork(Object[] data) {
+		int id;
+		try {
+			id = ((Double) data[0]).intValue();
+		} catch (ClassCastException e) {
+			return new Request("Invalid Format");
+		}
+		for (Artwork artwork : TheArtistsDreamServer.ARTWORKS) {
 			if(artwork.getID() == id){
-				return artwork;
+				return new Request(artwork);
 			}
 		}
-		return null;
+		return new Request("Artwork not found");
 	}
 
+	/**
+	 * Adds the artwork specified by the data
+	 *
+	 * @precondition data != null
+	 * @postcondition none
+	 *
+	 * @return a request to add the artwork
+	 */
 	public static Request addArtwork(Object[] data) {
+		byte[] imageBytes;
+		String title;
+		int artistID;
+		List<Integer> tagIDs;
 		int id;
-		return this.artworks.add(artwork);
+		String date;
+		try {
+			imageBytes = (byte[]) data[0];
+			title = (String) data[1];
+			artistID = ((Double) data[2]).intValue();
+			tagIDs = (List<Integer>) data[3];
+			id = ((Double) data[4]).intValue();
+			date = (String) data[5];
+		} catch (ClassCastException e) {
+			return new Request("Invalid Format");
+		}
+		Artwork newArtwork = new Artwork(imageBytes, title, artistID, tagIDs, id, date);
+		return new Request(TheArtistsDreamServer.ARTWORKS.add(newArtwork));
 	}
 
+	/**
+	 * Removes the artwork specified by the data
+	 *
+	 * @precondition data != null
+	 * @postcondition none
+	 *
+	 * @return a request to remove the artwork
+	 */
 	public static Request removeArtwork(Object[] data) {
 		int id;
-		for (Artwork artwork: this.artworks) {
-			if (artwork.getID() == id) {
-				return this.artworks.remove(artwork);
-			}
+		try {
+			id = ((Double) data[0]).intValue();
+		} catch (ClassCastException e) {
+			return new Request("Invalid Format");
 		}
-		return false;
+
+		Request artworkRequest = getArtwork(new Object[] {id});
+
+		if (artworkRequest.getError() == null) {
+			return new Request(artworkRequest.getError());
+		}
+		Artwork artworkToRemove = (Artwork) artworkRequest.getData();
+		
+		return new Request(TheArtistsDreamServer.ARTWORKS.remove(artworkToRemove));
 	}
 
+	/**
+	 * Edits the artwork specified by the data
+	 *
+	 * @precondition data != null
+	 * @postcondition none
+	 *
+	 * @return a request to edit the artwork
+	 */
 	public static Request editArtwork(Object[] data){
 		int id;
 		String newTitle;
 		List<Integer> newTagIDs;
-		if (newTitle == null) {
-			throw new IllegalArgumentException();
+
+		try {
+			id = ((Double) data[0]).intValue();
+			newTitle = (String) data[1];
+			newTagIDs = (List<Integer>) data[2];
+		} catch (ClassCastException e) {
+			return new Request("Invalid Format");
 		}
-		if (newTitle.isEmpty()) {
-			throw new IllegalArgumentException();
+
+		Request artworkRequest = getArtwork(new Object[] {id});
+		if (artworkRequest.getError() == null) {
+			return new Request(artworkRequest.getError());
+		
 		}
-		if (newTagIDs == null) {
-			throw new IllegalArgumentException();
-		}
-		Artwork artworkToEdit = this.getArtwork(id);
-		artworkToEdit.setTitle(newTitle);
-		artworkToEdit.setTags(newTagIDs);
-		return true;
+		Artwork artworkToEdit = (Artwork) artworkRequest.getData();
+
+
+//		Artwork artworkToEdit = getArtwork(new Object[] {id}).getData();
+		artworkToEdit.setTags(new Object[] {newTagIDs});
+		artworkToEdit.setTitle(new Object[] {newTitle});
+
+		return new Request(true);
 	}
 
+	/**
+	 * Gets the artworks of the followed artists
+	 *
+	 * @precondition data != null
+	 * @postcondition none
+	 *
+	 * @return a request to get the artworks of the followed artists
+	 */
 	public static Request getFollowingArtworks(Object[] data) {
 		int userID;
-		return null;
+		try {
+			userID = ((Double) data[0]).intValue();
+		} catch (ClassCastException e) {
+			return new Request("Invalid Format");
+		}	
+
+		return new Request(new ArrayList<Artwork>());
 	}
 
+	/**
+	 * Gets the artworks of the artists specified by the data
+	 *
+	 * @precondition data != null
+	 * @postcondition none
+	 *
+	 * @return a request to get the artworks of the specified artist
+	 */
 	public static Request getArtworksOfArtist(Object[] data) {
 		int userID;
-		return null;
+		try {
+			userID = ((Double) data[0]).intValue();
+		} catch (ClassCastException e) {
+			return new Request("Invalid Format");
+		}
+
+		List<Artwork> userArtworks = new ArrayList<Artwork>();
+
+		for (Artwork artwork : TheArtistsDreamServer.ARTWORKS) {
+			if (artwork.getArtistID() == userID) {
+				userArtworks.add(artwork);
+			}
+		}
+		return new Request(userArtworks);
 	}
 		
 }

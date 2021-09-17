@@ -8,7 +8,7 @@ import java.util.Iterator;
 
 
 /**
- * The LocalUserManager class manages the users that have been loaded from the
+ * The UserManager class manages the users that have been loaded from the
  * database
  * 
  * @author Jamia Echols
@@ -18,6 +18,7 @@ import java.util.Iterator;
 public class UserManager {
 
 	private ArrayList<User> users;
+	private static UserManager userManager = null;
 
 	/**
 	 * Instantiates a new LocalUserManager
@@ -130,4 +131,30 @@ public class UserManager {
 		this.users.add(new User(3,"jcorely@westga.edu","jcorely1","JonCorely1"));
 		this.users.add(new User(4, "randomArtist@gmail.com","randomArtist5","RandomArtist1"));
 	}
+
+
+    /**
+     * Gets the singleton of the user manager
+     *
+     * @return the singleton of the user manager
+     * @precondition none
+     * @postcondition none
+     */
+    public static UserManager getUserManager() {
+        return UserManager.userManager;
+    }
+
+    /**
+     * Sets the userManager singleton
+     *
+     * @param tagManager the new tag manager
+     * @preconditon userManager != null
+     * @postcondition 
+     */
+    public static void setUserManager(UserManager userManager) {
+        if (userManager == null) {
+            throw new IllegalArgumentException();
+        }
+        UserManager.userManager = userManager;
+    }
 }

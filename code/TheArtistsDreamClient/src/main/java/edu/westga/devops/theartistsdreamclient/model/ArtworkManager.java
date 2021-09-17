@@ -11,6 +11,8 @@ import edu.westga.devops.theartistsdreamclient.model.Artwork;
  */
 public abstract class ArtworkManager implements Iterable<Artwork> {
 
+	private static ArtworkManager artworkManager = null;
+
 	/**
 	 * Gets the first fifty artworks
 	 *
@@ -116,4 +118,29 @@ public abstract class ArtworkManager implements Iterable<Artwork> {
 	 * @return the artworks from the specified artist
 	 */
 	public abstract List<Artwork> getArtworksOfArtist(int userId);
+
+	    /**
+     * Gets the singleton of the artwork manager
+     *
+     * @return the singleton of the artwork manager
+     * @precondition none
+     * @postcondition none
+     */
+    public static ArtworkManager getArtworkManager() {
+        return ArtworkManager.artworkManager;
+    }
+
+    /**
+     * Sets the artwork manager singleton
+     *
+     * @param artworkManager the new artwork manager
+     * @preconditon artworkManager != null
+     * @postcondition ArtworkManager.getArtworkManager().equals(artworkManager)
+     */
+    public static void setArtworkManager(ArtworkManager artworkManager) {
+        if (artworkManager == null) {
+            throw new IllegalArgumentException();
+        }
+        ArtworkManager.artworkManager = artworkManager;
+    }
 }

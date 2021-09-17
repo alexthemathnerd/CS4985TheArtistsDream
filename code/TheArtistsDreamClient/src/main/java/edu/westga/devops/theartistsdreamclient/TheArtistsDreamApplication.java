@@ -6,6 +6,8 @@ import edu.westga.devops.theartistsdreamclient.model.TagManager;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalTagManager;
 import edu.westga.devops.theartistsdreamclient.model.network.NetworkTagManager;
+import edu.westga.devops.theartistsdreamclient.model.network.NetworkArtworkManager;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -37,7 +39,7 @@ public class TheArtistsDreamApplication extends Application {
 
     public static final String LOCAL_ARTWORKS_PATH = "view/local-images/";
     public static final Logger LOGGER = Logger.getLogger("The Artist's Dream Server");
-    public static ArtworkManager artworkManager;
+    //public static ArtworkManager artworkManager;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -74,7 +76,9 @@ public class TheArtistsDreamApplication extends Application {
         NetworkTagManager tagManager = new NetworkTagManager();
         TagManager.setTagManager(tagManager);
         //setupLocalTagManager();
-        setupLocalArtworkManager();
+        //setupLocalArtworkManager();
+	NetworkArtworkManager artworkManager = new NetworkArtworkManager();
+	ArtworkManager.setArtworkManager(artworkManager);
     }
 
 //    private static void setupLocalTagManager() {
@@ -112,7 +116,7 @@ public class TheArtistsDreamApplication extends Application {
 //    }
 
     private static void setupLocalArtworkManager() {
-        artworkManager = new LocalArtworkManager();
+        ArtworkManager artworkManager = new LocalArtworkManager();
 
         URL artworksFolderResource = TheArtistsDreamApplication.class.getResource(TheArtistsDreamApplication.LOCAL_ARTWORKS_PATH);
 
@@ -132,7 +136,7 @@ public class TheArtistsDreamApplication extends Application {
                     artworkTagIDs.add(Integer.parseInt(tag));
                 }
                 int artworkID = Integer.parseInt(artworkParts[3]);
-		LocalDate artworkDate = LocalDate.parse(artworkParts[4]);
+		String artworkDate = artworkParts[4];
                 Artwork currentArtwork = new Artwork(new Image(artworkURLPath), artworkName, artistID, artworkTagIDs, artworkID, artworkDate);
                 artworkManager.addArtwork(currentArtwork);
             }
