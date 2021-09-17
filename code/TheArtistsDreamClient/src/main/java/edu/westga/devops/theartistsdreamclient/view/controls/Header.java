@@ -3,7 +3,10 @@ package edu.westga.devops.theartistsdreamclient.view.controls;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
 import edu.westga.devops.theartistsdreamclient.view.popups.FilterPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
+import javafx.beans.property.ListProperty;
 import javafx.beans.property.SetProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +18,9 @@ import javafx.stage.Stage;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * The Controller for the Custom Control for the Header of the application
@@ -42,6 +48,8 @@ public class Header extends HBox {
     @FXML
     private MenuItem inSearchOfMenuItem;
 
+    private ListProperty<Tag> tagsToFilterListProperty;
+
     /**
      * Initializes the FXML for the Header control
      */
@@ -50,16 +58,12 @@ public class Header extends HBox {
         loader.setRoot(this);
         loader.setController(this);
         try {
+            this.tagsToFilterListProperty = new SimpleListProperty<Tag>(FXCollections.observableArrayList());
             loader.load();
             this.toFront();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @FXML
-    void initialize() {
-        // TODO: Setup bindings
     }
 
     @FXML
@@ -74,13 +78,25 @@ public class Header extends HBox {
             Stage popup = PopupLoader.loadPopup("Filter", FilterPopup.class.getResource(FILTER_POPUP_FXML), new FilterPopup(), (Parent) mainFrame);
             popup.setOnCloseRequest((event2) -> {
                 mainFrame.setEffect(null);
-                System.out.println(popup.getUserData());
+                this.tagsToFilterListProperty.clear();
+                this.tagsToFilterListProperty.setAll(this.getTags((List<TagButton>) popup.getUserData()));
             });
             popup.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+
+    private List<Tag> getTags(List<TagButton> buttons) {
+        if (buttons == null) {
+            return new ArrayList<>();
+        }
+        List<Tag> tag = new ArrayList<Tag>();
+        for (TagButton aButton : buttons) {
+            tag.add(aButton.tagProperty().get());
+        }
+        return tag;
     }
 
     @FXML
@@ -111,6 +127,10 @@ public class Header extends HBox {
     @FXML
     void handleInSearchOf(ActionEvent event) {
 
+    }
+
+    public ListProperty<Tag> tagsToFilterListProperty() {
+        return this.tagsToFilterListProperty;
     }
 
 }

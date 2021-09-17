@@ -1,6 +1,6 @@
 package edu.westga.devops.theartistsdreamclient.tests.model.localartwork;
 
-import edu.westga.devops.theartistsdreamclient.model.local.LocalArtwork;
+import edu.westga.devops.theartistsdreamclient.model.Artwork;
 
 import java.util.ArrayList;
 import javafx.scene.image.Image;
@@ -22,32 +22,32 @@ public class TestConstructor {
 
 	@Test
 	void testNullImage() {
-		assertThrows(IllegalArgumentException.class, () -> new LocalArtwork(null, "title", 1, new ArrayList<Integer>(), 1));
+		assertThrows(IllegalArgumentException.class, () -> new Artwork(null, "title", 1, new ArrayList<Integer>(), 1));
 	}
 
 	@Test
 	void testNullTitle() {
-		assertThrows(IllegalArgumentException.class, () -> new LocalArtwork(new Image("icon.png"), null, 1, new ArrayList<Integer>(), 1));
+		assertThrows(IllegalArgumentException.class, () -> new Artwork(new Image("icon.png"), null, 1, new ArrayList<Integer>(), 1));
 	}
 
 	@Test
 	void testEmptyTitle() {
-		assertThrows(IllegalArgumentException.class, () -> new LocalArtwork(new Image("icon.png"), "", 1, new ArrayList<Integer>(), 1));
+		assertThrows(IllegalArgumentException.class, () -> new Artwork(new Image("icon.png"), "", 1, new ArrayList<Integer>(), 1));
 	}
 
 	@Test
 	void testArtistsIDZero() {
-		assertThrows(IllegalArgumentException.class, () -> new LocalArtwork(new Image("icon.png"), "title", 0, new ArrayList<Integer>(), 1));
+		assertThrows(IllegalArgumentException.class, () -> new Artwork(new Image("icon.png"), "title", 0, new ArrayList<Integer>(), 1));
 	}
 
 	@Test
 	void testNullTagIDs() {
-		assertThrows(IllegalArgumentException.class, () -> new LocalArtwork(new Image("icon.png"), "title", 1, null, 1));
+		assertThrows(IllegalArgumentException.class, () -> new Artwork(new Image("icon.png"), "title", 1, null, 1));
 	}
 
 	@Test
 	void testNegativeID() {
-		assertThrows(IllegalArgumentException.class, () -> new LocalArtwork(new Image("icon.png"), "title", 1, new ArrayList<Integer>(), -4));
+		assertThrows(IllegalArgumentException.class, () -> new Artwork(new Image("icon.png"), "title", 1, new ArrayList<Integer>(), -4));
 	}
 
 }

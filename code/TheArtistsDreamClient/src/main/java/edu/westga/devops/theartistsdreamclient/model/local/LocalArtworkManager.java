@@ -2,6 +2,7 @@ package edu.westga.devops.theartistsdreamclient.model.local;
 
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
+import edu.westga.devops.theartistsdreamclient.model.Tag;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -89,6 +90,20 @@ public class LocalArtworkManager extends ArtworkManager {
 	@Override
 	public List<Artwork> getArtworksOfArtist(int userId) {
 		return null;
+	}
+
+	@Override
+	public List<Artwork> getArtworksOfTags(List<Tag> tags) {
+		List<Artwork> tagArtworks = new ArrayList<>();
+		for (Artwork aArtwork: this.artworks) {
+			for (Tag aTag: tags) {
+				if (aArtwork.getTagIDs().contains(aTag.getId())) {
+					tagArtworks.add(aArtwork);
+					break;
+				}
+			}
+		}
+		return tagArtworks;
 	}
 
 	@Override

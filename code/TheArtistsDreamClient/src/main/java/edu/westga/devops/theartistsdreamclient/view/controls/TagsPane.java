@@ -41,7 +41,6 @@ public class TagsPane extends FlowPane {
     }
 
     private void setupSearchedButtons(List<Tag> tags) {
-        System.out.println(tags);
         for (Tag aTag : tags) {
             TagButton button = new TagButton(aTag);
             if (!this.selectedTagsButtons.contains(button)) {

@@ -11,6 +11,7 @@ import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
 import java.io.Closeable;
+import java.io.InputStream;
 import java.lang.reflect.Type;
 
 /**
@@ -70,7 +71,6 @@ public class Communicator implements Closeable {
         this.socket.send(json);
         String reply = this.socket.recvStr(0);
         Response<T> conf = gson.fromJson(reply, type);
-        System.out.println(conf.getData() instanceof T);
         return conf;
     }
 
