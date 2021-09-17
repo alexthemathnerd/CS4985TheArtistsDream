@@ -2,9 +2,14 @@ package edu.westga.devops.theartistsdreamclient.model.network;
 
 import java.util.Iterator;
 
+import com.google.gson.internal.LinkedTreeMap;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+
+import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.model.UserManager;
-import edu.westga.devops.theartistsdreamclient.model.network.Communicator;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
 
 /**
  * Tne NetworkUserManager class
@@ -44,10 +49,26 @@ public class NetworkUserManager extends UserManager {
         return null;
     }
 
+    public User getUser(String username, String password) {
+        Type type = new TypeToken<Response<User>>() {
+        }.getType();
+        Response<User> response = this.communicator.request(new Request(UI.ServerCodes.GET_USER, new Object[]{username, password}), type);
+        if (response.getError() != null) {
+            TheArtistsDreamApplication.LOGGER.warning(response.getError());
+            return null;
+        }
+        return response.getData();
+    }
+
     @Override
-    public boolean addUser(User user) {
-        // TODO Auto-generated method stub
-        return false;
+    public double addUser(String username, String email, String password) {
+        Type type = new TypeToken<Integer>() {
+        }.getType();
+        Response<Double> response = this.communicator.request(new Request(UI.ServerCodes.ADD_USER, new Object[]{username, email, password}));
+        if (response.getError() != null) {
+            return -1;
+        }
+        return response.getData();
     }
 
     @Override

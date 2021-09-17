@@ -105,6 +105,7 @@ public class Login {
         if (this.isCreatingAccount.get()) {
             if (this.viewModel.validateCreateAccount()) {
                 this.isCreatingAccount.set(false);
+                this.viewModel.addUser();
             }
         } else {
             this.isCreatingAccount.set(true);

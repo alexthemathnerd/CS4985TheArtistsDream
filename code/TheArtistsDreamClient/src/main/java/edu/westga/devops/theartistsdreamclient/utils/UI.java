@@ -5,7 +5,17 @@ public class UI {
     public enum ServerCodes {
         TODO,
         ADD_TAG,
-        GET_TOP_TAGS;
+        GET_TOP_TAGS,
+        ADD_USER,
+        GET_USER,
+	GET_FIRST_FIFTY_ARTWORKS,
+	GET_NEXT_TEN_ARTWORKS,
+	GET_ARTWORK,
+	ADD_ARTWORK,
+	REMOVE_ARTWORK,
+	EDIT_ARTWORK,
+	GET_FOLLOWING_ARTWORKS,
+	GET_ARTWORKS_OF_ARTIST;
     }
 
     public static class ErrorMessages {

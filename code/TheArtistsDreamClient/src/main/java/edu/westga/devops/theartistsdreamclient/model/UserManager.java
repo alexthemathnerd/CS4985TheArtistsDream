@@ -84,6 +84,10 @@ public class UserManager {
 		return null;
 	}
 
+	public double addUser(String username, String email, String password) {
+		return -1;
+	}
+
 	public boolean addUser(User user) {
 		if (user == null) {
 			throw new IllegalArgumentException(UI.ErrorMessages.USER_NULL);
