@@ -11,7 +11,6 @@ import edu.westga.devops.theartistsdreamserver.model.ArtworkManager;
  *
  * @author Alexander Schmidt
  * @version Fall 2021
- *
  */
 public class UI {
 
@@ -20,12 +19,13 @@ public class UI {
         ADD_TAG(TagManager::addTag),
         ADD_USER(UserManager::addUser),
         GET_USER(UserManager::getUser),
-        GET_TOP_TAGS(TagManager::getTopTags), 
+        GET_TOP_TAGS(TagManager::getTopTags),
         GET_FIRST_FIFTY_ARTWORKS(ArtworkManager::getFirstFiftyArtworks),
-         GET_NEXT_TEN_ARTWORKS(ArtworkManager::getNextTenArtworks), 
-         ADD_ARTWORK(ArtworkManager::addArtwork), 
-         REMOVE_ARTWORK(ArtworkManager::removeArtwork), 
-         EDIT_ARTWORK(ArtworkManager::editArtwork);
+        GET_NEXT_TEN_ARTWORKS(ArtworkManager::getNextTenArtworks),
+        ADD_ARTWORK(ArtworkManager::addArtwork),
+        REMOVE_ARTWORK(ArtworkManager::removeArtwork),
+        EDIT_ARTWORK(ArtworkManager::editArtwork),
+        GET_ARTWORKS_OF_TAGS(ArtworkManager::getArtworksOfTags);
 
 
         private ServerAction action;
