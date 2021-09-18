@@ -44,6 +44,9 @@ public class ArtworkManager {
         } catch (ClassCastException e) {
             return new Request("Invalid Format");
         }
+        if (startingIndex + 10 > TheArtistsDreamServer.ARTWORKS.size()) {
+            return new Request(TheArtistsDreamServer.ARTWORKS);
+        }
         return new Request(TheArtistsDreamServer.ARTWORKS.subList(startingIndex, startingIndex + 10));
 
     }

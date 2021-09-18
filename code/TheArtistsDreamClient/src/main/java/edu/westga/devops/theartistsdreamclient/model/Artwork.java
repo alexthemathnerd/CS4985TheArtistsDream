@@ -3,6 +3,12 @@ package edu.westga.devops.theartistsdreamclient.model;
 import javafx.scene.image.Image;
 import java.util.List;
 import java.time.LocalDate;
+import java.io.ByteArrayInputStream;
+import java.util.Arrays;
+import javafx.scene.image.WritableImage;
+import javafx.scene.image.PixelBuffer;
+import java.nio.ByteBuffer;
+import javafx.scene.image.PixelFormat;
 
 /**
  * Model Class Artwork
@@ -56,6 +62,44 @@ public class Artwork {
 		throw new IllegalArgumentException();
 	}
         this.image = image;
+        this.title = title;
+        this.artistID = artistID;
+        this.tagIDs = tagIDs;
+        this.id = id;
+	this.date = date;
+    }
+
+
+    public Artwork(byte[] imageData, String title, int artistID, List<Integer> tagIDs, int id, String date) {
+        if (imageData == null) {
+            throw new IllegalArgumentException();
+        }
+        if (title == null) {
+            throw new IllegalArgumentException();
+        }
+        if (title.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+        if (artistID < 0) {
+            throw new IllegalArgumentException();
+        }
+        if (tagIDs == null) {
+            throw new IllegalArgumentException();
+        }
+        if (id <= 0) {
+            throw new IllegalArgumentException();
+        }
+	if (date == null) {
+		throw new IllegalArgumentException();
+	}
+
+	byte[] data = new byte[200*150];
+	PixelFormat<ByteBuffer> format = PixelFormat.getByteBgraPreInstance();
+	ByteBuffer buffer = ByteBuffer.wrap(imageData);
+	WritableImage img = new WritableImage(new PixelBuffer<ByteBuffer>(200, 150, buffer, format));
+
+        this.image = img;
+	this.imageData = imageData;
         this.title = title;
         this.artistID = artistID;
         this.tagIDs = tagIDs;

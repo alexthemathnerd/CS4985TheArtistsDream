@@ -17,10 +17,14 @@ import java.nio.file.Files;
 import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
+import java.lang.ClassLoader;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.nio.file.Paths;
 
 public class TheArtistsDreamServer {
 
-    public static final String LOCAL_ARTWORKS_PATH = "assets/local-images/";
+    public static final String ARTWORKS_PATH = "assets/local-images/artworks.txt";
     public static final Logger LOGGER = Logger.getLogger("The Artist's Dream Server");
     public static final List<Tag> TAGS = new ArrayList<Tag>();
     public static final List<User> USERS = new ArrayList<User>();
@@ -87,29 +91,36 @@ public class TheArtistsDreamServer {
     }
 
     private static void setupFakeArtworkData() {
- 
-       String artworksFolderResource = TheArtistsDreamServer.class.getResource(TheArtistsDreamServer.LOCAL_ARTWORKS_PATH).toExternalForm();
+       InputStream artworksFolderResource = TheArtistsDreamServer.class.getResourceAsStream(TheArtistsDreamServer.ARTWORKS_PATH);
 
-        try {
-            File artworksFolder = new File(artworksFolderResource);
 
-            for (File artwork : artworksFolder.listFiles()) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(artworksFolderResource))) {
+		String line = reader.readLine();
+		while (line != null) {
+			InputStream artwork = TheArtistsDreamServer.class.getResourceAsStream("assets/local-images/" + line);
 
-                String artworkURLPath = artwork.toURI().toURL().toString();
+                	String[] artworkParts = line.substring(0, line.indexOf(".")).split("_");
+                	String artworkName = artworkParts[0];
+                	int artistID = Integer.parseInt(artworkParts[1]);
+                	String[] artworkTags = artworkParts[2].split(",");
+                	List<Integer> artworkTagIDs = new ArrayList<Integer>();
+                	for (String tag : artworkTags) {
+                    	artworkTagIDs.add(Integer.parseInt(tag));
+                	}
+                	int artworkID = Integer.parseInt(artworkParts[3]);
+			String artworkDate = artworkParts[4];
 
-                String[] artworkParts = artwork.getName().substring(0, artwork.getName().indexOf(".")).split("_");
-                String artworkName = artworkParts[0];
-                int artistID = Integer.parseInt(artworkParts[1]);
-                String[] artworkTags = artworkParts[2].split(",");
-                List<Integer> artworkTagIDs = new ArrayList<Integer>();
-                for (String tag : artworkTags) {
-                    artworkTagIDs.add(Integer.parseInt(tag));
-                }
-                int artworkID = Integer.parseInt(artworkParts[3]);
-		String artworkDate = artworkParts[4];
-                Artwork currentArtwork = new Artwork(Files.readAllBytes(artwork.toPath()), artworkName, artistID, artworkTagIDs, artworkID, artworkDate);
-                ARTWORKS.add(currentArtwork);
-            }
+
+
+			byte[] image = new byte[84071];
+			artwork.read(image);
+			//byte[] image = Files.readAllBytes(Paths.get(TheArtistsDreamServer.class.getResource("assets/local-images/" + line).getFile()));
+                	Artwork currentArtwork = new Artwork(image, artworkName, artistID, artworkTagIDs, artworkID, artworkDate);
+
+                	ARTWORKS.add(currentArtwork);
+
+			line = reader.readLine();	
+		}
 
         } catch (Exception e) {
             e.printStackTrace();

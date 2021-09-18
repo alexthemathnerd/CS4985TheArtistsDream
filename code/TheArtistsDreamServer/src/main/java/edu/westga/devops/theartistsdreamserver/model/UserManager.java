@@ -29,6 +29,21 @@ public class UserManager {
     }
 
     public static Request getUser(Object[] data) {
+        int userId;
+        try {
+            userId = ((Double) data[0]).intValue();
+        } catch (ClassCastException e) {
+            return new Request("Invalid Format");
+        }
+        for (User user : TheArtistsDreamServer.USERS) {
+            if (user.getUserId() == userId) {
+                return new Request(user);
+            }
+        }
+        return new Request(null);
+    }
+
+    public static Request checkForUser(Object[] data) {
         String username;
         String password;
         try {
@@ -39,10 +54,10 @@ public class UserManager {
         }
         for (User user : TheArtistsDreamServer.USERS) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-                return new Request(user);
+                return new Request(true);
             }
         }
-        return new Request(null);
+        return new Request(false);
     }
      
 }

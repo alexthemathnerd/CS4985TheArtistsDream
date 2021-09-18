@@ -15,129 +15,46 @@ import java.util.Iterator;
  * @version Fall 2021
  *
  */
-public class UserManager {
+public abstract class UserManager {
 
-	private ArrayList<User> users;
 	private static UserManager userManager = null;
 
 	/**
-	 * Instantiates a new LocalUserManager
-	 * 
+	 * Gets the user specified by the id
+	 *
 	 * @precondition none
 	 * @postcondition none
+	 *
+	 * @return the user specified by the id
 	 */
-	public UserManager() {
-		this.users = new ArrayList<User>();
-	}
+	public abstract User getUser(int userId);
 
-	public boolean verifyCredentials(String username, String password) {
-		if (username == null) {
-			throw new IllegalArgumentException(UI.ErrorMessages.USERNAME_NULL);
-		}
-		if (password == null) {
-			throw new IllegalArgumentException(UI.ErrorMessages.PASSWORD_NULL);
-		}
-		if (username.isEmpty()) {
-			throw new IllegalArgumentException(UI.ErrorMessages.USERNAME_EMPTY);
-		}
-		if (password.isEmpty()) {
-			throw new IllegalArgumentException(UI.ErrorMessages.PASSWORD_EMPTY);
-		}
-		for (User currentUser : this.users) {
-			if (username.equals(currentUser.getUsername())
-					&& password.equals(currentUser.getPassword())) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public User getUser(int userId) {
-		if (userId < 0) {
-			throw new IllegalArgumentException(UI.ErrorMessages.NEGATIVE_ID);
-		}
-		for (User currentUser : this.users) {
-			if (userId == currentUser.getUserId()) {
-				return currentUser;
-			}
-		}
-		return null;
-	}
-
-	public User getUser(String username, String password) {
-		if (username == null) {
-			throw new IllegalArgumentException(UI.ErrorMessages.USERNAME_NULL);
-		}
-		if (password == null) {
-			throw new IllegalArgumentException(UI.ErrorMessages.PASSWORD_NULL);
-		}
-		if (username.isEmpty()) {
-			throw new IllegalArgumentException(UI.ErrorMessages.USERNAME_EMPTY);
-		}
-		if (password.isEmpty()) {
-			throw new IllegalArgumentException(UI.ErrorMessages.PASSWORD_EMPTY);
-		}
-		for (User currentUser : this.users) {
-			if (username.equals(currentUser.getUsername()) && password.equals(currentUser.getPassword())) {
-				return currentUser;
-			}
-		}
-		return null;
-	}
-
-	public double addUser(String username, String email, String password) {
-		return -1;
-	}
-
-	public boolean addUser(User user) {
-		if (user == null) {
-			throw new IllegalArgumentException(UI.ErrorMessages.USER_NULL);
-		}
-		if (this.checkForUser(user.getUserId())) {
-			throw new IllegalArgumentException(UI.GuiMessages.USER_EXISTS);
-		}
-		return this.users.add(user);
-	}
-
-	public boolean checkForUser(int id) {
-		if (id < 0) {
-			throw new IllegalArgumentException(UI.ErrorMessages.NEGATIVE_ID);
-		}
-		for (User currentUser : this.users) {
-			if (id == currentUser.getUserId()) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
 	/**
-	 * Gets the amount of users in the manager
-	 * 
-	 * @return the amount of users in the manager
+	 * Finds the user specified by the username and password
+	 *
+	 * @precondition username != null && password != null && !username.isEmpty() && !password.isEmpty()
+	 * @postcondition none
+	 *
+	 * @return the user specified by the username and password
 	 */
-	public int size() {
-		return this.users.size();
-	}
+	public abstract User findUser(String username, String password);
 
-	public Iterator<User> iterator() {
-		return this.users.iterator();
-	}
+	/**
+	 * Adds the user specified by the username, password, and email
+	 *
+	 * @precondition username != null && password != null && email != null && !username.isEmpty() && !password.isEmpty() && !email.isEmpty()
+	 * @postcondition none
+	 *
+	 * @return the id of the added user or -1 if the username and password are used already
+	 */
+	public abstract int addUser(String username, String password, String email);
 	
-	public void loadLocalUsers() {
-		this.users.add(new User(0, "jechols5@my.westga.edu","jamiaechols1","JamiaEchols1"));
-		this.users.add(new User(1,"ajoseph7@my.westga.edu","AznellaJoseph","AznellaJoseph1"));
-		this.users.add(new User(2,"aschmid3@my.westga.edu", "alexthemathnerd", "AlexSchmidt1"));
-		this.users.add(new User(3,"jcorely@westga.edu","jcorely1","JonCorely1"));
-		this.users.add(new User(4, "randomArtist@gmail.com","randomArtist5","RandomArtist1"));
-		this.users.add(new User(5, "admin@admin.com", "admin", "admin"));
-	}
-
 
     /**
      * Gets the singleton of the user manager
      *
      * @return the singleton of the user manager
+     *
      * @precondition none
      * @postcondition none
      */
@@ -148,9 +65,10 @@ public class UserManager {
     /**
      * Sets the userManager singleton
      *
-     * @param tagManager the new tag manager
+     * @param tagManager the new user manager
+     *
      * @preconditon userManager != null
-     * @postcondition 
+     * @postcondition getUserManager() == userManager 
      */
     public static void setUserManager(UserManager userManager) {
         if (userManager == null) {
