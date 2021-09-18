@@ -90,4 +90,5 @@ public class ArtworksPane extends ScrollPane {
     public ListProperty<Tag> tagsToFilterListProperty() {
         return this.tagsToFilterListProperty;
     }
+
 }

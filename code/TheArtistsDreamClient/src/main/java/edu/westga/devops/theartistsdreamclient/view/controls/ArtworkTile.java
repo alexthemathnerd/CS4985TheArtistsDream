@@ -8,10 +8,15 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
+import edu.westga.devops.theartistsdreamclient.view.popups.ArtworkPopup;
+import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
 
 /**
  * The Controller for the Custom Control for each single piece of artwork shown in the application
@@ -23,6 +28,7 @@ import edu.westga.devops.theartistsdreamclient.model.Artwork;
 public class ArtworkTile extends VBox {
 
     public static final String ARTWORK_TILE_FXML = "ArtworkTile.fxml";
+    private static final String ARTWORK_POPUP_FXML = "ArtworkPopup.fxml";
 
     @FXML
     private Label titleLabel;
@@ -75,6 +81,15 @@ public class ArtworkTile extends VBox {
 
     @FXML
     void handleViewImage(MouseEvent event) {
-        //TODO: use popup view
+	    try {
+		    Node mainFrame = ((Node) event.getSource()).getParent().getParent();
+		    Stage popup = PopupLoader.loadPopup("Artwork", ArtworkPopup.class.getResource(ARTWORK_POPUP_FXML), new ArtworkPopup(), (Parent) mainFrame);
+		    popup.setOnCloseRequest((event2) -> {
+			    mainFrame.setEffect(null);
+		    });
+		    popup.show();
+    } catch (IOException e) {
+	    e.printStackTrace();
+    }
     }
 }
