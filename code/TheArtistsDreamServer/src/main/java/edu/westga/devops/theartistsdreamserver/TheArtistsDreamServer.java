@@ -13,9 +13,14 @@ import java.util.logging.ConsoleHandler;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
+import java.nio.file.Files;
+import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
 
 public class TheArtistsDreamServer {
 
+    public static final String LOCAL_ARTWORKS_PATH = "assets/local-images/";
     public static final Logger LOGGER = Logger.getLogger("The Artist's Dream Server");
     public static final List<Tag> TAGS = new ArrayList<Tag>();
     public static final List<User> USERS = new ArrayList<User>();
@@ -33,6 +38,7 @@ public class TheArtistsDreamServer {
         LOGGER.addHandler(handler);
         LOGGER.info("Receiver is starting.");
         setupFakeServerData();
+	setupFakeArtworkData();
         Receiver receiver = new Receiver("tcp://localhost:4444");
         receiver.start();
         LOGGER.info("Receiver is ending.");
@@ -78,5 +84,35 @@ public class TheArtistsDreamServer {
         TAGS.add(material);
         Tag contemporary = new Tag(13, "contemporary");
         TAGS.add(contemporary);
+    }
+
+    private static void setupFakeArtworkData() {
+ 
+       String artworksFolderResource = TheArtistsDreamServer.class.getResource(TheArtistsDreamServer.LOCAL_ARTWORKS_PATH).toExternalForm();
+
+        try {
+            File artworksFolder = new File(artworksFolderResource);
+
+            for (File artwork : artworksFolder.listFiles()) {
+
+                String artworkURLPath = artwork.toURI().toURL().toString();
+
+                String[] artworkParts = artwork.getName().substring(0, artwork.getName().indexOf(".")).split("_");
+                String artworkName = artworkParts[0];
+                int artistID = Integer.parseInt(artworkParts[1]);
+                String[] artworkTags = artworkParts[2].split(",");
+                List<Integer> artworkTagIDs = new ArrayList<Integer>();
+                for (String tag : artworkTags) {
+                    artworkTagIDs.add(Integer.parseInt(tag));
+                }
+                int artworkID = Integer.parseInt(artworkParts[3]);
+		String artworkDate = artworkParts[4];
+                Artwork currentArtwork = new Artwork(Files.readAllBytes(artwork.toPath()), artworkName, artistID, artworkTagIDs, artworkID, artworkDate);
+                ARTWORKS.add(currentArtwork);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
