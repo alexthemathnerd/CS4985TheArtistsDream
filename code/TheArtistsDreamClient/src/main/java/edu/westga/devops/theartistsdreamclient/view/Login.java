@@ -122,6 +122,7 @@ public class Login {
                 Alert alert = new Alert(AlertType.ERROR, UI.ErrorMessages.USER_NOT_FOUND);
                 alert.show();
             } else {
+                User.setUser(user);
                 try {
                     Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     WindowLoader.changeScene(currentStage, RECOMMENDED_PAGE_FXML, new RecommendedPage(), "The Artist's Dream");

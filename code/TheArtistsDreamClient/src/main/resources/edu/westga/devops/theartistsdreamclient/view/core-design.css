@@ -10,6 +10,12 @@
     -fx-text-fill: #E01A4F;
 }
 
+.label {
+
+    -fx-text-fill: #E01A4F;
+
+}
+
 .button {
      -fx-background-color: #2C2C32;
      -fx-background-radius: 20;

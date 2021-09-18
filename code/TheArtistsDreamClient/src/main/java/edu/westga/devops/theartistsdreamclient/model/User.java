@@ -10,10 +10,21 @@ import edu.westga.devops.theartistsdreamclient.utils.UI;
  * @version Fall 2021
  */
 public class User {
+
+    public static User user;
+
     private int userId;
     private String email;
     private String username;
     private String password;
+
+    public static User getUser() {
+        return user;
+    }
+
+    public static void setUser(User user) {
+        User.user = user;
+    }
 
     public User(int userId, String email, String username, String password) {
         if (userId < 0) {
