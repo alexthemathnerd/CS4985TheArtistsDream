@@ -20,6 +20,7 @@ public class UI {
         ADD_USER(UserManager::addUser),
         GET_USER(UserManager::getUser),
         GET_TOP_TAGS(TagManager::getTopTags),
+        SEARCH_USERS(UserManager::searchForUser),
         GET_FIRST_FIFTY_ARTWORKS(ArtworkManager::getFirstFiftyArtworks),
         GET_NEXT_TEN_ARTWORKS(ArtworkManager::getNextTenArtworks),
         ADD_ARTWORK(ArtworkManager::addArtwork),

@@ -5,6 +5,7 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -39,7 +40,7 @@
             </graphic>
         </MenuButton>
         <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS"/>
-        <TextField fx:id="searchTextField" prefHeight="40.0" promptText="SEARCH"
+        <ComboBox fx:id="searchComboBox" prefHeight="40.0" promptText="SEARCH"
                    style="-fx-background-color: #2d2c32; -fx-background-radius: 20; -fx-border-radius: 20; -fx-text-fill: #e01a4f; -fx-prompt-text-fill: #DF194E;"
                    HBox.hgrow="ALWAYS"/>
         <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false"

@@ -1,6 +1,7 @@
 package edu.westga.devops.theartistsdreamclient.model.network;
 
 import java.util.Iterator;
+import java.util.*;
 
 import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
@@ -67,6 +68,16 @@ public class NetworkUserManager extends UserManager {
         Response<Double> response = this.communicator.request(new Request(UI.ServerCodes.ADD_USER, new Object[]{username, email, password}));
         if (response.getError() != null) {
             return -1;
+        }
+        return response.getData();
+    }
+
+    public ArrayList<User> searchForUsers(String username) {
+        Type type = new TypeToken<Integer> () {
+        }.getType();
+        Response<ArrayList<User>> response = this.communicator.request(new Request(UI.ServerCodes.SEARCH_USERS, new Object[]{username}), type);
+        if (response.getError() != null) {
+            return null;
         }
         return response.getData();
     }

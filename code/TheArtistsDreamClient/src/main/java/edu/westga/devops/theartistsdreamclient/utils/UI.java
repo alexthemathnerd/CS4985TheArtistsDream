@@ -8,6 +8,7 @@ public class UI {
         GET_TOP_TAGS,
         ADD_USER,
         GET_USER,
+        SEARCH_USERS,
         GET_FIRST_FIFTY_ARTWORKS,
         GET_NEXT_TEN_ARTWORKS,
         GET_ARTWORK,

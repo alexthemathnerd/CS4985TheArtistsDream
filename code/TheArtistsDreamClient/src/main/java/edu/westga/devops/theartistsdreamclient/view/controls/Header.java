@@ -17,10 +17,12 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ComboBox;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.*;
 
 /**
  * The Controller for the Custom Control for the Header of the application
@@ -34,7 +36,7 @@ public class Header extends HBox {
     private static final String FILTER_POPUP_FXML = "FilterPopup.fxml";
 
     @FXML
-    private TextField searchTextField;
+    private ComboBox searchComboBox;
 
     @FXML
     private MenuButton navMenuButton;
@@ -50,6 +52,10 @@ public class Header extends HBox {
 
     private ListProperty<Tag> tagsToFilterListProperty;
 
+    private HeaderViewModel viewModel;
+
+
+
     /**
      * Initializes the FXML for the Header control
      */
@@ -64,11 +70,20 @@ public class Header extends HBox {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        this.viewModel = new HeaderViewModel();
     }
 
     @FXML
     void handleSearch(ActionEvent event) {
 
+    }
+
+    @FXML 
+    public void initialize() {
+        this.searchComboBox.setEditable(true);
+        this.searchComboBox.getEditor().textProperty().addListener((obs, oldText, newText) -> {
+            this.searchComboBOx.setItems(this.viewModel.searchForUsers(newText));
+        });
     }
 
     @FXML
