@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -67,32 +68,32 @@ public class ArtworkTile extends VBox {
         loader.setRoot(this);
         loader.setController(this);
         try {
+            this.currentArtwork = artwork;
             loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        this.artworkImageView.setImage(artwork.getImage());
-        this.artworkImageView.setCursor(Cursor.HAND);
-        this.titleLabel.setText(artwork.getTitle());
-	this.currentArtwork = artwork;
     }
 
     @FXML
     void initialize() {
+        this.artworkImageView.setImage(this.currentArtwork.getImage());
+        this.artworkImageView.setCursor(Cursor.HAND);
+        this.titleLabel.setText(this.currentArtwork.getTitle());
 
     }
 
     @FXML
     void handleViewImage(MouseEvent event) {
-	    try {
-		    Node mainFrame = ((Node) event.getSource()).getParent().getParent();
-		    Stage popup = PopupLoader.loadPopup("Artwork", ArtworkPopup.class.getResource(ARTWORK_POPUP_FXML), new ArtworkPopup(this.currentArtwork), (Parent) mainFrame);
-		    popup.setOnCloseRequest((event2) -> {
-			    mainFrame.setEffect(null);
-		    });
-		    popup.show();
-    } catch (IOException e) {
-	    e.printStackTrace();
-    }
+        try {
+            Node mainFrame = ((Node) event.getSource()).getParent().getParent();
+            Stage popup = PopupLoader.loadPopup("Artwork", ArtworkPopup.class.getResource(ARTWORK_POPUP_FXML), new ArtworkPopup(this.currentArtwork), (Parent) mainFrame);
+            popup.setOnCloseRequest((event2) -> {
+                mainFrame.setEffect(null);
+            });
+            popup.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

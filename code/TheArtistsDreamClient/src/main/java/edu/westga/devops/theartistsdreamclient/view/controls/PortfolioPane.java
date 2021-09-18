@@ -1,5 +1,6 @@
 package edu.westga.devops.theartistsdreamclient.view.controls;
 
+import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
 import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.viewmodel.ArtworksPaneViewModel;
@@ -13,10 +14,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Circle;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class PortfolioPane extends HBox {
 
@@ -82,8 +91,17 @@ public class PortfolioPane extends HBox {
                     this.settingsButton.setDisable(true);
                     this.settingsButton.setManaged(false);
                 }
-                this.profileImage.setImage(null);
                 this.artistNameLabel.setText(this.userProperty.get().getUsername());
+                this.followersLabel.setText(this.userProperty.get().getFollowerIds().size() + " followers");
+                this.followingLabel.setText(this.userProperty.get().getFollowingIds().size() + " followers");
+                try {
+                    URL file = TheArtistsDreamApplication.class.getResource("view/profile-images/alex.png");
+                    byte[] image = Files.readAllBytes(Paths.get(file.toURI()));
+                    this.profileImage.setImage(new Image(new ByteArrayInputStream(image)));
+                    this.profileImage.setClip(new Circle(75, 75, 75));
+                } catch (URISyntaxException | IOException e) {
+
+                }
             }
         });
     }

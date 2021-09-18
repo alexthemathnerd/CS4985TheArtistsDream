@@ -3,6 +3,7 @@ package edu.westga.devops.theartistsdreamclient.view.controls;
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
@@ -62,7 +63,7 @@ public class ArtworksPane extends ScrollPane {
 //        for (Artwork artwork : this.viewModel.artworksProperty()) {
 //            this.artworksTilePane.getChildren().add(new ArtworkTile(artwork));
 //        }
-        this.viewModel.viewInitialArtworks();
+        //this.viewModel.viewInitialArtworks();
         this.viewMoreButton.disableProperty().bind(this.viewModel.indexProperty().isEqualTo(this.viewModel.maxIndexProperty()));
         this.tagsToFilterListProperty.addListener((observable, oldValue, newValue) -> {
             System.out.println(newValue);

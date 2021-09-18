@@ -9,9 +9,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="CENTER_RIGHT"  prefWidth="200" spacing="10.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<?import java.net.URL?>
+<fx:root  styleClass="main" alignment="CENTER_RIGHT" prefWidth="200" spacing="10.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="profileImage" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView id="image" fx:id="profileImage" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
       <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="200.0" HBox.hgrow="ALWAYS">
          <children>
             <Label fx:id="artistNameLabel" alignment="CENTER" prefHeight="100.0" prefWidth="448.0" text="ARTIST NAME" VBox.vgrow="ALWAYS">
@@ -37,6 +38,9 @@
       </VBox>
    </children>
    <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+      <Insets bottom="20.0" left="75.0" right="75.0" top="20.0" />
    </padding>
+   <stylesheets>
+      <URL value="@../core-design.css" />
+   </stylesheets>
 </fx:root>

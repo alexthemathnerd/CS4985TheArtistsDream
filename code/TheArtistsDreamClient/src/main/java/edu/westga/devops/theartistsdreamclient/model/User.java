@@ -1,7 +1,17 @@
 package edu.westga.devops.theartistsdreamclient.model;
 
+import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.utils.UI;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The User Class
@@ -14,9 +24,15 @@ public class User {
     public static User user;
 
     private int userId;
+
+
     private String email;
     private String username;
     private String password;
+
+    private byte[] profilePic;
+    private List<Integer> followerIds;
+    private List<Integer> followingIds;
 
     public static User getUser() {
         return user;
@@ -26,7 +42,7 @@ public class User {
         User.user = user;
     }
 
-    public User(int userId, String email, String username, String password) {
+    public User(int userId, String email, String username, String password, byte[] profilePic) {
         if (userId < 0) {
             throw new IllegalArgumentException(UI.ErrorMessages.NEGATIVE_ID);
         }
@@ -52,6 +68,8 @@ public class User {
         this.username = username;
         this.password = password;
         this.userId = userId;
+        this.followerIds = new ArrayList<>();
+        this.followingIds = new ArrayList<>();
     }
 
     public String getEmail() {
@@ -68,5 +86,13 @@ public class User {
 
     public int getUserId() {
         return this.userId;
+    }
+
+    public List<Integer> getFollowerIds() {
+        return new ArrayList<>();
+    }
+
+    public List<Integer> getFollowingIds() {
+        return new ArrayList<>();
     }
 }

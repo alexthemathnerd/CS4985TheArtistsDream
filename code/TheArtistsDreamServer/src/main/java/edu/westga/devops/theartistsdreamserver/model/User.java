@@ -1,33 +1,17 @@
 package edu.westga.devops.theartistsdreamserver.model;
 
+import java.util.List;
+
 public class User {
     private int userId;
     private String email;
     private String username;
     private String password;
+    private byte[] profilePic;
+    private List<Integer> followerIds;
+    private List<Integer> followingIds;
 
-    public User(int userId, String email, String username, String password) {
-        // if (userId < 0) {
-        //     throw new IllegalArgumentException(UI.ErrorMessages.NEGATIVE_ID);
-        // }
-        // if (email == null) {
-        //     throw new IllegalArgumentException(UI.ErrorMessages.EMAIL_NULL);
-        // }
-        // if (username == null) {
-        //     throw new IllegalArgumentException(UI.ErrorMessages.USERNAME_NULL);
-        // }
-        // if (password == null) {
-        //     throw new IllegalArgumentException(UI.ErrorMessages.PASSWORD_NULL);
-        // }
-        // if (email.isEmpty()) {
-        //     throw new IllegalArgumentException(UI.ErrorMessages.EMAIL_EMPTY);
-        // }
-        // if (username.isEmpty()) {
-        //     throw new IllegalArgumentException(UI.ErrorMessages.EMAIL_EMPTY);
-        // }
-        // if (password.isEmpty()) {
-        //     throw new IllegalArgumentException(UI.ErrorMessages.PASSWORD_EMPTY);
-        // }
+    public User(int userId, String email, String username, String password, byte[] profilePic) {
         this.email = email;
         this.username = username;
         this.password = password;

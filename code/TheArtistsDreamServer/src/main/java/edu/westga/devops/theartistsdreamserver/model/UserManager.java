@@ -15,15 +15,13 @@ public class UserManager {
         } catch (ClassCastException e) {
             return new Request("Invalid Format");
         }
-        
-        User user = new User(TheArtistsDreamServer.USERS.size(), email, username, password);
-        int count = 0;
-        for (User currUser : TheArtistsDreamServer.USERS) {
-            if (user.getEmail().equals(currUser.getEmail())) {
-                return new Request(count);
+
+        for (User aUser: TheArtistsDreamServer.USERS) {
+            if (email.equals(aUser.getEmail())) {
+                return new Request("User alredy Exist", -1);
             }
-            count++;
         }
+        User user = new User(TheArtistsDreamServer.USERS.size(), email, username, password, null);
         TheArtistsDreamServer.USERS.add(user);
         return new Request(TheArtistsDreamServer.USERS.size() - 1);
     }
@@ -40,10 +38,10 @@ public class UserManager {
                 return new Request(user);
             }
         }
-        return new Request(null);
+        return new Request("Can't find user");
     }
 
-    public static Request checkForUser(Object[] data) {
+    public static Request findUser(Object[] data) {
         String username;
         String password;
         try {
@@ -54,10 +52,10 @@ public class UserManager {
         }
         for (User user : TheArtistsDreamServer.USERS) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-                return new Request(true);
+                return new Request(user);
             }
         }
-        return new Request(false);
+        return new Request("Can't find user");
     }
-     
+
 }

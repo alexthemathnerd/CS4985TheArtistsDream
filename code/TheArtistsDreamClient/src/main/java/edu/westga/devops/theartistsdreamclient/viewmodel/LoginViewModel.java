@@ -7,7 +7,7 @@ import edu.westga.devops.theartistsdreamclient.model.network.*;
 
 /**
  * The Login View Model
- * 
+ *
  * @author Jamia Echols
  * @version Fall 2021
  */
@@ -17,7 +17,6 @@ public class LoginViewModel {
     private StringProperty confirmPasswordStringProperty;
     private StringProperty emailStringProperty;
     private StringProperty errorLabelStringProperty;
-    private NetworkUserManager userManager;
 
 
     public LoginViewModel() {
@@ -27,9 +26,6 @@ public class LoginViewModel {
         this.confirmPasswordStringProperty = new SimpleStringProperty("");
         this.emailStringProperty = new SimpleStringProperty("");
         this.errorLabelStringProperty = new SimpleStringProperty("");
-        this.userManager = new NetworkUserManager();
-        //this.userManager.loadLocalUsers();
-	this.userManager.addUser("admin", "admin@a.com", "admin");
     }
 
     public StringProperty errorLabelStringProperty() {
@@ -52,17 +48,9 @@ public class LoginViewModel {
         return this.emailStringProperty;
     }
 
-    public UserManager getUserManager() {
-        return this.userManager;
-    }
-
-	public boolean checkIfUserAlreadyExists(User user) {
-		return this.userManager.checkForUser(user.getUserId());
-    }
-
     public void addUser() {
-        this.userManager.addUser(this.usernameStringProperty.get(), this.emailStringProperty.get(), this.passwordStringProperty.get());
-       
+        UserManager.getUserManager().addUser(this.usernameStringProperty.get(), this.passwordStringProperty.get(), this.emailStringProperty.get());
+
         // if (!this.checkIfUserAlreadyExists(newUser)) {
         //     //this.userManager.addUser(newUser);
         //      } else {
@@ -71,7 +59,7 @@ public class LoginViewModel {
     }
 
     public User getUser() {
-        return this.userManager.getUser(this.usernameStringProperty.get(), this.passwordStringProperty.get());
+        return UserManager.getUserManager().findUser(this.usernameStringProperty.get(), this.passwordStringProperty.get());
     }
 
     public boolean validateCreateAccount() {

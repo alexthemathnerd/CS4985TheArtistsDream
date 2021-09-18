@@ -4,23 +4,21 @@ import edu.westga.devops.theartistsdreamserver.model.Receiver;
 import edu.westga.devops.theartistsdreamserver.model.Tag;
 import edu.westga.devops.theartistsdreamserver.model.User;
 import edu.westga.devops.theartistsdreamserver.model.Artwork;
+import org.apache.commons.io.IOUtils;
 
+import java.net.URI;
+import java.nio.file.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Formatter;
-import java.util.logging.LogRecord;
-import java.util.logging.Logger;
-import java.nio.file.Files;
+import java.util.*;
+import java.util.logging.*;
 import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.lang.ClassLoader;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.nio.file.Paths;
+import java.util.logging.Formatter;
 
 public class TheArtistsDreamServer {
 
@@ -40,15 +38,21 @@ public class TheArtistsDreamServer {
             }
         });
         LOGGER.addHandler(handler);
+        LOGGER.setLevel(Level.SEVERE);
         LOGGER.info("Receiver is starting.");
-        setupFakeServerData();
-	setupFakeArtworkData();
+        setupFakeUserData();
+        setupFakeTagData();
+        setupFakeArtworkData();
         Receiver receiver = new Receiver("tcp://localhost:4444");
         receiver.start();
         LOGGER.info("Receiver is ending.");
     }
 
-    private static void setupFakeServerData() {
+    private static void setupFakeUserData() {
+        USERS.add(new User(0, "admin@admin.com", "admin", "admin", null));
+    }
+
+    private static void setupFakeTagData() {
         Tag pop = new Tag(0, "pop");
         pop.incrementUseCount();
         pop.incrementUseCount();
@@ -91,36 +95,37 @@ public class TheArtistsDreamServer {
     }
 
     private static void setupFakeArtworkData() {
-       InputStream artworksFolderResource = TheArtistsDreamServer.class.getResourceAsStream(TheArtistsDreamServer.ARTWORKS_PATH);
-
-
+        InputStream artworksFolderResource = TheArtistsDreamServer.class.getResourceAsStream(TheArtistsDreamServer.ARTWORKS_PATH);
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(artworksFolderResource))) {
-		String line = reader.readLine();
-		while (line != null) {
-			InputStream artwork = TheArtistsDreamServer.class.getResourceAsStream("assets/local-images/" + line);
+            String line = reader.readLine();
+            while (line != null) {
+                InputStream artwork = TheArtistsDreamServer.class.getResourceAsStream("assets/local-images/" + line);
 
-                	String[] artworkParts = line.substring(0, line.indexOf(".")).split("_");
-                	String artworkName = artworkParts[0];
-                	int artistID = Integer.parseInt(artworkParts[1]);
-                	String[] artworkTags = artworkParts[2].split(",");
-                	List<Integer> artworkTagIDs = new ArrayList<Integer>();
-                	for (String tag : artworkTags) {
-                    	artworkTagIDs.add(Integer.parseInt(tag));
-                	}
-                	int artworkID = Integer.parseInt(artworkParts[3]);
-			String artworkDate = artworkParts[4];
+                String[] artworkParts = line.substring(0, line.indexOf(".")).split("_");
+                System.out.println(Arrays.toString(artworkParts));
+                String artworkName = artworkParts[0];
+                int artistID = Integer.parseInt(artworkParts[1]);
+                String[] artworkTags = artworkParts[2].split(",");
+                List<Integer> artworkTagIDs = new ArrayList<Integer>();
+                for (String tag : artworkTags) {
+                    artworkTagIDs.add(Integer.parseInt(tag));
+                }
+                int artworkID = Integer.parseInt(artworkParts[3]);
+                String artworkDate = artworkParts[4];
 
+//                final Map<String, String> env = new HashMap<>();
+//                final String[] array = artwork.toURI().toString().split("!");
+//                final FileSystem fs = FileSystems.newFileSystem(URI.create(array[0]), env);
+//                final Path path = fs.getPath(array[1]);
 
+//                byte[] image = Files.readAllBytes(path);
+//                fs.close();
+                byte[] image = IOUtils.toByteArray(artwork);
+                Artwork currentArtwork = new Artwork(image, artworkName, artistID, artworkTagIDs, artworkID, artworkDate);
+                ARTWORKS.add(currentArtwork);
 
-			byte[] image = new byte[84071];
-			artwork.read(image);
-			//byte[] image = Files.readAllBytes(Paths.get(TheArtistsDreamServer.class.getResource("assets/local-images/" + line).getFile()));
-                	Artwork currentArtwork = new Artwork(image, artworkName, artistID, artworkTagIDs, artworkID, artworkDate);
-
-                	ARTWORKS.add(currentArtwork);
-
-			line = reader.readLine();	
-		}
+                line = reader.readLine();
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
