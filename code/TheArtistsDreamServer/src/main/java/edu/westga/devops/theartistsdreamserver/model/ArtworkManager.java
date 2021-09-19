@@ -1,5 +1,6 @@
 package edu.westga.devops.theartistsdreamserver.model;
 
+import com.google.gson.internal.LinkedTreeMap;
 import edu.westga.devops.theartistsdreamserver.model.Artwork;
 import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
 
@@ -62,6 +63,17 @@ public class ArtworkManager {
      * @postcondition none
      */
     public static Request getNextTenArtworks(Object[] data) {
+        if (data.length == 2) {
+            int startingIndex;
+            int userId;
+            try {
+                startingIndex = ((Double) data[0]).intValue();
+                userId = ((Double) data[0]).intValue();
+                return getNextTenArtworks(startingIndex, userId);
+            } catch (ClassCastException e) {
+                return new Request("Invalid Format");
+            }
+        }
         int startingIndex;
         try {
             startingIndex = ((Double) data[0]).intValue();
@@ -75,6 +87,19 @@ public class ArtworkManager {
 
     }
 
+    private static Request getNextTenArtworks(int startingIndex, int userId) {
+        List<Artwork> artworks = new ArrayList<>();
+        for (Artwork aArtwork: TheArtistsDreamServer.ARTWORKS) {
+            if (aArtwork.getArtistID() == userId) {
+                artworks.add(aArtwork);
+            }
+        }
+        if (artworks.size() < startingIndex + 10) {
+            return new Request(artworks);
+        }
+        return new Request(TheArtistsDreamServer.ARTWORKS.subList(startingIndex, startingIndex + 10));
+    }
+
     /**
      * Gets the artwork specified by the data
      *
@@ -83,6 +108,20 @@ public class ArtworkManager {
      * @postcondition none
      */
     public static Request getArtwork(Object[] data) {
+        if (data.length == 2) {
+            int id;
+            try {
+                id = ((Double) data[0]).intValue();
+            } catch (ClassCastException e) {
+                return new Request("Invalid Format");
+            }
+            for (Artwork artwork : TheArtistsDreamServer.ARTWORKS) {
+                if (artwork.getID() == id) {
+                    return new Request(artwork);
+                }
+            }
+            return new Request("Artwork not found");
+        }
         int id;
         try {
             id = ((Double) data[0]).intValue();
@@ -229,17 +268,20 @@ public class ArtworkManager {
     }
 
     public static Request getArtworksOfTags(Object[] data) {
-        List<Tag> tags;
+        List tags;
         try {
-            tags = (List<Tag>) data[0];
+            tags = (ArrayList) data[0];
+            System.out.println(tags.getClass());
         } catch (Exception e) {
             return new Request("Invalid Format");
         }
 
         List<Artwork> tagArtworks = new ArrayList<>();
         for (Artwork aArtwork: TheArtistsDreamServer.ARTWORKS) {
-            for (Tag aTag: tags) {
-                if (aArtwork.getTagIDs().contains(aTag.getId())) {
+            for (Object aTag: tags) {
+
+                LinkedTreeMap<String, Object> tag = (LinkedTreeMap<String, Object>) aTag;
+                if (aArtwork.getTagIDs().contains(((Double) tag.get("id")).intValue())) {
                     tagArtworks.add(aArtwork);
                     break;
                 }

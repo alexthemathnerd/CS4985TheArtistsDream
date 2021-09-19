@@ -2,6 +2,8 @@ package edu.westga.devops.theartistsdreamserver.model;
 
 import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
 
+import java.util.Arrays;
+
 public class UserManager {
 
     public static Request addUser(Object[] data) {

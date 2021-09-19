@@ -66,15 +66,14 @@ public class NetworkArtworkManager extends ArtworkManager {
 
         Type type = new TypeToken<Response<ArrayList<Artwork>>>() {
         }.getType();
-
-        Response<ArrayList<Artwork>> response = this.communicator.request(new Request(UI.ServerCodes.GET_NEXT_TEN_ARTWORKS, new Object[]{startingIndex}));
+        Response response = this.communicator.request(new Request(UI.ServerCodes.GET_NEXT_TEN_ARTWORKS, new Object[]{startingIndex}));
+        System.out.println(response.getData().getClass());
         if (response.getError() != null) {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
             return new ArrayList<Artwork>();
         }
 
-
-        return response.getData();
+        return (List<Artwork>) response.getData();
     }
 
     @Override

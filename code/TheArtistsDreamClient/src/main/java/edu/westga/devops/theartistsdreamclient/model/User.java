@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class User {
 
-    public static User user;
+    private static User user;
 
     private int userId;
 
@@ -70,6 +70,7 @@ public class User {
         this.userId = userId;
         this.followerIds = new ArrayList<>();
         this.followingIds = new ArrayList<>();
+        this.profilePic = profilePic;
     }
 
     public String getEmail() {
@@ -86,6 +87,10 @@ public class User {
 
     public int getUserId() {
         return this.userId;
+    }
+
+    public byte[] getProfilePic() {
+        return this.profilePic;
     }
 
     public List<Integer> getFollowerIds() {

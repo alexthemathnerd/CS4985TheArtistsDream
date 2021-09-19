@@ -83,8 +83,13 @@ public class ArtworksPaneViewModel {
      * artworksProperty().get().size() @ prev
      */
     public void viewMoreArtworks() {
-        this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue())));
-        this.indexProperty.setValue(this.indexProperty.getValue() + 10);
+        if (this.userIdProperty.isEqualTo(-1).get()) {
+            this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue())));
+        } else {
+            this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue(), this.userIdProperty.get())));
+        }
+
+        this.indexProperty.setValue(this.artworksProperty.getSize());
     }
 
     public void viewInitialArtworks() {

@@ -1,7 +1,9 @@
 package edu.westga.devops.theartistsdreamclient.view.controls;
 
+import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
 import edu.westga.devops.theartistsdreamclient.model.User;
+import edu.westga.devops.theartistsdreamclient.view.Login;
 import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
 import edu.westga.devops.theartistsdreamclient.view.RecommendedPage;
 import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
@@ -14,13 +16,17 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
+
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -52,6 +58,9 @@ public class Header extends HBox {
     @FXML
     private MenuItem inSearchOfMenuItem;
 
+    @FXML
+    private Button profileButton;
+
     private ListProperty<Tag> tagsToFilterListProperty;
 
     /**
@@ -68,6 +77,17 @@ public class Header extends HBox {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @FXML
+    private void initialize() {
+        ImageView graphic = new ImageView(new Image(new ByteArrayInputStream(User.getUser().getProfilePic())));
+        graphic.setFitHeight(40);
+        graphic.setFitWidth(40);
+        graphic.setClip(new Circle(20, 20, 20));
+        this.profileButton.setGraphic(graphic);
+        this.profileButton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        this.profileButton.setPadding(new Insets(0));
     }
 
     @FXML
@@ -105,7 +125,19 @@ public class Header extends HBox {
 
     @FXML
     void handleLogout(ActionEvent event) {
+        User.setUser(null);
+        try {
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
+            Stage stage = new Stage();
+            stage.setMaximized(false);
+            stage.setResizable(false);
+            stage.show();
+            WindowLoader.changeScene(stage, "../" + TheArtistsDreamApplication.LOGIN_FXML, null, "The Artist's Dream");
 
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

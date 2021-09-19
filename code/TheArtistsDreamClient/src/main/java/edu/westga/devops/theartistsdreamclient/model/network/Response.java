@@ -1,5 +1,8 @@
 package edu.westga.devops.theartistsdreamclient.model.network;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A data class to store information of the server's responce
  *

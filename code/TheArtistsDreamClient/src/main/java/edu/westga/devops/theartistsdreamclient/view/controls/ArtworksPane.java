@@ -69,7 +69,7 @@ public class ArtworksPane extends ScrollPane {
         this.viewModel.filterTagsProperty().bindBidirectional(this.tagsToFilterListProperty());
         this.viewModel.artworksProperty().addListener((observable, oldValue, newValue) -> {
             this.artworksTilePane.getChildren().clear();
-            for (Artwork artwork : this.viewModel.artworksProperty()) {
+            for (Artwork artwork : newValue) {
                 this.artworksTilePane.getChildren().add(new ArtworkTile(artwork));
             }
         });

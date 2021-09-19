@@ -16,6 +16,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.userId = userId;
+        this.profilePic = profilePic;
     }
 
     public String getEmail() {
@@ -32,5 +33,9 @@ public class User {
 
     public int getUserId() {
         return this.userId;
+    }
+
+    public byte[] getProfilePic() {
+        return this.profilePic;
     }
 }

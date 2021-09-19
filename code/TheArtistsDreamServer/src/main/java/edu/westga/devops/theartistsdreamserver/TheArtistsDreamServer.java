@@ -6,18 +6,15 @@ import edu.westga.devops.theartistsdreamserver.model.User;
 import edu.westga.devops.theartistsdreamserver.model.Artwork;
 import org.apache.commons.io.IOUtils;
 
+import java.io.*;
 import java.net.URI;
 import java.nio.file.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
 import java.util.logging.*;
-import java.io.File;
-import java.io.InputStream;
 import java.net.URL;
 import java.lang.ClassLoader;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.logging.Formatter;
 
 public class TheArtistsDreamServer {
@@ -48,11 +45,18 @@ public class TheArtistsDreamServer {
     }
 
     private static void setupFakeUserData() {
-        USERS.add(new User(0, "admin@admin.com", "admin", "admin", null));
-        USERS.add(new User(1, "alex@alex.com", "alex", "alex", null));
-        USERS.add(new User(2, "aznella@aznella.com", "aznella", "aznella", null));
-        USERS.add(new User(3, "jamia@jamia.com", "jamia", "jamia", null));
-        USERS.add(new User(4, "corley@corley.com", "corley", "corley", null));
+        InputStream profile = TheArtistsDreamServer.class.getResourceAsStream("assets/default.jpg");
+        byte[] image = new byte[0];
+        try {
+            image = IOUtils.toByteArray(profile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        USERS.add(new User(0, "admin@admin.com", "admin", "admin", image));
+        USERS.add(new User(1, "alex@alex.com", "alex", "alex", image));
+        USERS.add(new User(2, "aznella@aznella.com", "aznella", "aznella", image));
+        USERS.add(new User(3, "jamia@jamia.com", "jamia", "jamia", image));
+        USERS.add(new User(4, "corley@corley.com", "corley", "corley", image));
     }
 
     private static void setupFakeTagData() {
