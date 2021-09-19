@@ -12,6 +12,7 @@ import javafx.scene.Node;
 
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.UserManager;
+import edu.westga.devops.theartistsdreamclient.model.User;
 
 public class ArtworkPopup {
 
@@ -46,8 +47,8 @@ public class ArtworkPopup {
 	    this.titleLabel.setText(this.artwork.getTitle());
 	 	this.artistLabel.setText(UserManager.getUserManager().getUser(this.artwork.getArtistID()).getUsername());
 	    this.artworkImageView.setImage(this.artwork.getImage());
-	    this.editButton.setVisible(this.onProfile);
-	    this.removeButton.setVisible(this.onProfile);
+	    this.editButton.setVisible(this.onProfile && UserManager.getUserManager().getUser(this.artwork.getArtistID()).getUsername().equals(User.getUser().getUsername()));
+	    this.removeButton.setVisible(this.onProfile && UserManager.getUserManager().getUser(this.artwork.getArtistID()).getUsername().equals(User.getUser().getUsername()));
 	}
 
 	@FXML
