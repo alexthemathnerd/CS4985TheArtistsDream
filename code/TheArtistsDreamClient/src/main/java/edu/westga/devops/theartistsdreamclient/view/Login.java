@@ -25,6 +25,7 @@ import javafx.stage.Stage;
  * @version Fall 2021
  */
 public class Login {
+
     public static final String ICON_PATH = "icon.png";
     public static final String RECOMMENDED_PAGE_FXML = "RecommendedPage.fxml";
 

@@ -75,6 +75,16 @@ public class Communicator implements Closeable {
         return conf;
     }
 
+    /**
+     * Requests to the server with a given request and returns its response
+     *
+     * @precondition server must be connected 
+     * @postcondition none
+     *
+     * @param request the request to be sent to the server
+     *
+     * @return the response from the server
+     */
     public <T> Response<T> request(Request request) {
         if (this.context.isClosed()) {
             throw new IllegalStateException();
@@ -103,9 +113,10 @@ public class Communicator implements Closeable {
     /**
      * Checks if communicator is closed
      *
-     * @return true if communicator is closed; false otherwise
      * @precondition none
      * @postcondition none
+     *
+     * @return true if the communicator is closed, false otherwise
      */
     public boolean isClosed() {
         return this.context.isClosed();

@@ -214,9 +214,11 @@ public class ArtworkManager {
     /**
      * Gets the artworks of the followed artists
      *
-     * @return a request to get the artworks of the followed artists
+     * @param data the data
      * @precondition data != null
      * @postcondition none
+     *
+     * @return a request to get the artworks of the followed artists
      */
     public static Request getFollowingArtworks(Object[] data) {
         int userID;
@@ -232,9 +234,12 @@ public class ArtworkManager {
     /**
      * Gets the artworks of the artists specified by the data
      *
-     * @return a request to get the artworks of the specified artist
+     * @param data the data specifying the artist
+     *
      * @precondition data != null
      * @postcondition none
+     *
+     * @return a request to get the artworks of the artist specified by the data
      */
     public static Request getArtworksOfArtist(Object[] data) {
         int userID;
@@ -254,6 +259,16 @@ public class ArtworkManager {
         return new Request(userArtworks);
     }
 
+    /**
+     * Gets the artworks of the tags specified by the data
+     *
+     * @param data the data specifying the tags
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return a request to get the artworks of the tags specified by the data
+     */
     public static Request getArtworksOfTags(Object[] data) {
         List<Tag> tags;
         try {

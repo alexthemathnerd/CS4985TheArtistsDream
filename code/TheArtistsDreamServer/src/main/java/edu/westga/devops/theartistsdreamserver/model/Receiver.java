@@ -10,10 +10,24 @@ import org.zeromq.ZMQ;
 
 import java.util.logging.Level;
 
+/**
+ * Receiver Class
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ */
 public class Receiver extends Thread {
 
     private String address;
 
+    /**
+     * Creates a receiver at the specified address
+     *
+     * @param address the address to set the receiver to
+     *
+     * @precondition none
+     * @postcondition none
+     */
     public Receiver(String address) {
         this.address = address;
     }

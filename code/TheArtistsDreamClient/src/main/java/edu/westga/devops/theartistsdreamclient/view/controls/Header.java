@@ -59,6 +59,9 @@ public class Header extends HBox {
 
     /**
      * Initializes the FXML for the Header control
+     *
+     * @precondition none
+     * @postcondition none
      */
     public Header() {
         FXMLLoader loader = new FXMLLoader(Header.class.getResource(HEADER_FXML));
@@ -151,6 +154,14 @@ public class Header extends HBox {
 
     }
 
+    /**
+     * Gets the tags to filter list property
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return the tags to filter list property
+     */
     public ListProperty<Tag> tagsToFilterListProperty() {
         return this.tagsToFilterListProperty;
     }

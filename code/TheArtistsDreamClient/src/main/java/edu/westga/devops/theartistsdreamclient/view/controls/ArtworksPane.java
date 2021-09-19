@@ -80,6 +80,12 @@ public class ArtworksPane extends ScrollPane {
         });
     }
 
+    /**
+     * Initializes the artworks
+     *
+     * @precondition none
+     * @postcondition none
+     */
     public void initArts() {
         this.viewModel.viewInitialArtworks();
     }
@@ -90,22 +96,62 @@ public class ArtworksPane extends ScrollPane {
         this.viewModel.viewMoreArtworks();
     }
 
+    /**
+     * Gets the tags to filter list property
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return the tags to filter list property
+     */
     public ListProperty<Tag> tagsToFilterListProperty() {
         return this.tagsToFilterListProperty;
     }
 
+    /**
+     * Gets the userid property
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return the userid property
+     */
     public IntegerProperty userIdProperty() {
         return this.userIdProperty;
     }
 
+    /**
+     * Sets the userid property
+     *
+     * @param id the id to set the userid to
+     *
+     * @precondition none
+     * @postcondition userIdProperty().get() == id
+     */
     public void setUserId(int id) {
         this.userIdProperty.set(id);
     }
 
-    public void setIsOnFollowingPage(boolean onFollowingPage) {
+    /**
+     * Sets the on following page property
+     *
+     * @param onFollowingPage the value if the pane is on the following page
+     *
+     * @precondition none
+     * @postcondition none
+     */
+    public void setOnFollowingPage(boolean onFollowingPage) {
         this.onFollowingPageProperty.set(onFollowingPage);
     }
 
+    /**
+     * Sets the on profile property
+     *
+     * @param onProfile the value of if the pane is on a profile page
+     *
+     * @precondition none
+     * @postcondition none
+     */
     public void setOnProfile(boolean onProfile) {
         this.onProfileProperty.set(onProfile);
     }

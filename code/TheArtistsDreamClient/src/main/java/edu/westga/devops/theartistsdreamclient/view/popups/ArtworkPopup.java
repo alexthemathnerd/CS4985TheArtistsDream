@@ -14,6 +14,12 @@ import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.UserManager;
 import edu.westga.devops.theartistsdreamclient.model.User;
 
+/**
+ * Controller for the ArtworkPopup
+ *
+ * @author Aznella Joseph
+ * @version Fall 2021
+ */
 public class ArtworkPopup {
 
 	@FXML
@@ -37,6 +43,15 @@ public class ArtworkPopup {
 	private Artwork artwork;
 	private boolean onProfile;
 
+	/**
+	 * Creates a new ArtworkPopup with the specified artwork and value of if it is on a profile
+	 *
+	 * @param artwork the artwork to display in the popup
+	 * @param onProfile the value of if the popup is being displayed on a profile or not
+	 *
+	 * @precondition none
+	 * @postcondition none
+	 */
 	public ArtworkPopup(Artwork artwork, boolean onProfile) {
 	    this.artwork = artwork;
 	    this.onProfile = onProfile;

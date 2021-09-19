@@ -51,6 +51,14 @@ public class ArtworksPaneViewModel {
         return this.artworksProperty;
     }
 
+    /**
+     * Gets the tags to filter by property
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return the tags to filter by property
+     */
     public ListProperty<Tag> filterTagsProperty() {
         return this.filterTagsProperty;
     }
@@ -89,24 +97,51 @@ public class ArtworksPaneViewModel {
         this.indexProperty.setValue(this.indexProperty.getValue() + 10);
     }
 
+    /**
+     * Allows the initial 50 artworks to be shown
+     *
+     * @precondition none
+     * @postcondition artworksProperty().get().size() == 50
+     */
     public void viewInitialArtworks() {
         if (this.userIdProperty.isEqualTo(-1).get()) {
             this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getFirstFiftyArtworks()));
         } else {
             this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getFirstFiftyArtworks(this.userIdProperty.get())));
         }
-
     }
 
+    /**
+     * Filters the artworks
+     *
+     * @precondition none
+     * @postcondition none
+     */
     public void filterArtworks() {
         List<Artwork> artworks = ArtworkManager.getArtworkManager().getArtworksOfTags(this.filterTagsProperty.get());
         this.artworksProperty.setAll(artworks);
     }
 
+    /**
+     * Gets the user id property
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return the user id property
+     */
     public IntegerProperty userIdProperty() {
         return this.userIdProperty;
     }
 
+    /**
+     * Gets the on following page property
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return the on following page property
+     */
     public BooleanProperty onFollowingPageProperty() {
         return this.onFollowingPageProperty;
     }

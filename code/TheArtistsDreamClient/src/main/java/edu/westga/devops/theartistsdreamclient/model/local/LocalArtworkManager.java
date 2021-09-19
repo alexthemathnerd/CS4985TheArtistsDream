@@ -22,7 +22,7 @@ public class LocalArtworkManager extends ArtworkManager {
 	 * Creates a new Artworks Collection
 	 *
 	 * @precondition none
-	 * @postcondition none
+	 * @postcondition size() == 0
 	 *
 	 */
 	public LocalArtworkManager() {
@@ -115,6 +115,14 @@ public class LocalArtworkManager extends ArtworkManager {
 		return tagArtworks;
 	}
 
+	/**
+	 * Gets the size
+	 *
+	 * @precondition none
+	 * @postcondition none
+	 *
+	 * @return the size
+	 */
 	public int size() {
 		return this.artworks.size();
 	}

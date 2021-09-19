@@ -68,6 +68,14 @@ public class TagsPane extends FlowPane {
     }
 
 
+    /**
+     * Gets the added buttons
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return the added buttons
+     */
     public List<TagButton> getAddedButtons() {
         return this.selectedTagsButtons;
     }

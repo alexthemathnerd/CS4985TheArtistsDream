@@ -171,6 +171,14 @@ public abstract class ArtworkManager {
         ArtworkManager.artworkManager = artworkManager;
     }
 
-	public abstract List<Artwork> getArtworksOfTags(List<Tag> tags);
+    /**
+     * Gets the artworks specified by the tags
+     *
+     * @precondition tags != null
+     * @postcondition none
+     *
+     * @return the artworks specified by the tags
+     */
+    public abstract List<Artwork> getArtworksOfTags(List<Tag> tags);
 
 }

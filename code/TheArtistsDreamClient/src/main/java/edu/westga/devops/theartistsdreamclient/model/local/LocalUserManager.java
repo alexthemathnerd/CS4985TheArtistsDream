@@ -7,10 +7,22 @@ import edu.westga.devops.theartistsdreamclient.utils.UI;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Local Implementation of UserManager Collection Class
+ *
+ * @author Jamia Echols
+ * @version Fall 2021
+ */
 public class LocalUserManager extends UserManager {
 
     private List<User> users;
 
+    /**
+     * Creates a new LocalUserManager
+     *
+     * @precondition none
+     * @postcondition size() == 0
+     */
     public LocalUserManager() {
         this.users = new ArrayList<User>();
     }
@@ -61,6 +73,14 @@ public class LocalUserManager extends UserManager {
         return this.size() - 1;
     }
 
+    /**
+     * Gets the size
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return the size
+     */
     public int size() {
         return this.users.size();
     }
