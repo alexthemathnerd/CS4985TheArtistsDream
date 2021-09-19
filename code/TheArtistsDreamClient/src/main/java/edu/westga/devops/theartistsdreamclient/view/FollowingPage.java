@@ -2,6 +2,7 @@ package edu.westga.devops.theartistsdreamclient.view;
 
 import edu.westga.devops.theartistsdreamclient.view.controls.ArtworksPane;
 import edu.westga.devops.theartistsdreamclient.view.controls.Header;
+import edu.westga.devops.theartistsdreamclient.model.User;
 import javafx.fxml.FXML;
 
 /**
