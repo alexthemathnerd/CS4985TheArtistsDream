@@ -1,11 +1,8 @@
 package edu.westga.devops.theartistsdreamclient.view.controls;
 
-import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
@@ -17,9 +14,7 @@ import javafx.scene.layout.TilePane;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
-import java.util.Arrays;
 
-import javafx.beans.binding.Bindings;
 import edu.westga.devops.theartistsdreamclient.viewmodel.ArtworksPaneViewModel;
 
 /**
@@ -40,6 +35,7 @@ public class ArtworksPane extends ScrollPane {
 
     private ArtworksPaneViewModel viewModel;
 
+    private IntegerProperty userIdProperty;
     private ListProperty<Tag> tagsToFilterListProperty;
 
     /**
@@ -52,6 +48,7 @@ public class ArtworksPane extends ScrollPane {
         loader.setController(this);
         try {
             this.tagsToFilterListProperty = new SimpleListProperty<Tag>(FXCollections.observableArrayList());
+            this.userIdProperty = new SimpleIntegerProperty(-1);
             loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -60,16 +57,13 @@ public class ArtworksPane extends ScrollPane {
 
     @FXML
     void initialize() {
-//        for (Artwork artwork : this.viewModel.artworksProperty()) {
-//            this.artworksTilePane.getChildren().add(new ArtworkTile(artwork));
-//        }
-        //this.viewModel.viewInitialArtworks();
+        this.userIdProperty.bindBidirectional(this.viewModel.userIdProperty());
         this.viewMoreButton.disableProperty().bind(this.viewModel.indexProperty().isEqualTo(this.viewModel.maxIndexProperty()));
         this.tagsToFilterListProperty.addListener((observable, oldValue, newValue) -> {
-            System.out.println(newValue);
-            if (newValue != null && !newValue.isEmpty()) {
-                System.out.println("I DO SOMETHING");
-                this.viewModel.filterArtworks();
+            if (newValue != null) {
+                if (!newValue.isEmpty()) {
+                    this.viewModel.filterArtworks();
+                }
             }
         });
         this.viewModel.filterTagsProperty().bindBidirectional(this.tagsToFilterListProperty());
@@ -79,6 +73,9 @@ public class ArtworksPane extends ScrollPane {
                 this.artworksTilePane.getChildren().add(new ArtworkTile(artwork));
             }
         });
+    }
+
+    public void initArts() {
         this.viewModel.viewInitialArtworks();
     }
 
@@ -90,6 +87,14 @@ public class ArtworksPane extends ScrollPane {
 
     public ListProperty<Tag> tagsToFilterListProperty() {
         return this.tagsToFilterListProperty;
+    }
+
+    public IntegerProperty userIdProperty() {
+        return this.userIdProperty;
+    }
+
+    public void setUserId(int id) {
+        this.userIdProperty.set(id);
     }
 
 }

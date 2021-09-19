@@ -1,5 +1,8 @@
 package edu.westga.devops.theartistsdreamclient.view.controls;
 
+import edu.westga.devops.theartistsdreamclient.model.UserManager;
+import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
+import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
 
@@ -10,7 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -80,7 +82,6 @@ public class ArtworkTile extends VBox {
         this.artworkImageView.setImage(this.currentArtwork.getImage());
         this.artworkImageView.setCursor(Cursor.HAND);
         this.titleLabel.setText(this.currentArtwork.getTitle());
-
     }
 
     @FXML
@@ -90,6 +91,14 @@ public class ArtworkTile extends VBox {
             Stage popup = PopupLoader.loadPopup("Artwork", ArtworkPopup.class.getResource(ARTWORK_POPUP_FXML), new ArtworkPopup(this.currentArtwork), (Parent) mainFrame);
             popup.setOnCloseRequest((event2) -> {
                 mainFrame.setEffect(null);
+                Object data = popup.getUserData();
+                if (data != null) {
+                    try {
+                        WindowLoader.changeScene((Stage) this.getScene().getWindow(), "PortfolioPage.fxml", new PortfolioPage(UserManager.getUserManager().getUser((int) data)), "Profile");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             });
             popup.show();
         } catch (IOException e) {

@@ -12,11 +12,6 @@ import javafx.scene.Node;
 
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.UserManager;
-import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
-import edu.westga.devops.theartistsdreamclient.model.User;
-import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
-
-import java.io.IOException;
 
 public class ArtworkPopup {
 
@@ -41,7 +36,7 @@ public class ArtworkPopup {
 	@FXML
 	void initialize() {
 	    this.titleLabel.setText(this.artwork.getTitle());
-	 //   this.artistLabel.setText(UserManager.getUserManager().getUser(this.artwork.getArtistID()).getUsername());
+	 	this.artistLabel.setText(UserManager.getUserManager().getUser(this.artwork.getArtistID()).getUsername());
 	    this.artworkImageView.setImage(this.artwork.getImage());
 	}
 
@@ -54,12 +49,10 @@ public class ArtworkPopup {
 
 	@FXML
 	void handleViewArtistProfile(MouseEvent event) {
-		try {
-			Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(User.getUser()), "The Artist's Dream");
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+		Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		currentStage.setUserData(this.artwork.getArtistID());
+		currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
+		currentStage.close();
 	}
 
 }

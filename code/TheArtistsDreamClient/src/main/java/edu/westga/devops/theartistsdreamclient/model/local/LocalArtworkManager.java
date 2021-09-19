@@ -36,8 +36,18 @@ public class LocalArtworkManager extends ArtworkManager {
 	}
 
 	@Override
+	public List<Artwork> getFirstFiftyArtworks(int userId) {
+		return null;
+	}
+
+	@Override
 	public List<Artwork> getNextTenArtworks(int startingIndex) {
 		return this.artworks.subList(startingIndex, startingIndex + 10);
+	}
+
+	@Override
+	public List<Artwork> getNextTenArtworks(int startingIndex, int userId) {
+		return null;
 	}
 
 	@Override

@@ -38,7 +38,6 @@ public class TheArtistsDreamServer {
             }
         });
         LOGGER.addHandler(handler);
-        LOGGER.setLevel(Level.SEVERE);
         LOGGER.info("Receiver is starting.");
         setupFakeUserData();
         setupFakeTagData();
@@ -50,6 +49,10 @@ public class TheArtistsDreamServer {
 
     private static void setupFakeUserData() {
         USERS.add(new User(0, "admin@admin.com", "admin", "admin", null));
+        USERS.add(new User(1, "alex@alex.com", "alex", "alex", null));
+        USERS.add(new User(2, "aznella@aznella.com", "aznella", "aznella", null));
+        USERS.add(new User(3, "jamia@jamia.com", "jamia", "jamia", null));
+        USERS.add(new User(4, "corley@corley.com", "corley", "corley", null));
     }
 
     private static void setupFakeTagData() {
@@ -102,7 +105,6 @@ public class TheArtistsDreamServer {
                 InputStream artwork = TheArtistsDreamServer.class.getResourceAsStream("assets/local-images/" + line);
 
                 String[] artworkParts = line.substring(0, line.indexOf(".")).split("_");
-                System.out.println(Arrays.toString(artworkParts));
                 String artworkName = artworkParts[0];
                 int artistID = Integer.parseInt(artworkParts[1]);
                 String[] artworkTags = artworkParts[2].split(",");

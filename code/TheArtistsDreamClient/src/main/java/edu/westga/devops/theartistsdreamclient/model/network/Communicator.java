@@ -68,6 +68,7 @@ public class Communicator implements Closeable {
         }
         Gson gson = new Gson();
         String json = gson.toJson(request);
+        TheArtistsDreamApplication.LOGGER.info("Sending Message " + request.getCode());
         this.socket.send(json);
         String reply = this.socket.recvStr(0);
         Response<T> conf = gson.fromJson(reply, type);

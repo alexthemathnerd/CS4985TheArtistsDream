@@ -3,6 +3,7 @@ package edu.westga.devops.theartistsdreamserver.model;
 import edu.westga.devops.theartistsdreamserver.model.Artwork;
 import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -24,10 +25,33 @@ public class ArtworkManager {
      * @postcondition none
      */
     public static Request getFirstFiftyArtworks(Object[] data) {
+        TheArtistsDreamServer.LOGGER.info(Arrays.toString(data));
+        if (data.length == 1) {
+            int userId;
+            try {
+                userId = ((Double) data[0]).intValue();
+                return getFirstFiftyArtworks(userId);
+            } catch (ClassCastException e) {
+                return new Request("Invalid Format");
+            }
+        }
         if (TheArtistsDreamServer.ARTWORKS.size() < 50) {
             return new Request(TheArtistsDreamServer.ARTWORKS);
         }
         return new Request(TheArtistsDreamServer.ARTWORKS.subList(0, 50));
+    }
+
+    private static Request getFirstFiftyArtworks(int userId) {
+        List<Artwork> artworks = new ArrayList<>();
+        for (Artwork aArtwork: TheArtistsDreamServer.ARTWORKS) {
+            if (aArtwork.getArtistID() == userId) {
+                artworks.add(aArtwork);
+            }
+        }
+        if (artworks.size() < 50) {
+            return new Request(artworks);
+        }
+        return new Request(artworks.subList(0, 50));
     }
 
     /**

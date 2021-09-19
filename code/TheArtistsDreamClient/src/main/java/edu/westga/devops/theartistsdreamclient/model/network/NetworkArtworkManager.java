@@ -49,12 +49,40 @@ public class NetworkArtworkManager extends ArtworkManager {
     }
 
     @Override
+    public List<Artwork> getFirstFiftyArtworks(int userId) {
+        Type type = new TypeToken<Response<ArrayList<Artwork>>>() {
+        }.getType();
+        Response<ArrayList<Artwork>> response = this.communicator.request(new Request(UI.ServerCodes.GET_FIRST_FIFTY_ARTWORKS, new Object[]{userId}), type);
+        System.out.println(userId);
+        if (response.getError() != null) {
+            TheArtistsDreamApplication.LOGGER.warning(response.getError());
+            return new ArrayList<Artwork>();
+        }
+        return response.getData();
+    }
+
+    @Override
     public List<Artwork> getNextTenArtworks(int startingIndex) {
 
         Type type = new TypeToken<Response<ArrayList<Artwork>>>() {
         }.getType();
 
         Response<ArrayList<Artwork>> response = this.communicator.request(new Request(UI.ServerCodes.GET_NEXT_TEN_ARTWORKS, new Object[]{startingIndex}));
+        if (response.getError() != null) {
+            TheArtistsDreamApplication.LOGGER.warning(response.getError());
+            return new ArrayList<Artwork>();
+        }
+
+
+        return response.getData();
+    }
+
+    @Override
+    public List<Artwork> getNextTenArtworks(int startingIndex, int userId) {
+        Type type = new TypeToken<Response<ArrayList<Artwork>>>() {
+        }.getType();
+
+        Response<ArrayList<Artwork>> response = this.communicator.request(new Request(UI.ServerCodes.GET_NEXT_TEN_ARTWORKS, new Object[]{startingIndex, userId}));
         if (response.getError() != null) {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
             return new ArrayList<Artwork>();

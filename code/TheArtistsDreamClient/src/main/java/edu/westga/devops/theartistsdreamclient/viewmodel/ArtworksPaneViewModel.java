@@ -5,11 +5,8 @@ import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
 
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 
 import java.util.List;
 
@@ -25,19 +22,20 @@ public class ArtworksPaneViewModel {
     private ListProperty<Tag> filterTagsProperty;
     private IntegerProperty indexProperty;
     private IntegerProperty maxIndexProperty;
+    private IntegerProperty userIdProperty;
 
     /**
      * Creates a new ArtworkPaneViewModel
      *
      * @precondition none
      * @postcondition artworksProperty() != null && indexProperty().getValue() == 50 && maxIndexProperty().getValue() >
-     * 0
      */
     public ArtworksPaneViewModel() {
         this.artworksProperty = new SimpleListProperty<Artwork>(FXCollections.observableArrayList());
         this.filterTagsProperty = new SimpleListProperty<Tag>(FXCollections.observableArrayList());
         this.indexProperty = new SimpleIntegerProperty(0);
         this.maxIndexProperty = new SimpleIntegerProperty(50);
+        this.userIdProperty = new SimpleIntegerProperty(-1);
     }
 
     /**
@@ -90,12 +88,21 @@ public class ArtworksPaneViewModel {
     }
 
     public void viewInitialArtworks() {
-        this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getFirstFiftyArtworks()));
+        if (this.userIdProperty.isEqualTo(-1).get()) {
+            this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getFirstFiftyArtworks()));
+        } else {
+            this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getFirstFiftyArtworks(this.userIdProperty.get())));
+        }
+
     }
 
     public void filterArtworks() {
         List<Artwork> artworks = ArtworkManager.getArtworkManager().getArtworksOfTags(this.filterTagsProperty.get());
         this.artworksProperty.setAll(artworks);
+    }
+
+    public IntegerProperty userIdProperty() {
+        return this.userIdProperty;
     }
 }
 

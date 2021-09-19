@@ -22,6 +22,7 @@ public abstract class ArtworkManager implements Iterable<Artwork> {
 	 */
 	public abstract List<Artwork> getFirstFiftyArtworks();
 
+	public abstract List<Artwork> getFirstFiftyArtworks(int userId);
 
 	/**
 	 * Gets the next ten artworks
@@ -34,6 +35,8 @@ public abstract class ArtworkManager implements Iterable<Artwork> {
 	 * @return the next ten artworks from the starting index
 	 */
 	public abstract List<Artwork> getNextTenArtworks(int startingIndex);
+
+	public abstract List<Artwork> getNextTenArtworks(int startingIndex, int userId);
 
 	/**
 	 * Gets the size

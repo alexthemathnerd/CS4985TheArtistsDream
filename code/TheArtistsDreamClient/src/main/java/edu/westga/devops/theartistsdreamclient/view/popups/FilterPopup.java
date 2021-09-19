@@ -45,7 +45,6 @@ public class FilterPopup {
     @FXML
     public void handleFilter(ActionEvent event) {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Stage ownerStage = (Stage) currentStage.getOwner();
         currentStage.setUserData(this.tagsPane.getAddedButtons());
         currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
         currentStage.close();
