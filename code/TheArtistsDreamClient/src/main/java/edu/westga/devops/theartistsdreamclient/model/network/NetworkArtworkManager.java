@@ -12,7 +12,6 @@ import java.lang.reflect.Type;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Network Implementation of Collection Class ArtworkManager
@@ -92,20 +91,6 @@ public class NetworkArtworkManager extends ArtworkManager {
     }
 
     @Override
-    public int size() {
-
-        //	Type type = new TypeToken<Integer>() {}.getType();
-
-        //	Response<Integer> response = this.communicator.request(new request(UI.ServerCodes.SIZE, new Object[], type));
-        //	if (response.getError() != null) {
-        //		TheArtistsDreamApplication.LOGGER.warning(response.getError());
-        //		return -1;
-        //	}
-
-        return 0;
-    }
-
-    @Override
     public Artwork getArtwork(int id) {
         Type type = new TypeToken<Artwork>() {
         }.getType();
@@ -176,11 +161,6 @@ public class NetworkArtworkManager extends ArtworkManager {
     }
 
     @Override
-    public Iterator iterator() {
-        return null;
-    }
-
-    @Override
     public List<Artwork> getArtworksOfTags(List<Tag> tags) {
         Type type = new TypeToken<Response<ArrayList<Artwork>>>() {
         }.getType();
@@ -190,6 +170,17 @@ public class NetworkArtworkManager extends ArtworkManager {
             return new ArrayList<>();
         }
         return response.getData();
+    }
+
+    @Override
+    public List<Artwork> getFirstFiftyArtworks(boolean isFollowing) {
+	    Type type = new TypeToken<Response<ArrayList<Artwork>>>() {}.getType();
+	    Response<ArrayList<Artwork>> response = this.communicator.request(new Request(UI.ServerCodes.GET_FIRST_FIFTY_ARTWORKS, new Object[] {isFollowing}), type);
+	    if (response.getError() != null) {
+		    TheArtistsDreamApplication.LOGGER.warning(response.getError());
+		    return new ArrayList<>();
+	    }
+	    return response.getData();
     }
 
 }

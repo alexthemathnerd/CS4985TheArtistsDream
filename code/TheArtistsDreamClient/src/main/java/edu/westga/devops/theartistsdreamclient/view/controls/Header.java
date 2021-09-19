@@ -6,6 +6,7 @@ import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.view.Login;
 import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
 import edu.westga.devops.theartistsdreamclient.view.RecommendedPage;
+import edu.westga.devops.theartistsdreamclient.view.FollowingPage;
 import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
 import edu.westga.devops.theartistsdreamclient.view.popups.FilterPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
@@ -42,6 +43,8 @@ public class Header extends HBox {
 
     private static final String HEADER_FXML = "Header.fxml";
     private static final String FILTER_POPUP_FXML = "FilterPopup.fxml";
+    private static final String RECOMMENDED_PAGE_FXML = "RecommendedPage.fxml";
+    private static final String FOLLOWING_PAGE_FXML = "FollowingPage.fxml";
 
     @FXML
     private TextField searchTextField;
@@ -65,6 +68,9 @@ public class Header extends HBox {
 
     /**
      * Initializes the FXML for the Header control
+     *
+     * @precondition none
+     * @postcondition none
      */
     public Header() {
         FXMLLoader loader = new FXMLLoader(Header.class.getResource(HEADER_FXML));
@@ -157,12 +163,22 @@ public class Header extends HBox {
 
     @FXML
     void handleRecommended(ActionEvent event) {
-
+           try {
+                Stage currentStage = (Stage) this.navMenuButton.getScene().getWindow();
+                WindowLoader.changeScene(currentStage, RECOMMENDED_PAGE_FXML, new RecommendedPage(), "The Artist's Dream");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
     }
 
     @FXML
     void handleFollowing(ActionEvent event) {
-
+           try {
+                Stage currentStage = (Stage) this.navMenuButton.getScene().getWindow();
+                WindowLoader.changeScene(currentStage, FOLLOWING_PAGE_FXML, new FollowingPage(), "The Artist's Dream");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
     }
 
     @FXML
@@ -170,6 +186,14 @@ public class Header extends HBox {
 
     }
 
+    /**
+     * Gets the tags to filter list property
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return the tags to filter list property
+     */
     public ListProperty<Tag> tagsToFilterListProperty() {
         return this.tagsToFilterListProperty;
     }

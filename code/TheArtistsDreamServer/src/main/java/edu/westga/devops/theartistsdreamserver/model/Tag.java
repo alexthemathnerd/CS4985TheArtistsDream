@@ -1,5 +1,11 @@
 package edu.westga.devops.theartistsdreamserver.model;
 
+/**
+ * Tag Class
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ */
 public class Tag implements Comparable<Tag> {
 
     private int id;
@@ -29,18 +35,49 @@ public class Tag implements Comparable<Tag> {
         this.name = name.toLowerCase();
         this.useCount = 1;
     }
+
+    /**
+     * Gets the id
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return the id
+     */
     public int getId() {
         return this.id;
     }
 
+    /**
+     * Gets the name
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return the name
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Increments the use count
+     *
+     * @precondition none
+     * @postcondition getUseCount() == getUseCount() +1 @ pre
+     */
     public void incrementUseCount() {
         this.useCount++;
     }
 
+    /**
+     * Gets the use count
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return the use count
+     */
     public int getUseCount() {
         return this.useCount;
     }

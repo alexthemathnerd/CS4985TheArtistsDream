@@ -74,7 +74,20 @@ public class Artwork {
         this.date = date;
     }
 
-
+    /**
+     * Creates a new Artwork
+     *
+     * @param imageData the image data of the artwork
+     * @param title the title of the artwork
+     * @param artistUsername the artist of the artwork's username
+     * @param tags the tags of the artwork
+     * @param id the id of the artwork
+     * @throws IllegalArgumentException if a precondition is not met
+     * @precondition imageData != null && !title.isEmpty() && title != null && artistID >= 0&& tagIDs != null && id >= 0 &&
+     * date != null
+     * @postcondition getImage() == image && getTitle == title && getArtistID() == artistID && getTagIDs() == tagIDs &&
+     * getID == id && getDate() == date
+     */
     public Artwork(byte[] imageData, String title, int artistID, List<Integer> tagIDs, int id, String date) {
         if (imageData == null) {
             throw new IllegalArgumentException();

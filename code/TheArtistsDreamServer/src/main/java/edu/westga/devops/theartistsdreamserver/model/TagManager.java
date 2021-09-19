@@ -6,8 +6,24 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * TagManager Class
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ */
 public class TagManager {
 
+    /**
+     * Gets the top ten tags
+     *
+     * @param data the data
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return a request to get the top ten tags
+     */
     public static Request getTopTags(Object[] data) {
         int amount;
         String content;
@@ -39,6 +55,16 @@ public class TagManager {
         return filteredTags;
     }
 
+    /**
+     * Adds a tag
+     *
+     * @param data the data
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return a request to add a tag
+     */
     public static Request addTag(Object[] data) {
         String name;
         try {

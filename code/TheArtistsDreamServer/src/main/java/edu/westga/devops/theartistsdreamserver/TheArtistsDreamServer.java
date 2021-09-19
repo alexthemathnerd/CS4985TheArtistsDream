@@ -17,6 +17,12 @@ import java.net.URL;
 import java.lang.ClassLoader;
 import java.util.logging.Formatter;
 
+/**
+ * Entry Point for the Server Application
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ */
 public class TheArtistsDreamServer {
 
     public static final String ARTWORKS_PATH = "assets/local-images/artworks.txt";
@@ -25,6 +31,14 @@ public class TheArtistsDreamServer {
     public static final List<User> USERS = new ArrayList<User>();
     public static final List<Artwork> ARTWORKS = new ArrayList<Artwork>();
 
+    /**
+     * Starts the Server
+     *
+     * @param args the args passed in
+     *
+     * @precondition none
+     * @postcondition none
+     */
     public static void main(String[] args) {
         LOGGER.setUseParentHandlers(false);
         ConsoleHandler handler = new ConsoleHandler();

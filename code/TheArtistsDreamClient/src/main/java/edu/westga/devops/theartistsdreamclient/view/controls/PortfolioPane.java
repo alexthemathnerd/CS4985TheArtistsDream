@@ -34,6 +34,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
+/**
+ * Controller for the PortfolioPane Control
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ */
 public class PortfolioPane extends HBox {
 
     public static final String PORTFOLIO_PANE_FXML = "PortfolioPane.fxml";
@@ -64,6 +70,12 @@ public class PortfolioPane extends HBox {
 
     private ObjectProperty<User> userProperty;
 
+    /**
+     * Creates a new PortfolioPane
+     *
+     * @precondition none
+     * @postcondition none
+     */
     public PortfolioPane() {
         FXMLLoader loader = new FXMLLoader(Header.class.getResource(PORTFOLIO_PANE_FXML));
         loader.setRoot(this);
@@ -135,6 +147,14 @@ public class PortfolioPane extends HBox {
 
     }
 
+    /**
+     * Sets the user of the portfolio pane
+     *
+     * @param user the user of the portfolio
+     *
+     * @precondition none
+     * @postcondition none
+     */
     public void setUser(User user) {
         this.userProperty.set(user);
     }

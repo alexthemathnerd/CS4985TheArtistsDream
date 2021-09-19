@@ -6,11 +6,17 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * WindowLoader Class that provides functionality to update the displayed window
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ */
 public class WindowLoader {
 
 
     /**
-     * Change scene.
+     * Changes the scene.
      *
      * @param currentStage    the current stage
      * @param fxmlOfNewWindow the fxml of new window

@@ -33,12 +33,12 @@ import java.time.LocalDate;
  * Handle Setting up The Artist's Dream Application.
  *
  * @author Alexander Schmidt
+ * @version Fall 2021
  */
 public class TheArtistsDreamApplication extends Application {
+
     public static final String ICON_PATH = "icon.png";
-
     public static final String LOGIN_FXML = "view/Login.fxml";
-
     public static final String LOCAL_ARTWORKS_PATH = "view/local-images/";
     public static final Logger LOGGER = Logger.getLogger("The Artist's Dream Server");
     //public static ArtworkManager artworkManager;
@@ -59,6 +59,9 @@ public class TheArtistsDreamApplication extends Application {
      * Entry Point to running The Artist's Dream Application
      *
      * @param args the args for running the application
+     *
+     * @precondition none
+     * @postcondition none
      */
     public static void main(String[] args) {
         LOGGER.setUseParentHandlers(false);
