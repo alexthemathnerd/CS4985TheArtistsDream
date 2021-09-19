@@ -1,4 +1,4 @@
-package edu.westga.devops.theartistsdreamclient.tests.model.localartwork;
+package edu.westga.devops.theartistsdreamclient.tests.model.artwork;
 
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
- * JUnit Test Cases for LocalArtwork Constructor
+ * JUnit Test Cases for Artwork Constructor
  *
  * @author Aznella Joseph
  * @version Fall 2021

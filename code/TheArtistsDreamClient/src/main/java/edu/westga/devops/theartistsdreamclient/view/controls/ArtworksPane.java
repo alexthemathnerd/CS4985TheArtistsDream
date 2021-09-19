@@ -37,6 +37,8 @@ public class ArtworksPane extends ScrollPane {
 
     private IntegerProperty userIdProperty;
     private ListProperty<Tag> tagsToFilterListProperty;
+    private BooleanProperty onFollowingPageProperty;
+    private BooleanProperty onProfileProperty;
 
     /**
      * Initializes the FXML for the ArtworksPane control
@@ -49,6 +51,8 @@ public class ArtworksPane extends ScrollPane {
         try {
             this.tagsToFilterListProperty = new SimpleListProperty<Tag>(FXCollections.observableArrayList());
             this.userIdProperty = new SimpleIntegerProperty(-1);
+	    this.onFollowingPageProperty = new SimpleBooleanProperty();
+	    this.onProfileProperty = new SimpleBooleanProperty();
             loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -58,6 +62,7 @@ public class ArtworksPane extends ScrollPane {
     @FXML
     void initialize() {
         this.userIdProperty.bindBidirectional(this.viewModel.userIdProperty());
+        this.onFollowingPageProperty.bindBidirectional(this.viewModel.onFollowingPageProperty());
         this.viewMoreButton.disableProperty().bind(this.viewModel.indexProperty().isEqualTo(this.viewModel.maxIndexProperty()));
         this.tagsToFilterListProperty.addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -70,7 +75,7 @@ public class ArtworksPane extends ScrollPane {
         this.viewModel.artworksProperty().addListener((observable, oldValue, newValue) -> {
             this.artworksTilePane.getChildren().clear();
             for (Artwork artwork : this.viewModel.artworksProperty()) {
-                this.artworksTilePane.getChildren().add(new ArtworkTile(artwork));
+                this.artworksTilePane.getChildren().add(new ArtworkTile(artwork, this.onProfileProperty.get()));
             }
         });
     }
@@ -97,4 +102,11 @@ public class ArtworksPane extends ScrollPane {
         this.userIdProperty.set(id);
     }
 
+    public void setIsOnFollowingPage(boolean onFollowingPage) {
+        this.onFollowingPageProperty.set(onFollowingPage);
+    }
+
+    public void setOnProfile(boolean onProfile) {
+        this.onProfileProperty.set(onProfile);
+    }
 }

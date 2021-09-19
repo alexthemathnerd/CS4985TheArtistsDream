@@ -26,6 +26,7 @@ public class PortfolioPage {
     @FXML
     private void initialize() {
         this.artworksPane.setUserId(this.user.getUserId());
+	this.artworksPane.setOnProfile(true);
         this.portfolioPane.setUser(this.user);
         this.artworksPane.initArts();
         this.artworksPane.tagsToFilterListProperty().bindBidirectional(this.header.tagsToFilterListProperty());

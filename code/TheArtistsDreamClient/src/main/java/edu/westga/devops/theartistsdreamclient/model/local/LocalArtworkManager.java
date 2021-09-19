@@ -6,7 +6,6 @@ import edu.westga.devops.theartistsdreamclient.model.Tag;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Local Implementation of Collection Class ArtworkManager
@@ -116,14 +115,13 @@ public class LocalArtworkManager extends ArtworkManager {
 		return tagArtworks;
 	}
 
-	@Override
-	public Iterator iterator() {
-		return this.artworks.iterator();
+	public int size() {
+		return this.artworks.size();
 	}
 
 	@Override
-	public int size() {
-		return this.artworks.size();
+	public List<Artwork> getFirstFiftyArtworks(boolean isFollowing) {
+		return null;
 	}
 		
 }

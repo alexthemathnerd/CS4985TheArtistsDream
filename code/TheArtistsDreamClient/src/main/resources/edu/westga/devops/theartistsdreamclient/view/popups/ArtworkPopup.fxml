@@ -8,22 +8,31 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="323.0" prefWidth="458.0" style="-fx-background-color: #1e1e24; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" stylesheets="@../core-design.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="396.0" prefWidth="492.0" style="-fx-background-color: #1e1e24; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" stylesheets="@../core-design.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="26.0" prefHeight="35.0" prefWidth="406.0" style="-fx-font-weight: BOLD;" textAlignment="CENTER" textFill="#e01a4f">
+      <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="47.0" layoutY="20.0" prefHeight="35.0" prefWidth="406.0" style="-fx-font-weight: BOLD;" textAlignment="CENTER" textFill="#e01a4f">
          <font>
             <Font size="24.0" />
          </font></Label>
-      <HBox alignment="CENTER" layoutX="88.0" layoutY="266.0" spacing="20.0">
+      <ImageView fx:id="artworkImageView" fitHeight="221.0" fitWidth="348.0" layoutX="76.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" />
+      <HBox alignment="CENTER" layoutX="35.0" layoutY="307.0" prefHeight="34.0" prefWidth="422.0" spacing="20.0">
          <children>
-            <Label fx:id="artistLabel" onMouseClicked="#handleViewArtistProfile" underline="true">
+            <Label fx:id="artistLabel" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#handleViewArtistProfile" prefHeight="18.0" prefWidth="410.0">
                <HBox.margin>
                   <Insets top="15.0" />
                </HBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </Label>
-            <Button fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleClose" prefHeight="26.0" prefWidth="79.0" text="CLOSE" textFill="#e01a4f" />
          </children>
       </HBox>
-      <ImageView fx:id="artworkImageView" fitHeight="221.0" fitWidth="348.0" layoutX="55.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" />
+      <HBox alignment="TOP_CENTER" layoutX="35.0" layoutY="355.0" spacing="20.0">
+         <children>
+            <Button fx:id="editButton" mnemonicParsing="false" onAction="#handleEdit" prefHeight="26.0" prefWidth="124.0" text="EDIT" />
+            <Button fx:id="removeButton" mnemonicParsing="false" onAction="#handleRemove" prefHeight="26.0" prefWidth="132.0" text="REMOVE" />
+            <Button fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleClose" prefHeight="26.0" prefWidth="123.0" text="CLOSE" textFill="#e01a4f" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

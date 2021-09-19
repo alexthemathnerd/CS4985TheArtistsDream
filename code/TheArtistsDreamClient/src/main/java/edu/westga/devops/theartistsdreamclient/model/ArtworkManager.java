@@ -9,7 +9,7 @@ import edu.westga.devops.theartistsdreamclient.model.Artwork;
  * @author Aznella Joseph
  * @version Fall 2021
  */
-public abstract class ArtworkManager implements Iterable<Artwork> {
+public abstract class ArtworkManager {
 
 	private static ArtworkManager artworkManager = null;
 
@@ -22,8 +22,31 @@ public abstract class ArtworkManager implements Iterable<Artwork> {
 	 */
 	public abstract List<Artwork> getFirstFiftyArtworks();
 
+	/**
+	 * Gets the first fifty artworks of the specified user
+	 *
+	 * @precondition none
+	 * @postcondition none
+	 *
+	 * @param userId the user id to get the artworks of
+	 *
+	 * @return the first fifty artworks of the user
+	 */
 	public abstract List<Artwork> getFirstFiftyArtworks(int userId);
 
+	/**
+	 * Gets the first fifty artworks if the user is following
+	 *
+	 * @precondition none
+	 * @postcondition none
+	 *
+	 * @param isFollowing determines if the user is following
+	 *
+	 * @return the first fifty artworks
+	 */
+	public abstract List<Artwork> getFirstFiftyArtworks(boolean isFollowing);
+
+	
 	/**
 	 * Gets the next ten artworks
 	 *
@@ -36,17 +59,18 @@ public abstract class ArtworkManager implements Iterable<Artwork> {
 	 */
 	public abstract List<Artwork> getNextTenArtworks(int startingIndex);
 
-	public abstract List<Artwork> getNextTenArtworks(int startingIndex, int userId);
-
 	/**
-	 * Gets the size
+	 * Gets the next ten artworks of the specified user
 	 *
 	 * @precondition none
 	 * @postcondition none
 	 *
-	 * @return the size of the artwork manager
+	 * @param startingIndex the starting index to get the next 10 artworks from
+	 * @param userId the id of the user to get the next 10 artworks from
+	 *
+	 * @return the next ten artworks of the user from the starting index
 	 */
-	public abstract int size();
+	public abstract List<Artwork> getNextTenArtworks(int startingIndex, int userId);
 
 	/**
 	 * Gets the artwork specified by the id

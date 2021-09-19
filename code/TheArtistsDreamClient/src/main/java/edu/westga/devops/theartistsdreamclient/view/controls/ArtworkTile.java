@@ -40,6 +40,7 @@ public class ArtworkTile extends VBox {
     private ImageView artworkImageView;
 
     private Artwork currentArtwork;
+    private boolean onProfile;
 
     /**
      * Initializes the FXML for the ArtworkTile Control
@@ -65,12 +66,13 @@ public class ArtworkTile extends VBox {
      * @precondition artwork != null
      * @postcondition none
      */
-    public ArtworkTile(Artwork artwork) {
+    public ArtworkTile(Artwork artwork, boolean onProfile) {
         FXMLLoader loader = new FXMLLoader(Header.class.getResource(ARTWORK_TILE_FXML));
         loader.setRoot(this);
         loader.setController(this);
         try {
             this.currentArtwork = artwork;
+	    this.onProfile = onProfile;
             loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -88,7 +90,7 @@ public class ArtworkTile extends VBox {
     void handleViewImage(MouseEvent event) {
         try {
             Node mainFrame = ((Node) event.getSource()).getParent().getParent();
-            Stage popup = PopupLoader.loadPopup("Artwork", ArtworkPopup.class.getResource(ARTWORK_POPUP_FXML), new ArtworkPopup(this.currentArtwork), (Parent) mainFrame);
+            Stage popup = PopupLoader.loadPopup("Artwork", ArtworkPopup.class.getResource(ARTWORK_POPUP_FXML), new ArtworkPopup(this.currentArtwork, this.onProfile), (Parent) mainFrame);
             popup.setOnCloseRequest((event2) -> {
                 mainFrame.setEffect(null);
                 Object data = popup.getUserData();

@@ -23,6 +23,7 @@ public class ArtworksPaneViewModel {
     private IntegerProperty indexProperty;
     private IntegerProperty maxIndexProperty;
     private IntegerProperty userIdProperty;
+    private BooleanProperty onFollowingPageProperty;
 
     /**
      * Creates a new ArtworkPaneViewModel
@@ -36,6 +37,7 @@ public class ArtworksPaneViewModel {
         this.indexProperty = new SimpleIntegerProperty(0);
         this.maxIndexProperty = new SimpleIntegerProperty(50);
         this.userIdProperty = new SimpleIntegerProperty(-1);
+	this.onFollowingPageProperty = new SimpleBooleanProperty(true);
     }
 
     /**
@@ -103,6 +105,10 @@ public class ArtworksPaneViewModel {
 
     public IntegerProperty userIdProperty() {
         return this.userIdProperty;
+    }
+
+    public BooleanProperty onFollowingPageProperty() {
+        return this.onFollowingPageProperty;
     }
 }
 

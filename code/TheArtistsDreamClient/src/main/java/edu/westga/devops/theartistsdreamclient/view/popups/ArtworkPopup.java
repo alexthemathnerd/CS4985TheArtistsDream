@@ -25,12 +25,20 @@ public class ArtworkPopup {
 	private Button closeButton;
 
 	@FXML
+	private Button editButton;
+
+	@FXML
+	private Button removeButton;
+
+	@FXML
 	private ImageView artworkImageView;
 	
 	private Artwork artwork;
+	private boolean onProfile;
 
-	public ArtworkPopup(Artwork artwork) {
+	public ArtworkPopup(Artwork artwork, boolean onProfile) {
 	    this.artwork = artwork;
+	    this.onProfile = onProfile;
 	}
 
 	@FXML
@@ -38,6 +46,8 @@ public class ArtworkPopup {
 	    this.titleLabel.setText(this.artwork.getTitle());
 	 	this.artistLabel.setText(UserManager.getUserManager().getUser(this.artwork.getArtistID()).getUsername());
 	    this.artworkImageView.setImage(this.artwork.getImage());
+	    this.editButton.setVisible(this.onProfile);
+	    this.removeButton.setVisible(this.onProfile);
 	}
 
 	@FXML
@@ -54,5 +64,17 @@ public class ArtworkPopup {
 		currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
 		currentStage.close();
 	}
+
+
+	@FXML
+	void handleEdit(ActionEvent event) {
+
+	}
+
+	@FXML
+	void handleRemove(ActionEvent event) {
+
+	}
+
 
 }
