@@ -94,7 +94,7 @@ public abstract class ArtworkManager {
 	 *
 	 * @return true if the artwork was successfully added, false otherwise
 	 */
-	public abstract boolean addArtwork(Artwork artwork);
+	public abstract boolean addArtwork(byte[] imageData, String title, int artistID, List<Integer> tagIDs, String date);
 
 	/**
 	 * Removes the artwork specified by the id

@@ -60,6 +60,10 @@ public class LocalArtworkManager extends ArtworkManager {
 	}
 
 	@Override
+	public boolean addArtwork(byte[] imageData, String title, int artistID, List<Integer> tagIDs, String date) {
+		return this.artworks.add(new Artwork(imageData, title, artistID, tagIDs, this.size(), date));
+	}
+
 	public boolean addArtwork(Artwork artwork) {
 		return this.artworks.add(artwork);
 	}

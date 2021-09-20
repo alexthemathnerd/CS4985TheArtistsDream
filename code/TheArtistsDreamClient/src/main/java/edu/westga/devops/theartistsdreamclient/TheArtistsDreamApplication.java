@@ -123,7 +123,7 @@ public class TheArtistsDreamApplication extends Application {
 //    }
 
     private static void setupLocalArtworkManager() {
-        ArtworkManager artworkManager = new LocalArtworkManager();
+        LocalArtworkManager artworkManager = new LocalArtworkManager();
 
         URL artworksFolderResource = TheArtistsDreamApplication.class.getResource(TheArtistsDreamApplication.LOCAL_ARTWORKS_PATH);
 

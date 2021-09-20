@@ -106,12 +106,12 @@ public class NetworkArtworkManager extends ArtworkManager {
     }
 
     @Override
-    public boolean addArtwork(Artwork artwork) {
+    public boolean addArtwork(byte[] imageData, String title, int artistID, List<Integer> tagIDs, String date) {
 
-        Type type = new TypeToken<Boolean>() {
+        Type type = new TypeToken<Response<Boolean>>() {
         }.getType();
 
-        Response<Boolean> response = this.communicator.request(new Request(UI.ServerCodes.ADD_ARTWORK, new Object[]{artwork}), type);
+        Response<Boolean> response = this.communicator.request(new Request(UI.ServerCodes.ADD_ARTWORK, new Object[]{imageData, title, artistID, tagIDs, date}), type);
 
         if (response.getError() != null) {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
@@ -174,13 +174,14 @@ public class NetworkArtworkManager extends ArtworkManager {
 
     @Override
     public List<Artwork> getFirstFiftyArtworks(boolean isFollowing) {
-	    Type type = new TypeToken<Response<ArrayList<Artwork>>>() {}.getType();
-	    Response<ArrayList<Artwork>> response = this.communicator.request(new Request(UI.ServerCodes.GET_FIRST_FIFTY_ARTWORKS, new Object[] {isFollowing}), type);
-	    if (response.getError() != null) {
-		    TheArtistsDreamApplication.LOGGER.warning(response.getError());
-		    return new ArrayList<>();
-	    }
-	    return response.getData();
+        Type type = new TypeToken<Response<ArrayList<Artwork>>>() {
+        }.getType();
+        Response<ArrayList<Artwork>> response = this.communicator.request(new Request(UI.ServerCodes.GET_FIRST_FIFTY_ARTWORKS, new Object[]{isFollowing}), type);
+        if (response.getError() != null) {
+            TheArtistsDreamApplication.LOGGER.warning(response.getError());
+            return new ArrayList<>();
+        }
+        return response.getData();
     }
 
 }

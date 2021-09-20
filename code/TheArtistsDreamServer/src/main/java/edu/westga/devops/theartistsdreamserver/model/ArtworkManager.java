@@ -174,19 +174,18 @@ public class ArtworkManager {
         String title;
         int artistID;
         List<Integer> tagIDs;
-        int id;
         String date;
         try {
             imageBytes = (byte[]) data[0];
             title = (String) data[1];
             artistID = ((Double) data[2]).intValue();
             tagIDs = (List<Integer>) data[3];
-            id = ((Double) data[4]).intValue();
-            date = (String) data[5];
+            date = (String) data[4];
         } catch (ClassCastException e) {
-            return new Request("Invalid Format");
+            e.printStackTrace();
+            return new Request("ERROR");
         }
-        Artwork newArtwork = new Artwork(imageBytes, title, artistID, tagIDs, id, date);
+        Artwork newArtwork = new Artwork(imageBytes, title, artistID, tagIDs, TheArtistsDreamServer.ARTWORKS.size(), date);
         return new Request(TheArtistsDreamServer.ARTWORKS.add(newArtwork));
     }
 
