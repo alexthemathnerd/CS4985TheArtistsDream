@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import edu.westga.devops.theartistsdreamclient.view.controls.PortfolioPane?>
+<?import edu.westga.devops.theartistsdreamclient.view.controls.ArtworksPane?>
+<?import edu.westga.devops.theartistsdreamclient.view.controls.Header?>
+<?import java.net.URL?>
+<AnchorPane styleClass="main" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            prefHeight="400.0" prefWidth="600.0">
+    <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+          AnchorPane.topAnchor="0.0">
+        <children>
+            <Header prefHeight="100" viewOrder="0" fx:id="header" VBox.vgrow="NEVER"/>
+            <PortfolioPane prefHeight="100" viewOrder="1" fx:id="portfolioPane" VBox.vgrow="NEVER"/>
+            <ArtworksPane fx:id="artworksPane" viewOrder="2" VBox.vgrow="ALWAYS"/>
+        </children>
+    </VBox>
+    <stylesheets>
+        <URL value="@core-design.css"/>
+    </stylesheets>
+</AnchorPane>

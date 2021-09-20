@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root alignment="CENTER_RIGHT"  prefWidth="200" spacing="10.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="profileImage" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+      <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="200.0" HBox.hgrow="ALWAYS">
+         <children>
+            <Label fx:id="artistNameLabel" alignment="CENTER" prefHeight="100.0" prefWidth="448.0" text="ARTIST NAME" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" spacing="20.0" VBox.vgrow="NEVER">
+               <children>
+                  <Label fx:id="followingLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="30.0" text="0 FOLLOWING" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="followersLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="30.0" text="0 FOLLOWERS" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="10.0" HBox.hgrow="NEVER">
+         <children>
+            <Button fx:id="addArtButton" mnemonicParsing="false" onAction="#handleAddArt" prefHeight="40.0" prefWidth="300.0" text="ADD ART" VBox.vgrow="NEVER" />
+            <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#handleSettings" prefHeight="40.0" prefWidth="300.0" text="SETTINGS" VBox.vgrow="NEVER" />
+            <ToggleButton fx:id="followToggleButton" mnemonicParsing="false" onAction="#handleFollow" prefHeight="40.0" prefWidth="300.0" text="FOLLOW" VBox.vgrow="NEVER" />
+            <Button fx:id="commisionButton" mnemonicParsing="false" onAction="#handleCommision" prefHeight="40.0" prefWidth="300.0" text="COMMISION" />
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</fx:root>

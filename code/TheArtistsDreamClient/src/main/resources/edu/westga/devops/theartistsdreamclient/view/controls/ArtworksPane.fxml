@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import java.net.URL?>
-<fx:root fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="441.0" style="-fx-background-color: #1e1e24;" stylesheets="@artworks-pane-design.css" type="javafx.scene.control.ScrollPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: #1e1e24;" stylesheets="@artworks-pane-design.css" type="javafx.scene.control.ScrollPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="20.0" style="-fx-background-color: #1e1e24;">
          <children>

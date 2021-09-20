@@ -44,6 +44,9 @@ public class ArtworkManager {
         } catch (ClassCastException e) {
             return new Request("Invalid Format");
         }
+        if (startingIndex + 10 > TheArtistsDreamServer.ARTWORKS.size()) {
+            return new Request(TheArtistsDreamServer.ARTWORKS);
+        }
         return new Request(TheArtistsDreamServer.ARTWORKS.subList(startingIndex, startingIndex + 10));
 
     }
@@ -219,6 +222,23 @@ public class ArtworkManager {
             }
         }
         return new Request(tagArtworks);
+    }
+
+    public static Request searchForArtworks(Object[] data) {
+        String searchTerm;
+        try {
+            searchTerm = (String) data[0];
+        } catch (Exception e) {
+            return new Request("Invalid Format");
+        }
+
+        List<Artwork> searchedArtworks = new ArrayList<>();
+        for (Artwork aArtwork: TheArtistsDreamServer.ARTWORKS) {
+            if (aArtwork.getTitle().contains(searchTerm)) {
+                searchedArtworks.add(aArtwork);
+            }
+        }
+        return new Request(searchedArtworks);
     }
 
 }

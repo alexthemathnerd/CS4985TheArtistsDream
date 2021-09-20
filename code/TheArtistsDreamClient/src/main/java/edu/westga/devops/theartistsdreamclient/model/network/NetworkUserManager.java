@@ -33,27 +33,10 @@ public class NetworkUserManager extends UserManager {
     }
 
     @Override
-    public Iterator<User> iterator() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public boolean verifyCredentials(String username, String password) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
     public User getUser(int userId) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public User getUser(String username, String password) {
         Type type = new TypeToken<Response<User>>() {
         }.getType();
-        Response<User> response = this.communicator.request(new Request(UI.ServerCodes.GET_USER, new Object[]{username, password}), type);
+        Response<User> response = this.communicator.request(new Request(UI.ServerCodes.GET_USER, new Object[]{userId}), type);
         if (response.getError() != null) {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
             return null;
@@ -62,7 +45,19 @@ public class NetworkUserManager extends UserManager {
     }
 
     @Override
-    public double addUser(String username, String email, String password) {
+    public User findUser(String username, String password) {
+        Type type = new TypeToken<Response<User>>() {
+        }.getType();
+        Response<User> response = this.communicator.request(new Request(UI.ServerCodes.CHECK_FOR_USER, new Object[]{username, password}), type);
+        if (response.getError() != null) {
+            TheArtistsDreamApplication.LOGGER.warning(response.getError());
+            return false;
+        }
+        return response.getData();
+    }
+
+    @Override
+    public int addUser(String username, String email, String password) {
         Type type = new TypeToken<Integer>() {
         }.getType();
         Response<Double> response = this.communicator.request(new Request(UI.ServerCodes.ADD_USER, new Object[]{username, email, password}));
@@ -87,6 +82,9 @@ public class NetworkUserManager extends UserManager {
         // TODO Auto-generated method stub
         return false;
     }
+
+    }   
+
 
     
 }

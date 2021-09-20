@@ -2,11 +2,13 @@ package edu.westga.devops.theartistsdreamclient;
 
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
+import edu.westga.devops.theartistsdreamclient.model.UserManager;
 import edu.westga.devops.theartistsdreamclient.model.TagManager;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalTagManager;
 import edu.westga.devops.theartistsdreamclient.model.network.NetworkTagManager;
 import edu.westga.devops.theartistsdreamclient.model.network.NetworkArtworkManager;
+import edu.westga.devops.theartistsdreamclient.model.network.NetworkUserManager;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -79,6 +81,8 @@ public class TheArtistsDreamApplication extends Application {
         //setupLocalArtworkManager();
 	NetworkArtworkManager artworkManager = new NetworkArtworkManager();
 	ArtworkManager.setArtworkManager(artworkManager);
+	NetworkUserManager userManager = new NetworkUserManager();
+	UserManager.setUserManager(userManager);
     }
 
 //    private static void setupLocalTagManager() {

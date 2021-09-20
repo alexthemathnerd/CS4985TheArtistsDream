@@ -6,25 +6,24 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="323.0" prefWidth="458.0" style="-fx-background-color: #2C2C32; -fx-background-radius: 20; -fx-border-radius: 20;" stylesheets="@popup-design.css" type="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="323.0" prefWidth="458.0" style="-fx-background-color: #1e1e24; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" stylesheets="@../core-design.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="titleLabel" contentDisplay="CENTER" layoutX="215.0" layoutY="32.0" textAlignment="CENTER" textFill="#e01a4f" />
-      <HBox alignment="CENTER" layoutX="88.0" layoutY="266.0" prefHeight="42.0" prefWidth="281.0" spacing="20.0">
+      <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="26.0" prefHeight="35.0" prefWidth="406.0" style="-fx-font-weight: BOLD;" textAlignment="CENTER" textFill="#e01a4f">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <HBox alignment="CENTER" layoutX="88.0" layoutY="266.0" spacing="20.0">
          <children>
             <Label fx:id="artistLabel" onMouseClicked="#handleViewArtistProfile" underline="true">
                <HBox.margin>
                   <Insets top="15.0" />
                </HBox.margin>
             </Label>
-            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-               <HBox.margin>
-                  <Insets left="50.0" />
-               </HBox.margin>
-            </ImageView>
-            <Button fx:id="closeButton" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleClose" style="-fx-background-radius: 20; -fx-background-color: #2C2C32;" text="Close" textFill="#e01a4f" />
+            <Button fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleClose" prefHeight="26.0" prefWidth="79.0" text="CLOSE" textFill="#e01a4f" />
          </children>
       </HBox>
       <ImageView fx:id="artworkImageView" fitHeight="221.0" fitWidth="348.0" layoutX="55.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" />
    </children>
-</fx:root>
+</AnchorPane>
