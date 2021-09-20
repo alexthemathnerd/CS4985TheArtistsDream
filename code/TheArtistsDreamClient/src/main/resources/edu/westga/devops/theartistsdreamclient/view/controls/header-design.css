@@ -9,6 +9,19 @@
 .menu-button > .arrow-button {
 	-fx-padding: 0;
 }
+.combo-box .arrow-button  {
+    -fx-opacity: 0.0;
+    -fx-cursor: text;
+	-fx-background-color: transparent;
+}
+
+.combo-box .text-field{
+	-fx-background-color: #2d2c32;
+	-fx-prompt-text-fill: #DF194E;
+	-fx-text-fill: #DF194E;
+	-fx-background-radius: 20; 
+	-fx-border-radius: 20;
+}
 
 .menu-button > .arrow-button > .arrow {
 	-fx-padding: 0;

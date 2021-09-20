@@ -172,6 +172,30 @@ public class NetworkArtworkManager extends ArtworkManager {
         return response.getData();
     }
 
+    @Override 
+    public List<Artwork> searchForArtworks(String searchTerm) {
+        Type type = new TypeToken<Response<ArrayList<Artwork>>>() {
+        }.getType();
+        Response<ArrayList<Artwork>> response = this.communicator.request(new Request(UI.ServerCodes.SEARCH_ARTWORKS, new Object[]{searchTerm}), type);
+        if (response.getError() != null) {
+            TheArtistsDreamApplication.LOGGER.warning(response.getError());
+            return new ArrayList<>();
+        }
+        return response.getData();
+    }
+
+    @Override 
+    public Artwork retrieveSearchedArtwork(String title) {
+        Type type = new TypeToken<Response<Artwork>>() {
+        }.getType();
+        Response<Artwork> response = this.communicator.request(new Request(UI.ServerCodes.RETRIEVE_ARTWORK, new Object[]{title}), type);
+        if (response.getError() != null) {
+            TheArtistsDreamApplication.LOGGER.warning(response.getError());
+            return null;
+        }
+        return response.getData();
+    }
+
     @Override
     public List<Artwork> getFirstFiftyArtworks(boolean isFollowing) {
         Type type = new TypeToken<Response<ArrayList<Artwork>>>() {

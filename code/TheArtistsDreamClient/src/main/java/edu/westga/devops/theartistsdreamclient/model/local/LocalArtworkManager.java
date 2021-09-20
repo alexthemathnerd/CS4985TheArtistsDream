@@ -90,6 +90,9 @@ public class LocalArtworkManager extends ArtworkManager {
 			throw new IllegalArgumentException();
 		}
 		Artwork artworkToEdit = this.getArtwork(id);
+		if (artworkToEdit == null) {
+			return false;
+		}
 		artworkToEdit.setTitle(newTitle);
 		artworkToEdit.setTags(newTagIDs);
 		return true;
@@ -119,6 +122,8 @@ public class LocalArtworkManager extends ArtworkManager {
 		return tagArtworks;
 	}
 
+
+
 	/**
 	 * Gets the size
 	 *
@@ -133,6 +138,27 @@ public class LocalArtworkManager extends ArtworkManager {
 
 	@Override
 	public List<Artwork> getFirstFiftyArtworks(boolean isFollowing) {
+		return null;
+	}
+
+	@Override 
+	public List<Artwork> searchForArtworks(String searchTerm) {
+		List<Artwork> searchedArtworks = new ArrayList<Artwork>();
+		for (Artwork artwork: this.artworks) {
+			if (artwork.getTitle().contains(searchTerm)) {
+				searchedArtworks.add(artwork);
+			}
+		}
+		return searchedArtworks;
+	}
+
+	@Override 
+	public Artwork retrieveSearchedArtwork(String title) {
+		for (Artwork artwork: this.artworks) {
+			if (artwork.getTitle().equals(title)) {
+				return artwork;
+			}
+		}
 		return null;
 	}
 		

@@ -1,8 +1,9 @@
 package edu.westga.devops.theartistsdreamclient.view.controls;
 
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
+import edu.westga.devops.theartistsdreamclient.view.popups.*;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
-import edu.westga.devops.theartistsdreamclient.model.User;
+import edu.westga.devops.theartistsdreamclient.model.*;
 import edu.westga.devops.theartistsdreamclient.view.Login;
 import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
 import edu.westga.devops.theartistsdreamclient.view.RecommendedPage;
@@ -10,6 +11,10 @@ import edu.westga.devops.theartistsdreamclient.view.FollowingPage;
 import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
 import edu.westga.devops.theartistsdreamclient.view.popups.FilterPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
+import edu.westga.devops.theartistsdreamclient.viewmodel.*;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SetProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -26,12 +31,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.ComboBox;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.*;
 
 /**
  * The Controller for the Custom Control for the Header of the application
@@ -47,7 +55,7 @@ public class Header extends HBox {
     private static final String FOLLOWING_PAGE_FXML = "FollowingPage.fxml";
 
     @FXML
-    private TextField searchTextField;
+    private ComboBox searchComboBox;
 
     @FXML
     private MenuButton navMenuButton;
@@ -66,6 +74,8 @@ public class Header extends HBox {
 
     private ListProperty<Tag> tagsToFilterListProperty;
 
+    private HeaderViewModel viewModel;
+
     /**
      * Initializes the FXML for the Header control
      *
@@ -83,6 +93,7 @@ public class Header extends HBox {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        this.viewModel = new HeaderViewModel();
     }
 
     @FXML
@@ -94,10 +105,55 @@ public class Header extends HBox {
         this.profileButton.setGraphic(graphic);
         this.profileButton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
         this.profileButton.setPadding(new Insets(0));
+        this.searchComboBox.getEditor().textProperty().addListener((obs, oldText, newText) -> {
+            if (newText.charAt(0) == '@') {
+                this.searchComboBox.getItems().clear();
+                String searchTerm = newText.substring(1);
+                System.out.println(searchTerm);
+                for (String username : this.viewModel.searchForUsers(searchTerm)) {
+                    this.searchComboBox.getItems().add(username);
+                }
+            } else {
+                this.searchComboBox.getItems().clear();
+                for (String title : this.viewModel.searchForArtworks(newText)) {
+                    this.searchComboBox.getItems().add(title);
+                }
+            }
+        });
     }
 
     @FXML
     void handleSearch(ActionEvent event) {
+        if (((String) this.searchComboBox.getValue()).charAt(0) == '@') {
+            String searchTerm = (String) this.searchComboBox.getValue();
+            searchTerm = searchTerm.substring(1);
+            User searchedUser = this.viewModel.getUser(searchTerm);
+            if (searchedUser != null) {
+                try {
+                    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(searchedUser), "The Artist's Dream");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                Alert alert = new Alert(AlertType.ERROR, UI.ErrorMessages.USER_NOT_FOUND);
+                alert.show();
+            }
+        } else {
+            String searchTerm = (String) this.searchComboBox.getValue();
+            Artwork artwork = this.viewModel.getArtwork(searchTerm);
+            if (artwork != null) {
+                try {
+                    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    WindowLoader.changeScene(currentStage, "ArtworkPopup.fxml", new ArtworkPopup(artwork, false), "The Artist's Dream");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                Alert alert = new Alert(AlertType.ERROR, UI.ErrorMessages.ARTWORK_NOT_FOUND);
+                alert.show();
+            }
+        }
 
     }
 
@@ -153,32 +209,28 @@ public class Header extends HBox {
 
     @FXML
     void handleViewProfile(ActionEvent event) {
+        
+        
+    }
+
+    @FXML
+    void handleRecommended(ActionEvent event) {
         try {
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(User.getUser()), "The Artist's Dream");
+            Stage currentStage = (Stage) this.navMenuButton.getScene().getWindow();
+            WindowLoader.changeScene(currentStage, RECOMMENDED_PAGE_FXML, new RecommendedPage(), "The Artist's Dream");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     @FXML
-    void handleRecommended(ActionEvent event) {
-           try {
-                Stage currentStage = (Stage) this.navMenuButton.getScene().getWindow();
-                WindowLoader.changeScene(currentStage, RECOMMENDED_PAGE_FXML, new RecommendedPage(), "The Artist's Dream");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-    }
-
-    @FXML
     void handleFollowing(ActionEvent event) {
-           try {
-                Stage currentStage = (Stage) this.navMenuButton.getScene().getWindow();
-                WindowLoader.changeScene(currentStage, FOLLOWING_PAGE_FXML, new FollowingPage(), "The Artist's Dream");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+        try {
+            Stage currentStage = (Stage) this.navMenuButton.getScene().getWindow();
+            WindowLoader.changeScene(currentStage, FOLLOWING_PAGE_FXML, new FollowingPage(), "The Artist's Dream");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

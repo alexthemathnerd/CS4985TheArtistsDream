@@ -1,6 +1,7 @@
 package edu.westga.devops.theartistsdreamclient.model.network;
 
 import java.util.Iterator;
+import java.util.*;
 
 import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
@@ -57,6 +58,18 @@ public class NetworkUserManager extends UserManager {
     }
 
     @Override
+    public User retrieveSearchedUser(String username) {
+        Type type = new TypeToken<Response<User>>() {
+        }.getType();
+        Response<User> response = this.communicator.request(new Request(UI.ServerCodes.RETRIEVE_USER, new Object[]{username}), type);
+        if (response.getError() != null) {
+            TheArtistsDreamApplication.LOGGER.warning(response.getError());
+            return null;
+        }
+        return response.getData();
+    }
+
+    @Override
     public int addUser(String username, String email, String password) {
         Type type = new TypeToken<Integer>() {
         }.getType();
@@ -67,5 +80,19 @@ public class NetworkUserManager extends UserManager {
         return response.getData();
     }
 
+    @Override
+    public List<User> searchForUsers(String username) {
+        Type type = new TypeToken<Integer> () {
+        }.getType();
+        Response<ArrayList<User>> response = this.communicator.request(new Request(UI.ServerCodes.SEARCH_USERS, new Object[]{username}), type);
+        if (response.getError() != null) {
+            return null;
+        }
+        return response.getData();
+    }
 
-}
+    public boolean checkForUser(int userId) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+}   

@@ -1,6 +1,8 @@
 package edu.westga.devops.theartistsdreamserver.model;
 
 import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
+import java.util.*;
+
 
 /**
  * UserManager Class
@@ -91,7 +93,23 @@ public class UserManager {
                 return new Request(user);
             }
         }
-        return new Request("Can't find user");
+        return new Request(null);
+    }
+
+    public static Request searchForUser(Object[] data) {
+        String username;
+        try {
+            username = (String) data[0];
+        } catch (ClassCastException e) {
+            return new Request("Invalid Format");
+        }
+        ArrayList<User> users = new ArrayList<User>();
+        for (User user : TheArtistsDreamServer.USERS) {
+            if (user.getUsername().contains(username)) {
+                users.add(user);
+            }
+        }
+        return new Request(users);
     }
 
 }
