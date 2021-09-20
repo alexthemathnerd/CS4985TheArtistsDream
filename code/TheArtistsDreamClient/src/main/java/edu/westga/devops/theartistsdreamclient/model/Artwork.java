@@ -67,6 +67,7 @@ public class Artwork {
             throw new IllegalArgumentException();
         }
         this.image = image;
+	this.imageData = new byte[0];
         this.title = title;
         this.artistID = artistID;
         this.tagIDs = tagIDs;

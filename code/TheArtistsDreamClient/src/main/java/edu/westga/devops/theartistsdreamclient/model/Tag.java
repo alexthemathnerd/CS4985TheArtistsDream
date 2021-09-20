@@ -6,7 +6,7 @@ package edu.westga.devops.theartistsdreamclient.model;
  * @author Alexander Schmidt
  * @version Fall 2021
  */
-public class Tag {
+public class Tag implements Comparable<Tag> {
 
     private int id;
     private String name;
@@ -102,10 +102,33 @@ public class Tag {
         return this.useCount;
     }
 
+    /**
+     * Increments the use count of the tag
+     *
+     * @precondition none
+     * @postcondition getUseCount() == getUseCount() + 1 @ pre
+     */
+    public void incrementUseCount() {
+        this.useCount++;
+    }
+
     @Override
     public boolean equals(Object obj) {
         Tag tag = (Tag) obj;
         return this.getId() == tag.getId();
+    }
+
+    @Override
+    public int compareTo(Tag otherTag) {
+        if (otherTag == null) {
+            throw new NullPointerException();
+        }
+        int result = otherTag.getUseCount() - this.useCount;
+
+        if (result == 0) {
+            return this.getName().compareTo(otherTag.getName());
+        }
+        return result;
     }
 
 }

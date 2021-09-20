@@ -86,6 +86,9 @@ public class LocalArtworkManager extends ArtworkManager {
 			throw new IllegalArgumentException();
 		}
 		Artwork artworkToEdit = this.getArtwork(id);
+		if (artworkToEdit == null) {
+			return false;
+		}
 		artworkToEdit.setTitle(newTitle);
 		artworkToEdit.setTags(newTagIDs);
 		return true;
