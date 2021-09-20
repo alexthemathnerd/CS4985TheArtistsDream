@@ -72,8 +72,6 @@ public class Header extends HBox {
 
     private HeaderViewModel viewModel;
 
-
-
     /**
      * Initializes the FXML for the Header control
      *
@@ -103,23 +101,38 @@ public class Header extends HBox {
         this.profileButton.setGraphic(graphic);
         this.profileButton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
         this.profileButton.setPadding(new Insets(0));
+        this.searchComboBox.getEditor().textProperty().addListener((obs, oldText, newText) -> {
+            if (newText.charAt(0) == '@') {
+                this.searchComboBox.getItems().clear();
+                String searchTerm = newText.substring(1);
+                for (String username : this.viewModel.searchForUsers(searchTerm)) {
+                    this.searchComboBox.getItems().add(username);
+                }
+            } else {
+                this.searchComboBox.getItems().clear();
+                for (String title : this.viewModel.searchForArtworks(newText)) {
+                    this.searchComboBox.getItems().add(title);
+                }
+            }
+        });
     }
 
     @FXML
     void handleSearch(ActionEvent event) {
-
-    }
-
-    @FXML 
-    public void initialize() {
-        this.searchComboBox.setEditable(true);
-        this.searchComboBox.getEditor().textProperty().addListener((obs, oldText, newText) -> {
-            if (newText.charAt(0) == '@') {
-                this.searchComboBox.setItems(this.viewModel.searchForUsers(newText));
-            } else {
-                this.searchComboBox.setItems(this.viewModel.searchForArtworks(newText));
+        if (((String)this.searchComboBox.getValue()).charAt(0) == '@') {
+            String searchTerm = (String) this.searchComboBox.getValue();
+            searchTerm = searchTerm.substring(1);
+            User searchedUser = this.viewModel.getUser(searchTerm);
+            try {
+                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(searchedUser), "The Artist's Dream");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-        });
+        } else {
+
+        }
+
     }
 
     @FXML
@@ -174,12 +187,8 @@ public class Header extends HBox {
 
     @FXML
     void handleViewProfile(ActionEvent event) {
-        try {
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(User.getUser()), "The Artist's Dream");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        
+        
     }
 
     @FXML

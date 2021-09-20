@@ -10,15 +10,14 @@ import edu.westga.devops.theartistsdreamclient.model.network.*;
 public class HeaderViewModel {
 
     public HeaderViewModel() {
-        //this.users = new ObservableList<User>();
     }
 
     public ObservableList<String> searchForUsers(String searchTerm) {
         ArrayList<String> usernames = new ArrayList<String>();
-        for (User user :UserManager.getUserManager().searchForUsers(searchTerm)) {
+        for (User user: UserManager.getUserManager().searchForUsers(searchTerm)) {
             usernames.add("@" + user.getUsername());
         }
-        ObservableList<String> searchedUsers = FXCollections.observableArrayList(usernames);
+        ObservableList<String> searchedUsers = FXCollections.observableList(usernames);
         return searchedUsers;
     }
 
@@ -30,6 +29,14 @@ public class HeaderViewModel {
         ObservableList<String> searchedArtwork = FXCollections.observableList(titles);
         return searchedArtwork;
     }
+
+    public User getUser(String username) {
+        return UserManager.getUserManager().retrieveSearchedUser(username);
+    }
+
+    // public Artwork getArtwork(String title) {
+
+    // }
 }
 
 

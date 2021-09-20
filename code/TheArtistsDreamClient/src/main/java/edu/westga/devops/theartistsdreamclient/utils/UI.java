@@ -21,6 +21,7 @@ public class UI {
         ADD_USER,
         GET_USER,
         SEARCH_USERS,
+        RETRIEVE_USER,
 	    FIND_USER,
         SEARCH_ARTWORKS,
         GET_FIRST_FIFTY_ARTWORKS,

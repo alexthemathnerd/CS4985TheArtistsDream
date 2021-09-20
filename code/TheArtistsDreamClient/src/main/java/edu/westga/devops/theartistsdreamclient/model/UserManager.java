@@ -4,6 +4,7 @@ import edu.westga.devops.theartistsdreamclient.model.*;
 import edu.westga.devops.theartistsdreamclient.utils.UI;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Iterator;
 
 
@@ -26,6 +27,15 @@ public abstract class UserManager {
      */
     public abstract User getUser(int userId);
 
+	/**
+     * Finds the user specified by the username
+     *
+     * @return the user specified by the username
+     * @precondition username != null && !username.isEmpty()
+     * @postcondition none
+     */	
+	public abstract User retrieveSearchedUser(String username);
+
     /**
      * Finds the user specified by the username and password
      *
@@ -34,16 +44,6 @@ public abstract class UserManager {
      * @postcondition none
      */
     public abstract User findUser(String username, String password);
-
-    /**
-     * Adds the user specified by the username, password, and email
-     *
-     * @return the id of the added user or -1 if the username and password are used already
-     * @precondition username != null && password != null && email != null && !username.isEmpty() && !password.isEmpty()
-     * && !email.isEmpty()
-     * @postcondition none
-     */
-    public abstract int addUser(String username, String password, String email);
 
 	/**
 	 * Adds the user specified by the username, password, and email
@@ -63,7 +63,7 @@ public abstract class UserManager {
 	 * 
 	 * @return the users that match the search
 	 */
-	public abstract ArrayList<User> searchForUsers(String searchTerm);
+	public abstract List<User> searchForUsers(String searchTerm);
 
     /**
      * Gets the singleton of the user manager

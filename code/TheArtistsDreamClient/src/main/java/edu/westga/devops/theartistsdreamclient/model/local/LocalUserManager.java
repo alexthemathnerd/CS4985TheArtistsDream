@@ -61,6 +61,22 @@ public class LocalUserManager extends UserManager {
         return null;
     }
 
+	@Override
+    public User retrieveSearchedUser(String username) {
+        if (username == null) {
+            throw new IllegalArgumentException(UI.ErrorMessages.USERNAME_NULL);
+        }
+        if (username.isEmpty()) {
+            throw new IllegalArgumentException(UI.ErrorMessages.USERNAME_EMPTY);
+        }
+        for (User currentUser : this.users) {
+            if (username.equals(currentUser.getUsername())){
+                return currentUser;
+            }
+        }
+        return null;
+    }
+
     @Override
     public int addUser(String username, String password, String email) {
         for (User user : this.users) {
@@ -85,7 +101,7 @@ public class LocalUserManager extends UserManager {
     }
 
 	@Override
-	public ArrayList<User> searchForUsers(String searchTerm) {
+	public List<User> searchForUsers(String searchTerm) {
 		ArrayList<User> searchedUsers = new ArrayList<User>();
 		for (User user : this.users) {
 			if (user.getUsername().contains(searchTerm)) {

@@ -58,6 +58,18 @@ public class NetworkUserManager extends UserManager {
     }
 
     @Override
+    public User retrieveSearchedUser(String username) {
+        Type type = new TypeToken<Response<User>>() {
+        }.getType();
+        Response<User> response = this.communicator.request(new Request(UI.ServerCodes.RETRIEVE_USER, new Object[]{username}), type);
+        if (response.getError() != null) {
+            TheArtistsDreamApplication.LOGGER.warning(response.getError());
+            return null;
+        }
+        return response.getData();
+    }
+
+    @Override
     public int addUser(String username, String email, String password) {
         Type type = new TypeToken<Integer>() {
         }.getType();
@@ -67,9 +79,9 @@ public class NetworkUserManager extends UserManager {
         }
         return response.getData();
     }
-    
+
     @Override
-    public ArrayList<User> searchForUsers(String username) {
+    public List<User> searchForUsers(String username) {
         Type type = new TypeToken<Integer> () {
         }.getType();
         Response<ArrayList<User>> response = this.communicator.request(new Request(UI.ServerCodes.SEARCH_USERS, new Object[]{username}), type);
