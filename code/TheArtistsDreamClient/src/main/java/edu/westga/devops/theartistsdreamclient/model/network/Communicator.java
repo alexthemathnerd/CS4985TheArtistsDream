@@ -32,7 +32,7 @@ public class Communicator implements Closeable {
     private ZMQ.Socket socket;
 
     /**
-     * Creates a Communicator with the server that is connected to the give address
+     * Creates a Communicator with the server that is connected to the given address
      *
      * @param serverAddress the address of the server
      * @precondition serverAddress is valid
