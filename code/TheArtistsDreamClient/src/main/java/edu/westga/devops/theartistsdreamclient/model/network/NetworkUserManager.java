@@ -5,6 +5,7 @@ import java.util.*;
 
 import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
+
 import java.lang.reflect.Type;
 
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
@@ -14,7 +15,7 @@ import edu.westga.devops.theartistsdreamclient.utils.UI;
 
 /**
  * Tne NetworkUserManager class
- * 
+ *
  * @author Jamia Echols
  * @version Fall 2021
  */
@@ -24,7 +25,7 @@ public class NetworkUserManager extends UserManager {
 
     /**
      * Initailizes a network User manager
-     * 
+     *
      * @precondition none
      * @postcondition none
      */
@@ -66,7 +67,7 @@ public class NetworkUserManager extends UserManager {
         }
         return response.getData();
     }
-
+    
     @Override
     public ArrayList<User> searchForUsers(String username) {
         Type type = new TypeToken<Integer> () {

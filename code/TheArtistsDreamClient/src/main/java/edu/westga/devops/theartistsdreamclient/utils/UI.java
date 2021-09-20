@@ -1,7 +1,19 @@
 package edu.westga.devops.theartistsdreamclient.utils;
 
+/**
+ * The UI Class 
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ */
 public class UI {
 
+    /**
+     * The ServerCodes Enum that holds codes of method names to be used in the Server project
+     *
+     * @author Alexander Schmidt
+     * @version Fall 2021
+     */
     public enum ServerCodes {
         TODO,
         ADD_TAG,
@@ -22,6 +34,12 @@ public class UI {
         GET_ARTWORKS_OF_TAGS;
     }
 
+    /**
+     * ErrorMessages Class that provides error messages for Exceptions
+     *
+     * @author Alexander Schmidt
+     * @version Fall 2021
+     */
     public static class ErrorMessages {
         public static final String NEGATIVE_ID = "id cannot be negative";
         public static final String CONTENT_NULL = "content cannot be null";
@@ -42,6 +60,12 @@ public class UI {
         public static final String USER_NULL = "User cannot be null";
     }
 
+    /**
+     * GuiMessages Class that provides useful strings to be used in GUI error messages
+     *
+     * @author Alexander Schmidt
+     * @version Fall 2021
+     */
     public static class GuiMessages {
         public static final String INVALID_EMAIL = "Must enter a valid email";
         public static final String INVALID_PASSWORD = "Password must be at least 7 characters long";

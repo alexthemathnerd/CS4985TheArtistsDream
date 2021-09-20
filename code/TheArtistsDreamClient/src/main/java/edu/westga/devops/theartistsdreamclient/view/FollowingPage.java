@@ -2,15 +2,16 @@ package edu.westga.devops.theartistsdreamclient.view;
 
 import edu.westga.devops.theartistsdreamclient.view.controls.ArtworksPane;
 import edu.westga.devops.theartistsdreamclient.view.controls.Header;
+import edu.westga.devops.theartistsdreamclient.model.User;
 import javafx.fxml.FXML;
 
 /**
- * Controller for the Recommended Page
+ * CodeBehind for the FollowingPage
  *
- * @author Alexander Schmidt
+ * @author Aznella Joseph
  * @version Fall 2021
  */
-public class RecommendedPage {
+public class FollowingPage {
 
     @FXML
     private Header header;
@@ -18,17 +19,17 @@ public class RecommendedPage {
     @FXML
     private ArtworksPane artworksPane;
 
-    public RecommendedPage() {
+    public FollowingPage() {
     }
 
     @FXML
     private void initialize() {
-        this.artworksPane.setUserId(-1);
+        this.artworksPane.setUserId(User.getUser().getUserId());
 	this.artworksPane.setOnProfile(false);
-        this.artworksPane.initArts();
         this.artworksPane.tagsToFilterListProperty().bindBidirectional(this.header.tagsToFilterListProperty());
     }
 
 
 
 }
+

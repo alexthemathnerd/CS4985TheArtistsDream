@@ -13,12 +13,21 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
+ * Network Implementation of TagManager Collection Class
+ *
  * @author Alexander Schmidt
+ * @version Fall 2021
  */
 public class NetworkTagManager extends TagManager {
 
     private Communicator communicator;
 
+    /**
+     * Creates a new NetworkTagManager
+     *
+     * @precondition none
+     * @postcondition none
+     */
     public NetworkTagManager() {
         this.communicator = new Communicator("tcp://localhost:4444");
     }

@@ -13,6 +13,7 @@ import javafx.stage.WindowEvent;
  * Handle the functionality of the FilterPopup
  *
  * @author Alexander Schmidt
+ * @version Fall 2021
  */
 public class FilterPopup {
 
@@ -26,33 +27,35 @@ public class FilterPopup {
 
     /**
      * Creates the FilterPopup
+     *
+     * @precondition none
+     * @postcondition none
      */
     public FilterPopup() {
         this.viewModel = new FilterPopupViewModel();
     }
 
     @FXML
-    public void initialize() {
+    void initialize() {
         this.searchTagsTextField.textProperty().bindBidirectional(this.viewModel.searchStringProperty());
         this.tagsPane.tagsListProperty().bindBidirectional(this.viewModel.searchTagsListProperty());
     }
 
     @FXML
-    public void handleSearch(ActionEvent event) {
+    void handleSearch(ActionEvent event) {
         this.viewModel.searchTags(5);
     }
 
     @FXML
-    public void handleFilter(ActionEvent event) {
+    void handleFilter(ActionEvent event) {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Stage ownerStage = (Stage) currentStage.getOwner();
         currentStage.setUserData(this.tagsPane.getAddedButtons());
         currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
         currentStage.close();
     }
 
     @FXML
-    public void handleCancel(ActionEvent event) {
+    void handleCancel(ActionEvent event) {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
         currentStage.close();

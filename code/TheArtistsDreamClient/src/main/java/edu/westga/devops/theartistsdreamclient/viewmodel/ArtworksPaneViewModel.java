@@ -5,11 +5,8 @@ import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
 
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 
 import java.util.List;
 
@@ -25,19 +22,22 @@ public class ArtworksPaneViewModel {
     private ListProperty<Tag> filterTagsProperty;
     private IntegerProperty indexProperty;
     private IntegerProperty maxIndexProperty;
+    private IntegerProperty userIdProperty;
+    private BooleanProperty onFollowingPageProperty;
 
     /**
      * Creates a new ArtworkPaneViewModel
      *
      * @precondition none
      * @postcondition artworksProperty() != null && indexProperty().getValue() == 50 && maxIndexProperty().getValue() >
-     * 0
      */
     public ArtworksPaneViewModel() {
         this.artworksProperty = new SimpleListProperty<Artwork>(FXCollections.observableArrayList());
         this.filterTagsProperty = new SimpleListProperty<Tag>(FXCollections.observableArrayList());
         this.indexProperty = new SimpleIntegerProperty(0);
         this.maxIndexProperty = new SimpleIntegerProperty(50);
+        this.userIdProperty = new SimpleIntegerProperty(-1);
+	this.onFollowingPageProperty = new SimpleBooleanProperty(true);
     }
 
     /**
@@ -51,6 +51,14 @@ public class ArtworksPaneViewModel {
         return this.artworksProperty;
     }
 
+    /**
+     * Gets the tags to filter by property
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return the tags to filter by property
+     */
     public ListProperty<Tag> filterTagsProperty() {
         return this.filterTagsProperty;
     }
@@ -85,17 +93,62 @@ public class ArtworksPaneViewModel {
      * artworksProperty().get().size() @ prev
      */
     public void viewMoreArtworks() {
-        this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue())));
-        this.indexProperty.setValue(this.indexProperty.getValue() + 10);
+        if (this.userIdProperty.isEqualTo(-1).get()) {
+            this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue())));
+        } else {
+            this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue(), this.userIdProperty.get())));
+        }
+
+        this.indexProperty.setValue(this.artworksProperty.getSize());
     }
 
+    /**
+     * Allows the initial 50 artworks to be shown
+     *
+     * @precondition none
+     * @postcondition artworksProperty().get().size() == 50
+     */
     public void viewInitialArtworks() {
-        this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getFirstFiftyArtworks()));
+        if (this.userIdProperty.isEqualTo(-1).get()) {
+            this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getFirstFiftyArtworks()));
+        } else {
+            this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getFirstFiftyArtworks(this.userIdProperty.get())));
+        }
     }
 
+    /**
+     * Filters the artworks
+     *
+     * @precondition none
+     * @postcondition none
+     */
     public void filterArtworks() {
         List<Artwork> artworks = ArtworkManager.getArtworkManager().getArtworksOfTags(this.filterTagsProperty.get());
         this.artworksProperty.setAll(artworks);
+    }
+
+    /**
+     * Gets the user id property
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return the user id property
+     */
+    public IntegerProperty userIdProperty() {
+        return this.userIdProperty;
+    }
+
+    /**
+     * Gets the on following page property
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return the on following page property
+     */
+    public BooleanProperty onFollowingPageProperty() {
+        return this.onFollowingPageProperty;
     }
 }
 

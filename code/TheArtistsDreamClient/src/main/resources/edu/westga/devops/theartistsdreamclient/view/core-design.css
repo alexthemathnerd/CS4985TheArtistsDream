@@ -10,6 +10,13 @@
     -fx-text-fill: #E01A4F;
 }
 
+#image {
+
+     -fx-background-radius: 20;
+     -fx-border-radius: 20;
+
+}
+
 .label {
 
     -fx-text-fill: #E01A4F;

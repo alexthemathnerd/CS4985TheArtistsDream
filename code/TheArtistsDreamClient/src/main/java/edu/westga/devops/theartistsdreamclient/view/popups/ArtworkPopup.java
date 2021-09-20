@@ -12,12 +12,14 @@ import javafx.scene.Node;
 
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.UserManager;
-import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
 import edu.westga.devops.theartistsdreamclient.model.User;
-import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
 
-import java.io.IOException;
-
+/**
+ * Controller for the ArtworkPopup
+ *
+ * @author Aznella Joseph
+ * @version Fall 2021
+ */
 public class ArtworkPopup {
 
 	@FXML
@@ -30,19 +32,38 @@ public class ArtworkPopup {
 	private Button closeButton;
 
 	@FXML
+	private Button editButton;
+
+	@FXML
+	private Button removeButton;
+
+	@FXML
 	private ImageView artworkImageView;
 	
 	private Artwork artwork;
+	private boolean onProfile;
 
-	public ArtworkPopup(Artwork artwork) {
+	/**
+	 * Creates a new ArtworkPopup with the specified artwork and value of if it is on a profile
+	 *
+	 * @param artwork the artwork to display in the popup
+	 * @param onProfile the value of if the popup is being displayed on a profile or not
+	 *
+	 * @precondition none
+	 * @postcondition none
+	 */
+	public ArtworkPopup(Artwork artwork, boolean onProfile) {
 	    this.artwork = artwork;
+	    this.onProfile = onProfile;
 	}
 
 	@FXML
 	void initialize() {
 	    this.titleLabel.setText(this.artwork.getTitle());
-	 //   this.artistLabel.setText(UserManager.getUserManager().getUser(this.artwork.getArtistID()).getUsername());
+	 	this.artistLabel.setText(UserManager.getUserManager().getUser(this.artwork.getArtistID()).getUsername());
 	    this.artworkImageView.setImage(this.artwork.getImage());
+	    this.editButton.setVisible(this.onProfile && UserManager.getUserManager().getUser(this.artwork.getArtistID()).getUsername().equals(User.getUser().getUsername()));
+	    this.removeButton.setVisible(this.onProfile && UserManager.getUserManager().getUser(this.artwork.getArtistID()).getUsername().equals(User.getUser().getUsername()));
 	}
 
 	@FXML
@@ -54,12 +75,22 @@ public class ArtworkPopup {
 
 	@FXML
 	void handleViewArtistProfile(MouseEvent event) {
-		try {
-			Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(User.getUser()), "The Artist's Dream");
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+		Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		currentStage.setUserData(this.artwork.getArtistID());
+		currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
+		currentStage.close();
 	}
+
+
+	@FXML
+	void handleEdit(ActionEvent event) {
+
+	}
+
+	@FXML
+	void handleRemove(ActionEvent event) {
+
+	}
+
 
 }

@@ -14,6 +14,12 @@ import edu.westga.devops.theartistsdreamserver.model.ArtworkManager;
  */
 public class UI {
 
+    /**
+     * ServerCodes Enum
+     *
+     * @author Alexander Schmidt
+     * @version Fall 2021
+     */
     public enum ServerCodes {
         TODO((response) -> new Request("error", null)),
         ADD_TAG(TagManager::addTag),
@@ -37,10 +43,26 @@ public class UI {
             this.action = action;
         }
 
+	/**
+	 * Executes the ServerAction
+	 *
+	 * @param data the data
+	 *
+	 * @precondition none
+	 * @postcondition none
+	 *
+	 * @return a request to execute the data
+	 */
         public Request execute(Object[] data) {
             return this.action.execute(data);
         }
 
+	/**
+	 * ServerAction Interface
+	 *
+	 * @author Alexander Schmidt
+	 * @version Fall 2021
+	 */
         public interface ServerAction {
 
             Request execute(Object[] data);
@@ -48,6 +70,12 @@ public class UI {
         }
     }
 
+    /**
+     * ErrorMessages Class
+     *
+     * @author Alexander Schmidt
+     * @version Fall 2021
+     */
     public static class ErrorMessages {
 
         public static final String SERVER_START = "server failed to start check address";

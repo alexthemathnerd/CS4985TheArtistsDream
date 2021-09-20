@@ -12,13 +12,58 @@ public class Tag {
     private String name;
     private int useCount;
 
+    /**
+     * Creates a new Tag
+     *
+     * @param id the id of the tag
+     * @param name the name of the tag
+     *
+     * @precondition id >= 0 && !name.isEmpty() && name != null
+     * @postcondition getId() == id && getName() == name
+     *
+     * @throws IllegalArgumentException if a precondition is not met
+     */
     public Tag(int id, String name) {
+	    if (id < 0) {
+		    throw new IllegalArgumentException();
+	    }
+	    if (name == null) {
+		    throw new IllegalArgumentException();
+	    }
+	    if (name.isEmpty()) {
+		    throw new IllegalArgumentException();
+	    }
         this.id = id;
         this.name = name;
         this.useCount = 1;
     }
 
+    /**
+     * Creates a new Tag
+     *
+     * @param id the id of the tag
+     * @param name the name of the tag
+     * @param useCount the use count of the tag
+     *
+     * @precondition id >= 0 && !name.isEmpty() && name != null && useCount >= 0
+     * @postcondition getId() == id && getName() == name && getUseCount() == useCount
+     *
+     * @throws IllegalArgumentException if a precondition is not met
+     */
     public Tag(int id, String name, int useCount) {
+            if (id < 0) {
+                    throw new IllegalArgumentException();
+            }
+            if (name == null) {
+                    throw new IllegalArgumentException();
+            }
+            if (name.isEmpty()) {
+                    throw new IllegalArgumentException();
+            }
+
+	    if (useCount < 0) {
+		    throw new IllegalArgumentException();
+	    }
         this.id = id;
         this.name = name;
         this.useCount = useCount;

@@ -10,10 +10,24 @@ import org.zeromq.ZMQ;
 
 import java.util.logging.Level;
 
+/**
+ * Receiver Class
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ */
 public class Receiver extends Thread {
 
     private String address;
 
+    /**
+     * Creates a receiver at the specified address
+     *
+     * @param address the address to set the receiver to
+     *
+     * @precondition none
+     * @postcondition none
+     */
     public Receiver(String address) {
         this.address = address;
     }
@@ -30,7 +44,7 @@ public class Receiver extends Thread {
             Gson gson = new Gson();
             while (!Thread.currentThread().isInterrupted()) {
                 String reply = socket.recvStr(0);
-                TheArtistsDreamServer.LOGGER.info("recived reply: " + reply);
+                TheArtistsDreamServer.LOGGER.info("recived message");
                 Request message;
                 try {
                     Response response = gson.fromJson(reply, Response.class);
@@ -42,7 +56,7 @@ public class Receiver extends Thread {
                 this.delay(1000);
 
                 String json = gson.toJson(message);
-                TheArtistsDreamServer.LOGGER.info("Sending reply: " + json);
+                TheArtistsDreamServer.LOGGER.info("Sending back a reply");
                 socket.send(json);
             }
         }

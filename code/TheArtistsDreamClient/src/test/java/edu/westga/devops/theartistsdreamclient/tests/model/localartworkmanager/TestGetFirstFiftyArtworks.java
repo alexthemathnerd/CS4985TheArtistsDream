@@ -8,5 +8,10 @@ package edu.westga.devops.theartistsdreamclient.tests.model.localartworkmanager;
  */
 public class TestGetFirstFiftyArtworks {
 
+	@Test
+	void testNewLocalArtworkManager() {
+		ArtworkManager testManager = new LocalArtworkManager();
+		assertTrue(testManager.getFirstFiftyArtworks().size() == 0);
+	}
 
 }

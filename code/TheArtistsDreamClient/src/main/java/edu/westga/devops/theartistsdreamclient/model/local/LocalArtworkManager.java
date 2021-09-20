@@ -6,7 +6,6 @@ import edu.westga.devops.theartistsdreamclient.model.Tag;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Local Implementation of Collection Class ArtworkManager
@@ -23,7 +22,7 @@ public class LocalArtworkManager extends ArtworkManager {
 	 * Creates a new Artworks Collection
 	 *
 	 * @precondition none
-	 * @postcondition none
+	 * @postcondition size() == 0
 	 *
 	 */
 	public LocalArtworkManager() {
@@ -36,8 +35,18 @@ public class LocalArtworkManager extends ArtworkManager {
 	}
 
 	@Override
+	public List<Artwork> getFirstFiftyArtworks(int userId) {
+		return null;
+	}
+
+	@Override
 	public List<Artwork> getNextTenArtworks(int startingIndex) {
 		return this.artworks.subList(startingIndex, startingIndex + 10);
+	}
+
+	@Override
+	public List<Artwork> getNextTenArtworks(int startingIndex, int userId) {
+		return null;
 	}
 
 	@Override
@@ -106,14 +115,21 @@ public class LocalArtworkManager extends ArtworkManager {
 		return tagArtworks;
 	}
 
-	@Override
-	public Iterator iterator() {
-		return this.artworks.iterator();
+	/**
+	 * Gets the size
+	 *
+	 * @precondition none
+	 * @postcondition none
+	 *
+	 * @return the size
+	 */
+	public int size() {
+		return this.artworks.size();
 	}
 
 	@Override
-	public int size() {
-		return this.artworks.size();
+	public List<Artwork> getFirstFiftyArtworks(boolean isFollowing) {
+		return null;
 	}
 
 	@Override 

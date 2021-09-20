@@ -4,8 +4,24 @@ import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
 import java.util.*;
 
 
+/**
+ * UserManager Class
+ *
+ * @author Jamia Echols
+ * @version Fall 2021
+ */
 public class UserManager {
 
+    /**
+     * Adds the user
+     *
+     * @param data the data
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return a request to add the user
+     */
     public static Request addUser(Object[] data) {
         String username;
         String email;
@@ -17,19 +33,27 @@ public class UserManager {
         } catch (ClassCastException e) {
             return new Request("Invalid Format");
         }
-        
-        User user = new User(TheArtistsDreamServer.USERS.size(), email, username, password);
-        int count = 0;
-        for (User currUser : TheArtistsDreamServer.USERS) {
-            if (user.getEmail().equals(currUser.getEmail())) {
-                return new Request(count);
+
+        for (User aUser: TheArtistsDreamServer.USERS) {
+            if (email.equals(aUser.getEmail())) {
+                return new Request("User alredy Exist", -1);
             }
-            count++;
         }
+        User user = new User(TheArtistsDreamServer.USERS.size(), email, username, password, null);
         TheArtistsDreamServer.USERS.add(user);
         return new Request(TheArtistsDreamServer.USERS.size() - 1);
     }
 
+    /**
+     * Gets the user
+     *
+     * @param data the data
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return a request to get the user
+     */
     public static Request getUser(Object[] data) {
         int userId;
         try {
@@ -42,9 +66,19 @@ public class UserManager {
                 return new Request(user);
             }
         }
-        return new Request(null);
+        return new Request("Can't find user");
     }
 
+    /**
+     * Finds the user
+     *
+     * @param data the data
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return a request to find the user
+     */
     public static Request findUser(Object[] data) {
         String username;
         String password;
@@ -77,5 +111,5 @@ public class UserManager {
         }
         return new Request(users);
     }
-     
+
 }
