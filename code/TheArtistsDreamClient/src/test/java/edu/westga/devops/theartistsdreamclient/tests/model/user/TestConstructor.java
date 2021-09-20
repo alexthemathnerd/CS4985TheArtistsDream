@@ -1,78 +1,60 @@
 package edu.westga.devops.theartistsdreamclient.tests.model.user;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import edu.westga.devops.theartistsdreamclient.model.User;
 
 import org.junit.jupiter.api.Test;
 
-import edu.westga.devops.theartistsdreamclient.model.User;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 /**
- * Test the constructor for the local user
- * 
- * @author Jamia Echols
+ * JUnit Test Case for User Constructor
+ *
+ * @author Aznella Joseph
  * @version Fall 2021
  */
 public class TestConstructor {
-    
-    @Test
-    public void testNegativeId() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new User(-1, "test@gmail.com","test","test1");
-        });
-    }
 
-    @Test
-    public void testNullUsername() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new User(0, "test@gmail.com",null,"test1");
-        });
-    }   
-     
-    @Test
-    public void testEmptyUsername() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new User(0, "test@gmail.com","","test1");
-        });
-    }    
-    
-    @Test
-    public void testNullEmail() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new User(0, null,"test","test1");
-        });
-    }    
-    
-    @Test
-    public void testEmptyEmail() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new User(0, "","test","test1");
-        });
-    }    
-    
-    @Test
-    public void testNullPassword() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new User(0, "test@gmail.com","test",null);
-        });
-    }    
-    
-    @Test
-    public void testEmptyPassword() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new User(0, "test@gmail.com","test","");
-        });
-    }
+	@Test
+	void testNegativeUserId() {
+		assertThrows(IllegalArgumentException.class, () -> new User(-1, "test", "test", "test", new byte[0]));
+	}
 
-    @Test
-    public void testValidUser() {
-        User testUser = new User(0, "test@gmail.com","test","test1");
-        assertAll(() -> {
-            assertEquals("test", testUser.getUsername());
-            assertEquals(0, testUser.getUserId());
-            assertEquals("test@gmail.com", testUser.getEmail());
-            assertEquals("test1", testUser.getPassword());
-        });
-    }
+	@Test
+	void testNullEmail() {
+		assertThrows(IllegalArgumentException.class, () -> new User(1, null, "test", "test", new byte[0]));
+	}
+
+	@Test
+	void testEmptyEmail() {
+		assertThrows(IllegalArgumentException.class, () -> new User(1, "", "test", "test", new byte[0]));
+	}
+
+	@Test
+	void testNullUsername() {
+		assertThrows(IllegalArgumentException.class, () -> new User(1, "test", null, "test", new byte[0]));
+	}
+
+	@Test
+	void testEmptyUsername() {
+		assertThrows(IllegalArgumentException.class, () -> new User(1, "test", "", "test", new byte[0]));
+	}
+
+	@Test
+	void testNullPassword() {
+		assertThrows(IllegalArgumentException.class, () -> new User(1, "test", "test", null, new byte[0]));
+	}
+
+	@Test
+	void testEmptyPassword() {
+		assertThrows(IllegalArgumentException.class, () -> new User(1, "test", "test", "", new byte[0]));
+	}
+
+	@Test
+	void testValidParameters() {
+		User testUser = new User(1, "test email", "test username", "test password", new byte[0]);
+		assertAll(() -> assertEquals(1, testUser.getUserId()), () -> assertEquals("test email", testUser.getEmail()), () -> assertEquals("test username", testUser.getUsername()), () -> assertEquals("test password", testUser.getPassword()), () -> assertEquals(0, testUser.getFollowerIds().size()), () -> assertEquals(0, testUser.getFollowingIds().size()));
+		
+	}
 }

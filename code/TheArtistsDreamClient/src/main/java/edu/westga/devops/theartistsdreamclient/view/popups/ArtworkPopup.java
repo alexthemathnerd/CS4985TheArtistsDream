@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.control.TextField;
 import javafx.stage.WindowEvent;
 import javafx.stage.Stage;
 import javafx.scene.Node;
@@ -13,6 +14,7 @@ import javafx.scene.Node;
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.UserManager;
 import edu.westga.devops.theartistsdreamclient.model.User;
+import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
 
 /**
  * Controller for the ArtworkPopup
@@ -23,7 +25,7 @@ import edu.westga.devops.theartistsdreamclient.model.User;
 public class ArtworkPopup {
 
 	@FXML
-	private Label titleLabel;
+	private TextField titleTextField;
 
 	@FXML
 	private Label artistLabel;
@@ -59,7 +61,7 @@ public class ArtworkPopup {
 
 	@FXML
 	void initialize() {
-	    this.titleLabel.setText(this.artwork.getTitle());
+	    this.titleTextField.setText(this.artwork.getTitle());
 	 	this.artistLabel.setText(UserManager.getUserManager().getUser(this.artwork.getArtistID()).getUsername());
 	    this.artworkImageView.setImage(this.artwork.getImage());
 	    this.editButton.setVisible(this.onProfile && UserManager.getUserManager().getUser(this.artwork.getArtistID()).getUsername().equals(User.getUser().getUsername()));
@@ -84,13 +86,17 @@ public class ArtworkPopup {
 
 	@FXML
 	void handleEdit(ActionEvent event) {
-
+		this.titleTextField.setEditable(true);
 	}
 
 	@FXML
 	void handleRemove(ActionEvent event) {
-
+		ArtworkManager.getArtworkManager().removeArtwork(this.artwork.getID());
 	}
 
+	@FXML
+	void handleChangeTitle(ActionEvent event) {
+		this.artwork.setTitle(this.titleTextField.getText());
+	}
 
 }
