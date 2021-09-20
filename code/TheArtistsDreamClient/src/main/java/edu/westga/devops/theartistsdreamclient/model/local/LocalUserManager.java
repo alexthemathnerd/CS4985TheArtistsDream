@@ -1,5 +1,10 @@
 package edu.westga.devops.theartistsdreamclient.model.local;
 
+import edu.westga.devops.theartistsdreamclient.model.User;
+import edu.westga.devops.theartistsdreamclient.model.UserManager;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
+import java.util.*;
+
 public class LocalUserManager extends UserManager {
 
 	private List<User> users;
@@ -54,6 +59,17 @@ public class LocalUserManager extends UserManager {
 		return this.size() - 1;
 	}
 	
+	@Override
+	public ArrayList<User> searchForUsers(String searchTerm) {
+		ArrayList<User> searchedUsers = new ArrayList<User>();
+		for (User user : this.users) {
+			if (user.getUsername().contains(searchTerm)) {
+				searchedUsers.add(user);
+			}
+		}
+		return searchedUsers;
+	}
+
 	public int size() {
 		return this.users.size();
 	}

@@ -7,6 +7,7 @@ import edu.westga.devops.theartistsdreamclient.view.RecommendedPage;
 import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
 import edu.westga.devops.theartistsdreamclient.view.popups.FilterPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
+import edu.westga.devops.theartistsdreamclient.viewmodel.*;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SetProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -86,7 +87,11 @@ public class Header extends HBox {
     public void initialize() {
         this.searchComboBox.setEditable(true);
         this.searchComboBox.getEditor().textProperty().addListener((obs, oldText, newText) -> {
-            this.searchComboBOx.setItems(this.viewModel.searchForUsers(newText));
+            if (newText.charAt(0) == '@') {
+                this.searchComboBox.setItems(this.viewModel.searchForUsers(newText));
+            } else {
+                this.searchComboBox.setItems(this.viewModel.searchForArtworks(newText));
+            }
         });
     }
 

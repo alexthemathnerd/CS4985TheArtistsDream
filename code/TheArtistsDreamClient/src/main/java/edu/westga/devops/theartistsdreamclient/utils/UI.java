@@ -10,6 +10,7 @@ public class UI {
         GET_USER,
         SEARCH_USERS,
 	    FIND_USER,
+        SEARCH_ARTWORKS,
         GET_FIRST_FIFTY_ARTWORKS,
         GET_NEXT_TEN_ARTWORKS,
         GET_ARTWORK,

@@ -2,98 +2,77 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="CENTER" maxHeight="-Infinity" maxWidth="Infinity" prefHeight="100.0" spacing="20.0"
-         style="-fx-background-color: #1e1e24; -fx-effect: dropshadow(gaussian, black, 20, 0.5, 0, 0);"
-         type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="CENTER" maxHeight="-Infinity" maxWidth="Infinity" prefHeight="100.0" spacing="20.0" style="-fx-background-color: #1e1e24; -fx-effect: dropshadow(gaussian, black, 20, 0.5, 0, 0);" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <MenuButton fx:id="navMenuButton" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0"
-                    mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0"
-                    style="-fx-font-weight: BOLD; -fx-background-color: #2d2c32; -fx-background-radius: 50%;"
-                    stylesheets="@header-design.css" textFill="#e01a4f" HBox.hgrow="NEVER">
+        <MenuButton fx:id="navMenuButton" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-font-weight: BOLD; -fx-background-color: #2d2c32; -fx-background-radius: 50%;" stylesheets="@header-design.css" textFill="#e01a4f" HBox.hgrow="NEVER">
             <items>
-                <MenuItem fx:id="recommendedMenuItem" mnemonicParsing="false" onAction="#handleRecommended"
-                          style="-fx-text-fill: #e01a4f; fx-padding: 2;" text="Recommended"/>
-                <MenuItem fx:id="followingMenuItem" mnemonicParsing="false" onAction="#handleFollowing"
-                          style="-fx-text-fill: #e01a4f; -fx-text-alignment: center;" text="Following"/>
-                <MenuItem fx:id="inSearchOfMenuItem" mnemonicParsing="false" onAction="#handleInSearchOf"
-                          style="-fx-text-fill: #e01a4f; -fx-text-alignment: center;" text="In Search Of"/>
+                <MenuItem fx:id="recommendedMenuItem" mnemonicParsing="false" onAction="#handleRecommended" style="-fx-text-fill: #e01a4f; fx-padding: 2;" text="Recommended" />
+                <MenuItem fx:id="followingMenuItem" mnemonicParsing="false" onAction="#handleFollowing" style="-fx-text-fill: #e01a4f; -fx-text-alignment: center;" text="Following" />
+                <MenuItem fx:id="inSearchOfMenuItem" mnemonicParsing="false" onAction="#handleInSearchOf" style="-fx-text-fill: #e01a4f; -fx-text-alignment: center;" text="In Search Of" />
             </items>
             <font>
-                <Font size="13.0"/>
+                <Font size="13.0" />
             </font>
             <graphic>
                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../icons/nav-icon.png"/>
+                        <Image url="@../icons/nav-icon.png" />
                     </image>
                 </ImageView>
             </graphic>
         </MenuButton>
-        <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS"/>
-        <ComboBox fx:id="searchComboBox" prefHeight="40.0" promptText="SEARCH"
-                   style="-fx-background-color: #2d2c32; -fx-background-radius: 20; -fx-border-radius: 20; -fx-text-fill: #e01a4f; -fx-prompt-text-fill: #DF194E;"
-                   HBox.hgrow="ALWAYS"/>
-        <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false"
-                onAction="#handleFilter" prefHeight="40.0" prefWidth="40.0" stylesheets="@header-design.css"
-                HBox.hgrow="NEVER">
+        <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+        <ComboBox fx:id="searchComboBox" editable="true" prefHeight="40.0" prefWidth="131.0" promptText="SEARCH" style="-fx-background-color: #2d2c32; -fx-background-radius: 20; -fx-border-radius: 20; -fx-text-fill: #e01a4f; -fx-prompt-text-fill: #DF194E;" styleClass="combo-box" stylesheets="@header-design.css" HBox.hgrow="ALWAYS" />
+        <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleFilter" prefHeight="40.0" prefWidth="40.0" stylesheets="@header-design.css" HBox.hgrow="NEVER">
             <graphic>
                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../icons/filter-icon.png"/>
+                        <Image url="@../icons/filter-icon.png" />
                     </image>
                 </ImageView>
             </graphic>
         </Button>
-        <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false"
-                onAction="#handleSearch" prefHeight="40.0" prefWidth="40.0" stylesheets="@header-design.css"
-                HBox.hgrow="NEVER">
+        <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="40.0" prefWidth="40.0" stylesheets="@header-design.css" HBox.hgrow="NEVER">
             <graphic>
                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../icons/search-icon.png"/>
+                        <Image url="@../icons/search-icon.png" />
                     </image>
                 </ImageView>
             </graphic>
         </Button>
-        <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS"/>
-        <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false"
-                onAction="#handleLogout" prefHeight="40.0" prefWidth="40.0" stylesheets="@header-design.css"
-                HBox.hgrow="NEVER">
+        <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+        <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="40.0" prefWidth="40.0" stylesheets="@header-design.css" HBox.hgrow="NEVER">
             <graphic>
-                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true"/>
+                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
             </graphic>
         </Button>
-        <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false"
-                onAction="#handleMessages" prefHeight="40.0" prefWidth="40.0" stylesheets="@header-design.css"
-                HBox.hgrow="NEVER">
+        <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleMessages" prefHeight="40.0" prefWidth="40.0" stylesheets="@header-design.css" HBox.hgrow="NEVER">
             <graphic>
                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../icons/msg-icon.png"/>
+                        <Image url="@../icons/msg-icon.png" />
                     </image>
                 </ImageView>
             </graphic>
         </Button>
-        <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false"
-                onAction="#handleViewProfile" prefHeight="40.0" prefWidth="40.0" stylesheets="@header-design.css"
-                HBox.hgrow="NEVER">
+        <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleViewProfile" prefHeight="40.0" prefWidth="40.0" stylesheets="@header-design.css" HBox.hgrow="NEVER">
             <graphic>
-                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true"/>
+                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
             </graphic>
         </Button>
     </children>
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
 </fx:root>

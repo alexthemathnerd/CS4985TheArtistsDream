@@ -48,10 +48,10 @@ public class NetworkUserManager extends UserManager {
     public User findUser(String username, String password) {
         Type type = new TypeToken<Response<User>>() {
         }.getType();
-        Response<User> response = this.communicator.request(new Request(UI.ServerCodes.CHECK_FOR_USER, new Object[]{username, password}), type);
+        Response<User> response = this.communicator.request(new Request(UI.ServerCodes.FIND_USER, new Object[]{username, password}), type);
         if (response.getError() != null) {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
-            return false;
+            return null;
         }
         return response.getData();
     }
@@ -60,13 +60,14 @@ public class NetworkUserManager extends UserManager {
     public int addUser(String username, String email, String password) {
         Type type = new TypeToken<Integer>() {
         }.getType();
-        Response<Double> response = this.communicator.request(new Request(UI.ServerCodes.ADD_USER, new Object[]{username, email, password}));
+        Response<Integer> response = this.communicator.request(new Request(UI.ServerCodes.ADD_USER, new Object[]{username, email, password}));
         if (response.getError() != null) {
             return -1;
         }
         return response.getData();
     }
 
+    @Override
     public ArrayList<User> searchForUsers(String username) {
         Type type = new TypeToken<Integer> () {
         }.getType();
@@ -77,14 +78,8 @@ public class NetworkUserManager extends UserManager {
         return response.getData();
     }
 
-    @Override
     public boolean checkForUser(int userId) {
         // TODO Auto-generated method stub
         return false;
     }
-
-    }   
-
-
-    
-}
+}   

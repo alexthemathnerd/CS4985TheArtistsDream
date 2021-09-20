@@ -49,7 +49,15 @@ public abstract class UserManager {
 	 */
 	public abstract int addUser(String username, String password, String email);
 	
-
+	/**
+	 * Gets users that match the term
+	 * 
+	 * @precondition searchTerm != null && search is not empty
+	 * @postcondition none
+	 * 
+	 * @return the users that match the search
+	 */
+	public abstract ArrayList<User> searchForUsers(String searchTerm);
     /**
      * Gets the singleton of the user manager
      *

@@ -29,7 +29,7 @@ public class LoginViewModel {
         this.errorLabelStringProperty = new SimpleStringProperty("");
         this.userManager = new NetworkUserManager();
         //this.userManager.loadLocalUsers();
-	this.userManager.addUser("admin", "admin@a.com", "admin");
+	    //this.userManager.addUser("admin", "admin@a.com", "admin");
     }
 
     public StringProperty errorLabelStringProperty() {
@@ -71,7 +71,7 @@ public class LoginViewModel {
     }
 
     public User getUser() {
-        return this.userManager.getUser(this.usernameStringProperty.get(), this.passwordStringProperty.get());
+        return this.userManager.findUser(this.usernameStringProperty.get(), this.passwordStringProperty.get());
     }
 
     public boolean validateCreateAccount() {

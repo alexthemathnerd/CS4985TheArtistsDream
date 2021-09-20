@@ -115,5 +115,16 @@ public class LocalArtworkManager extends ArtworkManager {
 	public int size() {
 		return this.artworks.size();
 	}
+
+	@Override 
+	public List<Artwork> searchForArtworks(String searchTerm) {
+		List<Artwork> searchedArtworks = new ArrayList<Artwork>();
+		for (Artwork artwork: this.artworks) {
+			if (artwork.getTitle().contains(searchTerm)) {
+				searchedArtworks.add(artwork);
+			}
+		}
+		return searchedArtworks;
+	}
 		
 }

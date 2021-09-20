@@ -146,4 +146,6 @@ public abstract class ArtworkManager implements Iterable<Artwork> {
 
 	public abstract List<Artwork> getArtworksOfTags(List<Tag> tags);
 
+	public abstract List<Artwork> searchForArtworks(String searchTerm);
+
 }
