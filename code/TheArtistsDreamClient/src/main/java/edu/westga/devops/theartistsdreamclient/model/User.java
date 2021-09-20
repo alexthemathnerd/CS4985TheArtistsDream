@@ -161,6 +161,12 @@ public class User {
         return this.profilePic;
     }
 
+    /**
+     * Gets the ids of the followers
+     * 
+     * @precondition none
+     * @postcondition none
+     */
     public List<Integer> getFollowerIds() {
         return new ArrayList<>();
     }

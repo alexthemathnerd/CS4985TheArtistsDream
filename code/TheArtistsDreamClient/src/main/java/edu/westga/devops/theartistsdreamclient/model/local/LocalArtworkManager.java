@@ -115,6 +115,8 @@ public class LocalArtworkManager extends ArtworkManager {
 		return tagArtworks;
 	}
 
+
+
 	/**
 	 * Gets the size
 	 *
@@ -141,6 +143,16 @@ public class LocalArtworkManager extends ArtworkManager {
 			}
 		}
 		return searchedArtworks;
+	}
+
+	@Override 
+	public Artwork retrieveSearchedArtwork(String title) {
+		for (Artwork artwork: this.artworks) {
+			if (artwork.getTitle().equals(title)) {
+				return artwork;
+			}
+		}
+		return null;
 	}
 		
 }

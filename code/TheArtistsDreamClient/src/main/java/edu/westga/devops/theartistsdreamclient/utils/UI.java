@@ -23,6 +23,7 @@ public class UI {
         SEARCH_USERS,
         RETRIEVE_USER,
 	    FIND_USER,
+        RETRIEVE_ARTWORK,
         SEARCH_ARTWORKS,
         GET_FIRST_FIFTY_ARTWORKS,
         GET_NEXT_TEN_ARTWORKS,
@@ -59,6 +60,7 @@ public class UI {
         public static final String PASSWORD_NULL = "Password cannot be null";
         public static final String PASSWORD_EMPTY = "Password cannot be empty";
         public static final String USER_NULL = "User cannot be null";
+        public static final String ARTWORK_NOT_FOUND = "Artwork not found";
     }
 
     /**

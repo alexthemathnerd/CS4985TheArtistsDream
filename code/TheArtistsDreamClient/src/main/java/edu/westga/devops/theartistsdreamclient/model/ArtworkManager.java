@@ -181,6 +181,24 @@ public abstract class ArtworkManager {
      */
     public abstract List<Artwork> getArtworksOfTags(List<Tag> tags);
 
+	/**
+     * Gets the artworks specified by the search term
+     *
+     * @precondition searchTerm != null && !searchTerm.isEmpty()
+     * @postcondition none
+     *
+     * @return the artworks specified by the searchTerm
+     */
 	public abstract List<Artwork> searchForArtworks(String searchTerm);
+
+	/**
+     * Gets the artwork specified by the title
+     *
+     * @precondition title != null && !title.isEmpty()
+     * @postcondition none
+     *
+     * @return the artworks specified by the title
+     */
+	public abstract Artwork retrieveSearchedArtwork(String title);
 
 }
