@@ -26,6 +26,8 @@ public class UI {
         ADD_USER(UserManager::addUser),
         GET_USER(UserManager::getUser),
 	    FIND_USER(UserManager::findUser),
+        RETRIEVE_USER(UserManager::retrieveSearchedUser),
+        RETRIEVE_ARTWORK(ArtworkManager::retrieveSearchedArtwork),
         GET_TOP_TAGS(TagManager::getTopTags),
         SEARCH_USERS(UserManager::searchForUser),
         SEARCH_ARTWORKS(ArtworkManager::searchForArtworks),

@@ -85,6 +85,14 @@ public class User {
         return this.userId;
     }
 
+    /**
+     * Gets the bytes of the profile pic
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return the bytes of the profile pic
+     */
     public byte[] getProfilePic() {
         return this.profilePic;
     }

@@ -331,6 +331,16 @@ public class ArtworkManager {
         return new Request(tagArtworks);
     }
 
+    /**
+     * Gets the artworks with titles containing the searchterm specified by the data
+     *
+     * @param data the data specifying the searchTerm
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return a request to get the artworks with titles conatining the searchterm specified by the data
+     */
     public static Request searchForArtworks(Object[] data) {
         String searchTerm;
         try {
@@ -338,7 +348,6 @@ public class ArtworkManager {
         } catch (Exception e) {
             return new Request("Invalid Format");
         }
-
         List<Artwork> searchedArtworks = new ArrayList<>();
         for (Artwork aArtwork: TheArtistsDreamServer.ARTWORKS) {
             if (aArtwork.getTitle().contains(searchTerm)) {
@@ -346,6 +355,31 @@ public class ArtworkManager {
             }
         }
         return new Request(searchedArtworks);
+    }
+
+    /**
+     * Gets the artwork with a title matching the title specified by the data
+     *
+     * @param data the data specifying the title
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return a request to get the artwork with a title matching the title specified by the data
+     */
+    public static Request retrieveSearchedArtwork(Object[] data) {
+        String title;
+        try {
+            title = (String) data[0];
+        } catch (Exception e) {
+            return new Request("Invalid Format");
+        }
+        for (Artwork aArtwork: TheArtistsDreamServer.ARTWORKS) {
+            if (aArtwork.getTitle().equals(title)) {
+                return new Request(aArtwork);
+            }
+        }
+        return new Request(null);
     }
 
 }

@@ -96,6 +96,16 @@ public class UserManager {
         return new Request(null);
     }
 
+    /**
+     * Finds the users with usernames containing the searchTerm specified by the data
+     *
+     * @param data the data
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return a request to find the users
+     */
     public static Request searchForUser(Object[] data) {
         String username;
         try {
@@ -103,7 +113,7 @@ public class UserManager {
         } catch (ClassCastException e) {
             return new Request("Invalid Format");
         }
-        ArrayList<User> users = new ArrayList<User>();
+        List<User> users = new ArrayList<User>();
         for (User user : TheArtistsDreamServer.USERS) {
             if (user.getUsername().contains(username)) {
                 users.add(user);
@@ -112,4 +122,28 @@ public class UserManager {
         return new Request(users);
     }
 
+    /**
+     * Finds the user with username matching the username specified by the data
+     *
+     * @param data the data
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return a request to find the user
+     */
+    public static Request retrieveSearchedUser(Object[] data) {
+        String username;
+        try {
+            username = (String) data[0];
+        } catch (ClassCastException e) {
+            return new Request("Invalid Format");
+        }
+        for (User user : TheArtistsDreamServer.USERS) {
+            if (user.getUsername().equals(username)) {
+                return new Request(user);
+            }
+        }
+        return new Request(null);
+    }    
 }
