@@ -113,6 +113,8 @@ public class LoginViewModel {
      *
      * @precondition usernameStringProperty().get() != "" passwordStringProperty().get() != ""
      * @postcondition none
+     * 
+     * @return the user
      */
     public User getUser() {
         return UserManager.getUserManager().findUser(this.usernameStringProperty.get(), this.passwordStringProperty.get());
