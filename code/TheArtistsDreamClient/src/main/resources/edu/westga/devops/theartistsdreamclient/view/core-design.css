@@ -10,11 +10,26 @@
     -fx-text-fill: #E01A4F;
 }
 
-#image {
+.text-area {
+    -fx-background-color: #2C2C32;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-prompt-text-fill: #F83267;
+    -fx-text-fill: #E01A4F;
+}
 
+.text-area .content {
+    -fx-background-color: #2C2C32;
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: #2C2C32;
+    -fx-border-color: #2C2C32;
+}
+
+#image {
      -fx-background-radius: 20;
      -fx-border-radius: 20;
-
 }
 
 .label {

@@ -75,7 +75,7 @@ public class ArtworksPane extends ScrollPane {
         this.viewModel.artworksProperty().addListener((observable, oldValue, newValue) -> {
             this.artworksTilePane.getChildren().clear();
             for (Artwork artwork : newValue) {
-                this.artworksTilePane.getChildren().add(new ArtworkTile(artwork, true));
+                this.artworksTilePane.getChildren().add(new ArtworkTile(artwork, this.onProfileProperty.get()));
             }
         });
     }

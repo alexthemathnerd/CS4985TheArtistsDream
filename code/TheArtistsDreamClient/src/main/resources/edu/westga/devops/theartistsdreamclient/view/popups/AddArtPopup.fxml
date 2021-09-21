@@ -14,8 +14,11 @@
    <children>
       <VBox alignment="TOP_CENTER" layoutX="200.0" layoutY="14.0" prefHeight="500.0" prefWidth="400.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField fx:id="titleTextField" prefHeight="40.0" />
-            <TextArea fx:id="tagsTextArea" prefHeight="80.0" prefWidth="400.0" />
+            <TextField fx:id="titleTextField" alignment="CENTER" prefHeight="40.0" promptText="TITLE" />
+            <TextArea fx:id="tagsTextArea" prefHeight="80.0" prefWidth="400.0" promptText="ADD TAGS WITH #" wrapText="true">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></TextArea>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
                <children>
                   <ImageView fx:id="addedImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />

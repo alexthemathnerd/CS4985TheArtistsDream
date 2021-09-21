@@ -46,14 +46,14 @@ public class NetworkTagManager extends TagManager {
 
     @Override
     public int addTag(String name) {
-        Type type = new TypeToken<Integer>() {
+        Type type = new TypeToken<Response<Double>>() {
         }.getType();
-        Response<Integer> response = this.communicator.request(new Request(UI.ServerCodes.ADD_TAG, new Object[]{name}));
+        Response<Double> response = this.communicator.request(new Request(UI.ServerCodes.ADD_TAG, new Object[]{name}));
         if (response.getError() != null) {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
             return -1;
         }
-        return response.getData();
+        return (response.getData()).intValue();
     }
 
     @Override
