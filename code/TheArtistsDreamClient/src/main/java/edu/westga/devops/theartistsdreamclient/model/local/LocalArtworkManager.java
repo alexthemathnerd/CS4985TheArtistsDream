@@ -3,6 +3,7 @@ package edu.westga.devops.theartistsdreamclient.model.local;
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -143,6 +144,9 @@ public class LocalArtworkManager extends ArtworkManager {
 
 	@Override 
 	public List<Artwork> searchForArtworks(String searchTerm) {
+		if (searchTerm == null) {
+			throw new IllegalArgumentException(UI.ErrorMessages.SEARCH_TERM_NULL);
+		}
 		List<Artwork> searchedArtworks = new ArrayList<Artwork>();
 		for (Artwork artwork: this.artworks) {
 			if (artwork.getTitle().contains(searchTerm)) {
@@ -154,6 +158,12 @@ public class LocalArtworkManager extends ArtworkManager {
 
 	@Override 
 	public Artwork retrieveSearchedArtwork(String title) {
+		if (title == null) {
+			throw new IllegalArgumentException(UI.ErrorMessages.TITLE_NULL);
+		}
+		if (title == null) {
+			throw new IllegalArgumentException(UI.ErrorMessages.TITLE_EMPTY);
+		}
 		for (Artwork artwork: this.artworks) {
 			if (artwork.getTitle().equals(title)) {
 				return artwork;

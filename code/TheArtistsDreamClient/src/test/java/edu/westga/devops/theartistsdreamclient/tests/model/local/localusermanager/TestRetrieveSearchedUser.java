@@ -10,44 +10,48 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 /**
- * JUnit test case for LocalUserManager method search for Users
+ * JUnit test case for LocalUserManager method retrieveSearchedUser
  * 
  * @author Jamia Echols
  * @version Fall 2021
  */
-public class TestSearchForUser {
+public class TestRetrieveSearchedUser {
     @Test
-    void testNullSearchTerm() {
+    void testNullUsername() {
         LocalUserManager testManager = new LocalUserManager();
-		assertThrows(IllegalArgumentException.class, () -> testManager.searchForUsers(null));
+		assertThrows(IllegalArgumentException.class, () -> testManager.retrieveSearchedUser(null));
     }
 
     @Test
-    void testSearchEmptyManager() {
+    void testEmptyUsername() {
         LocalUserManager testManager = new LocalUserManager();
-        List<User> testSearchedUsers = testManager.searchedForUsers("a");
-        assertEquals(0, testSearchedUsers.size());
+		assertThrows(IllegalArgumentException.class, () -> testManager.retrieveSearchedUser(""));
     }
 
     @Test
-    void testSearchNoUsersFound() {
+    void testRetieveSearchedUserEmptyManager() {
+        LocalUserManager testManager = new LocalUserManager();
+        assertEquals(null, testManager.retrieveSearchedUser("test"));
+    }
+
+    @Test
+    void testSearchedUserNotFound() {
+        LocalUserManager testManager = new LocalUserManager();
+        testManager.add("test1","test1","test1");
+        testManager.add("test2","test2","test2");
+        testManager.add("test3","test3","test3");
+        assertEquals(null, testManager.retrieveSearchedUser("test"));
+    }
+
+    @Test
+    void testSearchedUserFound() {
         LocalUserManager testManager = new LocalUserManager();
         testManager.add("test","test","test");
         testManager.add("test1","test1","test1");
         testManager.add("test2","test2","test2");
-        List<User> testSearchedUsers = testManager.searchedForUsers("a");
-        assertEquals(0, testSearchedUsers.size());
-    }
-
-    @Test
-    void testSearchUsersFound() {
-        LocalUserManager testManager = new LocalUserManager();
-        testManager.add("test","test","test");
-        testManager.add("test1","test1","test1");
-        testManager.add("test2","test2","test2");
-        List<User> testSearchedUsers = testManager.searchedForUsers("test");
-        assertEquals(3, testSearchedUsers.size()); 
+        assertNotNull(testManager.retrieveSearchedUser("test"));
     }
 }
