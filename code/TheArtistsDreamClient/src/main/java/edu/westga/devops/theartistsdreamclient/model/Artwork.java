@@ -3,16 +3,7 @@ package edu.westga.devops.theartistsdreamclient.model;
 import javafx.scene.image.Image;
 
 import java.util.List;
-import java.time.LocalDate;
 import java.io.ByteArrayInputStream;
-import java.util.Arrays;
-
-import javafx.scene.image.WritableImage;
-import javafx.scene.image.PixelBuffer;
-
-import java.nio.ByteBuffer;
-
-import javafx.scene.image.PixelFormat;
 
 /**
  * Model Class Artwork
@@ -35,9 +26,11 @@ public class Artwork {
      *
      * @param image the image of the artwork
      * @param title the title of the artwork
-     * @param artistUsername the artist of the artwork's username
-     * @param tags the tags of the artwork
+     * @param artistID the artist of the artwork's ID
+     * @param tagIDs the ids of the tags of the artwork
      * @param id the id of the artwork
+     * @param date the date the artwork was posted
+     * 
      * @throws IllegalArgumentException if a precondition is not met
      * @precondition image != null && !title.isEmpty() && title != null && artistID >= 0&& tagIDs != null && id >= 0 &&
      * date != null
@@ -67,7 +60,7 @@ public class Artwork {
             throw new IllegalArgumentException();
         }
         this.image = image;
-	this.imageData = new byte[0];
+	    this.imageData = new byte[0];
         this.title = title;
         this.artistID = artistID;
         this.tagIDs = tagIDs;
@@ -80,8 +73,9 @@ public class Artwork {
      *
      * @param imageData the image data of the artwork
      * @param title the title of the artwork
-     * @param artistUsername the artist of the artwork's username
-     * @param tags the tags of the artwork
+     * @param artistID the artist of the artwork's ID
+     * @param tagIDs the ids of the tags of the artwork
+     * @param date the date the artwork was posted
      * @param id the id of the artwork
      * @throws IllegalArgumentException if a precondition is not met
      * @precondition imageData != null && !title.isEmpty() && title != null && artistID >= 0&& tagIDs != null && id >= 0 &&
@@ -194,6 +188,8 @@ public class Artwork {
      *
      * @precondition newTagIDs != null
      * @postcondition getTagIDs() == newTagIDs
+     * 
+     * @param newTagIDs the tag Ids for the new tags on the artwork
      */
     public void setTags(List<Integer> newTagIDs) {
         if (newTagIDs == null) {
@@ -207,6 +203,8 @@ public class Artwork {
      *
      * @precondition newTitle != null && !newTitle.isEmpty()
      * @postcondition getTitle() == newTitle
+     * 
+     * @param newTitle The new title for the artwork
      */
     public void setTitle(String newTitle) {
         if (newTitle == null) {

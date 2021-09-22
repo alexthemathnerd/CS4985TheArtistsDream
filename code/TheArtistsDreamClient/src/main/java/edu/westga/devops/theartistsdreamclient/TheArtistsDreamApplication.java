@@ -5,7 +5,6 @@ import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.UserManager;
 import edu.westga.devops.theartistsdreamclient.model.TagManager;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalArtworkManager;
-import edu.westga.devops.theartistsdreamclient.model.local.LocalTagManager;
 import edu.westga.devops.theartistsdreamclient.model.network.NetworkTagManager;
 import edu.westga.devops.theartistsdreamclient.model.network.NetworkArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.network.NetworkUserManager;
@@ -20,14 +19,12 @@ import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
-import java.time.LocalDate;
 
 /**
  * Handle Setting up The Artist's Dream Application.
@@ -82,10 +79,10 @@ public class TheArtistsDreamApplication extends Application {
         TagManager.setTagManager(tagManager);
         //setupLocalTagManager();
         //setupLocalArtworkManager();
-	NetworkArtworkManager artworkManager = new NetworkArtworkManager();
-	ArtworkManager.setArtworkManager(artworkManager);
-	NetworkUserManager userManager = new NetworkUserManager();
-	UserManager.setUserManager(userManager);
+	    NetworkArtworkManager artworkManager = new NetworkArtworkManager();
+	    ArtworkManager.setArtworkManager(artworkManager);
+	    NetworkUserManager userManager = new NetworkUserManager();
+	    UserManager.setUserManager(userManager);
     }
 
 //    private static void setupLocalTagManager() {

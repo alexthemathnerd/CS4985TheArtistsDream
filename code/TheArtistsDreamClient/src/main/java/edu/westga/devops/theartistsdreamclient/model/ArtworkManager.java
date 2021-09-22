@@ -1,7 +1,6 @@
 package edu.westga.devops.theartistsdreamclient.model;
 
 import java.util.List;
-import edu.westga.devops.theartistsdreamclient.model.Artwork;
 
 /**
  * ArtworkManager Collection Abstract Class
@@ -90,7 +89,11 @@ public abstract class ArtworkManager {
 	 * @precondition artwork != null
 	 * @postcondition getArtworks().size() == getArtworks().size() + 1 @prev
 	 *
-	 * @param artwork the artwork to add
+	 * @param imageData the image data of the artwork
+     * @param title the title of the artwork
+     * @param artistID the artist of the artwork's ID
+     * @param tagIDs the ids of the tags of the artwork
+     * @param date the date the artwork was posted
 	 *
 	 * @return true if the artwork was successfully added, false otherwise
 	 */
@@ -116,7 +119,7 @@ public abstract class ArtworkManager {
 	 *
 	 * @param id the id of the artwork to edit
 	 * @param newTitle the new title of the artwork
-	 * @param newTags the new tags of the artwork
+	 * @param newTagIDs the IDs of the new tags of the artwork
 	 *
 	 * @return true if the artwork was successfully edited, false otherwise
 	 */
@@ -177,6 +180,8 @@ public abstract class ArtworkManager {
      * @precondition tags != null
      * @postcondition none
      *
+	 * @param tags The list of tags
+	 * 
      * @return the artworks specified by the tags
      */
     public abstract List<Artwork> getArtworksOfTags(List<Tag> tags);
@@ -187,6 +192,8 @@ public abstract class ArtworkManager {
      * @precondition searchTerm != null && !searchTerm.isEmpty()
      * @postcondition none
      *
+	 * @param searchTerm the enter seach value
+	 * 
      * @return the artworks specified by the searchTerm
      */
 	public abstract List<Artwork> searchForArtworks(String searchTerm);
@@ -197,6 +204,8 @@ public abstract class ArtworkManager {
      * @precondition title != null && !title.isEmpty()
      * @postcondition none
      *
+	 * @param title the title of the artwork
+	 * 
      * @return the artworks specified by the title
      */
 	public abstract Artwork retrieveSearchedArtwork(String title);

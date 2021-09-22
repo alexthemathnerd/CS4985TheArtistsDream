@@ -1,7 +1,6 @@
 package edu.westga.devops.theartistsdreamclient.model.network;
 
 import com.google.gson.Gson;
-import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
 
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
@@ -11,7 +10,6 @@ import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
 import java.io.Closeable;
-import java.io.InputStream;
 import java.lang.reflect.Type;
 
 /**
@@ -56,10 +54,14 @@ public class Communicator implements Closeable {
      * Requests to the server with the given request and returns its response
      *
      * @param request the request to be sent to the server
-     * @param <T> the
+     * @param <T> the type of the response
+     * @param type the type 
+     * 
      * @return the response from the server
+     * 
      * @precondition server must be connected
      * @postcondition none
+     * 
      * @see Response
      */
     public <T> Response<T> request(Request request, Type type) {
@@ -78,8 +80,11 @@ public class Communicator implements Closeable {
     /**
      * Requests to the server with a given request and returns its response
      *
+     * @param <T> the response type
      * @param request the request to be sent to the server
+     * 
      * @return the response from the server
+     * 
      * @precondition server must be connected
      * @postcondition none
      */

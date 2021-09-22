@@ -25,7 +25,7 @@ public class FollowingPage {
     @FXML
     private void initialize() {
         this.artworksPane.setUserId(User.getUser().getUserId());
-	this.artworksPane.setOnProfile(false);
+	    this.artworksPane.setOnProfile(false);
         this.artworksPane.tagsToFilterListProperty().bindBidirectional(this.header.tagsToFilterListProperty());
     }
 

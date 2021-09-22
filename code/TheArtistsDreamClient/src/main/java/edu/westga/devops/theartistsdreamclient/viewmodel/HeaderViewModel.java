@@ -1,11 +1,12 @@
 package edu.westga.devops.theartistsdreamclient.viewmodel;
 
-import javafx.collections.*;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import java.util.ArrayList;
-import edu.westga.devops.theartistsdreamclient.model.*;
-import edu.westga.devops.theartistsdreamclient.model.*;
-import edu.westga.devops.theartistsdreamclient.model.network.*;
+import edu.westga.devops.theartistsdreamclient.model.User;
+import edu.westga.devops.theartistsdreamclient.model.Artwork;
+import edu.westga.devops.theartistsdreamclient.model.UserManager;
+import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
 
 /**
  * The viewModel for the Header class

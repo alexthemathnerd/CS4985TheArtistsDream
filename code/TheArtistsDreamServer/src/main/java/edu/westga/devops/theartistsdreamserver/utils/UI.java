@@ -1,6 +1,5 @@
 package edu.westga.devops.theartistsdreamserver.utils;
 
-import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
 import edu.westga.devops.theartistsdreamserver.model.Request;
 import edu.westga.devops.theartistsdreamserver.model.TagManager;
 import edu.westga.devops.theartistsdreamserver.model.UserManager;
@@ -83,5 +82,9 @@ public class UI {
         public static final String SERVER_START = "server failed to start check address";
         public static final String SERVER_CLOSED = "server already closed";
         public static final String CODE_NULL = "server code cannot be null";
+        public static final String INVALID_FORMAT = "Invalid format";
+        public static final String ARTWORK_NOT_FOUND = "Artwork not found";
+        public static final String USER_EXISTS = "User already exists";
+        public static final String USER_NOT_FOUND = "User not found";
     }
 }

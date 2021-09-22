@@ -198,8 +198,7 @@ public class NetworkArtworkManager extends ArtworkManager {
 
     @Override
     public List<Artwork> getFirstFiftyArtworks(boolean isFollowing) {
-        Type type = new TypeToken<Response<ArrayList<Artwork>>>() {
-        }.getType();
+        Type type = new TypeToken<Response<ArrayList<Artwork>>>() { }.getType();
         Response<ArrayList<Artwork>> response = this.communicator.request(new Request(UI.ServerCodes.GET_FIRST_FIFTY_ARTWORKS, new Object[]{isFollowing}), type);
         if (response.getError() != null) {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());

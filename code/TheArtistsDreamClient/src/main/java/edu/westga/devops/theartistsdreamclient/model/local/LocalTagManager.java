@@ -1,6 +1,5 @@
 package edu.westga.devops.theartistsdreamclient.model.local;
 
-import edu.westga.devops.theartistsdreamclient.model.FilterManager;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
 import edu.westga.devops.theartistsdreamclient.model.TagManager;
 import edu.westga.devops.theartistsdreamclient.utils.UI;
@@ -77,7 +76,7 @@ public class LocalTagManager extends TagManager {
 
     @Override
     public Iterator<Tag> iterator() {
-	return this.tags.iterator();
+	    return this.tags.iterator();
     }
 
 }

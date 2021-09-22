@@ -6,15 +6,17 @@ import edu.westga.devops.theartistsdreamserver.model.User;
 import edu.westga.devops.theartistsdreamserver.model.Artwork;
 import org.apache.commons.io.IOUtils;
 
-import java.io.*;
-import java.net.URI;
-import java.nio.file.*;
+import java.io.InputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.logging.LogRecord;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Logger;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.*;
-import java.util.logging.*;
-import java.net.URL;
-import java.lang.ClassLoader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Formatter;
 
 /**
@@ -132,7 +134,6 @@ public class TheArtistsDreamServer {
                 }
                 int artworkID = Integer.parseInt(artworkParts[3]);
                 String artworkDate = artworkParts[4];
-
 //                final Map<String, String> env = new HashMap<>();
 //                final String[] array = artwork.toURI().toString().split("!");
 //                final FileSystem fs = FileSystems.newFileSystem(URI.create(array[0]), env);

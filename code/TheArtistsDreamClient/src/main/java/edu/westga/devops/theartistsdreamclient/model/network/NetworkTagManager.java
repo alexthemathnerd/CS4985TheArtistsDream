@@ -1,6 +1,5 @@
 package edu.westga.devops.theartistsdreamclient.model.network;
 
-import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import edu.westga.devops.theartistsdreamclient.model.Tag;

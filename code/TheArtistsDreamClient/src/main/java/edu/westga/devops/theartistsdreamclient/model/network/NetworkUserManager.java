@@ -1,9 +1,8 @@
 package edu.westga.devops.theartistsdreamclient.model.network;
 
-import java.util.Iterator;
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
 
-import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -90,10 +89,5 @@ public class NetworkUserManager extends UserManager {
             return new ArrayList<>();
         }
         return response.getData();
-    }
-
-    public boolean checkForUser(int userId) {
-        // TODO Auto-generated method stub
-        return false;
     }
 }   

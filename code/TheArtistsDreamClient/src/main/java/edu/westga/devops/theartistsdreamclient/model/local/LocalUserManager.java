@@ -70,7 +70,7 @@ public class LocalUserManager extends UserManager {
             throw new IllegalArgumentException(UI.ErrorMessages.USERNAME_EMPTY);
         }
         for (User currentUser : this.users) {
-            if (username.equals(currentUser.getUsername())){
+            if (username.equals(currentUser.getUsername())) {
                 return currentUser;
             }
         }

@@ -65,6 +65,9 @@ public class ArtworkTile extends VBox {
      *
      * @precondition artwork != null
      * @postcondition none
+     * 
+     * @param artwork the artwork
+     * @param onProfile whether the artwork is on the profile
      */
     public ArtworkTile(Artwork artwork, boolean onProfile) {
         FXMLLoader loader = new FXMLLoader(Header.class.getResource(ARTWORK_TILE_FXML));
@@ -72,7 +75,7 @@ public class ArtworkTile extends VBox {
         loader.setController(this);
         try {
             this.currentArtwork = artwork;
-	    this.onProfile = onProfile;
+	        this.onProfile = onProfile;
             loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);

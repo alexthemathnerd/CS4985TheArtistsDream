@@ -52,7 +52,7 @@ public class LocalArtworkManager extends ArtworkManager {
 	@Override
 	public Artwork getArtwork(int id) {
 		for (Artwork artwork : this.artworks) {
-			if(artwork.getID() == id){
+			if (artwork.getID() == id) {
 				return artwork;
 			}
 		}
@@ -79,7 +79,7 @@ public class LocalArtworkManager extends ArtworkManager {
 	}
 
 	@Override
-	public boolean editArtwork(int id, String newTitle, List<Integer> newTagIDs){
+	public boolean editArtwork(int id, String newTitle, List<Integer> newTagIDs) {
 		if (newTitle == null) {
 			throw new IllegalArgumentException();
 		}

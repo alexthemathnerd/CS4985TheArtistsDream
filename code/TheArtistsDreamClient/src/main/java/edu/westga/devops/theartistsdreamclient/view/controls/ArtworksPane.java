@@ -2,7 +2,12 @@ package edu.westga.devops.theartistsdreamclient.view.controls;
 
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
-import javafx.beans.property.*;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
@@ -51,8 +56,8 @@ public class ArtworksPane extends ScrollPane {
         try {
             this.tagsToFilterListProperty = new SimpleListProperty<Tag>(FXCollections.observableArrayList());
             this.userIdProperty = new SimpleIntegerProperty(-1);
-	    this.onFollowingPageProperty = new SimpleBooleanProperty();
-	    this.onProfileProperty = new SimpleBooleanProperty();
+	        this.onFollowingPageProperty = new SimpleBooleanProperty();
+	        this.onProfileProperty = new SimpleBooleanProperty();
             loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -1,20 +1,14 @@
 package edu.westga.devops.theartistsdreamclient.view.popups;
 
-import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.effect.ColorAdjust;
-import javafx.scene.effect.Effect;
-import javafx.scene.effect.GaussianBlur;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.Window;
 
 import java.io.IOException;
 import java.net.URL;
@@ -38,7 +32,8 @@ public class PopupLoader {
      * @param title the title of the popup
      * @param fxml the fxml url for the popup
      * @param controller the controller for the popup
-     * @param owner the owner window of the popup
+     * @param parent the parent window of the popup
+     * 
      * @return the loaded Stage to show the FXML popup
      * @throws IOException happens if there is an error in the controller of fxml.
      */

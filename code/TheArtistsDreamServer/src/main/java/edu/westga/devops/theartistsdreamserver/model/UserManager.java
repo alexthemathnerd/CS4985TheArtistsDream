@@ -1,10 +1,12 @@
 package edu.westga.devops.theartistsdreamserver.model;
 
 import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
+import edu.westga.devops.theartistsdreamserver.utils.UI;
 import org.apache.commons.io.IOUtils;
-import java.io.*;
-
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * UserManager Class
@@ -33,12 +35,12 @@ public class UserManager {
             password = (String) data[1];
             email = (String) data[2];
         } catch (ClassCastException e) {
-            return new Request("Invalid Format");
+            return new Request(UI.ErrorMessages.INVALID_FORMAT);
         }
 
         for (User aUser: TheArtistsDreamServer.USERS) {
             if (email.equals(aUser.getEmail())) {
-                return new Request("User alredy Exist", -1);
+                return new Request(UI.ErrorMessages.USER_EXISTS, -1);
             }
         }
         InputStream profile = TheArtistsDreamServer.class.getResourceAsStream("assets/default.jpg");
@@ -68,14 +70,14 @@ public class UserManager {
         try {
             userId = ((Double) data[0]).intValue();
         } catch (ClassCastException e) {
-            return new Request("Invalid Format");
+            return new Request(UI.ErrorMessages.INVALID_FORMAT);
         }
         for (User user : TheArtistsDreamServer.USERS) {
             if (user.getUserId() == userId) {
                 return new Request(user);
             }
         }
-        return new Request("Can't find user");
+        return new Request(UI.ErrorMessages.USER_NOT_FOUND);
     }
 
     /**
@@ -95,7 +97,7 @@ public class UserManager {
             username = (String) data[0];
             password = (String) data[1];
         } catch (ClassCastException e) {
-            return new Request("Invalid Format");
+            return new Request(UI.ErrorMessages.INVALID_FORMAT);
         }
         for (User user : TheArtistsDreamServer.USERS) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
@@ -120,7 +122,7 @@ public class UserManager {
         try {
             username = (String) data[0];
         } catch (ClassCastException e) {
-            return new Request("Invalid Format");
+            return new Request(UI.ErrorMessages.INVALID_FORMAT);
         }
         List<User> users = new ArrayList<User>();
         for (User user : TheArtistsDreamServer.USERS) {
@@ -146,7 +148,7 @@ public class UserManager {
         try {
             username = (String) data[0];
         } catch (ClassCastException e) {
-            return new Request("Invalid Format");
+            return new Request(UI.ErrorMessages.INVALID_FORMAT);
         }
         for (User user : TheArtistsDreamServer.USERS) {
             if (user.getUsername().equals(username)) {

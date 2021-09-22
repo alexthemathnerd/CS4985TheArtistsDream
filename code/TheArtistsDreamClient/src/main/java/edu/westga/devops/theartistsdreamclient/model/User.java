@@ -1,15 +1,7 @@
 package edu.westga.devops.theartistsdreamclient.model;
 
-import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
-import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.utils.UI;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +41,8 @@ public class User {
     /**
      * Sets the singleton User
      *
+     * @param user The user to be set
+     * 
      * @precondition none
      * @postcondition getUser() == user
      */
@@ -166,6 +160,8 @@ public class User {
      * 
      * @precondition none
      * @postcondition none
+     * 
+     * @return the list of follower ids
      */
     public List<Integer> getFollowerIds() {
         return new ArrayList<>();

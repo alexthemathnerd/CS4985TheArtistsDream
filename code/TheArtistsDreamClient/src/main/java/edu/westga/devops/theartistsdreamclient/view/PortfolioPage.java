@@ -30,6 +30,8 @@ public class PortfolioPage {
      *
      * @precondition none
      * @postcondition none
+     * 
+     * @param user the user
      */
     public PortfolioPage(User user) {
         this.user = user;
