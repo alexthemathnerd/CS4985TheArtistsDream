@@ -1,22 +1,21 @@
 package edu.westga.devops.theartistsdreamclient.view.controls;
 
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
-import edu.westga.devops.theartistsdreamclient.view.popups.*;
+import edu.westga.devops.theartistsdreamclient.view.popups.ArtworkPopup;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
-import edu.westga.devops.theartistsdreamclient.model.*;
-import edu.westga.devops.theartistsdreamclient.view.Login;
+import edu.westga.devops.theartistsdreamclient.model.User;
+import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
 import edu.westga.devops.theartistsdreamclient.view.RecommendedPage;
 import edu.westga.devops.theartistsdreamclient.view.FollowingPage;
 import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
 import edu.westga.devops.theartistsdreamclient.view.popups.FilterPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
-import edu.westga.devops.theartistsdreamclient.viewmodel.*;
+import edu.westga.devops.theartistsdreamclient.viewmodel.HeaderViewModel;
 import edu.westga.devops.theartistsdreamclient.utils.UI;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.beans.property.ListProperty;
-import javafx.beans.property.SetProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -25,7 +24,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -34,12 +32,12 @@ import javafx.stage.Stage;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.*;
 import javafx.application.Platform;
 
 /**
@@ -107,6 +105,10 @@ public class Header extends HBox {
         this.profileButton.setGraphic(graphic);
         this.profileButton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
         this.profileButton.setPadding(new Insets(0));
+        this.setupChangeListeners();
+    }
+
+    private void setupChangeListeners() {
         this.searchComboBox.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
             Platform.runLater(new Runnable() {
                 @Override public void run() {
@@ -120,7 +122,7 @@ public class Header extends HBox {
             Platform.runLater(new Runnable() {
                 @Override 
                 public void run() {
-                    if (newText != null && !newText.isEmpty() ){
+                    if (newText != null && !newText.isEmpty()) {
                         if (newText.charAt(0) == '@') {
                             Header.this.searchComboBox.getItems().clear();
                             String searchTerm = newText.substring(1);
