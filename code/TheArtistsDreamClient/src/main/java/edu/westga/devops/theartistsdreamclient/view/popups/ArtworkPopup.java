@@ -86,7 +86,7 @@ public class ArtworkPopup {
 
 	@FXML
 	void handleEdit(ActionEvent event) {
-		//this.titleLabel.setEditable(true);
+		
 	}
 
 	@FXML

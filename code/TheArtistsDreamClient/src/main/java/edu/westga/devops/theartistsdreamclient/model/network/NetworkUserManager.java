@@ -81,12 +81,13 @@ public class NetworkUserManager extends UserManager {
     }
 
     @Override
-    public List<User> searchForUsers(String username) {
-        Type type = new TypeToken<Integer> () {
+    public List<User> searchForUsers(String searchTerm) {
+        Type type = new TypeToken<Response<ArrayList<User>>>() {
         }.getType();
-        Response<ArrayList<User>> response = this.communicator.request(new Request(UI.ServerCodes.SEARCH_USERS, new Object[]{username}), type);
+        Response<ArrayList<User>> response = this.communicator.request(new Request(UI.ServerCodes.SEARCH_USERS, new Object[]{searchTerm}), type);
         if (response.getError() != null) {
-            return null;
+            TheArtistsDreamApplication.LOGGER.warning(response.getError());
+            return new ArrayList<>();
         }
         return response.getData();
     }
