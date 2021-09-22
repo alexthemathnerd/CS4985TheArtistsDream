@@ -66,7 +66,7 @@ public abstract class UserManager {
 	/**
 	 * Gets users that match the term
 	 * 
-	 * @precondition searchTerm != null && search is not empty
+	 * @precondition searchTerm != null
 	 * @postcondition none
 	 * 
 	 * @param searchTerm the entered search value

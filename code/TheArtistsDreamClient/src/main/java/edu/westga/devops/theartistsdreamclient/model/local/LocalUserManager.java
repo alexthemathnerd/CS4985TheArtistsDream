@@ -102,6 +102,9 @@ public class LocalUserManager extends UserManager {
 
 	@Override
 	public List<User> searchForUsers(String searchTerm) {
+		if (searchTerm == null) {
+			throw new IllegalArgumentException(UI.ErrorMessages.SEARCH_TERM_NULL);
+		}
 		ArrayList<User> searchedUsers = new ArrayList<User>();
 		for (User user : this.users) {
 			if (user.getUsername().contains(searchTerm)) {
