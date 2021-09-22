@@ -40,6 +40,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.*;
+import javafx.application.Platform;
 
 /**
  * The Controller for the Custom Control for the Header of the application
@@ -53,6 +54,7 @@ public class Header extends HBox {
     private static final String FILTER_POPUP_FXML = "FilterPopup.fxml";
     private static final String RECOMMENDED_PAGE_FXML = "RecommendedPage.fxml";
     private static final String FOLLOWING_PAGE_FXML = "FollowingPage.fxml";
+    private static final String ARTWORK_POPUP_FXML = "ArtworkPopup.fxml";
 
     @FXML
     private ComboBox searchComboBox;
@@ -105,20 +107,35 @@ public class Header extends HBox {
         this.profileButton.setGraphic(graphic);
         this.profileButton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
         this.profileButton.setPadding(new Insets(0));
+        this.searchComboBox.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
+            Platform.runLater(new Runnable() {
+                @Override public void run() {
+                    if (newValue != null) {
+                        Header.this.searchComboBox.getEditor().setText(newValue.toString());
+                    }
+                }
+            });
+        });
         this.searchComboBox.getEditor().textProperty().addListener((obs, oldText, newText) -> {
-            if (newText.charAt(0) == '@') {
-                this.searchComboBox.getItems().clear();
-                String searchTerm = newText.substring(1);
-                System.out.println(searchTerm);
-                for (String username : this.viewModel.searchForUsers(searchTerm)) {
-                    this.searchComboBox.getItems().add(username);
+            Platform.runLater(new Runnable() {
+                @Override 
+                public void run() {
+                    if (newText != null && !newText.isEmpty() ){
+                        if (newText.charAt(0) == '@') {
+                            Header.this.searchComboBox.getItems().clear();
+                            String searchTerm = newText.substring(1);
+                            for (String username : Header.this.viewModel.searchForUsers(searchTerm)) {
+                                Header.this.searchComboBox.getItems().add(username);
+                            }
+                        } else {
+                            Header.this.searchComboBox.getItems().clear();
+                            for (String title : Header.this.viewModel.searchForArtworks(newText)) {
+                                Header.this.searchComboBox.getItems().add(title);
+                            }
+                        }
+                    }
                 }
-            } else {
-                this.searchComboBox.getItems().clear();
-                for (String title : this.viewModel.searchForArtworks(newText)) {
-                    this.searchComboBox.getItems().add(title);
-                }
-            }
+            });
         });
     }
 
@@ -144,8 +161,9 @@ public class Header extends HBox {
             Artwork artwork = this.viewModel.getArtwork(searchTerm);
             if (artwork != null) {
                 try {
-                    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    WindowLoader.changeScene(currentStage, "ArtworkPopup.fxml", new ArtworkPopup(artwork, false), "The Artist's Dream");
+                    Node mainFrame = ((Node) event.getSource()).getParent().getParent();
+                    Stage popup = PopupLoader.loadPopup("Artwork", ArtworkPopup.class.getResource(ARTWORK_POPUP_FXML), new ArtworkPopup(artwork, false), (Parent) mainFrame);
+                    popup.show();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

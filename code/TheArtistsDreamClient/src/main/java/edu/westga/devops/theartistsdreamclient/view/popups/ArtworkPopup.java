@@ -25,7 +25,7 @@ import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
 public class ArtworkPopup {
 
 	@FXML
-	private TextField titleTextField;
+	private Label titleLabel;
 
 	@FXML
 	private Label artistLabel;
@@ -61,7 +61,7 @@ public class ArtworkPopup {
 
 	@FXML
 	void initialize() {
-	    this.titleTextField.setText(this.artwork.getTitle());
+	    this.titleLabel.setText(this.artwork.getTitle());
 	 	this.artistLabel.setText(UserManager.getUserManager().getUser(this.artwork.getArtistID()).getUsername());
 	    this.artworkImageView.setImage(this.artwork.getImage());
 	    this.editButton.setVisible(this.onProfile && UserManager.getUserManager().getUser(this.artwork.getArtistID()).getUsername().equals(User.getUser().getUsername()));
@@ -86,7 +86,7 @@ public class ArtworkPopup {
 
 	@FXML
 	void handleEdit(ActionEvent event) {
-		this.titleTextField.setEditable(true);
+		//this.titleLabel.setEditable(true);
 	}
 
 	@FXML
@@ -96,7 +96,7 @@ public class ArtworkPopup {
 
 	@FXML
 	void handleChangeTitle(ActionEvent event) {
-		this.artwork.setTitle(this.titleTextField.getText());
+		this.artwork.setTitle(this.titleLabel.getText());
 	}
 
 }

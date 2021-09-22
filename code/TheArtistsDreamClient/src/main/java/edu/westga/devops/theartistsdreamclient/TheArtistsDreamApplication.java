@@ -143,7 +143,7 @@ public class TheArtistsDreamApplication extends Application {
                     artworkTagIDs.add(Integer.parseInt(tag));
                 }
                 int artworkID = Integer.parseInt(artworkParts[3]);
-		String artworkDate = artworkParts[4];
+		        String artworkDate = artworkParts[4];
                 Artwork currentArtwork = new Artwork(new Image(artworkURLPath), artworkName, artistID, artworkTagIDs, artworkID, artworkDate);
                 artworkManager.addArtwork(currentArtwork);
             }
