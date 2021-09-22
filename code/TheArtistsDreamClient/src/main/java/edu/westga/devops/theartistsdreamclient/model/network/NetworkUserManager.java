@@ -71,9 +71,9 @@ public class NetworkUserManager extends UserManager {
 
     @Override
     public int addUser(String username, String email, String password) {
-        Type type = new TypeToken<Integer>() {
+        Type type = new TypeToken<Response<Integer>>() {
         }.getType();
-        Response<Integer> response = this.communicator.request(new Request(UI.ServerCodes.ADD_USER, new Object[]{username, email, password}));
+        Response<Integer> response = this.communicator.request(new Request(UI.ServerCodes.ADD_USER, new Object[]{username, email, password}), type);
         if (response.getError() != null) {
             return -1;
         }
