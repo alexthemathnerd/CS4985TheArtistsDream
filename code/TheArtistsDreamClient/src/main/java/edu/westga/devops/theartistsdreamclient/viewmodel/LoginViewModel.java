@@ -1,9 +1,10 @@
 package edu.westga.devops.theartistsdreamclient.viewmodel;
 
 import edu.westga.devops.theartistsdreamclient.utils.UI;
-import javafx.beans.property.*;
-import edu.westga.devops.theartistsdreamclient.model.*;
-import edu.westga.devops.theartistsdreamclient.model.network.*;
+import javafx.beans.property.StringProperty;
+import javafx.beans.property.SimpleStringProperty;
+import edu.westga.devops.theartistsdreamclient.model.User;
+import edu.westga.devops.theartistsdreamclient.model.UserManager;
 
 /**
  * The Login View Model
@@ -100,12 +101,6 @@ public class LoginViewModel {
      */
     public void addUser() {
         UserManager.getUserManager().addUser(this.usernameStringProperty.get(), this.passwordStringProperty.get(), this.emailStringProperty.get());
-
-        // if (!this.checkIfUserAlreadyExists(newUser)) {
-        //     //this.userManager.addUser(newUser);
-        //      } else {
-        //     this.errorLabelStringProperty.set(UI.GuiMessages.USER_EXISTS);
-        // }
     }
 
     /**
@@ -125,6 +120,8 @@ public class LoginViewModel {
      *
      * @precondition emailStringProperty().get() != "" && passwordStringProperty().get() != ""
      * @postcondition none
+     * 
+     * @return true if the the entered information is valid. False if otherwise
      */
     public boolean validateCreateAccount() {
         if (!this.emailStringProperty.get().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")) {

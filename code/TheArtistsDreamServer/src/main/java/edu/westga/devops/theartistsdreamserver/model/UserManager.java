@@ -2,6 +2,8 @@ package edu.westga.devops.theartistsdreamserver.model;
 
 import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
 import java.util.*;
+import org.apache.commons.io.IOUtils;
+import java.io.*;
 
 
 /**
@@ -28,8 +30,8 @@ public class UserManager {
         String password;
         try {
             username = (String) data[0];
-            email = (String) data[1];
-            password = (String) data[2];
+            password = (String) data[1];
+            email = (String) data[2];
         } catch (ClassCastException e) {
             return new Request("Invalid Format");
         }
@@ -39,7 +41,14 @@ public class UserManager {
                 return new Request("User alredy Exist", -1);
             }
         }
-        User user = new User(TheArtistsDreamServer.USERS.size(), email, username, password, null);
+        InputStream profile = TheArtistsDreamServer.class.getResourceAsStream("assets/default.jpg");
+        byte[] image = new byte[0];
+        try {
+            image = IOUtils.toByteArray(profile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        User user = new User(TheArtistsDreamServer.USERS.size(), email, username, password, image);
         TheArtistsDreamServer.USERS.add(user);
         return new Request(TheArtistsDreamServer.USERS.size() - 1);
     }
