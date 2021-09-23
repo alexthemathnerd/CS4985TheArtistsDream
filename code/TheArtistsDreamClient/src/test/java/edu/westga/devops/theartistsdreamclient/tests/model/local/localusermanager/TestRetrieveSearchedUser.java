@@ -3,8 +3,6 @@ package edu.westga.devops.theartistsdreamclient.tests.model.local.localusermanag
 import edu.westga.devops.theartistsdreamclient.model.local.LocalUserManager;
 import edu.westga.devops.theartistsdreamclient.model.User;
 
-import java.utils.List;
-
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -34,24 +32,24 @@ public class TestRetrieveSearchedUser {
     @Test
     void testRetieveSearchedUserEmptyManager() {
         LocalUserManager testManager = new LocalUserManager();
-        assertEquals(null, testManager.retrieveSearchedUser("test"));
+        assertNull(testManager.retrieveSearchedUser("test"));
     }
 
     @Test
     void testSearchedUserNotFound() {
         LocalUserManager testManager = new LocalUserManager();
-        testManager.add("test1","test1","test1");
-        testManager.add("test2","test2","test2");
-        testManager.add("test3","test3","test3");
-        assertEquals(null, testManager.retrieveSearchedUser("test"));
+        testManager.addUser("test1","test1","test1");
+        testManager.addUser("test2","test2","test2");
+        testManager.addUser("test3","test3","test3");
+        assertNull(testManager.retrieveSearchedUser("test"));
     }
 
     @Test
     void testSearchedUserFound() {
         LocalUserManager testManager = new LocalUserManager();
-        testManager.add("test","test","test");
-        testManager.add("test1","test1","test1");
-        testManager.add("test2","test2","test2");
+        testManager.addUser("test","test","test");
+        testManager.addUser("test1","test1","test1");
+        testManager.addUser("test2","test2","test2");
         assertNotNull(testManager.retrieveSearchedUser("test"));
     }
 }

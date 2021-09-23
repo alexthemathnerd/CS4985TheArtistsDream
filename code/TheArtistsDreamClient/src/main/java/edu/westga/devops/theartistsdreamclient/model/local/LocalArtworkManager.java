@@ -161,7 +161,7 @@ public class LocalArtworkManager extends ArtworkManager {
 		if (title == null) {
 			throw new IllegalArgumentException(UI.ErrorMessages.TITLE_NULL);
 		}
-		if (title == null) {
+		if (title.isEmpty()) {
 			throw new IllegalArgumentException(UI.ErrorMessages.TITLE_EMPTY);
 		}
 		for (Artwork artwork: this.artworks) {

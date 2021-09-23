@@ -3,7 +3,8 @@ package edu.westga.devops.theartistsdreamclient.tests.model.local.localartworkma
 import edu.westga.devops.theartistsdreamclient.model.local.LocalArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 
-import java.utils.List;
+import java.util.List;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +41,7 @@ public class TestRetrieveSearchedArtworks {
     }
 
     @Test
-    void testSearchedArtworkNotFound() {
+    void testSearchedArtworkFound() {
         LocalArtworkManager testManager = new LocalArtworkManager();
         testManager.addArtwork(new Artwork(new byte[0], "test1", 1, new ArrayList<Integer>(), 1, "2020-02-02"));
 		testManager.addArtwork(new Artwork(new byte[0], "test2", 1, new ArrayList<Integer>(), 1, "2020-02-02"));
