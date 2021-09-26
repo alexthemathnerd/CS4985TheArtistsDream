@@ -1,3 +1,0 @@
-{
-    "java.checkstyle.configuration": "${workspaceFolder}\\uwg_checks.xml"
-}

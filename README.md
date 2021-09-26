@@ -8,7 +8,7 @@ To provide artists a platform to promote and showcase their artworks. Other arti
 ## Installation & Setup
 
 ### Running
-Start by running the `setup.h` file in the code folder.
+Start by running the `setup.sh setup` file in the code folder.
 
 To start the server run the following commands in the TheArtistsDreamServer folder:
 1. `mvn clean package`
@@ -17,7 +17,7 @@ To start the server run the following commands in the TheArtistsDreamServer fold
 To start the client run the following command in the TheArtistsDreamClient folder:
 1. `mvn javafx:run`
 
-If you want a fast start run the `start.sh` file in the code folder.
+If you want a fast start run the `setup run` file in the code folder.
 
 #### Logging In
 To login you can use the following accounts:
@@ -25,6 +25,10 @@ To login you can use the following accounts:
 |Username|Password|
 |--------|--------|
 |admin|admin|
+|alex|alex|
+|aznella|aznella|
+|jamia|jamia|
+|corley|corley|
 
 ### Testing
 
@@ -33,6 +37,12 @@ To test unit testing for the client or server run the following in the respectiv
 
 ```
 mvn test
+```
+
+or to test both
+
+```
+./setup test
 ```
 
 #### Integration Testing

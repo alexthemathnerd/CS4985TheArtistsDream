@@ -1,8 +1,0 @@
-.scroll-bar:vertical {
-	-fx-background-color:transparent;
-}
-
-.scroll-bar:vertical .thumb {
-	-fx-background-color: #e01a4f;
-}
-
