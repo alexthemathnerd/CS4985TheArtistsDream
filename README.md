@@ -17,7 +17,7 @@ To start the server run the following commands in the TheArtistsDreamServer fold
 To start the client run the following command in the TheArtistsDreamClient folder:
 1. `mvn javafx:run`
 
-If you want a fast start run the `setup run` file in the code folder.
+If you want a fast start run the `setup.sh run` file in the code folder.
 
 #### Logging In
 To login you can use the following accounts:
@@ -42,7 +42,7 @@ mvn test
 or to test both
 
 ```
-./setup test
+setup.sh test
 ```
 
 #### Integration Testing
