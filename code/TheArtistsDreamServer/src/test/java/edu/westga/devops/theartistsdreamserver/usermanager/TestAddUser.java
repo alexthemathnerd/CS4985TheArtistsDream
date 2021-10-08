@@ -1,12 +1,12 @@
 package edu.westga.devops.theartistsdreamserver.usermanager;
+
 import edu.westga.devops.theartistsdreamserver.model.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import edu.westga.devops.theartistsdreamserver.*;
-
+import edu.westga.devops.theartistsdreamserver.utils.UI;
 
 public class TestAddUser {
-
     @Test
 	void testAddToEmptyManager() {
         TheArtistsDreamServer.USERS.clear();
