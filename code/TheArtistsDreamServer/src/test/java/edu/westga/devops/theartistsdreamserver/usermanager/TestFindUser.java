@@ -8,6 +8,12 @@ import edu.westga.devops.theartistsdreamserver.utils.UI;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * Junit test class for the Find user method in the User Manager class
+ * 
+ * @author Jamia Echols
+ * @version Fall 2021
+ */
 public class TestFindUser {
     @Test
     void TestInvalidArgument() {
