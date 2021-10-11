@@ -229,7 +229,8 @@ public class Header extends HBox {
     void handleViewProfile(ActionEvent event) {
         try {
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(User.getUser()), "The Artist's Dream", true);
+            WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(User.getUser()), "The Artist's Dream", false);
+            currentStage.setMaximized(true);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
