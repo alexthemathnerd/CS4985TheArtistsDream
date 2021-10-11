@@ -228,8 +228,12 @@ public class Header extends HBox {
 
     @FXML
     void handleViewProfile(ActionEvent event) {
-        
-        
+        try {
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(User.getUser()), "The Artist's Dream", true);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
