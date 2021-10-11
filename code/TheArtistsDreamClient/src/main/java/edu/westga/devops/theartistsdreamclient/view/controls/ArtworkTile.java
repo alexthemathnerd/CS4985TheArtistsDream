@@ -99,7 +99,7 @@ public class ArtworkTile extends VBox {
                 Object data = popup.getUserData();
                 if (data != null) {
                     try {
-                        WindowLoader.changeScene((Stage) this.getScene().getWindow(), "PortfolioPage.fxml", new PortfolioPage(UserManager.getUserManager().getUser((int) data)), "Profile");
+                        WindowLoader.changeScene((Stage) this.getScene().getWindow(), "PortfolioPage.fxml", new PortfolioPage(UserManager.getUserManager().getUser((int) data)), "Profile", true);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

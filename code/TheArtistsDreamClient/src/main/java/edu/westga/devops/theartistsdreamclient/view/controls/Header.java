@@ -150,7 +150,7 @@ public class Header extends HBox {
             if (searchedUser != null) {
                 try {
                     Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(searchedUser), "The Artist's Dream");
+                    WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(searchedUser), "The Artist's Dream", true);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -212,10 +212,9 @@ public class Header extends HBox {
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.close();
             Stage stage = new Stage();
-            stage.setMaximized(false);
             stage.setResizable(false);
             stage.show();
-            WindowLoader.changeScene(stage, "../" + TheArtistsDreamApplication.LOGIN_FXML, null, "The Artist's Dream");
+            WindowLoader.changeScene(stage, "../" + TheArtistsDreamApplication.LOGIN_FXML, null, "The Artist's Dream", false);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -237,7 +236,7 @@ public class Header extends HBox {
     void handleRecommended(ActionEvent event) {
         try {
             Stage currentStage = (Stage) this.navMenuButton.getScene().getWindow();
-            WindowLoader.changeScene(currentStage, RECOMMENDED_PAGE_FXML, new RecommendedPage(), "The Artist's Dream");
+            WindowLoader.changeScene(currentStage, RECOMMENDED_PAGE_FXML, new RecommendedPage(), "The Artist's Dream", true);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -247,7 +246,7 @@ public class Header extends HBox {
     void handleFollowing(ActionEvent event) {
         try {
             Stage currentStage = (Stage) this.navMenuButton.getScene().getWindow();
-            WindowLoader.changeScene(currentStage, FOLLOWING_PAGE_FXML, new FollowingPage(), "The Artist's Dream");
+            WindowLoader.changeScene(currentStage, FOLLOWING_PAGE_FXML, new FollowingPage(), "The Artist's Dream", true);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

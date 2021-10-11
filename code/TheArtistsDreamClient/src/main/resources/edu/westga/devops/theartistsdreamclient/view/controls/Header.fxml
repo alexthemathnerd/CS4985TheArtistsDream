@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<fx:root alignment="CENTER" maxHeight="-Infinity" maxWidth="Infinity" prefHeight="100.0" spacing="20.0" style="-fx-background-color: #1e1e24; -fx-effect: dropshadow(gaussian, black, 20, 0.5, 0, 0);" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="CENTER" maxHeight="-Infinity" maxWidth="Infinity" prefHeight="100.0" spacing="20.0" style="-fx-background-color: #1e1e24; -fx-effect: dropshadow(gaussian, black, 20, 0.5, 0, 0);" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <MenuButton fx:id="navMenuButton" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-font-weight: BOLD; -fx-background-color: #2d2c32; -fx-background-radius: 50%;" stylesheets="@header-design.css" textFill="#e01a4f" HBox.hgrow="NEVER">
             <items>
@@ -53,7 +53,10 @@
         <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
         <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="40.0" prefWidth="40.0" stylesheets="@header-design.css" HBox.hgrow="NEVER">
             <graphic>
-                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/logout-icon.png" />
+               </image></ImageView>
             </graphic>
         </Button>
         <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleMessages" prefHeight="40.0" prefWidth="40.0" stylesheets="@header-design.css" HBox.hgrow="NEVER">
@@ -70,9 +73,7 @@
                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
             </graphic>
         </Button>
-        <Button fx:id="profileButton" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false"
-                onAction="#handleViewProfile" prefHeight="40.0" prefWidth="40.0" stylesheets="@header-design.css"
-                HBox.hgrow="NEVER" />
+        <Button fx:id="profileButton" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleViewProfile" prefHeight="40.0" prefWidth="40.0" stylesheets="@header-design.css" HBox.hgrow="NEVER" />
     </children>
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

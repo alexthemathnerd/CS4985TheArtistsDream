@@ -126,7 +126,7 @@ public class Login {
                 User.setUser(user);
                 try {
                     Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    WindowLoader.changeScene(currentStage, RECOMMENDED_PAGE_FXML, new RecommendedPage(), "The Artist's Dream");
+                    WindowLoader.changeScene(currentStage, RECOMMENDED_PAGE_FXML, new RecommendedPage(), "The Artist's Dream", true);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
