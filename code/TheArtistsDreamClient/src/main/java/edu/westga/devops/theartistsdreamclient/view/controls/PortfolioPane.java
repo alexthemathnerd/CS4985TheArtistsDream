@@ -54,7 +54,7 @@ public class PortfolioPane extends HBox {
     private ToggleButton followToggleButton;
 
     @FXML
-    private Button commisionButton;
+    private Button commissionButton;
 
     private ObjectProperty<User> userProperty;
 
@@ -85,9 +85,9 @@ public class PortfolioPane extends HBox {
                     this.followToggleButton.setDisable(true);
                     this.followToggleButton.setManaged(false);
 
-                    this.commisionButton.setVisible(false);
-                    this.commisionButton.setDisable(true);
-                    this.commisionButton.setManaged(false);
+                    this.commissionButton.setVisible(false);
+                    this.commissionButton.setDisable(true);
+                    this.commissionButton.setManaged(false);
                 } else {
                     this.addArtButton.setVisible(false);
                     this.addArtButton.setDisable(true);
@@ -131,7 +131,7 @@ public class PortfolioPane extends HBox {
     }
 
     @FXML
-    private void handleCommision(ActionEvent event) {
+    private void handleCommission(ActionEvent event) {
 
     }
 

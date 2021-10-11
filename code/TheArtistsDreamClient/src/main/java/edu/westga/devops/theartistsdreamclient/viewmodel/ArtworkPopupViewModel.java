@@ -9,12 +9,12 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class EditArtworkPopupViewModel {
+public class ArtworkPopupViewModel {
 
 	private StringProperty newTitleProperty;
 	private IntegerProperty artworkIdProperty;
 
-	public EditArtworkPopupViewModel() {
+	public ArtworkPopupViewModel() {
 		this.newTitleProperty = new SimpleStringProperty("");
 		this.artworkIdProperty = new SimpleIntegerProperty();
 	}
@@ -22,6 +22,10 @@ public class EditArtworkPopupViewModel {
 	public void editArtwork() {
 		ArtworkManager.getArtworkManager().editArtwork(artworkIdProperty.get(), newTitleProperty.get(), new ArrayList<Integer>());
 
+	}
+
+	public void removeArtwork() {
+		ArtworkManager.getArtworkManager().removeArtwork(this.artworkIdProperty.get());
 	}
 
 	public StringProperty newTitleProperty() {

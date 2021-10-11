@@ -212,7 +212,6 @@ public class Header extends HBox {
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.close();
             Stage stage = new Stage();
-            stage.setResizable(false);
             stage.show();
             WindowLoader.changeScene(stage, "../" + TheArtistsDreamApplication.LOGIN_FXML, null, "The Artist's Dream", false);
 
