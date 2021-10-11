@@ -8,6 +8,12 @@ import edu.westga.devops.theartistsdreamserver.*;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * Junit test class for the method retrieveUser in the User manager class
+ * 
+ * @author Jamia Echols
+ * @version Fall 2021
+ */
 public class TestRetrieveUser {
     @Test
     void TestInvalidArgument() {

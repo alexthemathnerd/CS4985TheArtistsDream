@@ -6,6 +6,12 @@ import org.junit.jupiter.api.Test;
 import edu.westga.devops.theartistsdreamserver.*;
 import edu.westga.devops.theartistsdreamserver.utils.UI;
 
+/**
+ * Junit test class for the Add user method in the User Manager class
+ * 
+ * @author Jamia Echols
+ * @version Fall 2021
+ */
 public class TestAddUser {
     @Test
 	void testAddToEmptyManager() {
