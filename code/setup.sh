@@ -12,19 +12,14 @@ then
 	echo "Setting up Maven"
 	if [ -d "maven" ] 
 	then
-		#rm manual - run 'rm --help'
 		rm -r maven/
 	fi
-	#curl manual - run 'curl --help'
 	curl -o maven.zip https://downloads.apache.org/maven/maven-3/3.8.2/binaries/apache-maven-3.8.2-bin.zip
-	#unzip manual - run 'unzip --help'
 	unzip maven.zip
 	rm maven.zip
-	#mv manual - run 'mv --help'
 	mv apache-maven-* maven
-	#alias manual - run 'alias --help'
 	#PWD is the dynamic environment variable storing the current working directory
-	alias mvn=$PWD"/maven/bin/mvn"
+	#alias mvn=$PWD"/maven/bin/mvn"
 	
 	# setup jeromq dependencies
 	mvn install:install-file -Dfile=dependencies/jeromq-0.5.2.jar -DgroupId=org.zeromq -DartifactId=jeromq -Dversion=0.5.2 -Dpackaging=jar
@@ -32,10 +27,10 @@ elif [[ $1 == "compile" ]]
 then
 	for project in *
 	do
-		if [ -f $project"/pom.xml" ]
+		if [ -f "'$project'/pom.xml" ]
 		then
-				echo "Compiling "$project
-			cd $project
+				echo "Compiling '$project'"
+			cd "$project" || exit 255
 			mvn clean compile
 			cd ..
 		fi
@@ -44,10 +39,10 @@ elif [[ $1 == "test" ]]
 then
 	for project in *
 	do
-		if [ -f $project"/pom.xml" ] 
+		if [ -f "'$project'/pom.xml" ]
 		then 
-			echo "Testing "$project
-			cd $project
+			echo "Testing '$project'"
+			cd "$project" || exit 255
 			mvn clean test
 			cd ..
 		fi
@@ -55,16 +50,17 @@ then
 elif [[ $1 == "run" ]]
 then
 	# Launch server
-	echo "Launching "$project_title"Server"
-	cd $project_title"Server"
+	echo "Launching '$project_title'Server"
+	cd $project_title"Server" || exit 255
 	mvn clean package -q
-	java -jar "target/"$project_id"-server-"$project_version".jar" > serverlog.txt &
+	java -jar "target/$project_id-server-$project_version.jar" &
+	trap 'kill $!' SIGINT SIGTERM ERR EXIT
 	cd ..
 	# Wait 3 seconds to ensure server has launched
 	sleep 3
 	# Launch client application
-	echo "Launching "$project_title"Client"
-	cd $project_title"Client"
+	echo "Launching '$project_title'Client"
+	cd $project_title"Client" || exit 255
 	mvn javafx:run -q
 	cd ..
 else

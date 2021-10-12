@@ -37,7 +37,7 @@ public class TheArtistsDreamApplication extends Application {
     public static final String ICON_PATH = "icon.png";
     public static final String LOGIN_FXML = "view/Login.fxml";
     public static final String LOCAL_ARTWORKS_PATH = "view/local-images/";
-    public static final Logger LOGGER = Logger.getLogger("The Artist's Dream Server");
+    public static final Logger LOGGER = Logger.getLogger("The Artist's Dream Client");
     //public static ArtworkManager artworkManager;
 
     @Override
