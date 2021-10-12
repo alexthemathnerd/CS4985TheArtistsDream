@@ -11,7 +11,7 @@ import java.time.LocalDate;
  * @version Fall 2021
  *
  */
-public class Artwork {
+public class Artwork implements Comparable<Artwork> {
 
 	private byte[] imageData;
 	private String title;
@@ -23,7 +23,7 @@ public class Artwork {
 	/**
 	 * Creates a new Artwork
 	 *
-	 * @param imageBytes 	the image bytes of the artwork
+	 * @param imageData 	the image bytes of the artwork
 	 * @param title 	the title of the artwork
 	 * @param artistID	the id of the artist who created the artwork
 	 * @param tagIDs	the tag ids of the artwork
@@ -157,7 +157,6 @@ public class Artwork {
 	    } catch (ClassCastException e) {
 		    return new Request("Invalid Format");
 	    }
-
 	    this.tagIDs = newTagIDs;
 	    return new Request(this.tagIDs);
     }
@@ -185,4 +184,8 @@ public class Artwork {
 	    return new Request(this.title);
     }
 
+	@Override
+	public int compareTo(Artwork otherArtwork) {
+		return -1 * LocalDate.parse(this.date).compareTo(LocalDate.parse(otherArtwork.getDate()));
+	}
 }

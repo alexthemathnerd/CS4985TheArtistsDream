@@ -1,20 +1,19 @@
 package edu.westga.devops.theartistsdreamclient.view.controls;
 
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
-import edu.westga.devops.theartistsdreamclient.view.popups.ArtworkPopup;
+import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
 import edu.westga.devops.theartistsdreamclient.model.User;
-import edu.westga.devops.theartistsdreamclient.model.Artwork;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
+import edu.westga.devops.theartistsdreamclient.view.FollowingPage;
 import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
 import edu.westga.devops.theartistsdreamclient.view.RecommendedPage;
-import edu.westga.devops.theartistsdreamclient.view.FollowingPage;
 import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
+import edu.westga.devops.theartistsdreamclient.view.popups.ArtworkPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.FilterPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
 import edu.westga.devops.theartistsdreamclient.viewmodel.HeaderViewModel;
-import edu.westga.devops.theartistsdreamclient.utils.UI;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+import javafx.application.Platform;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
@@ -24,21 +23,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.application.Platform;
 
 /**
  * The Controller for the Custom Control for the Header of the application
@@ -229,8 +225,12 @@ public class Header extends HBox {
 
     @FXML
     void handleViewProfile(ActionEvent event) {
-        
-        
+        try {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            WindowLoader.changeScene(stage, "PortfolioPage.fxml", new PortfolioPage(User.getUser()), User.getUser().getUsername() + " Portfolio");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

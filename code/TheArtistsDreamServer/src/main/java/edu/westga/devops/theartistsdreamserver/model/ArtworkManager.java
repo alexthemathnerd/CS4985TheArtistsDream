@@ -5,6 +5,7 @@ import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
 import edu.westga.devops.theartistsdreamserver.utils.UI;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -185,17 +186,24 @@ public class ArtworkManager {
         List<Integer> tagIDs;
         String date;
         try {
-            imageBytes = (byte[]) data[0];
+            ArrayList<Double> bytes = (ArrayList<Double>) data[0];
+            imageBytes = new byte[bytes.size()];
+            int count = 0;
+            for (Double aDouble: bytes) {
+                imageBytes[count] = aDouble.byteValue();
+                count++;
+            }
             title = (String) data[1];
             artistID = ((Double) data[2]).intValue();
             tagIDs = (List<Integer>) data[3];
             date = (String) data[4];
         } catch (ClassCastException e) {
-            e.printStackTrace();
-            return new Request("ERROR");
+            return new Request(e.getMessage());
         }
         Artwork newArtwork = new Artwork(imageBytes, title, artistID, tagIDs, TheArtistsDreamServer.ARTWORKS.size(), date);
-        return new Request(TheArtistsDreamServer.ARTWORKS.add(newArtwork));
+        boolean isAdded = TheArtistsDreamServer.ARTWORKS.add(newArtwork);
+        Collections.sort(TheArtistsDreamServer.ARTWORKS);
+        return new Request(isAdded);
     }
 
     /**

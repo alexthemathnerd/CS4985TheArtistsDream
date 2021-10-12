@@ -73,8 +73,7 @@ public class Communicator implements Closeable {
         TheArtistsDreamApplication.LOGGER.info("Sending Message " + request.getCode());
         this.socket.send(json);
         String reply = this.socket.recvStr(0);
-        Response<T> conf = gson.fromJson(reply, type);
-        return conf;
+        return gson.fromJson(reply, type);
     }
 
     /**
