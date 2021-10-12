@@ -24,7 +24,7 @@ public class WindowLoader {
      * @param newWindowTitle  the new window title
      * @throws IOException Signals that an I/O exception has occurred.
      */
-    public static void changeScene(Stage currentStage, String fxmlOfNewWindow, Object controller, String newWindowTitle)
+    public static void changeScene(Stage currentStage, String fxmlOfNewWindow, Object controller, String newWindowTitle, boolean isMaximized)
             throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(WindowLoader.class.getResource(fxmlOfNewWindow));
@@ -33,7 +33,7 @@ public class WindowLoader {
 
         Scene scene = new Scene(loader.getRoot());
         currentStage.setScene(scene);
-        currentStage.setMaximized(true);
+        currentStage.setMaximized(isMaximized);
         currentStage.setTitle(newWindowTitle);
     }
 

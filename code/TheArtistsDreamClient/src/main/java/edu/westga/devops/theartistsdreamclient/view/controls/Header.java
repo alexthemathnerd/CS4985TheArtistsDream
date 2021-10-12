@@ -1,19 +1,20 @@
 package edu.westga.devops.theartistsdreamclient.view.controls;
 
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
-import edu.westga.devops.theartistsdreamclient.model.Artwork;
+import edu.westga.devops.theartistsdreamclient.view.popups.ArtworkPopup;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
 import edu.westga.devops.theartistsdreamclient.model.User;
-import edu.westga.devops.theartistsdreamclient.utils.UI;
-import edu.westga.devops.theartistsdreamclient.view.FollowingPage;
+import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
 import edu.westga.devops.theartistsdreamclient.view.RecommendedPage;
+import edu.westga.devops.theartistsdreamclient.view.FollowingPage;
 import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
-import edu.westga.devops.theartistsdreamclient.view.popups.ArtworkPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.FilterPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
 import edu.westga.devops.theartistsdreamclient.viewmodel.HeaderViewModel;
-import javafx.application.Platform;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
@@ -23,18 +24,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.application.Platform;
 
 /**
  * The Controller for the Custom Control for the Header of the application
@@ -146,7 +150,7 @@ public class Header extends HBox {
             if (searchedUser != null) {
                 try {
                     Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(searchedUser), "The Artist's Dream");
+                    WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(searchedUser), "The Artist's Dream", true);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -208,10 +212,8 @@ public class Header extends HBox {
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.close();
             Stage stage = new Stage();
-            stage.setMaximized(false);
-            stage.setResizable(false);
             stage.show();
-            WindowLoader.changeScene(stage, "../" + TheArtistsDreamApplication.LOGIN_FXML, null, "The Artist's Dream");
+            WindowLoader.changeScene(stage, "../" + TheArtistsDreamApplication.LOGIN_FXML, null, "The Artist's Dream", false);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -226,10 +228,11 @@ public class Header extends HBox {
     @FXML
     void handleViewProfile(ActionEvent event) {
         try {
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            WindowLoader.changeScene(stage, "PortfolioPage.fxml", new PortfolioPage(User.getUser()), User.getUser().getUsername() + " Portfolio");
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(User.getUser()), "The Artist's Dream", false);
+            currentStage.setMaximized(true);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -237,7 +240,7 @@ public class Header extends HBox {
     void handleRecommended(ActionEvent event) {
         try {
             Stage currentStage = (Stage) this.navMenuButton.getScene().getWindow();
-            WindowLoader.changeScene(currentStage, RECOMMENDED_PAGE_FXML, new RecommendedPage(), "The Artist's Dream");
+            WindowLoader.changeScene(currentStage, RECOMMENDED_PAGE_FXML, new RecommendedPage(), "The Artist's Dream", true);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -247,7 +250,7 @@ public class Header extends HBox {
     void handleFollowing(ActionEvent event) {
         try {
             Stage currentStage = (Stage) this.navMenuButton.getScene().getWindow();
-            WindowLoader.changeScene(currentStage, FOLLOWING_PAGE_FXML, new FollowingPage(), "The Artist's Dream");
+            WindowLoader.changeScene(currentStage, FOLLOWING_PAGE_FXML, new FollowingPage(), "The Artist's Dream", true);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

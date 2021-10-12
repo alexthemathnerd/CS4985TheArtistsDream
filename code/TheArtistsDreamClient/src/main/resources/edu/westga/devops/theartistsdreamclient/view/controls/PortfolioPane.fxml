@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import java.net.URL?>
-<fx:root  styleClass="main" alignment="CENTER_RIGHT" prefWidth="200" spacing="10.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root styleClass="main" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="Infinity" prefWidth="200" spacing="10.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView id="image" fx:id="profileImage" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
       <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="200.0" HBox.hgrow="ALWAYS">
@@ -33,7 +33,7 @@
             <Button fx:id="addArtButton" mnemonicParsing="false" onAction="#handleAddArt" prefHeight="40.0" prefWidth="300.0" text="ADD ART" VBox.vgrow="NEVER" />
             <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#handleSettings" prefHeight="40.0" prefWidth="300.0" text="SETTINGS" VBox.vgrow="NEVER" />
             <ToggleButton fx:id="followToggleButton" mnemonicParsing="false" onAction="#handleFollow" prefHeight="40.0" prefWidth="300.0" text="FOLLOW" VBox.vgrow="NEVER" />
-            <Button fx:id="commisionButton" mnemonicParsing="false" onAction="#handleCommision" prefHeight="40.0" prefWidth="300.0" text="COMMISION" />
+            <Button fx:id="commissionButton" mnemonicParsing="false" onAction="#handleCommission" prefHeight="40.0" prefWidth="300.0" text="COMMISSION" />
          </children>
       </VBox>
    </children>

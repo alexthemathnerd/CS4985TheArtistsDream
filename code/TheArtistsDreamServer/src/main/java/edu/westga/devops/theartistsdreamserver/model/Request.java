@@ -58,7 +58,7 @@ public class Request {
      * @return the error message
      */
     public String getError() {
-	return this.error;
+	    return this.error;
     }
 
     /**
@@ -70,6 +70,6 @@ public class Request {
      * @return the data 
      */
     public Object getData() {
-	return this.data;
+	    return this.data;
     }
 }
