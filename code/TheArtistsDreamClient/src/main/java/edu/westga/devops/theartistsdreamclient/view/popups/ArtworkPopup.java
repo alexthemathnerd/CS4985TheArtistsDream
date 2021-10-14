@@ -83,7 +83,7 @@ public class ArtworkPopup {
 			    this.titleTextField.setEditable(false);
 			    this.removeButton.setVisible(true);
 			    this.editButton.setText("EDIT");
-			    this.viewModel.editArtwork();
+			    this.viewModel.editArtwork(); 
 		    }
 	    });
 	}
@@ -106,11 +106,19 @@ public class ArtworkPopup {
 
 	@FXML
 	void handleEdit(ActionEvent event) {
+                if (this.isEditing.get()) {
+			Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
+			currentStage.close();
+		}
 		this.isEditing.set(!this.isEditing.get());
 	}
 
 	@FXML
 	void handleRemove(ActionEvent event) {
+		Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		this.viewModel.removeArtwork();
+		currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
+		currentStage.close();
 	}
 }

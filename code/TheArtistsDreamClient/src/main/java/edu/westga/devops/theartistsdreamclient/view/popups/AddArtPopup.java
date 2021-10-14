@@ -39,7 +39,7 @@ public class AddArtPopup {
     private void initialize() {
         this.titleTextField.textProperty().bindBidirectional(this.viewModel.titleProperty());
         this.tagsTextArea.textProperty().bindBidirectional(this.viewModel.tagsProperty());
-        this.viewModel.imageObjectProperty().bind(this.addedImageView.imageProperty());
+        this.viewModel.imageProperty().bind(this.addedImageView.imageProperty());
     }
 
     @FXML

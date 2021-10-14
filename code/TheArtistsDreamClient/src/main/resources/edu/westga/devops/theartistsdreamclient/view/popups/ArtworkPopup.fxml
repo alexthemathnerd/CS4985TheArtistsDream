@@ -9,12 +9,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="386.0" prefWidth="458.0" style="-fx-background-color: #1e1e24; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" styleClass="main" stylesheets="@../core-design.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField fx:id="titleTextField" alignment="CENTER" disable="true" editable="false" prefHeight="31.0" prefWidth="416.0" />
+            <TextField fx:id="titleTextField" alignment="CENTER" disable="true" editable="false" prefHeight="31.0" prefWidth="416.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></TextField>
             <Label fx:id="artistLabel" onMouseClicked="#handleViewArtistProfile" text="author" underline="true" />
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
                <children>

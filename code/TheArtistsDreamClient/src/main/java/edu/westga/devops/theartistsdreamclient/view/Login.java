@@ -63,11 +63,11 @@ public class Login {
     }
 
     private void setupBindings() {
-        this.emailTextField.textProperty().bindBidirectional(this.viewModel.emailStringProperty());
-        this.passwordTextField.textProperty().bindBidirectional(this.viewModel.passwordStringProperty());
-        this.usernameTextField.textProperty().bindBidirectional(this.viewModel.usernameStringProperty());
-        this.confirmPasswordTextField.textProperty().bindBidirectional(this.viewModel.confirmPasswordStringProperty());
-        this.errorMessageLabel.textProperty().bindBidirectional(this.viewModel.errorLabelStringProperty());
+        this.emailTextField.textProperty().bindBidirectional(this.viewModel.emailProperty());
+        this.passwordTextField.textProperty().bindBidirectional(this.viewModel.passwordProperty());
+        this.usernameTextField.textProperty().bindBidirectional(this.viewModel.usernameProperty());
+        this.confirmPasswordTextField.textProperty().bindBidirectional(this.viewModel.confirmPasswordProperty());
+        this.errorMessageLabel.textProperty().bindBidirectional(this.viewModel.errorProperty());
     }
 
     @FXML
