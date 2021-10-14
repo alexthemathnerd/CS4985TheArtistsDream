@@ -27,21 +27,4 @@ public class TestSearchForArtworks {
 		assertEquals(0, testViewModel.searchForArtworks("test").size());
 	}
 
-	@Test
-	void testSearchTermMatchesNone() {
-		HeaderViewModel testViewModel = new HeaderViewModel();
-                ArtworkManager.setArtworkManager(new LocalArtworkManager());
-	}
-
-	@Test
-	void testSearchTermMatchesOne() {
-                ArtworkManager.setArtworkManager(new LocalArtworkManager());
-                HeaderViewModel testViewModel = new HeaderViewModel();
-	}
-
-	@Test
-	void testSearchTermMatchesAll() {
-                ArtworkManager.setArtworkManager(new LocalArtworkManager());
-                HeaderViewModel testViewModel = new HeaderViewModel();
-	}
 }

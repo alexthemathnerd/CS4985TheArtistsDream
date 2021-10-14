@@ -240,7 +240,8 @@ public class Header extends HBox {
     void handleRecommended(ActionEvent event) {
         try {
             Stage currentStage = (Stage) this.navMenuButton.getScene().getWindow();
-            WindowLoader.changeScene(currentStage, RECOMMENDED_PAGE_FXML, new RecommendedPage(), "The Artist's Dream", true);
+            WindowLoader.changeScene(currentStage, RECOMMENDED_PAGE_FXML, new RecommendedPage(), "The Artist's Dream", false);
+            currentStage.setMaximized(true);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -250,7 +251,8 @@ public class Header extends HBox {
     void handleFollowing(ActionEvent event) {
         try {
             Stage currentStage = (Stage) this.navMenuButton.getScene().getWindow();
-            WindowLoader.changeScene(currentStage, FOLLOWING_PAGE_FXML, new FollowingPage(), "The Artist's Dream", true);
+            WindowLoader.changeScene(currentStage, FOLLOWING_PAGE_FXML, new FollowingPage(), "The Artist's Dream", false);
+            currentStage.setMaximized(true);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

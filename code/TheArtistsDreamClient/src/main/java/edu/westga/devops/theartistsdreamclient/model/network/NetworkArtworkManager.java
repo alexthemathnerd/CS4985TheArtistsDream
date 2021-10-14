@@ -123,7 +123,7 @@ public class NetworkArtworkManager extends ArtworkManager {
 
     @Override
     public boolean removeArtwork(int id) {
-        Type type = new TypeToken<Boolean>() {
+        Type type = new TypeToken<Response<Boolean>>() {
         }.getType();
         Response<Boolean> response = this.communicator.request(new Request(UI.ServerCodes.REMOVE_ARTWORK, new Object[]{id}), type);
 
@@ -131,12 +131,13 @@ public class NetworkArtworkManager extends ArtworkManager {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
             return false;
         }
+
         return response.getData();
     }
 
     @Override
     public boolean editArtwork(int id, String newTitle, List<Integer> newTagIDs) {
-        Type type = new TypeToken<Boolean>() {
+        Type type = new TypeToken<Response<Boolean>>() {
         }.getType();
         Response<Boolean> response = this.communicator.request(new Request(UI.ServerCodes.EDIT_ARTWORK, new Object[]{id, newTitle, newTagIDs}), type);
 

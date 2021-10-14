@@ -141,31 +141,18 @@ public class ArtworkManager {
      * @param data the objects data
      */
     public static Request getArtwork(Object[] data) {
-        if (data.length == 2) {
-            int id;
-            try {
-                id = ((Double) data[0]).intValue();
-            } catch (ClassCastException e) {
-                return new Request(UI.ErrorMessages.INVALID_FORMAT);
-            }
-            for (Artwork artwork : TheArtistsDreamServer.ARTWORKS) {
+        int id;
+        try {
+            id = (Integer) data[0];
+	    for (Artwork artwork : TheArtistsDreamServer.ARTWORKS) {
                 if (artwork.getID() == id) {
                     return new Request(artwork);
                 }
-            }
-            return new Request(UI.ErrorMessages.ARTWORK_NOT_FOUND);
-        }
-        int id;
-        try {
-            id = ((Double) data[0]).intValue();
+	    }
         } catch (ClassCastException e) {
             return new Request(UI.ErrorMessages.INVALID_FORMAT);
         }
-        for (Artwork artwork : TheArtistsDreamServer.ARTWORKS) {
-            if (artwork.getID() == id) {
-                return new Request(artwork);
-            }
-        }
+
         return new Request(UI.ErrorMessages.ARTWORK_NOT_FOUND);
     }
 
@@ -226,9 +213,10 @@ public class ArtworkManager {
 
         Request artworkRequest = getArtwork(new Object[]{id});
 
-        if (artworkRequest.getError() == null) {
+        if (artworkRequest.getError() != null) {
             return new Request(artworkRequest.getError());
         }
+
         Artwork artworkToRemove = (Artwork) artworkRequest.getData();
 
         return new Request(TheArtistsDreamServer.ARTWORKS.remove(artworkToRemove));
@@ -258,14 +246,17 @@ public class ArtworkManager {
         }
 
         Request artworkRequest = getArtwork(new Object[]{id});
-        if (artworkRequest.getError() == null) {
+
+        if (artworkRequest.getError() != null) {
             return new Request(artworkRequest.getError());
 
         }
         Artwork artworkToEdit = (Artwork) artworkRequest.getData();
+	
+	if (artworkToEdit == null) {
+	    return new Request(false);
+	}
 
-
-//		Artwork artworkToEdit = getArtwork(new Object[] {id}).getData();
         artworkToEdit.setTags(new Object[]{newTagIDs});
         artworkToEdit.setTitle(new Object[]{newTitle});
 
