@@ -3,6 +3,9 @@ package edu.westga.devops.theartistsdreamclient.view.controls;
 import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.view.popups.AddArtPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
+import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
+import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
+
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
@@ -113,6 +116,16 @@ public class PortfolioPane extends HBox {
             Stage popup = PopupLoader.loadPopup("Add Art", AddArtPopup.class.getResource("AddArtPopup.fxml"), new AddArtPopup(), (Parent) mainFrame);
             popup.setOnCloseRequest((event2) -> {
                 mainFrame.setEffect(null);
+		Object data = popup.getUserData();
+		if (data != null) {
+			try {
+				Stage currentStage = (Stage) this.getScene().getWindow();
+				WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(User.getUser()), "Profile", false);
+				currentStage.setMaximized(true);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
             });
             popup.show();
         } catch (IOException e) {

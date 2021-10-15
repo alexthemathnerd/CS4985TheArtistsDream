@@ -108,6 +108,7 @@ public class ArtworkPopup {
 	void handleEdit(ActionEvent event) {
                 if (this.isEditing.get()) {
 			Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			currentStage.setUserData(this.viewModel.getArtwork().getArtistID());
 			currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
 			currentStage.close();
 		}
@@ -118,6 +119,7 @@ public class ArtworkPopup {
 	void handleRemove(ActionEvent event) {
 		Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		this.viewModel.removeArtwork();
+		currentStage.setUserData(this.viewModel.getArtwork().getArtistID());
 		currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
 		currentStage.close();
 	}

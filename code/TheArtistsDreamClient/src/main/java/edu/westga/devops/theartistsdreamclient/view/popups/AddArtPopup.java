@@ -1,6 +1,7 @@
 package edu.westga.devops.theartistsdreamclient.view.popups;
 
 import edu.westga.devops.theartistsdreamclient.viewmodel.AddArtPopupViewModel;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -57,6 +58,7 @@ public class AddArtPopup {
     private void handleAdd(ActionEvent event) {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         this.viewModel.addArt();
+	currentStage.setUserData("ADDED");
         currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
         currentStage.close();
     }
