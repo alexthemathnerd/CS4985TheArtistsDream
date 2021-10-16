@@ -24,7 +24,7 @@ public class RecommendedPage {
     @FXML
     private void initialize() {
         this.artworksPane.setUserId(-1);
-	    this.artworksPane.setOnProfile(false);
+	this.artworksPane.setOnProfile(false);
         this.artworksPane.initArts();
         this.artworksPane.tagsToFilterListProperty().bindBidirectional(this.header.tagsToFilterListProperty());
     }

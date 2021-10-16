@@ -30,7 +30,6 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class TestConstructor {
-
 	
 	@Mock
 	private Image image;

@@ -42,7 +42,7 @@ public class ArtworksPaneViewModel {
         this.indexProperty = new SimpleIntegerProperty(0);
         this.maxIndexProperty = new SimpleIntegerProperty(50);
         this.userIdProperty = new SimpleIntegerProperty(-1);
-	    this.onFollowingPageProperty = new SimpleBooleanProperty(true);
+	this.onFollowingPageProperty = new SimpleBooleanProperty(true);
     }
 
     /**

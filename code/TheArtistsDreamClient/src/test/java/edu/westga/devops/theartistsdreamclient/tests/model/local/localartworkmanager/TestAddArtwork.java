@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 /**
  * JUnit Test Case for LocalArtworkManager method addArtwork
@@ -21,7 +22,7 @@ public class TestAddArtwork {
 	void testEmptyManager() {
 		LocalArtworkManager testManager = new LocalArtworkManager();
 
-		assertTrue(testManager.addArtwork(new Artwork(new byte[0], "test", 1, new ArrayList<Integer>(), 1, "2020-10-20")));
+		assertAll(() -> assertTrue(testManager.addArtwork(new Artwork(new byte[0], "test", 1, new ArrayList<Integer>(), 1, "2020-10-20"))), () -> assertTrue(testManager.addArtwork(new byte[0], "test", 1, new ArrayList<Integer>(), "2020-10-20")));
 	}
 
 }

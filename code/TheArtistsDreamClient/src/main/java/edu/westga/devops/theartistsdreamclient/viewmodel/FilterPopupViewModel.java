@@ -28,9 +28,9 @@ import java.util.List;
  */
 public class FilterPopupViewModel {
 
-    private final StringProperty searchStringProperty;
-    private final ListProperty<Tag> searchTagsListProperty;
-    private final SetProperty<Tag> addedTagsSetProperty;
+    private final StringProperty searchTermProperty;
+    private final ListProperty<Tag> searchTagsProperty;
+    private final SetProperty<Tag> addedTagsProperty;
 
     /**
      * Creates a instance of {@link FilterPopupViewModel}
@@ -40,9 +40,9 @@ public class FilterPopupViewModel {
      * addedTagsSetProperty().isNotNull()
      */
     public FilterPopupViewModel() {
-        this.searchStringProperty = new SimpleStringProperty("");
-        this.searchTagsListProperty = new SimpleListProperty<Tag>();
-        this.addedTagsSetProperty = new SimpleSetProperty<Tag>();
+        this.searchTermProperty = new SimpleStringProperty("");
+        this.searchTagsProperty = new SimpleListProperty<Tag>();
+        this.addedTagsProperty = new SimpleSetProperty<Tag>();
     }
 
     /**
@@ -53,40 +53,40 @@ public class FilterPopupViewModel {
      * @postcondition searchTagsSetProperty().isNotEmpty()
      */
     public void searchTags(int amount) {
-        List<Tag> tags = TagManager.getTagManager().getTopTags(amount, this.searchStringProperty.get());
-        this.searchTagsListProperty.setValue(FXCollections.observableList(tags));
+        List<Tag> tags = TagManager.getTagManager().getTopTags(amount, this.searchTermProperty.get());
+        this.searchTagsProperty.setValue(FXCollections.observableList(tags));
     }
 
     /**
-     * Gets the searchStringProperty
+     * Gets the searchTermProperty
      *
-     * @return the searchStringProperty
+     * @return the searchTermProperty
      * @precondition none
      * @postcondition none
      */
-    public StringProperty searchStringProperty() {
-        return this.searchStringProperty;
+    public StringProperty searchTermProperty() {
+        return this.searchTermProperty;
     }
 
     /**
-     * Gets the searchTagsSetProperty
+     * Gets the searchTagsProperty
      *
-     * @return the searchTagsSetProperty
+     * @return the searchTagsProperty
      * @precondition none
      * @postcondition none
      */
-    public ListProperty<Tag> searchTagsListProperty() {
-        return this.searchTagsListProperty;
+    public ListProperty<Tag> searchTagsProperty() {
+        return this.searchTagsProperty;
     }
 
     /**
-     * Gets the searchTagsSetProperty
+     * Gets the addedTagsProperty
      *
-     * @return the searchTagsSetProperty
+     * @return the addedTagsSetProperty
      * @precondition none
      * @postcondition none
      */
-    public SetProperty<Tag> addedTagsSetProperty() {
-        return this.addedTagsSetProperty;
+    public SetProperty<Tag> addedTagsProperty() {
+        return this.addedTagsProperty;
     }
 }
