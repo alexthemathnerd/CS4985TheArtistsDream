@@ -113,4 +113,19 @@ public class LocalUserManager extends UserManager {
 		}
 		return searchedUsers;
 	}
+
+    @Override
+    public boolean followArtist(int artistsId, int followedId) {
+        return false;
+    }
+
+    @Override
+    public List<Integer> getFollowerIds(int userId) {
+        return null;
+    }
+
+    @Override
+    public List<Integer> getFollowingIds(int userId) {
+        return null;
+    }
 }

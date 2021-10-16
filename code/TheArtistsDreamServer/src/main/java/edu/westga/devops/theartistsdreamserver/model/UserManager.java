@@ -1,6 +1,9 @@
 package edu.westga.devops.theartistsdreamserver.model;
 
+import com.google.gson.reflect.TypeToken;
 import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
+
+import java.lang.reflect.Type;
 import java.util.List;
 import java.util.ArrayList;
 import edu.westga.devops.theartistsdreamserver.utils.UI;
@@ -156,5 +159,53 @@ public class UserManager {
             }
         }
         return new Request(null);
-    }    
+    }
+
+    public static Request followArtist(Object[] data) {
+        int artistId;
+        int followedId;
+        User user;
+        User followedUser;
+        try {
+            artistId = ((Double) data[0]).intValue();
+            followedId = ((Double) data[1]).intValue();
+            user = TheArtistsDreamServer.USERS.get(artistId);
+            followedUser = TheArtistsDreamServer.USERS.get(followedId);
+        } catch (ClassCastException e) {
+            return new Request(UI.ErrorMessages.INVALID_FORMAT);
+        } catch (IndexOutOfBoundsException e) {
+            return new Request(UI.ErrorMessages.USER_NOT_FOUND);
+        }
+        if (user.getFollowingIds().contains(followedId)) return new Request(false);
+        return new Request(user.addFollowing(followedId) && followedUser.addFollower(artistId));
+    }
+
+    public static Request getFollowerIds(Object[] data) {
+        int artistId;
+        User user;
+        try {
+            artistId = ((Double) data[0]).intValue();
+            user = TheArtistsDreamServer.USERS.get(artistId);
+        } catch (ClassCastException e) {
+            return new Request(UI.ErrorMessages.INVALID_FORMAT);
+        } catch (IndexOutOfBoundsException e) {
+            return new Request(UI.ErrorMessages.USER_NOT_FOUND);
+        }
+        return new Request(user.getFollowerIds());
+    }
+
+    public static Request getFollowingIds(Object[] data) {
+        int artistId;
+        User user;
+        try {
+            artistId = ((Double) data[0]).intValue();
+            user = TheArtistsDreamServer.USERS.get(artistId);
+        } catch (ClassCastException e) {
+            return new Request(UI.ErrorMessages.INVALID_FORMAT);
+        } catch (IndexOutOfBoundsException e) {
+            return new Request(UI.ErrorMessages.USER_NOT_FOUND);
+        }
+        return new Request(user.getFollowingIds());
+    }
+
 }

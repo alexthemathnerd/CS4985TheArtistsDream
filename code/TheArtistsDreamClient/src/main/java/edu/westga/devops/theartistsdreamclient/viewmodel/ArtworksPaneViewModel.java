@@ -4,6 +4,7 @@ import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
 
+import edu.westga.devops.theartistsdreamclient.model.User;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.IntegerProperty;
@@ -115,8 +116,10 @@ public class ArtworksPaneViewModel {
     public void viewInitialArtworks() {
         if (this.userIdProperty.isEqualTo(-1).get()) {
             this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getFirstFiftyArtworks()));
-        } else {
+        } else if (this.onFollowingPageProperty.not().get()) {
             this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getFirstFiftyArtworks(this.userIdProperty.get())));
+        } else {
+            this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getFirstFiftyArtworks(true)));
         }
     }
 

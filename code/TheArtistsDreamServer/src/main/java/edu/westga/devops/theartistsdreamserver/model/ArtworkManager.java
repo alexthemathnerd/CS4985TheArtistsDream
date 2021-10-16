@@ -28,7 +28,6 @@ public class ArtworkManager {
      * @postcondition none
      */
     public static Request getFirstFiftyArtworks(Object[] data) {
-        TheArtistsDreamServer.LOGGER.info(Arrays.toString(data));
         if (data.length == 1) {
             int userId;
             try {
@@ -71,11 +70,16 @@ public class ArtworkManager {
 
     private static Request getFirstFiftyArtworks(int userId, boolean isFollowing) {
 	    List<Artwork> artworks = new ArrayList<Artwork>();
-	    for (Artwork aArtwork : TheArtistsDreamServer.ARTWORKS) {
-		    if (aArtwork.getArtistID() == userId && isFollowing) {
-			    artworks.add(aArtwork);
-		    }
-	    }
+        User user = TheArtistsDreamServer.USERS.get(userId);
+
+        for (Artwork aArtwork: TheArtistsDreamServer.ARTWORKS) {
+            for (int aUserId : user.getFollowingIds()) {
+                if (aArtwork.getArtistID() == aUserId) {
+                    artworks.add(aArtwork);
+                    break;
+                }
+            }
+        }
 	    if (artworks.size() < 50) {
 		    return new Request(artworks);
 	    }
@@ -119,9 +123,14 @@ public class ArtworkManager {
 
     private static Request getNextTenArtworks(int startingIndex, int userId) {
         List<Artwork> artworks = new ArrayList<>();
+        User user = TheArtistsDreamServer.USERS.get(userId);
+
         for (Artwork aArtwork: TheArtistsDreamServer.ARTWORKS) {
-            if (aArtwork.getArtistID() == userId) {
-                artworks.add(aArtwork);
+            for (int aUserId : user.getFollowingIds()) {
+                if (aArtwork.getArtistID() == aUserId) {
+                    artworks.add(aArtwork);
+                    break;
+                }
             }
         }
         if (artworks.size() < startingIndex + 10) {

@@ -90,4 +90,40 @@ public class NetworkUserManager extends UserManager {
         }
         return response.getData();
     }
+
+    @Override
+    public boolean followArtist(int artistsId, int followedId) {
+        Type type = new TypeToken<Response<Boolean>>() {
+        }.getType();
+        Response<Boolean> response = this.communicator.request(new Request(UI.ServerCodes.FOLLOW_ARTIST, new Object[]{artistsId, followedId}), type);
+        if (response.getError() != null) {
+            TheArtistsDreamApplication.LOGGER.warning(response.getError());
+            return false;
+        }
+        return response.getData();
+    }
+
+    @Override
+    public List<Integer> getFollowerIds(int userId) {
+        Type type = new TypeToken<Response<ArrayList<Integer>>>() {
+        }.getType();
+        Response<ArrayList<Integer>> response = this.communicator.request(new Request(UI.ServerCodes.GET_FOLLOWERS, new Object[]{userId}), type);
+        if (response.getError() != null) {
+            TheArtistsDreamApplication.LOGGER.warning(response.getError());
+            return new ArrayList<>();
+        }
+        return response.getData();
+    }
+
+    @Override
+    public List<Integer> getFollowingIds(int userId) {
+        Type type = new TypeToken<Response<ArrayList<Integer>>>() {
+        }.getType();
+        Response<ArrayList<Integer>> response = this.communicator.request(new Request(UI.ServerCodes.GET_FOLLOWINGS, new Object[]{userId}), type);
+        if (response.getError() != null) {
+            TheArtistsDreamApplication.LOGGER.warning(response.getError());
+            return new ArrayList<>();
+        }
+        return response.getData();
+    }
 }   

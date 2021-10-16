@@ -1,5 +1,6 @@
 package edu.westga.devops.theartistsdreamclient.model.network;
 
+import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.utils.UI;
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
@@ -52,7 +53,6 @@ public class NetworkArtworkManager extends ArtworkManager {
         Type type = new TypeToken<Response<ArrayList<Artwork>>>() {
         }.getType();
         Response<ArrayList<Artwork>> response = this.communicator.request(new Request(UI.ServerCodes.GET_FIRST_FIFTY_ARTWORKS, new Object[]{userId}), type);
-        System.out.println(userId);
         if (response.getError() != null) {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
             return new ArrayList<Artwork>();
@@ -66,7 +66,6 @@ public class NetworkArtworkManager extends ArtworkManager {
         Type type = new TypeToken<Response<ArrayList<Artwork>>>() {
         }.getType();
         Response response = this.communicator.request(new Request(UI.ServerCodes.GET_NEXT_TEN_ARTWORKS, new Object[]{startingIndex}));
-        System.out.println(response.getData().getClass());
         if (response.getError() != null) {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
             return new ArrayList<Artwork>();
@@ -199,7 +198,7 @@ public class NetworkArtworkManager extends ArtworkManager {
     @Override
     public List<Artwork> getFirstFiftyArtworks(boolean isFollowing) {
         Type type = new TypeToken<Response<ArrayList<Artwork>>>() { }.getType();
-        Response<ArrayList<Artwork>> response = this.communicator.request(new Request(UI.ServerCodes.GET_FIRST_FIFTY_ARTWORKS, new Object[]{isFollowing}), type);
+        Response<ArrayList<Artwork>> response = this.communicator.request(new Request(UI.ServerCodes.GET_FIRST_FIFTY_ARTWORKS, new Object[]{User.getUser().getUserId(), isFollowing}), type);
         if (response.getError() != null) {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
             return new ArrayList<>();

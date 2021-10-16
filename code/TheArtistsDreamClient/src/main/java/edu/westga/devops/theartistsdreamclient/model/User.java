@@ -4,6 +4,7 @@ import edu.westga.devops.theartistsdreamclient.utils.UI;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * The User Class
@@ -177,5 +178,19 @@ public class User {
      */
     public List<Integer> getFollowingIds() {
         return new ArrayList<>();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (other instanceof User user) {
+            return userId == user.userId;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId);
     }
 }

@@ -33,7 +33,10 @@ public class UI {
         EDIT_ARTWORK,
         GET_FOLLOWING_ARTWORKS,
         GET_ARTWORKS_OF_ARTIST,
-        GET_ARTWORKS_OF_TAGS;
+        GET_ARTWORKS_OF_TAGS,
+        FOLLOW_ARTIST,
+        GET_FOLLOWERS,
+        GET_FOLLOWINGS;
     }
 
     /**

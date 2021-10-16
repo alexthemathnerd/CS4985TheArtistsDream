@@ -1,6 +1,7 @@
 package edu.westga.devops.theartistsdreamclient.view.controls;
 
 import edu.westga.devops.theartistsdreamclient.model.User;
+import edu.westga.devops.theartistsdreamclient.model.UserManager;
 import edu.westga.devops.theartistsdreamclient.view.popups.AddArtPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
 import javafx.beans.property.ObjectProperty;
@@ -98,8 +99,8 @@ public class PortfolioPane extends HBox {
                     this.settingsButton.setManaged(false);
                 }
                 this.artistNameLabel.setText(newValue.getUsername());
-                this.followersLabel.setText(newValue.getFollowerIds().size() + " followers");
-                this.followingLabel.setText(newValue.getFollowingIds().size() + " followers");
+                this.followersLabel.setText(UserManager.getUserManager().getFollowerIds(newValue.getUserId()).size() + " followers");
+                this.followingLabel.setText(UserManager.getUserManager().getFollowingIds(newValue.getUserId()).size() + " followings");
                 this.profileImage.setImage(new Image(new ByteArrayInputStream(newValue.getProfilePic())));
                 this.profileImage.setClip(new Circle(75, 75, 75));
             }
@@ -127,6 +128,13 @@ public class PortfolioPane extends HBox {
 
     @FXML
     private void handleFollow(ActionEvent event) {
+        if (this.followToggleButton.isSelected()) {
+            this.followToggleButton.setText("Following");
+            UserManager.getUserManager().followArtist(User.getUser().getUserId(), this.userProperty.get().getUserId());
+        } else {
+            this.followToggleButton.setText("Follow");
+            // TODO: UNFOLLOW!
+        }
 
     }
 

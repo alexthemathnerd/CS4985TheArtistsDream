@@ -56,7 +56,7 @@ public class ArtworksPane extends ScrollPane {
         try {
             this.tagsToFilterListProperty = new SimpleListProperty<Tag>(FXCollections.observableArrayList());
             this.userIdProperty = new SimpleIntegerProperty(-1);
-	        this.onFollowingPageProperty = new SimpleBooleanProperty();
+	        this.onFollowingPageProperty = new SimpleBooleanProperty(false);
 	        this.onProfileProperty = new SimpleBooleanProperty();
             loader.load();
         } catch (IOException e) {

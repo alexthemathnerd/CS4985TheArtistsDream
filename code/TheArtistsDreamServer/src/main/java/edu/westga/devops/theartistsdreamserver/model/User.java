@@ -1,5 +1,6 @@
 package edu.westga.devops.theartistsdreamserver.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,6 +36,8 @@ public class User {
         this.password = password;
         this.userId = userId;
         this.profilePic = profilePic;
+        this.followerIds = new ArrayList<>();
+        this.followingIds = new ArrayList<>();
     }
 
     /**
@@ -95,5 +98,21 @@ public class User {
      */
     public byte[] getProfilePic() {
         return this.profilePic;
+    }
+
+    public boolean addFollowing(int userId) {
+        return this.followingIds.add(userId);
+    }
+
+    public boolean addFollower(int userId) {
+        return this.followerIds.add(userId);
+    }
+
+    public List<Integer> getFollowerIds() {
+        return this.followerIds;
+    }
+
+    public List<Integer> getFollowingIds() {
+        return this.followingIds;
     }
 }

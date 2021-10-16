@@ -1,9 +1,6 @@
 package edu.westga.devops.theartistsdreamserver.utils;
 
-import edu.westga.devops.theartistsdreamserver.model.Request;
-import edu.westga.devops.theartistsdreamserver.model.TagManager;
-import edu.westga.devops.theartistsdreamserver.model.UserManager;
-import edu.westga.devops.theartistsdreamserver.model.ArtworkManager;
+import edu.westga.devops.theartistsdreamserver.model.*;
 
 /**
  * UI Class
@@ -35,8 +32,10 @@ public class UI {
         ADD_ARTWORK(ArtworkManager::addArtwork),
         REMOVE_ARTWORK(ArtworkManager::removeArtwork),
         EDIT_ARTWORK(ArtworkManager::editArtwork),
-        GET_ARTWORKS_OF_TAGS(ArtworkManager::getArtworksOfTags);
-
+        GET_ARTWORKS_OF_TAGS(ArtworkManager::getArtworksOfTags),
+        FOLLOW_ARTIST(UserManager::followArtist),
+        GET_FOLLOWERS(UserManager::getFollowerIds),
+        GET_FOLLOWINGS(UserManager::getFollowingIds);
 
         private ServerAction action;
 

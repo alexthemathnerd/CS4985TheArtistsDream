@@ -99,4 +99,9 @@ public abstract class UserManager {
         }
         UserManager.userManager = userManager;
     }
+
+	public abstract boolean followArtist(int artistsId, int followedId);
+
+	public abstract List<Integer> getFollowerIds(int userId);
+	public abstract List<Integer> getFollowingIds(int userId);
 }
