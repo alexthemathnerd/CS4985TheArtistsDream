@@ -104,6 +104,30 @@ public class NetworkUserManager extends UserManager {
     }
 
     @Override
+    public boolean unfollowArtist(int artistsId, int followedId) {
+        Type type = new TypeToken<Response<Boolean>>() {
+        }.getType();
+        Response<Boolean> response = this.communicator.request(new Request(UI.ServerCodes.UNFOLLOW_ARTIST, new Object[]{artistsId, followedId}), type);
+        if (response.getError() != null) {
+            TheArtistsDreamApplication.LOGGER.warning(response.getError());
+            return false;
+        }
+        return response.getData();
+    }
+
+    @Override
+    public boolean isFollowing(int artistsId, int followedId) {
+        Type type = new TypeToken<Response<Boolean>>() {
+        }.getType();
+        Response<Boolean> response = this.communicator.request(new Request(UI.ServerCodes.IS_FOLLOWING, new Object[]{artistsId, followedId}), type);
+        if (response.getError() != null) {
+            TheArtistsDreamApplication.LOGGER.warning(response.getError());
+            return false;
+        }
+        return response.getData();
+    }
+
+    @Override
     public List<Integer> getFollowerIds(int userId) {
         Type type = new TypeToken<Response<ArrayList<Integer>>>() {
         }.getType();

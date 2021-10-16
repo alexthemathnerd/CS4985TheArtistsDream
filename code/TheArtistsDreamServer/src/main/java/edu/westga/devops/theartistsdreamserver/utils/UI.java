@@ -34,8 +34,10 @@ public class UI {
         EDIT_ARTWORK(ArtworkManager::editArtwork),
         GET_ARTWORKS_OF_TAGS(ArtworkManager::getArtworksOfTags),
         FOLLOW_ARTIST(UserManager::followArtist),
+        UNFOLLOW_ARTIST(UserManager::unfollowArtist),
         GET_FOLLOWERS(UserManager::getFollowerIds),
-        GET_FOLLOWINGS(UserManager::getFollowingIds);
+        GET_FOLLOWINGS(UserManager::getFollowingIds),
+        IS_FOLLOWING(UserManager::isFollowing);
 
         private ServerAction action;
 

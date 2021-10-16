@@ -115,4 +115,12 @@ public class User {
     public List<Integer> getFollowingIds() {
         return this.followingIds;
     }
+
+    public boolean removeFollowing(int userId) {
+        return this.followingIds.remove((Object) userId);
+    }
+
+    public boolean removeFollower(int userId) {
+        return this.followerIds.remove((Object) userId);
+    }
 }

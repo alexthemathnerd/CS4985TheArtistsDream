@@ -35,8 +35,10 @@ public class UI {
         GET_ARTWORKS_OF_ARTIST,
         GET_ARTWORKS_OF_TAGS,
         FOLLOW_ARTIST,
+        UNFOLLOW_ARTIST,
         GET_FOLLOWERS,
-        GET_FOLLOWINGS;
+        GET_FOLLOWINGS,
+        IS_FOLLOWING;
     }
 
     /**

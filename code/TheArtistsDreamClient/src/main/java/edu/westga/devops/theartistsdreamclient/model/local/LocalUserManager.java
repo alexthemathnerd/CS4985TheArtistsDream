@@ -120,6 +120,16 @@ public class LocalUserManager extends UserManager {
     }
 
     @Override
+    public boolean unfollowArtist(int artistsId, int followedId) {
+        return false;
+    }
+
+    @Override
+    public boolean isFollowing(int artistsId, int followedId) {
+        return false;
+    }
+
+    @Override
     public List<Integer> getFollowerIds(int userId) {
         return null;
     }

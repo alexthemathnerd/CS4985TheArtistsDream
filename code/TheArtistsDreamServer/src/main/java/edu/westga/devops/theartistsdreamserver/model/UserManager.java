@@ -180,6 +180,40 @@ public class UserManager {
         return new Request(user.addFollowing(followedId) && followedUser.addFollower(artistId));
     }
 
+    public static Request unfollowArtist(Object[] data) {
+        int artistId;
+        int followedId;
+        User user;
+        User followedUser;
+        try {
+            artistId = ((Double) data[0]).intValue();
+            followedId = ((Double) data[1]).intValue();
+            user = TheArtistsDreamServer.USERS.get(artistId);
+            followedUser = TheArtistsDreamServer.USERS.get(followedId);
+        } catch (ClassCastException e) {
+            return new Request(UI.ErrorMessages.INVALID_FORMAT);
+        } catch (IndexOutOfBoundsException e) {
+            return new Request(UI.ErrorMessages.USER_NOT_FOUND);
+        }
+        return new Request(user.removeFollowing(followedId) && followedUser.removeFollower(artistId));
+    }
+
+    public static Request isFollowing(Object[] data) {
+        int artistId;
+        int followedId;
+        User user;
+        try {
+            artistId = ((Double) data[0]).intValue();
+            followedId = ((Double) data[1]).intValue();
+            user = TheArtistsDreamServer.USERS.get(artistId);
+        } catch (ClassCastException e) {
+            return new Request(UI.ErrorMessages.INVALID_FORMAT);
+        } catch (IndexOutOfBoundsException e) {
+            return new Request(UI.ErrorMessages.USER_NOT_FOUND);
+        }
+        return new Request(user.getFollowingIds().contains(followedId));
+    }
+
     public static Request getFollowerIds(Object[] data) {
         int artistId;
         User user;

@@ -7,7 +7,9 @@ import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
 import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
 import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -61,6 +63,7 @@ public class PortfolioPane extends HBox {
     private Button commissionButton;
 
     private ObjectProperty<User> userProperty;
+    private BooleanProperty isFollowing;
 
     /**
      * Creates a new PortfolioPane
@@ -74,6 +77,7 @@ public class PortfolioPane extends HBox {
         loader.setController(this);
         try {
             this.userProperty = new SimpleObjectProperty<User>();
+            this.isFollowing = new SimpleBooleanProperty(false);
             loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -82,6 +86,22 @@ public class PortfolioPane extends HBox {
 
     @FXML
     private void initialize() {
+        this.followToggleButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                this.followToggleButton.setText("FOLLOW");
+            } else {
+                this.followToggleButton.setText("FOLLOWING");
+            }
+        });
+        this.followToggleButton.hoverProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue && this.followToggleButton.isSelected()) {
+                this.followToggleButton.setText("UNFOLLOW");
+            } else if (!newValue && this.followToggleButton.isSelected()) {
+                this.followToggleButton.setText("FOLLOWING");
+            } else {
+                this.followToggleButton.setText("FOLLOW");
+            }
+        });
         this.userProperty.addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 if (newValue.equals(User.getUser())) {
@@ -101,11 +121,12 @@ public class PortfolioPane extends HBox {
                     this.settingsButton.setDisable(true);
                     this.settingsButton.setManaged(false);
                 }
-                this.artistNameLabel.setText(newValue.getUsername());
-                this.followersLabel.setText(UserManager.getUserManager().getFollowerIds(newValue.getUserId()).size() + " followers");
-                this.followingLabel.setText(UserManager.getUserManager().getFollowingIds(newValue.getUserId()).size() + " followings");
-                this.profileImage.setImage(new Image(new ByteArrayInputStream(newValue.getProfilePic())));
+                this.artistNameLabel.setText(this.userProperty.get().getUsername());
+                this.followersLabel.setText(UserManager.getUserManager().getFollowerIds(this.userProperty.get().getUserId()).size() + " followers");
+                this.followingLabel.setText(UserManager.getUserManager().getFollowingIds(this.userProperty.get().getUserId()).size() + " followings");
+                this.profileImage.setImage(new Image(new ByteArrayInputStream(this.userProperty.get().getProfilePic())));
                 this.profileImage.setClip(new Circle(75, 75, 75));
+                this.followToggleButton.setSelected(UserManager.getUserManager().isFollowing(User.getUser().getUserId(), this.userProperty.get().getUserId()));
             }
         });
     }
@@ -142,11 +163,11 @@ public class PortfolioPane extends HBox {
     @FXML
     private void handleFollow(ActionEvent event) {
         if (this.followToggleButton.isSelected()) {
-            this.followToggleButton.setText("Following");
+            this.followToggleButton.setText("FOLLOWING");
             UserManager.getUserManager().followArtist(User.getUser().getUserId(), this.userProperty.get().getUserId());
         } else {
-            this.followToggleButton.setText("Follow");
-            // TODO: UNFOLLOW!
+            this.followToggleButton.setText("FOLLOW");
+            UserManager.getUserManager().unfollowArtist(User.getUser().getUserId(), this.userProperty.get().getUserId());
         }
 
     }
@@ -166,5 +187,9 @@ public class PortfolioPane extends HBox {
      */
     public void setUser(User user) {
         this.userProperty.set(user);
+    }
+
+    public void setIsFollowing(boolean following) {
+        this.isFollowing.set(following);
     }
 }
