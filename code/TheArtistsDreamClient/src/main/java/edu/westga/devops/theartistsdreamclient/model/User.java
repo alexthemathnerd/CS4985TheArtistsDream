@@ -25,6 +25,7 @@ public class User {
     private byte[] profilePic;
     private List<Integer> followerIds;
     private List<Integer> followingIds;
+    private Map<User, List<String>> messages;
 
     /**
      * Gets the singleton User
@@ -92,6 +93,7 @@ public class User {
         this.userId = userId;
         this.followerIds = new ArrayList<>();
         this.followingIds = new ArrayList<>();
+        this.messages = new Map<User, List<String>>();
         this.profilePic = profilePic;
     }
 
@@ -177,5 +179,9 @@ public class User {
      */
     public List<Integer> getFollowingIds() {
         return new ArrayList<>();
+    }
+
+    public Map<User, List<String>> getMessages() {
+        return this.messages;
     }
 }
