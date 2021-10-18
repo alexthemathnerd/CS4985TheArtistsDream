@@ -10,8 +10,8 @@ package edu.westga.devops.theartistsdreamclient.model.network;
  */
 public class Response<T> {
 
-    private String error;
-    private T data;
+    private final String error;
+    private final T data;
 
     /**
      * Creates a response. Should only be used by Gson

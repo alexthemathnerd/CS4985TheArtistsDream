@@ -26,8 +26,8 @@ import java.lang.reflect.Type;
  */
 public class Communicator implements Closeable {
 
-    private ZContext context;
-    private ZMQ.Socket socket;
+    private final ZContext context;
+    private final ZMQ.Socket socket;
 
     /**
      * Creates a Communicator with the server that is connected to the given address

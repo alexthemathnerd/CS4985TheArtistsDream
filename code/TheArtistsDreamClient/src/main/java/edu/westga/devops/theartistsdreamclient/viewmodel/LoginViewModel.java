@@ -13,11 +13,11 @@ import edu.westga.devops.theartistsdreamclient.model.UserManager;
  * @version Fall 2021
  */
 public class LoginViewModel {
-    private StringProperty usernameProperty;
-    private StringProperty passwordProperty;
-    private StringProperty confirmPasswordProperty;
-    private StringProperty emailProperty;
-    private StringProperty errorProperty;
+    private final StringProperty usernameProperty;
+    private final StringProperty passwordProperty;
+    private final StringProperty confirmPasswordProperty;
+    private final StringProperty emailProperty;
+    private final StringProperty errorProperty;
 
     /**
      * Creates a new LoginViewModel

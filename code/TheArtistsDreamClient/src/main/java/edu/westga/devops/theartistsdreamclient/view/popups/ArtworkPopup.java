@@ -45,9 +45,9 @@ public class ArtworkPopup {
 	@FXML
 	private ImageView artworkImageView;
 	
-	private boolean onProfile;
-	private BooleanProperty isEditing;
-	private ArtworkPopupViewModel viewModel;
+	private final boolean onProfile;
+	private final BooleanProperty isEditing;
+	private final ArtworkPopupViewModel viewModel;
 
 	/**
 	 * Creates a new ArtworkPopup with the specified artwork and value of if it is on a profile

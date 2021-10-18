@@ -11,6 +11,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 public class NetworkArtworkManager extends ArtworkManager {
 
 
-    private Communicator communicator;
+    private final Communicator communicator;
 
     /**
      * Creates a new NetworkArtworkManager
@@ -65,13 +66,16 @@ public class NetworkArtworkManager extends ArtworkManager {
 
         Type type = new TypeToken<Response<ArrayList<Artwork>>>() {
         }.getType();
-        Response response = this.communicator.request(new Request(UI.ServerCodes.GET_NEXT_TEN_ARTWORKS, new Object[]{startingIndex}));
+        Response<ArrayList<Artwork>> response = this.communicator.request(new Request(UI.ServerCodes.GET_NEXT_TEN_ARTWORKS, new Object[]{startingIndex}));
         if (response.getError() != null) {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
             return new ArrayList<Artwork>();
         }
-
-        return (List<Artwork>) response.getData();
+//        List<Artwork> artworks = response.getData();
+//        for (int i = 0; i < response.getData().size(); i++) {
+//            LinkedHashMap<String, Object> artworkJson = (LinkedHashMap<String, Object>) artworks.get(i);
+//        }
+        return response.getData();
     }
 
     @Override
@@ -84,8 +88,6 @@ public class NetworkArtworkManager extends ArtworkManager {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
             return new ArrayList<Artwork>();
         }
-
-
         return response.getData();
     }
 

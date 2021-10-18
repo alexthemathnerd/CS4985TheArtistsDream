@@ -27,9 +27,9 @@ import java.util.List;
  */
 public class AddArtPopupViewModel {
 
-    private StringProperty titleProperty;
-    private StringProperty tagsProperty;
-    private ObjectProperty<Image> imageProperty;
+    private final StringProperty titleProperty;
+    private final StringProperty tagsProperty;
+    private final ObjectProperty<Image> imageProperty;
 
     /**
      * Creates a new AddArtworkPopupViewModel

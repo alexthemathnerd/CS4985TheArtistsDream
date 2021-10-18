@@ -73,9 +73,9 @@ public class Header extends HBox {
     @FXML
     private Button profileButton;
 
-    private ListProperty<Tag> tagsToFilterListProperty;
+    private final ListProperty<Tag> tagsToFilterListProperty;
 
-    private HeaderViewModel viewModel;
+    private final HeaderViewModel viewModel;
 
     /**
      * Initializes the FXML for the Header control

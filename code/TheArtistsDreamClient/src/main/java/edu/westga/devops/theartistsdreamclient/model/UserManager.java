@@ -96,9 +96,6 @@ public abstract class UserManager {
      * @postcondition getUserManager() == userManager
      */
     public static void setUserManager(UserManager userManager) {
-        if (userManager == null) {
-            throw new IllegalArgumentException();
-        }
         UserManager.userManager = userManager;
     }
 

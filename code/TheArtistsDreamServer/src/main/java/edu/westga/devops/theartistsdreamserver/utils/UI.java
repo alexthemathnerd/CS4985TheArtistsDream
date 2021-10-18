@@ -39,7 +39,7 @@ public class UI {
         GET_FOLLOWINGS(UserManager::getFollowingIds),
         IS_FOLLOWING(UserManager::isFollowing);
 
-        private ServerAction action;
+        private final ServerAction action;
 
         ServerCodes(ServerAction action) {
             this.action = action;

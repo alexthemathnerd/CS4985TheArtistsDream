@@ -18,7 +18,7 @@ import java.util.logging.Level;
  */
 public class Receiver extends Thread {
 
-    private String address;
+    private final String address;
 
     /**
      * Creates a receiver at the specified address

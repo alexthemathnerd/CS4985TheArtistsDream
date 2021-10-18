@@ -11,8 +11,8 @@ import edu.westga.devops.theartistsdreamserver.utils.UI;
  */
 public class Response {
 
-    private UI.ServerCodes code;
-    private Object[] data;
+    private final UI.ServerCodes code;
+    private final Object[] data;
 
     /**
      * Creates a new Response

@@ -10,13 +10,13 @@ import java.util.List;
  * @version Fall 2021
  */
 public class User {
-    private int userId;
-    private String email;
-    private String username;
-    private String password;
-    private byte[] profilePic;
-    private List<Integer> followerIds;
-    private List<Integer> followingIds;
+    private final int userId;
+    private final String email;
+    private final String username;
+    private final String password;
+    private final byte[] profilePic;
+    private final List<Integer> followerIds;
+    private final List<Integer> followingIds;
 
     /**
      * Creates a new User

@@ -30,7 +30,7 @@ public class AddArtPopup {
     @FXML
     private ImageView addedImageView;
 
-    private AddArtPopupViewModel viewModel;
+    private final AddArtPopupViewModel viewModel;
 
     public AddArtPopup() {
         this.viewModel = new AddArtPopupViewModel();

@@ -21,7 +21,7 @@ public class TestConstructor {
 	void testPropertyCreations() {
 		FilterPopupViewModel testViewModel = new FilterPopupViewModel();
 
-		assertAll(() -> assertEquals("", testViewModel.searchStringProperty().get()), () -> assertNotNull(testViewModel.searchTagsListProperty()), () -> assertNotNull(testViewModel.addedTagsSetProperty()));
+		assertAll(() -> assertEquals("", testViewModel.searchTermProperty().get()), () -> assertNotNull(testViewModel.searchTagsProperty()), () -> assertNotNull(testViewModel.addedTagsProperty()));
 	}
 
 }

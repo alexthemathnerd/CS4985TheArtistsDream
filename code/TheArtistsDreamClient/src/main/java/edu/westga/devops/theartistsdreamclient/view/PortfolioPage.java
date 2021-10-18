@@ -23,7 +23,7 @@ public class PortfolioPage {
     @FXML
     private ArtworksPane artworksPane;
 
-    private User user;
+    private final User user;
 
     /**
      * Creates a new PortfolioPage of the specified user

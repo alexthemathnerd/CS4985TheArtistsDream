@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class LocalUserManager extends UserManager {
 
-    private List<User> users;
+    private final List<User> users;
 
     /**
      * Creates a new LocalUserManager

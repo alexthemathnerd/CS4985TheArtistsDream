@@ -19,7 +19,7 @@ public class TestConstructor {
 	@Test
 	void testPropertyCreations() {
 		LoginViewModel testViewModel = new LoginViewModel();
-		assertAll(() -> assertEquals("", testViewModel.errorLabelStringProperty().get()), () -> assertEquals("", testViewModel.usernameStringProperty().get()), () -> assertEquals("", testViewModel.passwordStringProperty().get()), () -> assertEquals("", testViewModel.confirmPasswordStringProperty().get()), () -> assertEquals("", testViewModel.emailStringProperty().get()));
+		assertAll(() -> assertEquals("", testViewModel.errorProperty().get()), () -> assertEquals("", testViewModel.usernameProperty().get()), () -> assertEquals("", testViewModel.passwordProperty().get()), () -> assertEquals("", testViewModel.confirmPasswordProperty().get()), () -> assertEquals("", testViewModel.emailProperty().get()));
 	}
 
 }

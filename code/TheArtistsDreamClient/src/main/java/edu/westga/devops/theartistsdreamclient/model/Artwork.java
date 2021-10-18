@@ -14,12 +14,13 @@ import java.io.ByteArrayInputStream;
 public class Artwork {
 
     private byte[] imageData;
-    private transient Image image;
     private String title;
     private int artistID;
     private List<Integer> tagIDs;
     private int id;
     private String date;
+
+    private transient Image image;
 
     /**
      * Creates a new Artwork

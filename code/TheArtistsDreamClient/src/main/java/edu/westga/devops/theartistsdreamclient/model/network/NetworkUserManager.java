@@ -20,7 +20,7 @@ import edu.westga.devops.theartistsdreamclient.utils.UI;
  */
 public class NetworkUserManager extends UserManager {
 
-    private Communicator communicator;
+    private final Communicator communicator;
 
     /**
      * Initailizes a network User manager

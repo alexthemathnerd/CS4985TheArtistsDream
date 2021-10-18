@@ -16,16 +16,16 @@ public class User {
 
     private static User user;
 
-    private int userId;
+    private final int userId;
 
 
-    private String email;
-    private String username;
-    private String password;
+    private final String email;
+    private final String username;
+    private final String password;
 
-    private byte[] profilePic;
-    private List<Integer> followerIds;
-    private List<Integer> followingIds;
+    private final byte[] profilePic;
+    private final List<Integer> followerIds;
+    private final List<Integer> followingIds;
 
     /**
      * Gets the singleton User

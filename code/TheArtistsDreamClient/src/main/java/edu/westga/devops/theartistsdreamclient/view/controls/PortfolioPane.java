@@ -62,8 +62,8 @@ public class PortfolioPane extends HBox {
     @FXML
     private Button commissionButton;
 
-    private ObjectProperty<User> userProperty;
-    private BooleanProperty isFollowing;
+    private final ObjectProperty<User> userProperty;
+    private final BooleanProperty isFollowing;
 
     /**
      * Creates a new PortfolioPane

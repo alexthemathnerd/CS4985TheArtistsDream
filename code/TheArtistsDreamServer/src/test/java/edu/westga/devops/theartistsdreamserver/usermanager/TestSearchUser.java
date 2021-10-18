@@ -20,6 +20,6 @@ public class TestSearchUser {
         TheArtistsDreamServer.USERS.clear();
 		UserManager testManager = new UserManager();
         Object[] param = new Object[]{null};
-		assertNotNull(testManager.searchForUser(param).getData());
+		assertNotNull(UserManager.searchForUser(param).getData());
     }
 }

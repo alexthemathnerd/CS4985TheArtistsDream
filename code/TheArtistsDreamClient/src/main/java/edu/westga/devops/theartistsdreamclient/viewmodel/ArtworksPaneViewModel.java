@@ -23,12 +23,12 @@ import java.util.List;
  */
 public class ArtworksPaneViewModel {
 
-    private ListProperty<Artwork> artworksProperty;
-    private ListProperty<Tag> filterTagsProperty;
-    private IntegerProperty indexProperty;
-    private IntegerProperty maxIndexProperty;
-    private IntegerProperty userIdProperty;
-    private BooleanProperty onFollowingPageProperty;
+    private final ListProperty<Artwork> artworksProperty;
+    private final ListProperty<Tag> filterTagsProperty;
+    private final IntegerProperty indexProperty;
+    private final IntegerProperty maxIndexProperty;
+    private final IntegerProperty userIdProperty;
+    private final BooleanProperty onFollowingPageProperty;
 
     /**
      * Creates a new ArtworkPaneViewModel
@@ -99,7 +99,7 @@ public class ArtworksPaneViewModel {
      */
     public void viewMoreArtworks() {
         if (this.userIdProperty.isEqualTo(-1).get()) {
-            this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue())));
+            this.artworksProperty.addAll(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue()));
         } else {
             this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue(), this.userIdProperty.get())));
         }

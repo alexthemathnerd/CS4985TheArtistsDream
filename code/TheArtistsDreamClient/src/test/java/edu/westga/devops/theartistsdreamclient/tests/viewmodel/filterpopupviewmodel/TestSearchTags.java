@@ -22,9 +22,9 @@ public class TestSearchTags {
 		TagManager.setTagManager(new LocalTagManager());
 		FilterPopupViewModel testViewModel = new FilterPopupViewModel();
 
-		testViewModel.searchStringProperty().set("devops");
+		testViewModel.searchTermProperty().set("devops");
 		testViewModel.searchTags(3);
-		assertEquals(0, testViewModel.searchTagsListProperty().size());
+		assertEquals(0, testViewModel.searchTagsProperty().size());
 	}
 
 	@Test
@@ -36,9 +36,9 @@ public class TestSearchTags {
 		TagManager.getTagManager().addTag("test2");
 		TagManager.getTagManager().addTag("test3");
 
-		testViewModel.searchStringProperty().set("devops");
+		testViewModel.searchTermProperty().set("devops");
 		testViewModel.searchTags(3);
-		assertEquals(0, testViewModel.searchTagsListProperty().size());
+		assertEquals(0, testViewModel.searchTagsProperty().size());
 	}
 
         @Test
@@ -50,9 +50,9 @@ public class TestSearchTags {
                 TagManager.getTagManager().addTag("test2");
                 TagManager.getTagManager().addTag("test3");
 
-                testViewModel.searchStringProperty().set("test1");
+                testViewModel.searchTermProperty().set("test1");
                 testViewModel.searchTags(1);
-                assertEquals(1, testViewModel.searchTagsListProperty().size());
+                assertEquals(1, testViewModel.searchTagsProperty().size());
         }
 
         @Test
@@ -64,9 +64,9 @@ public class TestSearchTags {
                 TagManager.getTagManager().addTag("test2");
                 TagManager.getTagManager().addTag("test3");
 
-                testViewModel.searchStringProperty().set("test");
+                testViewModel.searchTermProperty().set("test");
                 testViewModel.searchTags(3);
-                assertEquals(3, testViewModel.searchTagsListProperty().size());
+                assertEquals(3, testViewModel.searchTagsProperty().size());
         }
 
 }

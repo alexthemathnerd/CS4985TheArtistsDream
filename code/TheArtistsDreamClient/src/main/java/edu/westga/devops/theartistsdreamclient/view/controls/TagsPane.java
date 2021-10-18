@@ -16,9 +16,9 @@ import java.util.List;
  */
 public class TagsPane extends FlowPane {
 
-    private ListProperty<Tag> tagsListProperty;
-    private ListProperty<Tag> addedTagsListProperty;
-    private List<TagButton> selectedTagsButtons;
+    private final ListProperty<Tag> tagsListProperty;
+    private final ListProperty<Tag> addedTagsListProperty;
+    private final List<TagButton> selectedTagsButtons;
 
     /**
      * Creates a TagPane object

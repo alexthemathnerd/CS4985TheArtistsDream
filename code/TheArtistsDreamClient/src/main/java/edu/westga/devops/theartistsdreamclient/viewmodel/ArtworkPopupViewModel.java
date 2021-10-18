@@ -20,8 +20,8 @@ import javafx.beans.property.SimpleObjectProperty;
  */
 public class ArtworkPopupViewModel {
 
-	private ObjectProperty<Artwork> artworkProperty;
-	private StringProperty titleProperty;
+	private final ObjectProperty<Artwork> artworkProperty;
+	private final StringProperty titleProperty;
 
 	/**
 	 * Creates a new ArtworkPopupViewModel with the specified artwork

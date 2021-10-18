@@ -50,9 +50,9 @@ public class Login {
     @FXML
     private Label errorMessageLabel;
 
-    private LoginViewModel viewModel;
+    private final LoginViewModel viewModel;
 
-    private BooleanProperty isCreatingAccount;
+    private final BooleanProperty isCreatingAccount;
 
     /**
      * Initiailizes ViewModel for Login
