@@ -1,6 +1,5 @@
 package edu.westga.devops.theartistsdreamserver.model;
 
-
 import java.util.List;
 import java.time.LocalDate;
 
@@ -181,7 +180,7 @@ public class Artwork implements Comparable<Artwork> {
 	    }
 
 	    this.title = newTitle;
-	    return new Request(this.title);
+	    return new Request(null, this.title);
     }
 
 	@Override
