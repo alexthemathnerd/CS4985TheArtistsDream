@@ -6,6 +6,7 @@ import edu.westga.devops.theartistsdreamclient.view.popups.AddArtPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
 import edu.westga.devops.theartistsdreamclient.view.DirectMessage;
 import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
+import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;

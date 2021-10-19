@@ -24,7 +24,6 @@ public class User {
     private final String username;
     private final String password;
 
-    private byte[] profilePic;
     private HashMap<Integer, ArrayList<ChatRecord>> chats;
     private final byte[] profilePic;
     private final List<Integer> followerIds;
@@ -211,6 +210,8 @@ public class User {
             this.chats.put(userId, new ArrayList<ChatRecord>());
         } 
         return this.chats.get(userId);
+	}
+
     @Override
     public boolean equals(Object other) {
         if (this == other) return true;
