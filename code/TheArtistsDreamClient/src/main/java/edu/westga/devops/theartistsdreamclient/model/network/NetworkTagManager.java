@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class NetworkTagManager extends TagManager {
 
-    private Communicator communicator;
+    private final Communicator communicator;
 
     /**
      * Creates a new NetworkTagManager

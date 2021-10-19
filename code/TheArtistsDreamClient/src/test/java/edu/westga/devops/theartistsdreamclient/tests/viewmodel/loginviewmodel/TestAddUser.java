@@ -22,9 +22,9 @@ public class TestAddUser {
 	void testAddUser() {
 		LoginViewModel testViewModel = new LoginViewModel();
 
-		testViewModel.usernameStringProperty().set("student");
-		testViewModel.passwordStringProperty().set("student123");
-		testViewModel.emailStringProperty().set("student@my.westga.edu");
+		testViewModel.usernameProperty().set("student");
+		testViewModel.passwordProperty().set("student123");
+		testViewModel.emailProperty().set("student@my.westga.edu");
 
 		LocalUserManager testManager = new LocalUserManager();
 		UserManager.setUserManager(testManager);

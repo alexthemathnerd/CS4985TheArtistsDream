@@ -38,12 +38,12 @@ public class ArtworksPane extends ScrollPane {
     @FXML
     private Button viewMoreButton;
 
-    private ArtworksPaneViewModel viewModel;
+    private final ArtworksPaneViewModel viewModel;
 
-    private IntegerProperty userIdProperty;
-    private ListProperty<Tag> tagsToFilterListProperty;
-    private BooleanProperty onFollowingPageProperty;
-    private BooleanProperty onProfileProperty;
+    private final IntegerProperty userIdProperty;
+    private final ListProperty<Tag> tagsToFilterListProperty;
+    private final BooleanProperty onFollowingPageProperty;
+    private final BooleanProperty onProfileProperty;
 
     /**
      * Initializes the FXML for the ArtworksPane control
@@ -56,7 +56,7 @@ public class ArtworksPane extends ScrollPane {
         try {
             this.tagsToFilterListProperty = new SimpleListProperty<Tag>(FXCollections.observableArrayList());
             this.userIdProperty = new SimpleIntegerProperty(-1);
-	        this.onFollowingPageProperty = new SimpleBooleanProperty();
+	        this.onFollowingPageProperty = new SimpleBooleanProperty(false);
 	        this.onProfileProperty = new SimpleBooleanProperty();
             loader.load();
         } catch (IOException e) {

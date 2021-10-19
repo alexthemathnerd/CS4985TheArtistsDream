@@ -12,7 +12,9 @@ public abstract class UserManager {
 
     private static UserManager userManager = null;
 
-    /**
+
+
+	/**
      * Gets the user specified by the id
      *
      * @return the user specified by the id
@@ -94,9 +96,15 @@ public abstract class UserManager {
      * @postcondition getUserManager() == userManager
      */
     public static void setUserManager(UserManager userManager) {
-        if (userManager == null) {
-            throw new IllegalArgumentException();
-        }
         UserManager.userManager = userManager;
     }
+
+	public abstract boolean followArtist(int artistsId, int followedId);
+
+	public abstract boolean unfollowArtist(int artistsId, int followedId);
+
+	public abstract boolean isFollowing(int artistsId, int followedId);
+
+	public abstract List<Integer> getFollowerIds(int userId);
+	public abstract List<Integer> getFollowingIds(int userId);
 }

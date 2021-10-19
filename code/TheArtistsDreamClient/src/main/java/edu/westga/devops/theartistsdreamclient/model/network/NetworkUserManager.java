@@ -20,7 +20,7 @@ import edu.westga.devops.theartistsdreamclient.utils.UI;
  */
 public class NetworkUserManager extends UserManager {
 
-    private Communicator communicator;
+    private final Communicator communicator;
 
     /**
      * Initailizes a network User manager
@@ -84,6 +84,66 @@ public class NetworkUserManager extends UserManager {
         Type type = new TypeToken<Response<ArrayList<User>>>() {
         }.getType();
         Response<ArrayList<User>> response = this.communicator.request(new Request(UI.ServerCodes.SEARCH_USERS, new Object[]{searchTerm}), type);
+        if (response.getError() != null) {
+            TheArtistsDreamApplication.LOGGER.warning(response.getError());
+            return new ArrayList<>();
+        }
+        return response.getData();
+    }
+
+    @Override
+    public boolean followArtist(int artistsId, int followedId) {
+        Type type = new TypeToken<Response<Boolean>>() {
+        }.getType();
+        Response<Boolean> response = this.communicator.request(new Request(UI.ServerCodes.FOLLOW_ARTIST, new Object[]{artistsId, followedId}), type);
+        if (response.getError() != null) {
+            TheArtistsDreamApplication.LOGGER.warning(response.getError());
+            return false;
+        }
+        return response.getData();
+    }
+
+    @Override
+    public boolean unfollowArtist(int artistsId, int followedId) {
+        Type type = new TypeToken<Response<Boolean>>() {
+        }.getType();
+        Response<Boolean> response = this.communicator.request(new Request(UI.ServerCodes.UNFOLLOW_ARTIST, new Object[]{artistsId, followedId}), type);
+        if (response.getError() != null) {
+            TheArtistsDreamApplication.LOGGER.warning(response.getError());
+            return false;
+        }
+        return response.getData();
+    }
+
+    @Override
+    public boolean isFollowing(int artistsId, int followedId) {
+        Type type = new TypeToken<Response<Boolean>>() {
+        }.getType();
+        Response<Boolean> response = this.communicator.request(new Request(UI.ServerCodes.IS_FOLLOWING, new Object[]{artistsId, followedId}), type);
+        if (response.getError() != null) {
+            TheArtistsDreamApplication.LOGGER.warning(response.getError());
+            return false;
+        }
+        return response.getData();
+    }
+
+    @Override
+    public List<Integer> getFollowerIds(int userId) {
+        Type type = new TypeToken<Response<ArrayList<Integer>>>() {
+        }.getType();
+        Response<ArrayList<Integer>> response = this.communicator.request(new Request(UI.ServerCodes.GET_FOLLOWERS, new Object[]{userId}), type);
+        if (response.getError() != null) {
+            TheArtistsDreamApplication.LOGGER.warning(response.getError());
+            return new ArrayList<>();
+        }
+        return response.getData();
+    }
+
+    @Override
+    public List<Integer> getFollowingIds(int userId) {
+        Type type = new TypeToken<Response<ArrayList<Integer>>>() {
+        }.getType();
+        Response<ArrayList<Integer>> response = this.communicator.request(new Request(UI.ServerCodes.GET_FOLLOWINGS, new Object[]{userId}), type);
         if (response.getError() != null) {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
             return new ArrayList<>();

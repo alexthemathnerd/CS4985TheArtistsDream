@@ -53,6 +53,7 @@ public class Header extends HBox {
     private static final String RECOMMENDED_PAGE_FXML = "RecommendedPage.fxml";
     private static final String FOLLOWING_PAGE_FXML = "FollowingPage.fxml";
     private static final String ARTWORK_POPUP_FXML = "ArtworkPopup.fxml";
+    private static final String PORTFOLIO_PAGE_FXML = "PortfolioPage.fxml";
 
     @FXML
     private ComboBox searchComboBox;
@@ -72,9 +73,9 @@ public class Header extends HBox {
     @FXML
     private Button profileButton;
 
-    private ListProperty<Tag> tagsToFilterListProperty;
+    private final ListProperty<Tag> tagsToFilterListProperty;
 
-    private HeaderViewModel viewModel;
+    private final HeaderViewModel viewModel;
 
     /**
      * Initializes the FXML for the Header control
@@ -150,7 +151,7 @@ public class Header extends HBox {
             if (searchedUser != null) {
                 try {
                     Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(searchedUser), "The Artist's Dream", true);
+                    WindowLoader.changeScene(currentStage, PORTFOLIO_PAGE_FXML, new PortfolioPage(searchedUser), "The Artist's Dream", true);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -229,7 +230,7 @@ public class Header extends HBox {
     void handleViewProfile(ActionEvent event) {
         try {
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(User.getUser()), "The Artist's Dream", false);
+            WindowLoader.changeScene(currentStage, PORTFOLIO_PAGE_FXML, new PortfolioPage(User.getUser()), "The Artist's Dream", false);
             currentStage.setMaximized(true);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -240,7 +241,8 @@ public class Header extends HBox {
     void handleRecommended(ActionEvent event) {
         try {
             Stage currentStage = (Stage) this.navMenuButton.getScene().getWindow();
-            WindowLoader.changeScene(currentStage, RECOMMENDED_PAGE_FXML, new RecommendedPage(), "The Artist's Dream", true);
+            WindowLoader.changeScene(currentStage, RECOMMENDED_PAGE_FXML, new RecommendedPage(), "The Artist's Dream", false);
+            currentStage.setMaximized(true);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -250,7 +252,8 @@ public class Header extends HBox {
     void handleFollowing(ActionEvent event) {
         try {
             Stage currentStage = (Stage) this.navMenuButton.getScene().getWindow();
-            WindowLoader.changeScene(currentStage, FOLLOWING_PAGE_FXML, new FollowingPage(), "The Artist's Dream", true);
+            WindowLoader.changeScene(currentStage, FOLLOWING_PAGE_FXML, new FollowingPage(), "The Artist's Dream", false);
+            currentStage.setMaximized(true);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

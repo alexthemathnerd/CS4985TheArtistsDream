@@ -3,6 +3,11 @@ package edu.westga.devops.theartistsdreamclient.view.controls;
 import edu.westga.devops.theartistsdreamclient.model.UserManager;
 import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
 import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
+import edu.westga.devops.theartistsdreamclient.model.Artwork;
+import edu.westga.devops.theartistsdreamclient.view.popups.ArtworkPopup;
+import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
+import edu.westga.devops.theartistsdreamclient.model.User;
+
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
 
@@ -17,9 +22,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import edu.westga.devops.theartistsdreamclient.model.Artwork;
-import edu.westga.devops.theartistsdreamclient.view.popups.ArtworkPopup;
-import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
+
 
 /**
  * The Controller for the Custom Control for each single piece of artwork shown in the application
@@ -99,8 +102,15 @@ public class ArtworkTile extends VBox {
                 Object data = popup.getUserData();
                 if (data != null) {
                     try {
-                        WindowLoader.changeScene((Stage) this.getScene().getWindow(), "PortfolioPage.fxml", new PortfolioPage(UserManager.getUserManager().getUser((int) data)), "Profile", true);
-                    } catch (IOException e) {
+			    int userId = (int) data;
+			    Stage currentStage = (Stage) this.getScene().getWindow();
+			    if (userId == User.getUser().getUserId()) {
+				    WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(User.getUser()), "Profile", false);
+			    } else {
+				    WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(UserManager.getUserManager().getUser(userId)), "Profile", false);
+			    }
+			    currentStage.setMaximized(true);
+		    } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }

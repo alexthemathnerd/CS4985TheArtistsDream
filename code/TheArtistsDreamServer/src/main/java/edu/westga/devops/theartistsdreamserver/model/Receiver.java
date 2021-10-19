@@ -16,7 +16,7 @@ import org.zeromq.ZMQ;
  */
 public class Receiver extends Thread {
 
-    private String address;
+    private final String address;
 
     /**
      * Creates a receiver at the specified address

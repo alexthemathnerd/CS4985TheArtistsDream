@@ -1,6 +1,7 @@
 package edu.westga.devops.theartistsdreamclient.view.popups;
 
 import edu.westga.devops.theartistsdreamclient.viewmodel.AddArtPopupViewModel;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -29,7 +30,7 @@ public class AddArtPopup {
     @FXML
     private ImageView addedImageView;
 
-    private AddArtPopupViewModel viewModel;
+    private final AddArtPopupViewModel viewModel;
 
     public AddArtPopup() {
         this.viewModel = new AddArtPopupViewModel();
@@ -39,7 +40,7 @@ public class AddArtPopup {
     private void initialize() {
         this.titleTextField.textProperty().bindBidirectional(this.viewModel.titleProperty());
         this.tagsTextArea.textProperty().bindBidirectional(this.viewModel.tagsProperty());
-        this.viewModel.imageObjectProperty().bind(this.addedImageView.imageProperty());
+        this.viewModel.imageProperty().bind(this.addedImageView.imageProperty());
     }
 
     @FXML
@@ -57,6 +58,7 @@ public class AddArtPopup {
     private void handleAdd(ActionEvent event) {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         this.viewModel.addArt();
+	currentStage.setUserData("ADDED");
         currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
         currentStage.close();
     }

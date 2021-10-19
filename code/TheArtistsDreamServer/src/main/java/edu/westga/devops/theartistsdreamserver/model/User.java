@@ -1,5 +1,6 @@
 package edu.westga.devops.theartistsdreamserver.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -11,14 +12,15 @@ import java.util.ArrayList;
  * @version Fall 2021
  */
 public class User {
-    private int userId;
-    private String email;
-    private String username;
-    private String password;
-    private byte[] profilePic;
-    private List<Integer> followerIds;
-    private List<Integer> followingIds;
+
     private HashMap<Integer, ArrayList<ChatRecord>> messages;
+    private final int userId;
+    private final String email;
+    private final String username;
+    private final String password;
+    private final byte[] profilePic;
+    private final List<Integer> followerIds;
+    private final List<Integer> followingIds;
 
     /**
      * Creates a new User
@@ -39,6 +41,8 @@ public class User {
         this.userId = userId;
         this.profilePic = profilePic;
         this.messages = new HashMap<Integer, ArrayList<ChatRecord>>();
+        this.followerIds = new ArrayList<>();
+        this.followingIds = new ArrayList<>();
     }
 
     /**
@@ -143,5 +147,27 @@ public class User {
      */
     public ArrayList<ChatRecord> updateChat(int userId, ArrayList<ChatRecord> chat) {
         return this.messages.replace(userId, chat);
+    public boolean addFollowing(int userId) {
+        return this.followingIds.add(userId);
+    }
+
+    public boolean addFollower(int userId) {
+        return this.followerIds.add(userId);
+    }
+
+    public List<Integer> getFollowerIds() {
+        return this.followerIds;
+    }
+
+    public List<Integer> getFollowingIds() {
+        return this.followingIds;
+    }
+
+    public boolean removeFollowing(int userId) {
+        return this.followingIds.remove((Object) userId);
+    }
+
+    public boolean removeFollower(int userId) {
+        return this.followerIds.remove((Object) userId);
     }
 }

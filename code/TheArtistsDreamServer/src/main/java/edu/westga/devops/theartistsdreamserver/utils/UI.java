@@ -5,6 +5,7 @@ import edu.westga.devops.theartistsdreamserver.model.Chat;
 import edu.westga.devops.theartistsdreamserver.model.TagManager;
 import edu.westga.devops.theartistsdreamserver.model.UserManager;
 import edu.westga.devops.theartistsdreamserver.model.ArtworkManager;
+import edu.westga.devops.theartistsdreamserver.model.*;
 
 /**
  * UI Class
@@ -37,12 +38,14 @@ public class UI {
         REMOVE_ARTWORK(ArtworkManager::removeArtwork),
         EDIT_ARTWORK(ArtworkManager::editArtwork),
         GET_ARTWORKS_OF_TAGS(ArtworkManager::getArtworksOfTags),
-        SEND_MESSAGE(Chat::sendMessage);
+        SEND_MESSAGE(Chat::sendMessage),
+        FOLLOW_ARTIST(UserManager::followArtist),
+        UNFOLLOW_ARTIST(UserManager::unfollowArtist),
+        GET_FOLLOWERS(UserManager::getFollowerIds),
+        GET_FOLLOWINGS(UserManager::getFollowingIds),
+        IS_FOLLOWING(UserManager::isFollowing);
 
-        
-
-
-        private ServerAction action;
+        private final ServerAction action;
 
         ServerCodes(ServerAction action) {
             this.action = action;

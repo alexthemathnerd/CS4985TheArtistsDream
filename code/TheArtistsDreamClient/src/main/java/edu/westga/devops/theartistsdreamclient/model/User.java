@@ -5,6 +5,7 @@ import edu.westga.devops.theartistsdreamclient.utils.UI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * The User Class
@@ -16,17 +17,18 @@ public class User {
 
     private static User user;
 
-    private int userId;
+    private final int userId;
 
 
-    private String email;
-    private String username;
-    private String password;
+    private final String email;
+    private final String username;
+    private final String password;
 
     private byte[] profilePic;
-    private List<Integer> followerIds;
-    private List<Integer> followingIds;
     private HashMap<Integer, ArrayList<ChatRecord>> chats;
+    private final byte[] profilePic;
+    private final List<Integer> followerIds;
+    private final List<Integer> followingIds;
 
     /**
      * Gets the singleton User
@@ -209,5 +211,17 @@ public class User {
             this.chats.put(userId, new ArrayList<ChatRecord>());
         } 
         return this.chats.get(userId);
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (other instanceof User user) {
+            return userId == user.userId;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId);
     }
 }

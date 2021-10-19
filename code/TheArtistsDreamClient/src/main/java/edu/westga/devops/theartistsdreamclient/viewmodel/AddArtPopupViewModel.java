@@ -18,14 +18,28 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * ViewModel for AddArtworkPopup
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ *
+ */
 public class AddArtPopupViewModel {
 
-    private StringProperty titleProperty;
-    private StringProperty tagsProperty;
-    private ObjectProperty<Image> imageObjectProperty;
+    private final StringProperty titleProperty;
+    private final StringProperty tagsProperty;
+    private final ObjectProperty<Image> imageProperty;
 
+    /**
+     * Creates a new AddArtworkPopupViewModel
+     *
+     * @precondition none
+     * @postcondition imageProperty() != null && titleProperty().get() == "" && tagsProperty().get() == ""
+     *
+     */
     public AddArtPopupViewModel() {
-        this.imageObjectProperty = new SimpleObjectProperty<>();
+        this.imageProperty = new SimpleObjectProperty<>();
         this.tagsProperty = new SimpleStringProperty("");
         this.titleProperty = new SimpleStringProperty("");
     }
@@ -42,8 +56,15 @@ public class AddArtPopupViewModel {
         return addedTags;
     }
 
+    /**
+     * Adds the art
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     */
     public void addArt() {
-        Image image = this.imageObjectProperty.get();
+        Image image = this.imageProperty.get();
         BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
         try (ByteArrayOutputStream byteArrayInputStream = new ByteArrayOutputStream()) {
             if (image.getUrl().matches(".\\.jpg")) {
@@ -60,15 +81,40 @@ public class AddArtPopupViewModel {
 
     }
 
+    /**
+     * Gets the titleProperty
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return the title property
+     *
+     */
     public StringProperty titleProperty() {
         return this.titleProperty;
     }
 
+    /**
+     * gets the tagsProperty
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return the tagsProperty
+     */
     public StringProperty tagsProperty() {
         return this.tagsProperty;
     }
 
-    public ObjectProperty<Image> imageObjectProperty() {
-        return this.imageObjectProperty;
+    /**
+     * Gets the imageProperty
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @return the imageProperty
+     */
+    public ObjectProperty<Image> imageProperty() {
+        return this.imageProperty;
     }
 }

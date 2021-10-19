@@ -20,9 +20,9 @@ public class TestGetUser {
 	void testGetUserThatExists() {
 		LoginViewModel testViewModel = new LoginViewModel();
 
-		testViewModel.usernameStringProperty().set("student");
-		testViewModel.passwordStringProperty().set("student123");
-		testViewModel.emailStringProperty().set("student@my.westga.edu");
+		testViewModel.usernameProperty().set("student");
+		testViewModel.passwordProperty().set("student123");
+		testViewModel.emailProperty().set("student@my.westga.edu");
 
 		testViewModel.addUser();
 
@@ -33,14 +33,14 @@ public class TestGetUser {
 	void testGetUserThatDoesNotExist() {
 		LoginViewModel testViewModel = new LoginViewModel();
 
-		testViewModel.usernameStringProperty().set("student");
-		testViewModel.passwordStringProperty().set("student123");
-		testViewModel.emailStringProperty().set("student@my.westga.edu");
+		testViewModel.usernameProperty().set("student");
+		testViewModel.passwordProperty().set("student123");
+		testViewModel.emailProperty().set("student@my.westga.edu");
 
 		testViewModel.addUser();
 
-		testViewModel.usernameStringProperty().set("test");
-		testViewModel.passwordStringProperty().set("test123");
+		testViewModel.usernameProperty().set("test");
+		testViewModel.passwordProperty().set("test123");
 
 		assertNull(testViewModel.getUser());
 	}

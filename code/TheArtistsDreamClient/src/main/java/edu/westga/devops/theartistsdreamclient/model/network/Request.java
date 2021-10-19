@@ -10,8 +10,8 @@ import edu.westga.devops.theartistsdreamclient.utils.UI.ServerCodes;
  * @version Fall 2021
  */
 public class Request {
-    private ServerCodes code;
-    private Object[] data;
+    private final ServerCodes code;
+    private final Object[] data;
 
     /**
      * Creates a request object

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class LocalUserManager extends UserManager {
 
-    private List<User> users;
+    private final List<User> users;
 
     /**
      * Creates a new LocalUserManager
@@ -113,4 +113,29 @@ public class LocalUserManager extends UserManager {
 		}
 		return searchedUsers;
 	}
+
+    @Override
+    public boolean followArtist(int artistsId, int followedId) {
+        return false;
+    }
+
+    @Override
+    public boolean unfollowArtist(int artistsId, int followedId) {
+        return false;
+    }
+
+    @Override
+    public boolean isFollowing(int artistsId, int followedId) {
+        return false;
+    }
+
+    @Override
+    public List<Integer> getFollowerIds(int userId) {
+        return null;
+    }
+
+    @Override
+    public List<Integer> getFollowingIds(int userId) {
+        return null;
+    }
 }

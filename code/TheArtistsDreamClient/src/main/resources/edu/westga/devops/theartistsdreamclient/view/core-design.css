@@ -50,3 +50,29 @@
      -fx-text-fill: white;
      -fx-cursor: HAND;
 }
+
+.toggle-button {
+     -fx-background-color: #2C2C32;
+     -fx-background-radius: 20;
+     -fx-border-radius: 20;
+     -fx-text-fill: #E01A4F;
+}
+
+.toggle-button:hover {
+     -fx-background-color: #E01A4F;
+     -fx-text-fill: white;
+     -fx-cursor: HAND;
+}
+
+.toggle-button:selected {
+     -fx-background-color: #E01A4F;
+     -fx-text-fill: white;
+     -fx-cursor: HAND;
+}
+
+.toggle-button:selected:focus {
+     -fx-background-color: #2C2C32;
+     -fx-background-radius: 20;
+     -fx-border-radius: 20;
+     -fx-text-fill: #E01A4F;
+}

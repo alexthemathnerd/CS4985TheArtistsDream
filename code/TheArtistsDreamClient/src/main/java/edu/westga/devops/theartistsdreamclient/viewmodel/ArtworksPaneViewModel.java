@@ -4,6 +4,7 @@ import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
 
+import edu.westga.devops.theartistsdreamclient.model.User;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.IntegerProperty;
@@ -22,12 +23,12 @@ import java.util.List;
  */
 public class ArtworksPaneViewModel {
 
-    private ListProperty<Artwork> artworksProperty;
-    private ListProperty<Tag> filterTagsProperty;
-    private IntegerProperty indexProperty;
-    private IntegerProperty maxIndexProperty;
-    private IntegerProperty userIdProperty;
-    private BooleanProperty onFollowingPageProperty;
+    private final ListProperty<Artwork> artworksProperty;
+    private final ListProperty<Tag> filterTagsProperty;
+    private final IntegerProperty indexProperty;
+    private final IntegerProperty maxIndexProperty;
+    private final IntegerProperty userIdProperty;
+    private final BooleanProperty onFollowingPageProperty;
 
     /**
      * Creates a new ArtworkPaneViewModel
@@ -41,7 +42,7 @@ public class ArtworksPaneViewModel {
         this.indexProperty = new SimpleIntegerProperty(0);
         this.maxIndexProperty = new SimpleIntegerProperty(50);
         this.userIdProperty = new SimpleIntegerProperty(-1);
-	    this.onFollowingPageProperty = new SimpleBooleanProperty(true);
+	this.onFollowingPageProperty = new SimpleBooleanProperty(true);
     }
 
     /**
@@ -98,7 +99,7 @@ public class ArtworksPaneViewModel {
      */
     public void viewMoreArtworks() {
         if (this.userIdProperty.isEqualTo(-1).get()) {
-            this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue())));
+            this.artworksProperty.addAll(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue()));
         } else {
             this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue(), this.userIdProperty.get())));
         }
@@ -115,8 +116,10 @@ public class ArtworksPaneViewModel {
     public void viewInitialArtworks() {
         if (this.userIdProperty.isEqualTo(-1).get()) {
             this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getFirstFiftyArtworks()));
-        } else {
+        } else if (this.onFollowingPageProperty.not().get()) {
             this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getFirstFiftyArtworks(this.userIdProperty.get())));
+        } else {
+            this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getFirstFiftyArtworks(true)));
         }
     }
 

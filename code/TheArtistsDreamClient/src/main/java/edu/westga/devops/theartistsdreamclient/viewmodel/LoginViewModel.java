@@ -13,127 +13,127 @@ import edu.westga.devops.theartistsdreamclient.model.UserManager;
  * @version Fall 2021
  */
 public class LoginViewModel {
-    private StringProperty usernameStringProperty;
-    private StringProperty passwordStringProperty;
-    private StringProperty confirmPasswordStringProperty;
-    private StringProperty emailStringProperty;
-    private StringProperty errorLabelStringProperty;
+    private final StringProperty usernameProperty;
+    private final StringProperty passwordProperty;
+    private final StringProperty confirmPasswordProperty;
+    private final StringProperty emailProperty;
+    private final StringProperty errorProperty;
 
     /**
      * Creates a new LoginViewModel
      *
      * @precondition none
-     * @postcondition errorLabelStringProperty().get() == "" && usernameStringProperty().get() == "" && emailStringProperty().get() == "" && passwordStringProperty().get() == "" && confirmPasswordStringProperty().get() == ""
+     * @postcondition errorProperty().get() == "" && usernameProperty().get() == "" && emailProperty().get() == "" && passwordProperty().get() == "" && confirmPasswordProperty().get() == ""
      */
     public LoginViewModel() {
-        this.usernameStringProperty = new SimpleStringProperty("");
-        this.passwordStringProperty = new SimpleStringProperty("");
-        this.confirmPasswordStringProperty = new SimpleStringProperty("");
-        this.emailStringProperty = new SimpleStringProperty("");
-        this.errorLabelStringProperty = new SimpleStringProperty("");
+        this.usernameProperty = new SimpleStringProperty("");
+        this.passwordProperty = new SimpleStringProperty("");
+        this.confirmPasswordProperty = new SimpleStringProperty("");
+        this.emailProperty = new SimpleStringProperty("");
+        this.errorProperty = new SimpleStringProperty("");
     }
 
     /**
-     * Gets the error label string property
+     * Gets the error label property
      *
      * @precondition none
      * @postcondition noen
      *
-     * @return the error label string property
+     * @return the error label property
      */
-    public StringProperty errorLabelStringProperty() {
-        return this.errorLabelStringProperty;
+    public StringProperty errorProperty() {
+        return this.errorProperty;
     }
 
     /**
-     * Gets the username string property
+     * Gets the username property
      *
      * @precondition none
      * @postcondition none
      *
-     * @return the username string property
+     * @return the username property
      */
-    public StringProperty usernameStringProperty() {
-        return this.usernameStringProperty;
+    public StringProperty usernameProperty() {
+        return this.usernameProperty;
     }
 
     /**
-     * Gets the password string property
+     * Gets the password property
      *
      * @precondition none
      * @postcondition none
      *
-     * @return the password string property
+     * @return the password property
      */
-    public StringProperty passwordStringProperty() {
-        return this.passwordStringProperty;
+    public StringProperty passwordProperty() {
+        return this.passwordProperty;
     }
 
     /**
-     * Gets the confirm password string property
+     * Gets the confirm password property
      *
      * @precondition none
      * @postcondition none
      *
-     * @return the confirm password string property
+     * @return the confirm password property
      */
-    public StringProperty confirmPasswordStringProperty() {
-        return this.confirmPasswordStringProperty;
+    public StringProperty confirmPasswordProperty() {
+        return this.confirmPasswordProperty;
     }
 
     /**
-     * Gets the email string property
+     * Gets the email property
      *
      * @precondition none
      * @postcondition none
      *
-     * @return the email string property
+     * @return the email property
      */
-    public StringProperty emailStringProperty() {
-        return this.emailStringProperty;
+    public StringProperty emailProperty() {
+        return this.emailProperty;
     }
 
     /**
      * Adds the new user that created an account
      *
-     * @precondition usernameStringProperty().get() != "" && passwordStringProperty().get() != "" && emailStringProperty().get() != ""
+     * @precondition usernameProperty().get() != "" && passwordProperty().get() != "" && emailProperty().get() != ""
      * @postcondition none
      */
     public void addUser() {
-        UserManager.getUserManager().addUser(this.usernameStringProperty.get(), this.passwordStringProperty.get(), this.emailStringProperty.get());
+        UserManager.getUserManager().addUser(this.usernameProperty.get(), this.passwordProperty.get(), this.emailProperty.get());
     }
 
     /**
      * Gets the user that logged in
      *
-     * @precondition usernameStringProperty().get() != "" passwordStringProperty().get() != ""
+     * @precondition usernameProperty().get() != "" passwordProperty().get() != ""
      * @postcondition none
      * 
      * @return the user
      */
     public User getUser() {
-        return UserManager.getUserManager().findUser(this.usernameStringProperty.get(), this.passwordStringProperty.get());
+        return UserManager.getUserManager().findUser(this.usernameProperty.get(), this.passwordProperty.get());
     }
 
     /**
      * Validates the values entered in when creating an account
      *
-     * @precondition emailStringProperty().get() != "" && passwordStringProperty().get() != ""
+     * @precondition emailProperty().get() != "" && passwordProperty().get() != ""
      * @postcondition none
      * 
      * @return true if the the entered information is valid. False if otherwise
      */
     public boolean validateCreateAccount() {
-        if (!this.emailStringProperty.get().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")) {
-            this.errorLabelStringProperty.set(UI.GuiMessages.INVALID_EMAIL);
+        if (!this.emailProperty.get().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")) {
+            this.errorProperty.set(UI.GuiMessages.INVALID_EMAIL);
             return false;
         }
-        if (this.passwordStringProperty.get().length() < 7) {
-            this.errorLabelStringProperty.set(UI.GuiMessages.INVALID_PASSWORD);
+        if (this.passwordProperty.get().length() < 7) {
+            this.errorProperty.set(UI.GuiMessages.INVALID_PASSWORD);
             return false;
         }
-        if (!this.passwordStringProperty.get().equals(this.confirmPasswordStringProperty.get())) {
-            this.errorLabelStringProperty.set(UI.GuiMessages.MISMATCH_PASSWORD);
+        if (!this.passwordProperty.get().equals(this.confirmPasswordProperty.get())) {
+            this.errorProperty.set(UI.GuiMessages.MISMATCH_PASSWORD);
             return false;
         }
         return true;

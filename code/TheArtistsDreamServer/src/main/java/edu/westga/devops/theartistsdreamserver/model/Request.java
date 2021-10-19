@@ -8,8 +8,8 @@ package edu.westga.devops.theartistsdreamserver.model;
  */
 public class Request {
 
-    private String error;
-    private Object data;
+    private final String error;
+    private final Object data;
 
     /**
      * Creates a new request

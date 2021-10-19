@@ -134,13 +134,7 @@ public class TheArtistsDreamServer {
                 }
                 int artworkID = Integer.parseInt(artworkParts[3]);
                 String artworkDate = artworkParts[4];
-//                final Map<String, String> env = new HashMap<>();
-//                final String[] array = artwork.toURI().toString().split("!");
-//                final FileSystem fs = FileSystems.newFileSystem(URI.create(array[0]), env);
-//                final Path path = fs.getPath(array[1]);
 
-//                byte[] image = Files.readAllBytes(path);
-//                fs.close();
                 byte[] image = IOUtils.toByteArray(artwork);
                 Artwork currentArtwork = new Artwork(image, artworkName, artistID, artworkTagIDs, artworkID, artworkDate);
                 ARTWORKS.add(currentArtwork);

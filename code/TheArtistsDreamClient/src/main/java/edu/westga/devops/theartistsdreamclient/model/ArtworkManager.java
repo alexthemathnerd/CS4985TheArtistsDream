@@ -168,9 +168,6 @@ public abstract class ArtworkManager {
      * @postcondition ArtworkManager.getArtworkManager().equals(artworkManager)
      */
     public static void setArtworkManager(ArtworkManager artworkManager) {
-        if (artworkManager == null) {
-            throw new IllegalArgumentException();
-        }
         ArtworkManager.artworkManager = artworkManager;
     }
 
