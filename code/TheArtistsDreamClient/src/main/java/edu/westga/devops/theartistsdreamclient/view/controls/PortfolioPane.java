@@ -137,7 +137,7 @@ public class PortfolioPane extends HBox {
     private void handleCommission(ActionEvent event) {
         try {
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            WindowLoader.changeScene(currentStage, DIRECT_MESSAGE_FXML, new DirectMessage(this.userProperty.getValue()), "The Artist's Dream", true);
+            WindowLoader.changeScene(currentStage, DIRECT_MESSAGE_FXML, new DirectMessage(this.userProperty.getValue(), User.getUser()), "The Artist's Dream", true);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -4,6 +4,7 @@ import edu.westga.devops.theartistsdreamclient.utils.UI;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
 
 /**
  * The User Class
@@ -25,7 +26,7 @@ public class User {
     private byte[] profilePic;
     private List<Integer> followerIds;
     private List<Integer> followingIds;
-    private Map<User, List<String>> messages;
+    private HashMap<Integer, ArrayList<ChatRecord>> chats;
 
     /**
      * Gets the singleton User
@@ -93,8 +94,8 @@ public class User {
         this.userId = userId;
         this.followerIds = new ArrayList<>();
         this.followingIds = new ArrayList<>();
-        this.messages = new Map<User, List<String>>();
         this.profilePic = profilePic;
+        this.chats = new HashMap<Integer, ArrayList<ChatRecord>>();
     }
 
     /**
@@ -181,7 +182,32 @@ public class User {
         return new ArrayList<>();
     }
 
-    public Map<User, List<String>> getMessages() {
-        return this.messages;
+    /**
+     * Gets the chats
+     * 
+     * @precondition none
+     * @postconditiion none
+     * 
+     * @return the chats of the users
+     */
+    public HashMap<Integer, ArrayList<ChatRecord>> getChats() {
+        return this.chats;
+    }
+
+    /**
+     * Gets a chat by the id
+     * 
+     * @precondition none
+     * @postcondition none
+     * 
+     * @param userId the id of the user
+     * 
+     * @return the chat of the user by the id
+     */
+    public ArrayList<ChatRecord> getChatById(int userId) {
+        if (this.chats.get(userId) == null) {
+            this.chats.put(userId, new ArrayList<ChatRecord>());
+        } 
+        return this.chats.get(userId);
     }
 }
