@@ -7,6 +7,12 @@ import edu.westga.devops.theartistsdreamserver.*;
 import edu.westga.devops.theartistsdreamserver.utils.UI;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+/**
+ * Junit test class for the constructor in the tag class
+ * 
+ * @author Jamia Echols
+ * @version Fall 2021
+ */
 public class TestConstructor {
     @Test
     void TestConstructor() {

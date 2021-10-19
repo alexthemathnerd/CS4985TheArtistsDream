@@ -1,6 +1,7 @@
 package edu.westga.devops.theartistsdreamserver.utils;
 
 import edu.westga.devops.theartistsdreamserver.model.Request;
+import edu.westga.devops.theartistsdreamserver.model.Chat;
 import edu.westga.devops.theartistsdreamserver.model.TagManager;
 import edu.westga.devops.theartistsdreamserver.model.UserManager;
 import edu.westga.devops.theartistsdreamserver.model.ArtworkManager;
@@ -35,7 +36,10 @@ public class UI {
         ADD_ARTWORK(ArtworkManager::addArtwork),
         REMOVE_ARTWORK(ArtworkManager::removeArtwork),
         EDIT_ARTWORK(ArtworkManager::editArtwork),
-        GET_ARTWORKS_OF_TAGS(ArtworkManager::getArtworksOfTags);
+        GET_ARTWORKS_OF_TAGS(ArtworkManager::getArtworksOfTags),
+        SEND_MESSAGE(Chat::sendMessage);
+
+        
 
 
         private ServerAction action;
