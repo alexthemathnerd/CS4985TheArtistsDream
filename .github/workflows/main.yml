@@ -15,9 +15,9 @@ jobs:
   - name: Step 3 - Test Client and Server with Maven
     run: |
      echo TESTING CLIENT
-     cd code/TheArtistDreamClient || exit 255
+     cd code/TheArtistsDreamClient || exit 255
      mvn --batch-mode --update-snapshots clean verify
-     cd ../TheArtistDreamServer || exit 255
+     cd ../TheArtistsDreamServer || exit 255
      echo TESTING SERVER
      mvn --batch-mode --update-snapshots clean verify
      cd ../..
