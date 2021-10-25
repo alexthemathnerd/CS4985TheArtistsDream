@@ -115,9 +115,10 @@
 				Unit tests should be titled as TestNameOfMethod.java
 			
 			-->
-            <!-- plugin>
+            <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.22.0</version>
+                <version>3.0.0-M5</version>
                 <executions>
                     <execution>
                         <goals>
@@ -126,7 +127,52 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin -->
+            </plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.7</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>jacoco-report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+					<!-- Add this checking to ensure code coverage minimum is met -->
+					<execution>
+						<id>jacoco-check</id>
+						<goals>
+							<goal>check</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<rule>
+									<element>PACKAGE</element>
+									<includes>
+										<include>edu.westga.devops.theartistsdreamclient.model</include>
+										<include>edu.westga.devops.theartistsdreamclient.viewmodel</include>
+										<include>edu.westga.devops.theartistsdreamserver.model</include>
+									</includes>
+									<limits>
+										<limit>
+											<counter>LINE</counter>
+											<value>COVEREDRATIO</value>
+											<minimum>0.90</minimum>
+										</limit>
+									</limits>
+								</rule>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
         </plugins>
 	</build>
 </project>

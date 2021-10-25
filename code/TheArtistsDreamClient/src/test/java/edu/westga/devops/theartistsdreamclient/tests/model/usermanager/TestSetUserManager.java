@@ -22,10 +22,5 @@ public class TestSetUserManager {
 		assertNotNull(UserManager.getUserManager());
 	}
 
-	@Test
-	void setToNull() {
-		assertThrows(IllegalArgumentException.class, () -> UserManager.setUserManager(null));
-	}
-
 }
 

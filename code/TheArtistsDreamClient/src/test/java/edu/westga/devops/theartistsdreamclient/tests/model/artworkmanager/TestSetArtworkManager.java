@@ -22,10 +22,5 @@ public class TestSetArtworkManager {
                 assertNotNull(ArtworkManager.getArtworkManager());
         }
 
-        @Test
-        void setToNull() {
-                assertThrows(IllegalArgumentException.class, () -> ArtworkManager.setArtworkManager(null));
-        }
-
 }
 

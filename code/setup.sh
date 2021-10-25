@@ -27,9 +27,9 @@ elif [[ $1 == "compile" ]]
 then
 	for project in *
 	do
-		if [ -f "'$project'/pom.xml" ]
+		if [ -f "$project""/pom.xml" ]
 		then
-				echo "Compiling '$project'"
+			echo "Compiling '$project'"
 			cd "$project" || exit 255
 			mvn clean compile
 			cd ..
@@ -39,7 +39,7 @@ elif [[ $1 == "test" ]]
 then
 	for project in *
 	do
-		if [ -f "'$project'/pom.xml" ]
+		if [ -f "$project""/pom.xml" ]
 		then 
 			echo "Testing '$project'"
 			cd "$project" || exit 255
@@ -63,6 +63,18 @@ then
 	cd $project_title"Client" || exit 255
 	mvn javafx:run -q
 	cd ..
+elif [[ $1 == "verify" ]]
+then
+	for project in *
+  do
+		if [ -f "$project""/pom.xml" ]
+		then
+			echo "Verifying '$project'"
+			cd "$project" || exit 255
+			mvn clean verify
+			cd ..
+		fi
+  done
 else
 	echo "Expected Usage: setup.sh [command]"
 	echo "Possible commands:"

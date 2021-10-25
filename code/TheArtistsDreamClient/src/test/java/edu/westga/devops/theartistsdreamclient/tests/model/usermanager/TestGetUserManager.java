@@ -18,6 +18,7 @@ public class TestGetUserManager {
 
         @Test
         void testNull() {
+                UserManager.setUserManager(null);
                 assertNull(UserManager.getUserManager());
         }
 
