@@ -51,16 +51,6 @@ public class LocalArtworkManager extends ArtworkManager {
 	}
 
 	@Override
-	public Artwork getArtwork(int id) {
-		for (Artwork artwork : this.artworks) {
-			if (artwork.getID() == id) {
-				return artwork;
-			}
-		}
-		return null;
-	}
-
-	@Override
 	public boolean addArtwork(byte[] imageData, String title, int artistID, List<Integer> tagIDs, String date) {
 		return this.artworks.add(new Artwork(imageData, title, artistID, tagIDs, this.size(), date));
 	}
@@ -90,23 +80,16 @@ public class LocalArtworkManager extends ArtworkManager {
 		if (newTagIDs == null) {
 			throw new IllegalArgumentException();
 		}
-		Artwork artworkToEdit = this.getArtwork(id);
+		if (id < 0 || id >= this.size()) {
+			return false;
+		}
+		Artwork artworkToEdit = this.artworks.get(id);
 		if (artworkToEdit == null) {
 			return false;
 		}
 		artworkToEdit.setTitle(newTitle);
 		artworkToEdit.setTags(newTagIDs);
 		return true;
-	}
-
-	@Override
-	public List<Artwork> getFollowingArtworks(int userId) {
-		return null;
-	}
-
-	@Override
-	public List<Artwork> getArtworksOfArtist(int userId) {
-		return null;
 	}
 
 	@Override

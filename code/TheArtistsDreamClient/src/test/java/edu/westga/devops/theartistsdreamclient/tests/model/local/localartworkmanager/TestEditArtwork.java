@@ -45,8 +45,8 @@ public class TestEditArtwork {
 	void testValidParameters() {
 		LocalArtworkManager testManager = new LocalArtworkManager();
 		        
-                testManager.addArtwork(new Artwork(new byte[0], "test", 1, new ArrayList<Integer>(), 1, "2020-02-02"));
-                assertTrue(testManager.editArtwork(1, "test2", new ArrayList<Integer>(Arrays.asList(1, 2))));
+                testManager.addArtwork(new Artwork(new byte[0], "test", 0, new ArrayList<Integer>(), 1, "2020-02-02"));
+                assertTrue(testManager.editArtwork(0, "test2", new ArrayList<Integer>(Arrays.asList(1, 2))));
         }
 
 	@Test

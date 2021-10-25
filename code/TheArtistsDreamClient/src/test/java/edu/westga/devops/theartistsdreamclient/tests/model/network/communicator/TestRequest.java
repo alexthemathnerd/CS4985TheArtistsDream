@@ -24,11 +24,4 @@ public class TestRequest {
 		assertThrows(IllegalStateException.class, () -> testCommunicator.request(null, null));
 	}
 
-	@Test
-	void testClosedOneParameter() {
-		Communicator testCommunicator = new Communicator("tcp://localhost:4444");
-		testCommunicator.close();
-		assertThrows(IllegalStateException.class, () -> testCommunicator.request(new Request(UI.ServerCodes.TODO, null)));
-	}
-
-	}
+}

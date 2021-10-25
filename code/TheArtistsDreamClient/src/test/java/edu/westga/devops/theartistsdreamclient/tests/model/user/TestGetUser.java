@@ -2,6 +2,7 @@ package edu.westga.devops.theartistsdreamclient.tests.model.user;
 
 import edu.westga.devops.theartistsdreamclient.model.User;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -14,6 +15,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  * @version Fall 2021
  */
 public class TestGetUser {
+
+	@BeforeEach
+	void init() {
+		User.setUser(null);
+	}
 
 	@Test
 	void testNull() {

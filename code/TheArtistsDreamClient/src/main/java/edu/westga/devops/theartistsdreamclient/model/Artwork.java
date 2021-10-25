@@ -39,29 +39,15 @@ public class Artwork {
      * getID == id && getDate() == date
      */
     public Artwork(Image image, String title, int artistID, List<Integer> tagIDs, int id, String date) {
-        if (image == null) {
-            throw new IllegalArgumentException();
-        }
-        if (title == null) {
-            throw new IllegalArgumentException();
-        }
-        if (title.isEmpty()) {
-            throw new IllegalArgumentException();
-        }
-        if (artistID < 0) {
-            throw new IllegalArgumentException();
-        }
-        if (tagIDs == null) {
-            throw new IllegalArgumentException();
-        }
-        if (id <= 0) {
-            throw new IllegalArgumentException();
-        }
-        if (date == null) {
-            throw new IllegalArgumentException();
-        }
+        if (image == null) throw new IllegalArgumentException();
+        if (title == null) throw new IllegalArgumentException();
+        if (title.isEmpty()) throw new IllegalArgumentException();
+        if (artistID < 0) throw new IllegalArgumentException();
+        if (tagIDs == null) throw new IllegalArgumentException();
+        if (id < 0) throw new IllegalArgumentException();
+        if (date == null) throw new IllegalArgumentException();
+        if (date.isEmpty()) throw new IllegalArgumentException();
         this.image = image;
-	    this.imageData = new byte[0];
         this.title = title;
         this.artistID = artistID;
         this.tagIDs = tagIDs;
@@ -85,31 +71,14 @@ public class Artwork {
      * getID == id && getDate() == date
      */
     public Artwork(byte[] imageData, String title, int artistID, List<Integer> tagIDs, int id, String date) {
-        if (imageData == null) {
-            throw new IllegalArgumentException();
-        }
-        if (title == null) {
-            throw new IllegalArgumentException();
-        }
-        if (title.isEmpty()) {
-            throw new IllegalArgumentException();
-        }
-        if (artistID < 0) {
-            throw new IllegalArgumentException();
-        }
-        if (tagIDs == null) {
-            throw new IllegalArgumentException();
-        }
-        if (id <= 0) {
-            throw new IllegalArgumentException();
-        }
-        if (date == null) {
-            throw new IllegalArgumentException();
-        }
-
-
-
-        this.image = new Image(new ByteArrayInputStream(imageData));
+        if (imageData == null) throw new IllegalArgumentException();
+        if (title == null) throw new IllegalArgumentException();
+        if (title.isEmpty()) throw new IllegalArgumentException();
+        if (artistID < 0) throw new IllegalArgumentException();
+        if (tagIDs == null) throw new IllegalArgumentException();
+        if (id < 0) throw new IllegalArgumentException();
+        if (date == null) throw new IllegalArgumentException();
+        if (date.isEmpty()) throw new IllegalArgumentException();
         this.imageData = imageData;
         this.title = title;
         this.artistID = artistID;
@@ -126,7 +95,8 @@ public class Artwork {
      * @postcondition none
      */
     public Image getImage() {
-        return new Image(new ByteArrayInputStream(this.imageData));
+        if (image == null) return new Image(new ByteArrayInputStream(imageData));
+        return this.image;
     }
 
     /**

@@ -3,6 +3,7 @@ package edu.westga.devops.theartistsdreamclient.tests.model.artworkmanager;
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalArtworkManager;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -15,6 +16,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  * @version Fall 2021
  */
 public class TestGetArtworkManager {
+
+	@BeforeEach
+	void init() {
+		ArtworkManager.setArtworkManager(null);
+	}
 
 	@Test
 	void testNull() {

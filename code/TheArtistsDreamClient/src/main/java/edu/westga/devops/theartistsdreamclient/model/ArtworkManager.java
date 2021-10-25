@@ -72,18 +72,6 @@ public abstract class ArtworkManager {
 	public abstract List<Artwork> getNextTenArtworks(int startingIndex, int userId);
 
 	/**
-	 * Gets the artwork specified by the id
-	 *
-	 * @precondition none
-	 * @postcondition none
-	 *
-	 * @param id the id of the artwork to get
-	 *
-	 * @return the artwork specified by the id
-	 */
-	public abstract Artwork getArtwork(int id);
-
-	/**
 	 * Adds the artwork
 	 *
 	 * @precondition artwork != null
@@ -124,30 +112,6 @@ public abstract class ArtworkManager {
 	 * @return true if the artwork was successfully edited, false otherwise
 	 */
 	public abstract boolean editArtwork(int id, String newTitle, List<Integer> newTagIDs);
-
-	/**
-	 * Gets the artworks of the artists the user follows
-	 *
-	 * @precondition none
-	 * @postcondition none
-	 *
-	 * @param userId the id of the user logged in
-	 *
-	 * @return a list of the artworks from the artists followed
-	 */
-	public abstract List<Artwork> getFollowingArtworks(int userId);
-
-	/**
-	 * Gets the artworks of the user specified by the id
-	 *
-	 * @precondition none
-	 * @postcondition none
-	 *
-	 * @param userId the id of the user to get the artworks from
-	 *
-	 * @return the artworks from the specified artist
-	 */
-	public abstract List<Artwork> getArtworksOfArtist(int userId);
 
     /**
      * Gets the singleton of the artwork manager

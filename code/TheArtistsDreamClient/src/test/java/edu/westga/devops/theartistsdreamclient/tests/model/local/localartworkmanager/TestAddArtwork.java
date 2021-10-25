@@ -21,7 +21,6 @@ public class TestAddArtwork {
 	@Test
 	void testEmptyManager() {
 		LocalArtworkManager testManager = new LocalArtworkManager();
-
 		assertAll(() -> assertTrue(testManager.addArtwork(new Artwork(new byte[0], "test", 1, new ArrayList<Integer>(), 1, "2020-10-20"))), () -> assertTrue(testManager.addArtwork(new byte[0], "test", 1, new ArrayList<Integer>(), "2020-10-20")));
 	}
 

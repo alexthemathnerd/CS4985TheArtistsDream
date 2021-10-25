@@ -47,7 +47,7 @@ public class NetworkTagManager extends TagManager {
     public int addTag(String name) {
         Type type = new TypeToken<Response<Double>>() {
         }.getType();
-        Response<Double> response = this.communicator.request(new Request(UI.ServerCodes.ADD_TAG, new Object[]{name}));
+        Response<Double> response = this.communicator.request(new Request(UI.ServerCodes.ADD_TAG, new Object[]{name}), type);
         if (response.getError() != null) {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
             return -1;

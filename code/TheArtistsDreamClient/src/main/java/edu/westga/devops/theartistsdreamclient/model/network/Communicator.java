@@ -76,32 +76,6 @@ public class Communicator implements Closeable {
         return gson.fromJson(reply, type);
     }
 
-    /**
-     * Requests to the server with a given request and returns its response
-     *
-     * @param <T> the response type
-     * @param request the request to be sent to the server
-     * 
-     * @return the response from the server
-     * 
-     * @precondition server must be connected
-     * @postcondition none
-     */
-    public <T> Response<T> request(Request request) {
-        if (this.context.isClosed()) {
-            throw new IllegalStateException();
-        }
-        Gson gson = new Gson();
-        String json = gson.toJson(request);
-        this.socket.send(json);
-        String reply = this.socket.recvStr(0);
-        Type type = new TypeToken<Response<T>>() {
-        }.getType();
-        Response<T> conf = gson.fromJson(reply, type);
-        System.out.println(conf.getData() instanceof T);
-        return conf;
-    }
-
     @Override
     public void close() {
         this.context.close();
