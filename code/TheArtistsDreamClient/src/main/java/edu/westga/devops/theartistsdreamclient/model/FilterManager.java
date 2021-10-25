@@ -1,5 +1,7 @@
 package edu.westga.devops.theartistsdreamclient.model;
 
+import edu.westga.devops.theartistsdreamclient.model.local.LocalTagManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,12 +34,15 @@ public class FilterManager {
         if (content.isEmpty()) {
             return filteredTags;
         }
-        for (Tag aTag: tagManager) {
-            if (aTag.getName().contains(content.toLowerCase())) {
-                filteredTags.add(aTag);
+        if (tagManager instanceof LocalTagManager localTagManager) {
+            for (Tag aTag : localTagManager) {
+                if (aTag.getName().contains(content.toLowerCase())) {
+                    filteredTags.add(aTag);
+                }
             }
+            return filteredTags;
         }
-        return filteredTags;
+        return null;
     }
 
 }

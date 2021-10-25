@@ -18,11 +18,11 @@ import javafx.application.Platform;
  */
 public class DirectMessageViewModel {
 
-    private Chat chat;
-    private User sender;
-    private User receiver;
-    private ObjectProperty<ChatRecord> chatRecordProperty;
-    private StringProperty messageStringProperty;
+    private final Chat chat;
+    private final User sender;
+    private final User receiver;
+    private final ObjectProperty<ChatRecord> chatRecordProperty;
+    private final StringProperty messageStringProperty;
 
     /**
      * Initializes a new DirectMessage View Model

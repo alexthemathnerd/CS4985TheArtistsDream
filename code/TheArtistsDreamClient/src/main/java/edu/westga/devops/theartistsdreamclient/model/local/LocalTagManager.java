@@ -17,7 +17,7 @@ import java.util.List;
  * @see TagManager
  * @see Tag
  */
-public class LocalTagManager extends TagManager {
+public class LocalTagManager extends TagManager implements Iterable<Tag> {
 
     private final ArrayList<Tag> tags;
 

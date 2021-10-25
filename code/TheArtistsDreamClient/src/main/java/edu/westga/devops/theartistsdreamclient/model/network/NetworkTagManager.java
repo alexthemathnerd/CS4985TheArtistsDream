@@ -31,6 +31,18 @@ public class NetworkTagManager extends TagManager {
         this.communicator = new Communicator("tcp://localhost:4444");
     }
 
+    /**
+     * Creates a new NetworkTagManager (Use only for testing)
+     *
+     * @param communicator the communicator to connect with
+     *
+     * @precondition none
+     * @postcondition none
+     */
+    public NetworkTagManager(Communicator communicator) {
+        this.communicator = communicator;
+    }
+
     @Override
     public List<Tag> getTopTags(int amount, String content) {
         Type type = new TypeToken<Response<ArrayList<Tag>>>() {
@@ -53,11 +65,6 @@ public class NetworkTagManager extends TagManager {
             return -1;
         }
         return (response.getData()).intValue();
-    }
-
-    @Override
-    public Iterator<Tag> iterator() {
-        return null;
     }
 
 }

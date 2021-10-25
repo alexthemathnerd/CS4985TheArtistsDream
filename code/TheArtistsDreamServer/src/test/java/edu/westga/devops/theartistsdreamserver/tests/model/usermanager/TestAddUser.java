@@ -20,7 +20,7 @@ public class TestAddUser {
 		UserManager testManager = new UserManager();
         Object[] user = new Object[]{"test", "test", "test"};
         Object result = 0;
-		assertEquals(result, testManager.addUser(user).getData());
+		assertEquals(result, UserManager.addUser(user).getData());
 	}
 
 	@Test
@@ -28,9 +28,9 @@ public class TestAddUser {
         TheArtistsDreamServer.USERS.clear();
 		UserManager testManager = new UserManager();
         Object[] user = new Object[]{"test", "test", "test"};
-        testManager.addUser(user);
+        UserManager.addUser(user);
         Object result = -1;
-		assertEquals(result, testManager.addUser(user).getData());
+		assertEquals(result, UserManager.addUser(user).getData());
 	}
 
 	@Test
@@ -39,9 +39,9 @@ public class TestAddUser {
         UserManager testManager = new UserManager();
         Object[] user1 = new Object[]{"test", "test", "test"};
         Object[] user2 = new Object[]{"test1", "test1", "test1"};
-        testManager.addUser(user1);
+        UserManager.addUser(user1);
         Object result = 1;
-		assertEquals(result, testManager.addUser(user2).getData());
+		assertEquals(result, UserManager.addUser(user2).getData());
 	}
 
 }

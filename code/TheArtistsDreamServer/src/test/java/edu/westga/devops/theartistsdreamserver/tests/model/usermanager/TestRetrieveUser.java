@@ -20,7 +20,7 @@ public class TestRetrieveUser {
         TheArtistsDreamServer.USERS.clear();
 		UserManager testManager = new UserManager();
         Object[] param = new Object[]{null};
-		assertNull(testManager.retrieveSearchedUser(param).getData());
+		assertNull(UserManager.retrieveSearchedUser(param).getData());
     }
 
     @Test
@@ -28,7 +28,7 @@ public class TestRetrieveUser {
         TheArtistsDreamServer.USERS.clear();
 		UserManager testManager = new UserManager();
         Object[] param = new Object[]{0};
-		assertNull(testManager.retrieveSearchedUser(param).getData());
+		assertNull(UserManager.retrieveSearchedUser(param).getData());
 	}
 
     @Test
@@ -36,9 +36,9 @@ public class TestRetrieveUser {
         TheArtistsDreamServer.USERS.clear();
 		UserManager testManager = new UserManager();
         Object[] user = new Object[]{"test", "test", "test"};
-        testManager.addUser(user);
+        UserManager.addUser(user);
         Object[] param = new Object[]{"test"};
-		assertNotNull(testManager.retrieveSearchedUser(param).getData());
+		assertNotNull(UserManager.retrieveSearchedUser(param).getData());
 	}
 
     @Test
@@ -48,11 +48,11 @@ public class TestRetrieveUser {
         Object[] user = new Object[]{"test", "test", "test"};
         Object[] user1 = new Object[]{"test1", "test1", "test1"};
         Object[] user2 = new Object[]{"test2", "test2", "test2"};
-        testManager.addUser(user);
-        testManager.addUser(user1);
-        testManager.addUser(user2);
+        UserManager.addUser(user);
+        UserManager.addUser(user1);
+        UserManager.addUser(user2);
         Object[] param = new Object[]{"test"};
-		assertNotNull(testManager.retrieveSearchedUser(param).getData());
+		assertNotNull(UserManager.retrieveSearchedUser(param).getData());
 	}
     
 }

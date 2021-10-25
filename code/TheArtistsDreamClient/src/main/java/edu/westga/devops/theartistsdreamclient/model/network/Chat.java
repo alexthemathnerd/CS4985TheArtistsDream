@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * @version Fall 2021
  */
 public class Chat {
-    private Communicator communicator;
+    private final Communicator communicator;
 
     /**
      * Creates a new chat

@@ -20,19 +20,19 @@ public class TestGetTopTags {
         TheArtistsDreamServer.TAGS.clear();
         TagManager testTagManager = new TagManager();
         Object[] argument = new Object[] {new Object(), new Object()};
-        assertEquals(UI.ErrorMessages.INVALID_FORMAT, testTagManager.getTopTags(argument).getError());
+        assertEquals(UI.ErrorMessages.INVALID_FORMAT, TagManager.getTopTags(argument).getError());
     }
 
     @Test
     void TestGetTopTags() {
         TheArtistsDreamServer.TAGS.clear();
         TagManager testTagManager = new TagManager();
-        testTagManager.addTag(new Object[]{"test"});
-        testTagManager.addTag(new Object[]{"test1"});
-        testTagManager.addTag(new Object[]{"test2"});
-        testTagManager.addTag(new Object[]{"add"});
+        TagManager.addTag(new Object[]{"test"});
+        TagManager.addTag(new Object[]{"test1"});
+        TagManager.addTag(new Object[]{"test2"});
+        TagManager.addTag(new Object[]{"add"});
         Object[] argument = new Object[] {2.0, "test"};
-        assertEquals(2, ((List) testTagManager.getTopTags(argument).getData()).size());
+        assertEquals(2, ((List) TagManager.getTopTags(argument).getData()).size());
     }
 
 

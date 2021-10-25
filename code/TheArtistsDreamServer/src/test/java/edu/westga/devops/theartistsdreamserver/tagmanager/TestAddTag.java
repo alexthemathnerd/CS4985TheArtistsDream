@@ -18,7 +18,7 @@ public class TestAddTag {
     void TestInvalidArgument() {
         TagManager testTagManager = new TagManager();
         Object[] argument = new Object[] {new Object()};
-        assertEquals("Invalid format", testTagManager.addTag(argument).getError());
+        assertEquals("Invalid format", TagManager.addTag(argument).getError());
     }
 
     @Test
@@ -26,7 +26,7 @@ public class TestAddTag {
          TagManager testTagManager = new TagManager();
          Object[] argument = new Object[] {"tag"};
          assertAll(
-            () -> assertEquals(0, testTagManager.addTag(argument).getData()),
+            () -> assertEquals(0, TagManager.addTag(argument).getData()),
             () -> assertEquals(1, TheArtistsDreamServer.TAGS.size()));
      }
 
@@ -35,9 +35,9 @@ public class TestAddTag {
         TheArtistsDreamServer.TAGS.clear();
         TagManager testTagManager = new TagManager();
          Object[] argument = new Object[] {"tag"};
-         testTagManager.addTag(argument);
+         TagManager.addTag(argument);
          assertAll(
-            () -> assertEquals(0, testTagManager.addTag(argument).getData()),
+            () -> assertEquals(0, TagManager.addTag(argument).getData()),
             () -> assertEquals(1, TheArtistsDreamServer.TAGS.size()));
     }
 
@@ -45,9 +45,9 @@ public class TestAddTag {
     void testAddMutipleTags() {
         TheArtistsDreamServer.TAGS.clear();
         TagManager testTagManager = new TagManager();
-        testTagManager.addTag(new Object[]{"test1"});
-        testTagManager.addTag(new Object[]{"test2"});
-        testTagManager.addTag(new Object[]{"test3"});
+        TagManager.addTag(new Object[]{"test1"});
+        TagManager.addTag(new Object[]{"test2"});
+        TagManager.addTag(new Object[]{"test3"});
         assertEquals(3, TheArtistsDreamServer.TAGS.size());
     }
 }

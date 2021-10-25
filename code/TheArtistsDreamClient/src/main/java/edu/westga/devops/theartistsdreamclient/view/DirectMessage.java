@@ -22,11 +22,11 @@ import javafx.scene.text.Text;
  */
 public class DirectMessage {
 
-    private User receiver;
+    private final User receiver;
 
-    private User sender;
+    private final User sender;
 
-    private DirectMessageViewModel viewModel;
+    private final DirectMessageViewModel viewModel;
 
     @FXML
     private GridPane chatGridPane;

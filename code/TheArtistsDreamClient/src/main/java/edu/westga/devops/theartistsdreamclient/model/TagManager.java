@@ -10,7 +10,7 @@ import java.util.List;
  * @version Fall 2021
  * @see Tag
  */
-public abstract class TagManager implements Iterable<Tag> {
+public abstract class TagManager {
 
     private static TagManager tagManager = null;
 

@@ -20,7 +20,7 @@ public class TestFindUser {
         TheArtistsDreamServer.USERS.clear();
 		UserManager testManager = new UserManager();
         Object[] param = new Object[]{null, null};
-		assertNull(testManager.findUser(param).getData());
+		assertNull(UserManager.findUser(param).getData());
     }
 
     @Test
@@ -28,7 +28,7 @@ public class TestFindUser {
         TheArtistsDreamServer.USERS.clear();
 		UserManager testManager = new UserManager();
         Object[] param = new Object[]{"test","test"};
-		assertNull(testManager.findUser(param).getData());
+		assertNull(UserManager.findUser(param).getData());
 	}
 
     @Test
@@ -36,9 +36,9 @@ public class TestFindUser {
         TheArtistsDreamServer.USERS.clear();
 		UserManager testManager = new UserManager();
         Object[] user = new Object[]{"test", "test", "test"};
-        testManager.addUser(user);
+        UserManager.addUser(user);
         Object[] param = new Object[]{"test", "test"};
-		assertNotNull(testManager.findUser(param).getData());
+		assertNotNull(UserManager.findUser(param).getData());
 	}
 
     @Test
@@ -48,10 +48,10 @@ public class TestFindUser {
         Object[] user = new Object[]{"test", "test", "test"};
         Object[] user1 = new Object[]{"test1", "test1", "test1"};
         Object[] user2 = new Object[]{"test2", "test2", "test2"};
-        testManager.addUser(user);
-        testManager.addUser(user1);
-        testManager.addUser(user2);
+        UserManager.addUser(user);
+        UserManager.addUser(user1);
+        UserManager.addUser(user2);
         Object[] param = new Object[]{"test1", "test1"};
-		assertNotNull(testManager.findUser(param).getData());
+		assertNotNull(UserManager.findUser(param).getData());
 	}
 }

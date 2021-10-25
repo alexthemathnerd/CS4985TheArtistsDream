@@ -24,7 +24,7 @@ public class User {
     private final String username;
     private final String password;
 
-    private HashMap<Integer, ArrayList<ChatRecord>> chats;
+    private final HashMap<Integer, ArrayList<ChatRecord>> chats;
     private final byte[] profilePic;
     private final List<Integer> followerIds;
     private final List<Integer> followingIds;
