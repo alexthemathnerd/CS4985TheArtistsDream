@@ -4,6 +4,7 @@ import edu.westga.devops.theartistsdreamclient.utils.UI;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -23,6 +24,7 @@ public class User {
     private final String username;
     private final String password;
 
+    private HashMap<Integer, ArrayList<ChatRecord>> chats;
     private final byte[] profilePic;
     private final List<Integer> followerIds;
     private final List<Integer> followingIds;
@@ -94,6 +96,7 @@ public class User {
         this.followerIds = new ArrayList<>();
         this.followingIds = new ArrayList<>();
         this.profilePic = profilePic;
+        this.chats = new HashMap<Integer, ArrayList<ChatRecord>>();
     }
 
     /**
@@ -179,6 +182,35 @@ public class User {
     public List<Integer> getFollowingIds() {
         return new ArrayList<>();
     }
+
+    /**
+     * Gets the chats
+     * 
+     * @precondition none
+     * @postconditiion none
+     * 
+     * @return the chats of the users
+     */
+    public HashMap<Integer, ArrayList<ChatRecord>> getChats() {
+        return this.chats;
+    }
+
+    /**
+     * Gets a chat by the id
+     * 
+     * @precondition none
+     * @postcondition none
+     * 
+     * @param userId the id of the user
+     * 
+     * @return the chat of the user by the id
+     */
+    public ArrayList<ChatRecord> getChatById(int userId) {
+        if (this.chats.get(userId) == null) {
+            this.chats.put(userId, new ArrayList<ChatRecord>());
+        } 
+        return this.chats.get(userId);
+	}
 
     @Override
     public boolean equals(Object other) {

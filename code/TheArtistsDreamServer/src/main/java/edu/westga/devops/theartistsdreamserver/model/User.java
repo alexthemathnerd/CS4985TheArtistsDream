@@ -2,6 +2,8 @@ package edu.westga.devops.theartistsdreamserver.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * User Class
@@ -10,6 +12,8 @@ import java.util.List;
  * @version Fall 2021
  */
 public class User {
+
+    private HashMap<Integer, ArrayList<ChatRecord>> messages;
     private final int userId;
     private final String email;
     private final String username;
@@ -36,6 +40,7 @@ public class User {
         this.password = password;
         this.userId = userId;
         this.profilePic = profilePic;
+        this.messages = new HashMap<Integer, ArrayList<ChatRecord>>();
         this.followerIds = new ArrayList<>();
         this.followingIds = new ArrayList<>();
     }
@@ -98,6 +103,50 @@ public class User {
      */
     public byte[] getProfilePic() {
         return this.profilePic;
+    }
+
+    /**
+     * Gets the user's messages
+     * 
+     * @precondition none
+     * @postcondition none
+     * 
+     * @return the messages 
+     */
+    public HashMap<Integer, ArrayList<ChatRecord>> getMessages() {
+        return this.messages;
+    }
+
+    /**
+     * Get the chat from the specified user
+     * 
+     * @precondition none
+     * @postcondition none
+     * 
+     * @param userId the User Id of the chat you are trying to get
+     * 
+     * @return the chat of the specified user
+     */
+    public ArrayList<ChatRecord> getChatByUserId(int userId) {
+        if (this.messages.get(userId) == null) {
+            this.messages.put(userId, new ArrayList<ChatRecord>());
+        } 
+        return this.messages.get(userId);
+    }
+
+    /**
+     * Updates the chat with the specified userId
+     * 
+     * @precondtion none
+     * @postcondition none
+     * 
+     * @param userId the user Id of the user associated with the chat
+     * @param chat the chat replacing the existing chat
+     * 
+     * @return the updated chat
+     */
+    public ArrayList<ChatRecord> updateChat(int userId, ArrayList<ChatRecord> chat) {
+        return this.messages.replace(userId, chat);
     }
 
     public boolean addFollowing(int userId) {

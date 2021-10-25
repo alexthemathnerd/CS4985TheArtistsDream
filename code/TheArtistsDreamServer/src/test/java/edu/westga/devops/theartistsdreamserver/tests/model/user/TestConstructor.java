@@ -1,9 +1,9 @@
-package edu.westga.devops.theartistsdreamserver.user;
+package edu.westga.devops.theartistsdreamserver.tests.model.user;
 
 import edu.westga.devops.theartistsdreamserver.model.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
-import edu.westga.devops.theartistsdreamserver.*;
+import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
 import edu.westga.devops.theartistsdreamserver.utils.UI;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

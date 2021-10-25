@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane prefHeight="284.0" prefWidth="325.0" style="-fx-background-color: #1E1E24;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane fx:id="chatGridPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="243.0" prefWidth="325.0" style="-fx-background-color: #1E1E24;" stylesheets="@../core-design.css, @direct-message-design.css" vgap="10.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" percentWidth="25.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" percentWidth="50.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" percentWidth="25.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox minHeight="-Infinity" prefHeight="0.0" GridPane.columnIndex="1" GridPane.columnSpan="2">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+                  </VBox>
+                  <VBox maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="0.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+               </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+            </GridPane>
+      <TextField fx:id="messageTextField" layoutX="45.0" layoutY="254.0" style="-fx-background-color: #2c2c32; -fx-background-radius: 20; -fx-text-fill: #e01a4f;" />
+      <Button fx:id="sendButton" layoutX="240.0" layoutY="254.0" mnemonicParsing="false" onAction="#handleSendClick" style="-fx-background-color: #2c2c32; -fx-background-radius: 20; -fx-border-radius: 20; -fx-text-fill: #E01a4f;" text="SEND" />
+   </children>
+</AnchorPane>

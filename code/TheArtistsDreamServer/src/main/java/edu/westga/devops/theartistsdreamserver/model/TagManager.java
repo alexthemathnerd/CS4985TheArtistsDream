@@ -1,6 +1,7 @@
 package edu.westga.devops.theartistsdreamserver.model;
 
 import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
+import edu.westga.devops.theartistsdreamserver.utils.UI;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,7 +32,7 @@ public class TagManager {
             amount = ((Double) data[0]).intValue();
             content = (String) data[1];
         } catch (ClassCastException e) {
-            return new Request("Invalid Format");
+            return new Request(UI.ErrorMessages.INVALID_FORMAT);
         }
         List<Tag> tagsWithName = getSearchTags(content);
         Collections.sort(tagsWithName);
@@ -70,7 +71,7 @@ public class TagManager {
         try {
             name = (String) data[0];
         } catch (ClassCastException e) {
-            return new Request("Invalid Format");
+            return new Request(UI.ErrorMessages.INVALID_FORMAT);
         }
         Tag tag = new Tag(TheArtistsDreamServer.TAGS.size(), name);
         int count = 0;

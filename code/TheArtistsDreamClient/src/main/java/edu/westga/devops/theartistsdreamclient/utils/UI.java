@@ -34,11 +34,12 @@ public class UI {
         GET_FOLLOWING_ARTWORKS,
         GET_ARTWORKS_OF_ARTIST,
         GET_ARTWORKS_OF_TAGS,
+        SEND_MESSAGE,
         FOLLOW_ARTIST,
         UNFOLLOW_ARTIST,
         GET_FOLLOWERS,
         GET_FOLLOWINGS,
-        IS_FOLLOWING
+        IS_FOLLOWING;
     }
 
     /**

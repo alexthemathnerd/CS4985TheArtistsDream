@@ -4,6 +4,7 @@ import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.model.UserManager;
 import edu.westga.devops.theartistsdreamclient.view.popups.AddArtPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
+import edu.westga.devops.theartistsdreamclient.view.DirectMessage;
 import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
 import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
 
@@ -37,6 +38,7 @@ import java.io.IOException;
 public class PortfolioPane extends HBox {
 
     public static final String PORTFOLIO_PANE_FXML = "PortfolioPane.fxml";
+    public static final String DIRECT_MESSAGE_FXML = "popups/DirectMessageView.fxml";
 
     @FXML
     private ImageView profileImage;
@@ -174,7 +176,12 @@ public class PortfolioPane extends HBox {
 
     @FXML
     private void handleCommission(ActionEvent event) {
-
+        try {
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            WindowLoader.changeScene(currentStage, DIRECT_MESSAGE_FXML, new DirectMessage(this.userProperty.getValue(), User.getUser()), "The Artist's Dream", true);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**

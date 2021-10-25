@@ -56,7 +56,7 @@ public class ArtworkManager {
     }
 
     private static Request getFirstFiftyArtworks(int userId) {
-        List<Artwork> artworks = new ArrayList<Artwork>();
+        List<Artwork> artworks = new ArrayList<>();
         for (Artwork aArtwork: TheArtistsDreamServer.ARTWORKS) {
             if (aArtwork.getArtistID() == userId) {
                 artworks.add(aArtwork);
@@ -114,11 +114,8 @@ public class ArtworkManager {
         } catch (ClassCastException e) {
             return new Request(UI.ErrorMessages.INVALID_FORMAT);
         }
-        if (startingIndex > TheArtistsDreamServer.ARTWORKS.size()) {
-            return new Request(new ArrayList<Artwork>());
-        }
         if (startingIndex + 10 > TheArtistsDreamServer.ARTWORKS.size()) {
-            return new Request(TheArtistsDreamServer.ARTWORKS.subList(startingIndex, TheArtistsDreamServer.ARTWORKS.size()));
+            return new Request(TheArtistsDreamServer.ARTWORKS);
         }
         return new Request(TheArtistsDreamServer.ARTWORKS.subList(startingIndex, startingIndex + 10));
 
@@ -136,11 +133,8 @@ public class ArtworkManager {
                 }
             }
         }
-        if (startingIndex > artworks.size()) {
-            return new Request(new ArrayList<Artwork>());
-        }
         if (artworks.size() < startingIndex + 10) {
-            return new Request(artworks.subList(startingIndex, artworks.size()));
+            return new Request(artworks);
         }
         return new Request(TheArtistsDreamServer.ARTWORKS.subList(startingIndex, startingIndex + 10));
     }
@@ -264,13 +258,9 @@ public class ArtworkManager {
 
         if (artworkRequest.getError() != null) {
             return new Request(artworkRequest.getError());
-
         }
+
         Artwork artworkToEdit = (Artwork) artworkRequest.getData();
-	
-	if (artworkToEdit == null) {
-	    return new Request(false);
-	}
 
         artworkToEdit.setTags(new Object[]{newTagIDs});
         artworkToEdit.setTitle(new Object[]{newTitle});
@@ -348,6 +338,7 @@ public class ArtworkManager {
         List<Artwork> tagArtworks = new ArrayList<>();
         for (Artwork aArtwork: TheArtistsDreamServer.ARTWORKS) {
             for (Object aTag: tags) {
+
                 LinkedTreeMap<String, Object> tag = (LinkedTreeMap<String, Object>) aTag;
                 if (aArtwork.getTagIDs().contains(((Double) tag.get("id")).intValue())) {
                     tagArtworks.add(aArtwork);
@@ -399,7 +390,7 @@ public class ArtworkManager {
         try {
             title = (String) data[0];
         } catch (Exception e) {
-            return new Request("Invalid Format");
+            return new Request(UI.ErrorMessages.INVALID_FORMAT);
         }
         for (Artwork aArtwork: TheArtistsDreamServer.ARTWORKS) {
             if (aArtwork.getTitle().equals(title)) {

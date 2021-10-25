@@ -31,7 +31,5 @@ public class FollowingPage {
         this.artworksPane.tagsToFilterListProperty().bindBidirectional(this.header.tagsToFilterListProperty());
     }
 
-
-
 }
 
