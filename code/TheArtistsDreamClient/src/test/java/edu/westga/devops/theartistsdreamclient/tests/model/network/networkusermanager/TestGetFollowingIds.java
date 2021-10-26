@@ -1,8 +1,7 @@
-package edu.westga.devops.theartistsdreamclient.tests.model.network.networktagmanager;
+package edu.westga.devops.theartistsdreamclient.tests.model.network.networkusermanager;
 
-import edu.westga.devops.theartistsdreamclient.model.Tag;
 import edu.westga.devops.theartistsdreamclient.model.network.Communicator;
-import edu.westga.devops.theartistsdreamclient.model.network.NetworkTagManager;
+import edu.westga.devops.theartistsdreamclient.model.network.NetworkUserManager;
 import edu.westga.devops.theartistsdreamclient.model.network.Request;
 import edu.westga.devops.theartistsdreamclient.model.network.Response;
 import org.junit.jupiter.api.Test;
@@ -17,18 +16,18 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-public class TestGetTopTags {
+public class TestGetFollowingIds {
 
     @Mock
     private Communicator communicator;
 
     @Test
     void testOnResult() {
-        List<Tag> expected = new ArrayList<>();
-        expected.add(new Tag(0,"test"));
+        List<Integer> expected = new ArrayList<>();
+        expected.add(0);
         Mockito.when(communicator.request(Mockito.any(Request.class), Mockito.any())).thenReturn(new Response<>(null, expected));
-        NetworkTagManager testManager = new NetworkTagManager(communicator);
-        List<Tag> result = testManager.getTopTags(0, "");
+        NetworkUserManager testManager = new NetworkUserManager(communicator);
+        List<Integer> result = testManager.getFollowingIds(0);
         assertAll(() -> {
             assertFalse(result.isEmpty());
             assertEquals(expected, result);
@@ -38,8 +37,8 @@ public class TestGetTopTags {
     @Test
     void testOnError() {
         Mockito.when(communicator.request(Mockito.any(Request.class), Mockito.any())).thenReturn(new Response<>("error", null));
-        NetworkTagManager testManager = new NetworkTagManager(communicator);
-        List<Tag> result = testManager.getTopTags(0, "");
+        NetworkUserManager testManager = new NetworkUserManager(communicator);
+        List<Integer> result = testManager.getFollowingIds(0);
         assertTrue(result.isEmpty());
     }
 }

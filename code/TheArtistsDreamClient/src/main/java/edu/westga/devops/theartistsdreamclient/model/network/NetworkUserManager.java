@@ -23,7 +23,7 @@ public class NetworkUserManager extends UserManager {
     private final Communicator communicator;
 
     /**
-     * Initailizes a network User manager
+     * Initializes a network User manager
      *
      * @precondition none
      * @postcondition none
@@ -31,6 +31,18 @@ public class NetworkUserManager extends UserManager {
     public NetworkUserManager() {
         this.communicator = new Communicator("tcp://localHost:4444");
     }
+
+    /**
+     * Initializes a network User manager (Use only for tests)
+     *
+     * @param communicator the communicator to connect with
+     *
+     * @precondition none
+     * @postcondition none
+     */
+        public NetworkUserManager(Communicator communicator) {
+            this.communicator = communicator;
+        }
 
     @Override
     public User getUser(int userId) {
