@@ -42,6 +42,23 @@ public class DirectMessageViewModel {
     }
 
     /**
+     * Initializes a new DirectMessage View Model (Only use for testing)
+     *
+     * @precondition none
+     * @postcondition none
+     *
+     * @param sender the user sending the message
+     * @param receiver the user receiving the message
+     */
+    public DirectMessageViewModel(Chat chat, User sender, User receiver) {
+        this.sender = sender;
+        this.receiver = receiver;
+        this.chat = chat;
+        this.messageStringProperty = new SimpleStringProperty("");
+        this.chatRecordProperty = new SimpleObjectProperty<ChatRecord>();
+    }
+
+    /**
      * Gets the chatRecordProperty
      * 
      * @precondition none
@@ -73,11 +90,6 @@ public class DirectMessageViewModel {
      * 
      */
     public void send() {
-        Platform.runLater(()-> {
-            this.chatRecordProperty.set(
-                this.chat.sendMessage(this.receiver.getUserId(), this.messageStringProperty.get(), this.sender.getUserId())
-                    );
-                }
-            );
+        Platform.runLater(()-> this.chatRecordProperty.set(this.chat.sendMessage(this.receiver.getUserId(), this.messageStringProperty.get(), this.sender.getUserId())));
     }
 }

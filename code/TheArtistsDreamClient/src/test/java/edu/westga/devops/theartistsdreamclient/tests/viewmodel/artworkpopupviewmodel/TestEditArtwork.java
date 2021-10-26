@@ -16,7 +16,7 @@ import java.util.ArrayList;
 @ExtendWith(MockitoExtension.class)
 public class TestEditArtwork {
 
-    @Spy
+    @Mock
     private ArtworkManager artworkManager;
 
     @Test
