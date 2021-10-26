@@ -23,7 +23,13 @@ public class TestAddTag {
     }
 
     @Test
-    void testValidWithEmptyManager() {
+    void testValidNonexistingTag() {
 	    assertNotNull(TagManager.addTag(new Object[] {"tag"}).getData());
      }
+
+    @Test
+    void testValidExistingTag() {
+	    TagManager.addTag(new Object[] {"tag"});
+	    assertEquals(0, (int) TagManager.addTag(new Object[] {"TAG"}).getData());
+    }
 }
