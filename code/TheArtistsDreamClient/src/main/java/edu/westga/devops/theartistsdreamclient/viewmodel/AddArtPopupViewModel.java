@@ -64,21 +64,23 @@ public class AddArtPopupViewModel {
      *
      */
     public void addArt() {
+        byte[] buffer = this.parseImage();
+        ArtworkManager.getArtworkManager().addArtwork(buffer, this.titleProperty.get(), User.getUser().getUserId(), this.addTags(), LocalDate.now().toString());
+    }
+
+    private byte[] parseImage() {
         Image image = this.imageProperty.get();
         BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
         try (ByteArrayOutputStream byteArrayInputStream = new ByteArrayOutputStream()) {
-            if (image.getUrl().matches(".\\.jpg")) {
+            if (image.getUrl().matches(".+\\.(jpg|jpeg)$")) {
                 ImageIO.write(bufferedImage, "jpeg", byteArrayInputStream);
             } else {
                 ImageIO.write(bufferedImage, "png", byteArrayInputStream);
             }
-            byte[] buffer = byteArrayInputStream.toByteArray();
-            ArtworkManager.getArtworkManager().addArtwork(buffer, this.titleProperty.get(), User.getUser().getUserId(), this.addTags(), LocalDate.now().toString());
+            return byteArrayInputStream.toByteArray();
         } catch (IOException e) {
-            e.printStackTrace();
+            return null;
         }
-
-
     }
 
     /**
