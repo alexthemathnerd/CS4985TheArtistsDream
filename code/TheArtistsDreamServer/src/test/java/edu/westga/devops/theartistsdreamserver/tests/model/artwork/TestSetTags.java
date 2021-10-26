@@ -1,4 +1,4 @@
-package edu.westga.devops.theartistsdreamserver.tests.model;
+package edu.westga.devops.theartistsdreamserver.tests.model.artwork;
 
 import edu.westga.devops.theartistsdreamserver.model.Artwork;
 
