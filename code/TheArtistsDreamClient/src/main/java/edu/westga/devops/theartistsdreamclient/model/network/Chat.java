@@ -32,6 +32,16 @@ public class Chat {
     }
 
     /**
+     * Creates a new chat (Use only for tests)
+     *
+     * @precondition none
+     * @postcondition none
+     */
+    public Chat(Communicator communicator) {
+        this.communicator = communicator;
+    }
+
+    /**
      * Sends the message
      * 
      * @precondition none
