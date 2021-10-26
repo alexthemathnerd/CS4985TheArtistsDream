@@ -42,7 +42,7 @@ public class ArtworksPaneViewModel {
         this.indexProperty = new SimpleIntegerProperty(0);
         this.maxIndexProperty = new SimpleIntegerProperty(50);
         this.userIdProperty = new SimpleIntegerProperty(-1);
-	this.onFollowingPageProperty = new SimpleBooleanProperty(true);
+	    this.onFollowingPageProperty = new SimpleBooleanProperty(true);
     }
 
     /**
@@ -101,9 +101,8 @@ public class ArtworksPaneViewModel {
         if (this.userIdProperty.isEqualTo(-1).get()) {
             this.artworksProperty.addAll(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue()));
         } else {
-            this.artworksProperty.addAll(FXCollections.observableArrayList(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue(), this.userIdProperty.get())));
+            this.artworksProperty.addAll(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue(), this.userIdProperty.get()));
         }
-
         this.indexProperty.setValue(this.artworksProperty.getSize());
     }
 

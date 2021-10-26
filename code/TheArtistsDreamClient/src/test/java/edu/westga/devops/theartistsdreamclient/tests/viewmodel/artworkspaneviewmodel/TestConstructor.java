@@ -4,9 +4,7 @@ import edu.westga.devops.theartistsdreamclient.viewmodel.ArtworksPaneViewModel;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * JUnit Test Case for ArtworksPaneViewModel Constructor
@@ -20,8 +18,13 @@ public class TestConstructor {
 	@Test
 	void testPropertyCreations() {
 		ArtworksPaneViewModel testViewModel = new ArtworksPaneViewModel();
-
-		assertAll(() -> assertNotNull(testViewModel.artworksProperty()), () -> assertNotNull(testViewModel.filterTagsProperty()), () -> assertEquals(0, testViewModel.indexProperty().get()), () -> assertEquals(50, testViewModel.maxIndexProperty().get()), () -> assertEquals(-1, testViewModel.userIdProperty().get()), () -> assertEquals(true, testViewModel.onFollowingPageProperty().get()));
+		assertAll(
+				() -> assertNotNull(testViewModel.artworksProperty()),
+				() -> assertNotNull(testViewModel.filterTagsProperty()),
+				() -> assertEquals(0, testViewModel.indexProperty().get()),
+				() -> assertEquals(50, testViewModel.maxIndexProperty().get()),
+				() -> assertEquals(-1, testViewModel.userIdProperty().get()),
+				() -> assertTrue(testViewModel.onFollowingPageProperty().get()));
 	}
 
 }
