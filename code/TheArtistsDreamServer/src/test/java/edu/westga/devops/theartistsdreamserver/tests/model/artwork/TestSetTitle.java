@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TestSetTitle {
 
 	@Test
-	void testNewTitleInInvalidFormat() {
+	void testInvalidNewTitle() {
 		Artwork testArtwork = new Artwork(new byte[0], "title", 0, new ArrayList<Integer>(), 1, "2020-01-01");
 		assertEquals("Invalid Format", testArtwork.setTitle(new Object[]{1}).getError());
 	}

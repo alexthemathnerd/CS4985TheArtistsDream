@@ -43,8 +43,8 @@ public class TestCompareTo {
 	@Test
 	void testEqual() {
                 Tag testTag = new Tag(1, "test");
-                Tag testTag2 = new Tag(2, "test2");
-		assertEquals(-1, testTag.compareTo(testTag2));
+                Tag testTag2 = new Tag(2, "test");
+		assertEquals(0, testTag.compareTo(testTag2));
 	}
 
 }
