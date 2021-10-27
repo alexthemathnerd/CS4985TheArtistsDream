@@ -5,7 +5,6 @@ import edu.westga.devops.theartistsdreamclient.model.local.LocalTagManager;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * JUnit Test Case for TagManager Method setTagManager
@@ -19,11 +18,6 @@ public class TestSetTagManager {
     void setToNewTagManager() {
         TagManager.setTagManager(new LocalTagManager());
         assertNotNull(TagManager.getTagManager());
-    }
-
-    @Test
-    void setToNull() {
-        assertThrows(IllegalArgumentException.class, () -> TagManager.setTagManager(null));
     }
 
 }
