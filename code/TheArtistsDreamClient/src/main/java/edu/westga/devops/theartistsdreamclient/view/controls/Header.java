@@ -8,6 +8,7 @@ import edu.westga.devops.theartistsdreamclient.utils.UI;
 import edu.westga.devops.theartistsdreamclient.view.FollowingPage;
 import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
 import edu.westga.devops.theartistsdreamclient.view.RecommendedPage;
+import edu.westga.devops.theartistsdreamclient.view.InSearchOfPage;
 import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
 import edu.westga.devops.theartistsdreamclient.view.popups.ArtworkPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.FilterPopup;
@@ -50,6 +51,7 @@ public class Header extends HBox {
     private static final String FOLLOWING_PAGE_FXML = "FollowingPage.fxml";
     private static final String ARTWORK_POPUP_FXML = "ArtworkPopup.fxml";
     private static final String PORTFOLIO_PAGE_FXML = "PortfolioPage.fxml";
+    private static final String IN_SEARCH_OF_PAGE_FXML = "InSearchOfPage.fxml";
     private final ListProperty<Tag> tagsToFilterListProperty;
     private final HeaderViewModel viewModel;
     @FXML
@@ -250,7 +252,13 @@ public class Header extends HBox {
 
     @FXML
     void handleInSearchOf(ActionEvent event) {
-
+        try {
+            Stage currentStage = (Stage) this.navMenuButton.getScene().getWindow();
+            WindowLoader.changeScene(currentStage, IN_SEARCH_OF_PAGE_FXML, new InSearchOfPage(), "The Artist's Dream", false);
+            currentStage.setMaximized(true);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
