@@ -1,7 +1,6 @@
 package edu.westga.devops.theartistsdreamclient.tests.model.local.localtagmanager;
 
 import edu.westga.devops.theartistsdreamclient.model.local.LocalTagManager;
-
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -14,9 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  */
 public class TestConstructor {
 
-	@Test
-	void testListCreation() {
-		LocalTagManager testManager = new LocalTagManager();
-		assertNotNull(testManager.iterator());
-	}
+    @Test
+    void testListCreation() {
+        LocalTagManager testManager = new LocalTagManager();
+        assertNotNull(testManager.iterator());
+    }
 }

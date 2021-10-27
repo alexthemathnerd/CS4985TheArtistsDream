@@ -3,6 +3,7 @@ package edu.westga.devops.theartistsdreamclient.model.local;
 import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.model.UserManager;
 import edu.westga.devops.theartistsdreamclient.utils.UI;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +62,7 @@ public class LocalUserManager extends UserManager {
         return null;
     }
 
-	@Override
+    @Override
     public User retrieveSearchedUser(String username) {
         if (username == null) {
             throw new IllegalArgumentException(UI.ErrorMessages.USERNAME_NULL);
@@ -91,28 +92,27 @@ public class LocalUserManager extends UserManager {
     /**
      * Gets the size
      *
+     * @return the size
      * @precondition none
      * @postcondition none
-     *
-     * @return the size
      */
     public int size() {
         return this.users.size();
     }
 
-	@Override
-	public List<User> searchForUsers(String searchTerm) {
-		if (searchTerm == null) {
-			throw new IllegalArgumentException(UI.ErrorMessages.SEARCH_TERM_NULL);
-		}
-		ArrayList<User> searchedUsers = new ArrayList<User>();
-		for (User user : this.users) {
-			if (user.getUsername().contains(searchTerm)) {
-				searchedUsers.add(user);
-			}
-		}
-		return searchedUsers;
-	}
+    @Override
+    public List<User> searchForUsers(String searchTerm) {
+        if (searchTerm == null) {
+            throw new IllegalArgumentException(UI.ErrorMessages.SEARCH_TERM_NULL);
+        }
+        ArrayList<User> searchedUsers = new ArrayList<User>();
+        for (User user : this.users) {
+            if (user.getUsername().contains(searchTerm)) {
+                searchedUsers.add(user);
+            }
+        }
+        return searchedUsers;
+    }
 
     @Override
     public boolean followArtist(int artistsId, int followedId) {

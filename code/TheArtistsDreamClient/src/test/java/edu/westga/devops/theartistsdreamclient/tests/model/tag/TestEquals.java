@@ -1,11 +1,9 @@
 package edu.westga.devops.theartistsdreamclient.tests.model.tag;
 
 import edu.westga.devops.theartistsdreamclient.model.Tag;
-
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * JUnit Test Case for Tag Method equals
@@ -15,15 +13,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
  */
 public class TestEquals {
 
-	@Test
-	void testEqual() {
-		Tag testTag = new Tag(1, "test");
-		assertTrue(testTag.equals(new Tag(1, "test2")));
-	}
+    @Test
+    void testEqual() {
+        Tag testTag = new Tag(1, "test");
+        assertEquals(testTag, new Tag(1, "test2"));
+    }
 
-	@Test
-	void testNotEqual() {
-		Tag testTag = new Tag(1, "test");
-		assertFalse(testTag.equals(new Tag(2, "test2")));
-	}
+    @Test
+    void testNotEqual() {
+        Tag testTag = new Tag(1, "test");
+        assertNotEquals(testTag, new Tag(2, "test2"));
+    }
 }

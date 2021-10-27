@@ -1,8 +1,8 @@
 package edu.westga.devops.theartistsdreamclient.view;
 
+import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.view.controls.ArtworksPane;
 import edu.westga.devops.theartistsdreamclient.view.controls.Header;
-import edu.westga.devops.theartistsdreamclient.model.User;
 import javafx.fxml.FXML;
 
 /**
@@ -19,14 +19,11 @@ public class FollowingPage {
     @FXML
     private ArtworksPane artworksPane;
 
-    public FollowingPage() {
-    }
-
     @FXML
     private void initialize() {
         this.artworksPane.setUserId(User.getUser().getUserId());
         this.artworksPane.setOnFollowingPage(true);
-	    this.artworksPane.setOnProfile(false);
+        this.artworksPane.setOnProfile(false);
         this.artworksPane.initArts();
         this.artworksPane.tagsToFilterListProperty().bindBidirectional(this.header.tagsToFilterListProperty());
     }

@@ -42,14 +42,14 @@ public class Receiver extends Thread {
             Gson gson = new Gson();
             while (!Thread.currentThread().isInterrupted()) {
                 String reply = socket.recvStr(0);
-                TheArtistsDreamServer.LOGGER.info("recived message");
+                TheArtistsDreamServer.LOGGER.info("received message");
                 Request message;
                 try {
                     Response response = gson.fromJson(reply, Response.class);
                     message = response.execute();
                 } catch (JsonIOException e) {
-                    TheArtistsDreamServer.LOGGER.warning("recived data no in the correct format");
-                    message = new Request("recived data no in the correct format");
+                    TheArtistsDreamServer.LOGGER.warning("received data no in the correct format");
+                    message = new Request("received data no in the correct format");
                 }
                 this.delay(1000);
 

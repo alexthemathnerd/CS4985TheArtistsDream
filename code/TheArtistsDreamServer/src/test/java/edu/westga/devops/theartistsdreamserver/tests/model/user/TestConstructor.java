@@ -1,40 +1,26 @@
 package edu.westga.devops.theartistsdreamserver.tests.model.user;
 
-import edu.westga.devops.theartistsdreamserver.model.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import edu.westga.devops.theartistsdreamserver.model.User;
+
 import org.junit.jupiter.api.Test;
-import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
-import edu.westga.devops.theartistsdreamserver.utils.UI;
+
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import java.io.InputStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.IOException;
-import org.apache.commons.io.IOUtils;
 
 /**
- * Junit test class for the constructor in the User class
- * 
- * @author Jamia Echols
+ * JUnit Test Case for User Constructor
+ *
+ * @author Aznella Joseph
  * @version Fall 2021
+ *
  */
 public class TestConstructor {
-    @Test
-    void TestConstructor() {
-        InputStream profile = TheArtistsDreamServer.class.getResourceAsStream("assets/default.jpg");
-        byte[] image = new byte[0];
-        try {
-            image = IOUtils.toByteArray(profile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        User testUser = new User(0,"email@email.com","username","password", image);
-        assertAll(
-            () -> assertEquals(0, testUser.getUserId()), 
-            () -> assertEquals("email@email.com", testUser.getEmail()), 
-            () -> assertEquals("username", testUser.getUsername()), 
-            () -> assertEquals("password", testUser.getPassword()),
-            () -> assertNotNull(testUser.getProfilePic()));
-    }
+
+	@Test
+	void testConstructor() {
+		User testUser = new User(1, "test@my.westga.edu", "test", "test123", new byte[0]);
+		assertAll(() -> assertEquals(1, testUser.getUserId()), () -> assertEquals("test@my.westga.edu", testUser.getEmail()), () -> assertEquals("test", testUser.getUsername()), () -> assertEquals("test123", testUser.getPassword()), () -> assertNotNull(testUser.getProfilePic()), () -> assertNotNull(testUser.getMessages()), () -> assertNotNull(testUser.getFollowerIds()), () -> assertNotNull(testUser.getFollowingIds()));
+	}
+
 }

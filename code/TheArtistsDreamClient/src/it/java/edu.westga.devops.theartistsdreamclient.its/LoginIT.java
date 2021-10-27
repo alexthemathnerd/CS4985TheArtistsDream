@@ -1,28 +1,26 @@
 package edu.westga.devops.theartistsdreamclient.its;
 
-import static org.testfx.api.FxAssert.*;
-
+import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.model.UserManager;
 import javafx.application.Application;
+import javafx.stage.Stage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
-import javafx.stage.Stage;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
-import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 import org.testfx.matcher.base.NodeMatchers;
 import org.testfx.matcher.control.LabeledMatchers;
 import org.testfx.util.DebugUtils;
+
+import static org.testfx.api.FxAssert.verifyThat;
 
 @ExtendWith(ApplicationExtension.class)
 @ExtendWith(MockitoExtension.class)
@@ -34,8 +32,6 @@ public class LoginIT {
     @Mock
     private ArtworkManager artworkManager;
 
-    private Application application;
-
     @BeforeEach
     public void init() {
         UserManager.setUserManager(this.userManager);
@@ -43,14 +39,14 @@ public class LoginIT {
     }
 
     @AfterEach
-    public void finish() throws Exception {
+    public void finish() {
         UserManager.setUserManager(null);
         ArtworkManager.setArtworkManager(null);
     }
 
     @Start
     public void start(Stage stage) throws Exception {
-        this.application = new TheArtistsDreamApplication();
+        Application application = new TheArtistsDreamApplication();
         application.start(stage);
         stage.toFront();
     }
@@ -64,7 +60,7 @@ public class LoginIT {
 
     @Test
     public void testUserFound(FxRobot robot) {
-        Mockito.when(this.userManager.findUser("admin", "admin")).thenReturn(new User(0, "admin@admin.com", "admin","admin", new byte[0]));
+        Mockito.when(this.userManager.findUser("admin", "admin")).thenReturn(new User(0, "admin@admin.com", "admin", "admin", new byte[0]));
         robot.clickOn("#usernameTextField").write("admin");
         robot.clickOn("#passwordTextField").write("admin");
         robot.clickOn("#loginButton");

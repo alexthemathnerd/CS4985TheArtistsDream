@@ -93,5 +93,8 @@ public class UI {
         public static final String ARTWORK_NOT_FOUND = "Artwork not found";
         public static final String USER_EXISTS = "User already exists";
         public static final String USER_NOT_FOUND = "User not found";
+	public static final String NEGATIVE_ID = "Id cannot be negative";
+	public static final String TAG_NAME_NULL = "Tag name cannot be null";
+	public static final String TAG_NAME_EMPTY = "Tag name cannot be empty";
     }
 }

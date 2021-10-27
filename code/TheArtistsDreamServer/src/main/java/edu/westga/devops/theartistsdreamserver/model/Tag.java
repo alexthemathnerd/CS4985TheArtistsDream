@@ -1,5 +1,7 @@
 package edu.westga.devops.theartistsdreamserver.model;
 
+import edu.westga.devops.theartistsdreamserver.utils.UI;
+
 /**
  * Tag Class
  *
@@ -22,15 +24,15 @@ public class Tag implements Comparable<Tag> {
      * @param name the name of the tag
      */
     public Tag(int id, String name) {
-//        if (id < 0) {
-//            throw new IllegalArgumentException(UI.ErrorMessages.NEGATIVE_ID);
-//        }
-//        if (name == null) {
-//            throw new IllegalArgumentException(UI.ErrorMessages.TAG_NAME_NULL);
-//        }
-//        if (name.isEmpty()) {
-//            throw new IllegalArgumentException(UI.ErrorMessages.TAG_NAME_EMPTY);
-//        }
+        if (id < 0) {
+            throw new IllegalArgumentException(UI.ErrorMessages.NEGATIVE_ID);
+        }
+        if (name == null) {
+            throw new IllegalArgumentException(UI.ErrorMessages.TAG_NAME_NULL);
+        }
+        if (name.isEmpty()) {
+            throw new IllegalArgumentException(UI.ErrorMessages.TAG_NAME_EMPTY);
+        }
         this.id = id;
         this.name = name.toLowerCase();
         this.useCount = 1;
@@ -61,16 +63,6 @@ public class Tag implements Comparable<Tag> {
     }
 
     /**
-     * Increments the use count
-     *
-     * @precondition none
-     * @postcondition getUseCount() == getUseCount() +1 @ pre
-     */
-    public void incrementUseCount() {
-        this.useCount++;
-    }
-
-    /**
      * Gets the use count
      *
      * @precondition none
@@ -80,6 +72,16 @@ public class Tag implements Comparable<Tag> {
      */
     public int getUseCount() {
         return this.useCount;
+    }
+
+    /**
+     * Increments the use count
+     *
+     * @precondition none
+     * @postcondition getUseCount() == getUseCount() +1 @ pre
+     */
+    public void incrementUseCount() {
+        this.useCount++;
     }
 
     @Override

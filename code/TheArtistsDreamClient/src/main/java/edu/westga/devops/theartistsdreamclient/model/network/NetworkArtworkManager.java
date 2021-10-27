@@ -1,19 +1,16 @@
 package edu.westga.devops.theartistsdreamclient.model.network;
 
-import edu.westga.devops.theartistsdreamclient.model.User;
-import edu.westga.devops.theartistsdreamclient.utils.UI;
+import com.google.gson.reflect.TypeToken;
+import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
-import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
-
-import com.google.gson.reflect.TypeToken;
+import edu.westga.devops.theartistsdreamclient.model.User;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
 
 import java.lang.reflect.Type;
-
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Network Implementation of Collection Class ArtworkManager
@@ -34,6 +31,20 @@ public class NetworkArtworkManager extends ArtworkManager {
      */
     public NetworkArtworkManager() {
         this.communicator = new Communicator("tcp://localhost:4444");
+    }
+
+    /**
+     * Creates a new NetworkArtworkManager (Only use for testing)
+     *
+     * @param communicator communicator to connect with
+     * @precondition communicator != null
+     * @postcondition none
+     */
+    public NetworkArtworkManager(Communicator communicator) {
+        if (communicator == null) {
+            throw new IllegalArgumentException();
+        }
+        this.communicator = communicator;
     }
 
     @Override
@@ -62,19 +73,27 @@ public class NetworkArtworkManager extends ArtworkManager {
     }
 
     @Override
+    public List<Artwork> getFirstFiftyArtworks(boolean isFollowing) {
+        Type type = new TypeToken<Response<ArrayList<Artwork>>>() {
+        }.getType();
+        Response<ArrayList<Artwork>> response = this.communicator.request(new Request(UI.ServerCodes.GET_FIRST_FIFTY_ARTWORKS, new Object[]{User.getUser().getUserId(), isFollowing}), type);
+        if (response.getError() != null) {
+            TheArtistsDreamApplication.LOGGER.warning(response.getError());
+            return new ArrayList<>();
+        }
+        return response.getData();
+    }
+
+    @Override
     public List<Artwork> getNextTenArtworks(int startingIndex) {
 
         Type type = new TypeToken<Response<ArrayList<Artwork>>>() {
         }.getType();
-        Response<ArrayList<Artwork>> response = this.communicator.request(new Request(UI.ServerCodes.GET_NEXT_TEN_ARTWORKS, new Object[]{startingIndex}));
+        Response<ArrayList<Artwork>> response = this.communicator.request(new Request(UI.ServerCodes.GET_NEXT_TEN_ARTWORKS, new Object[]{startingIndex}), type);
         if (response.getError() != null) {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
             return new ArrayList<Artwork>();
         }
-//        List<Artwork> artworks = response.getData();
-//        for (int i = 0; i < response.getData().size(); i++) {
-//            LinkedHashMap<String, Object> artworkJson = (LinkedHashMap<String, Object>) artworks.get(i);
-//        }
         return response.getData();
     }
 
@@ -83,7 +102,7 @@ public class NetworkArtworkManager extends ArtworkManager {
         Type type = new TypeToken<Response<ArrayList<Artwork>>>() {
         }.getType();
 
-        Response<ArrayList<Artwork>> response = this.communicator.request(new Request(UI.ServerCodes.GET_NEXT_TEN_ARTWORKS, new Object[]{startingIndex, userId}));
+        Response<ArrayList<Artwork>> response = this.communicator.request(new Request(UI.ServerCodes.GET_NEXT_TEN_ARTWORKS, new Object[]{startingIndex, userId}), type);
         if (response.getError() != null) {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
             return new ArrayList<Artwork>();
@@ -92,33 +111,14 @@ public class NetworkArtworkManager extends ArtworkManager {
     }
 
     @Override
-    public Artwork getArtwork(int id) {
-        Type type = new TypeToken<Artwork>() {
-        }.getType();
-
-        Response<Artwork> response = this.communicator.request(new Request(UI.ServerCodes.GET_ARTWORK, new Object[]{id}), type);
-
-        if (response.getError() != null) {
-            TheArtistsDreamApplication.LOGGER.warning(response.getError());
-            return null;
-        }
-
-        return response.getData();
-    }
-
-    @Override
     public boolean addArtwork(byte[] imageData, String title, int artistID, List<Integer> tagIDs, String date) {
-
         Type type = new TypeToken<Response<Boolean>>() {
         }.getType();
-
         Response<Boolean> response = this.communicator.request(new Request(UI.ServerCodes.ADD_ARTWORK, new Object[]{imageData, title, artistID, tagIDs, date}), type);
-
         if (response.getError() != null) {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
             return false;
         }
-
         return response.getData();
     }
 
@@ -141,25 +141,11 @@ public class NetworkArtworkManager extends ArtworkManager {
         Type type = new TypeToken<Response<Boolean>>() {
         }.getType();
         Response<Boolean> response = this.communicator.request(new Request(UI.ServerCodes.EDIT_ARTWORK, new Object[]{id, newTitle, newTagIDs}), type);
-
         if (response.getError() != null) {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
             return false;
         }
         return response.getData();
-    }
-
-    @Override
-    public List<Artwork> getFollowingArtworks(int userId) {
-        return null;
-
-    }
-
-    @Override
-    public List<Artwork> getArtworksOfArtist(int userId) {
-        Type type = new TypeToken<Response<ArrayList<Artwork>>>() {
-        }.getType();
-        return new ArrayList<Artwork>();
     }
 
     @Override
@@ -174,7 +160,7 @@ public class NetworkArtworkManager extends ArtworkManager {
         return response.getData();
     }
 
-    @Override 
+    @Override
     public List<Artwork> searchForArtworks(String searchTerm) {
         Type type = new TypeToken<Response<ArrayList<Artwork>>>() {
         }.getType();
@@ -186,7 +172,7 @@ public class NetworkArtworkManager extends ArtworkManager {
         return response.getData();
     }
 
-    @Override 
+    @Override
     public Artwork retrieveSearchedArtwork(String title) {
         Type type = new TypeToken<Response<Artwork>>() {
         }.getType();
@@ -194,17 +180,6 @@ public class NetworkArtworkManager extends ArtworkManager {
         if (response.getError() != null) {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
             return null;
-        }
-        return response.getData();
-    }
-
-    @Override
-    public List<Artwork> getFirstFiftyArtworks(boolean isFollowing) {
-        Type type = new TypeToken<Response<ArrayList<Artwork>>>() { }.getType();
-        Response<ArrayList<Artwork>> response = this.communicator.request(new Request(UI.ServerCodes.GET_FIRST_FIFTY_ARTWORKS, new Object[]{User.getUser().getUserId(), isFollowing}), type);
-        if (response.getError() != null) {
-            TheArtistsDreamApplication.LOGGER.warning(response.getError());
-            return new ArrayList<>();
         }
         return response.getData();
     }
