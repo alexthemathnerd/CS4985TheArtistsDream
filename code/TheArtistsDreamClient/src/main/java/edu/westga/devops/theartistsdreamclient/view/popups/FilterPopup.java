@@ -17,13 +17,11 @@ import javafx.stage.WindowEvent;
  */
 public class FilterPopup {
 
+    private final FilterPopupViewModel viewModel;
     @FXML
     private TextField searchTagsTextField;
-
     @FXML
     private TagsPane tagsPane;
-
-    private final FilterPopupViewModel viewModel;
 
     /**
      * Creates the FilterPopup

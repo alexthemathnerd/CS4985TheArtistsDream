@@ -5,6 +5,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests DirectMessageViewModel::new
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ * @see DirectMessageViewModel
+ */
 public class TestConstructor {
 
     @Test

@@ -15,8 +15,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests NetworkArtworkManager::searchForArtworks
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ * @see NetworkArtworkManager
+ */
 @ExtendWith(MockitoExtension.class)
 public class TestSearchForArtworks {
 

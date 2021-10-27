@@ -1,7 +1,6 @@
 package edu.westga.devops.theartistsdreamclient.view.popups;
 
 import edu.westga.devops.theartistsdreamclient.viewmodel.AddArtPopupViewModel;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -13,25 +12,31 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 
-
+/**
+ * Controller Class for the Add Art Popup
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ */
 public class AddArtPopup {
 
+    private final AddArtPopupViewModel viewModel;
     @FXML
     private TextField titleTextField;
-
     @FXML
     private TextArea tagsTextArea;
-
     @FXML
     private ImageView addedImageView;
 
-    private final AddArtPopupViewModel viewModel;
-
+    /**
+     * Creates the controller for the Add Art Popup
+     *
+     * @precondition none
+     * @postcondition none
+     */
     public AddArtPopup() {
         this.viewModel = new AddArtPopupViewModel();
     }
@@ -58,7 +63,7 @@ public class AddArtPopup {
     private void handleAdd(ActionEvent event) {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         this.viewModel.addArt();
-	currentStage.setUserData("ADDED");
+        currentStage.setUserData("ADDED");
         currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
         currentStage.close();
     }

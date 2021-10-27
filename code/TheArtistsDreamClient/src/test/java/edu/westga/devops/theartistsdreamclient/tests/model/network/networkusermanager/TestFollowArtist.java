@@ -1,6 +1,5 @@
 package edu.westga.devops.theartistsdreamclient.tests.model.network.networkusermanager;
 
-import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.model.network.Communicator;
 import edu.westga.devops.theartistsdreamclient.model.network.NetworkUserManager;
 import edu.westga.devops.theartistsdreamclient.model.network.Request;
@@ -11,8 +10,16 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Tests NetworkUserManager::followArtist
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ * @see NetworkUserManager
+ */
 @ExtendWith(MockitoExtension.class)
 public class TestFollowArtist {
 

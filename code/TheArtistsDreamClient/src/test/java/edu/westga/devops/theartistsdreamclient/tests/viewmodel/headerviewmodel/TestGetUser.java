@@ -8,6 +8,13 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+/**
+ * Tests HeaderViewModel::getUser
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ * @see HeaderViewModel
+ */
 @ExtendWith(MockitoExtension.class)
 public class TestGetUser {
 

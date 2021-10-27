@@ -1,19 +1,16 @@
 package edu.westga.devops.theartistsdreamclient.model.network;
 
-import edu.westga.devops.theartistsdreamclient.model.User;
-import edu.westga.devops.theartistsdreamclient.utils.UI;
+import com.google.gson.reflect.TypeToken;
+import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
-import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
-
-import com.google.gson.reflect.TypeToken;
+import edu.westga.devops.theartistsdreamclient.model.User;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
 
 import java.lang.reflect.Type;
-
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Network Implementation of Collection Class ArtworkManager
@@ -39,10 +36,9 @@ public class NetworkArtworkManager extends ArtworkManager {
     /**
      * Creates a new NetworkArtworkManager (Only use for testing)
      *
+     * @param communicator communicator to connect with
      * @precondition communicator != null
      * @postcondition none
-     *
-     * @param communicator communicator to connect with
      */
     public NetworkArtworkManager(Communicator communicator) {
         if (communicator == null) {
@@ -78,7 +74,8 @@ public class NetworkArtworkManager extends ArtworkManager {
 
     @Override
     public List<Artwork> getFirstFiftyArtworks(boolean isFollowing) {
-        Type type = new TypeToken<Response<ArrayList<Artwork>>>() { }.getType();
+        Type type = new TypeToken<Response<ArrayList<Artwork>>>() {
+        }.getType();
         Response<ArrayList<Artwork>> response = this.communicator.request(new Request(UI.ServerCodes.GET_FIRST_FIFTY_ARTWORKS, new Object[]{User.getUser().getUserId(), isFollowing}), type);
         if (response.getError() != null) {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
@@ -163,7 +160,7 @@ public class NetworkArtworkManager extends ArtworkManager {
         return response.getData();
     }
 
-    @Override 
+    @Override
     public List<Artwork> searchForArtworks(String searchTerm) {
         Type type = new TypeToken<Response<ArrayList<Artwork>>>() {
         }.getType();
@@ -175,7 +172,7 @@ public class NetworkArtworkManager extends ArtworkManager {
         return response.getData();
     }
 
-    @Override 
+    @Override
     public Artwork retrieveSearchedArtwork(String title) {
         Type type = new TypeToken<Response<Artwork>>() {
         }.getType();

@@ -12,11 +12,17 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
+/**
+ * Tests NetworkArtworkManager::retrieveSearchArtwork
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ * @see NetworkArtworkManager
+ */
 @ExtendWith(MockitoExtension.class)
 public class TestRetrieveSearchedArtwork {
 

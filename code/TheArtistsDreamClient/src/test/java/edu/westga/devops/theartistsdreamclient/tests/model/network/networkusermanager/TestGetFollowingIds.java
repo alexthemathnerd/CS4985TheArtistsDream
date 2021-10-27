@@ -15,6 +15,13 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests NetworkUserManager::getFollowingIds
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ * @see NetworkUserManager
+ */
 @ExtendWith(MockitoExtension.class)
 public class TestGetFollowingIds {
 

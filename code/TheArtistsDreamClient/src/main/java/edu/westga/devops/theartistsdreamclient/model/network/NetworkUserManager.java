@@ -1,16 +1,14 @@
 package edu.westga.devops.theartistsdreamclient.model.network;
 
-import java.util.List;
-import java.util.ArrayList;
-
 import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.model.UserManager;
 import edu.westga.devops.theartistsdreamclient.utils.UI;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Tne NetworkUserManager class
@@ -36,13 +34,12 @@ public class NetworkUserManager extends UserManager {
      * Initializes a network User manager (Use only for tests)
      *
      * @param communicator the communicator to connect with
-     *
      * @precondition none
      * @postcondition none
      */
-        public NetworkUserManager(Communicator communicator) {
-            this.communicator = communicator;
-        }
+    public NetworkUserManager(Communicator communicator) {
+        this.communicator = communicator;
+    }
 
     @Override
     public User getUser(int userId) {

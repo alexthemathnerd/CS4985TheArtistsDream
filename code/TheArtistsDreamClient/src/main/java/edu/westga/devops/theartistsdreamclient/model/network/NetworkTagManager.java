@@ -8,7 +8,6 @@ import edu.westga.devops.theartistsdreamclient.utils.UI;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -35,7 +34,6 @@ public class NetworkTagManager extends TagManager {
      * Creates a new NetworkTagManager (Use only for testing)
      *
      * @param communicator the communicator to connect with
-     *
      * @precondition none
      * @postcondition none
      */

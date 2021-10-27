@@ -10,11 +10,16 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Tests NetworkArtworkManager::removeArtwork
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ * @see NetworkArtworkManager
+ */
 @ExtendWith(MockitoExtension.class)
 public class TestRemoveArtwork {
 

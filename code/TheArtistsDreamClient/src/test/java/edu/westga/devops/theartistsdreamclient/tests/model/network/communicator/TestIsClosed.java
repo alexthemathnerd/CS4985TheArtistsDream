@@ -1,11 +1,10 @@
 package edu.westga.devops.theartistsdreamclient.tests.model.network.communicator;
 
 import edu.westga.devops.theartistsdreamclient.model.network.Communicator;
-
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * JUnit Test Case for Communicator method isClosed
@@ -15,18 +14,18 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
  */
 public class TestIsClosed {
 
-	@Test
-	void testNotClosed() {
-		Communicator testCommunicator = new Communicator("tcp://localhost:4444");
-		assertFalse(testCommunicator.isClosed());
-	}
+    @Test
+    void testNotClosed() {
+        Communicator testCommunicator = new Communicator("tcp://localhost:4444");
+        assertFalse(testCommunicator.isClosed());
+    }
 
-	@Test
-	void testClosed() {
-		Communicator testCommunicator = new Communicator("tcp://localhost:4444");
-		testCommunicator.close();
+    @Test
+    void testClosed() {
+        Communicator testCommunicator = new Communicator("tcp://localhost:4444");
+        testCommunicator.close();
 
-		assertTrue(testCommunicator.isClosed());
-	}
+        assertTrue(testCommunicator.isClosed());
+    }
 
 }

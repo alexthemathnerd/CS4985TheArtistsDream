@@ -6,6 +6,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Test the Constructor of the ChatRecord class
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ * @see ChatRecord
+ */
 public class TestConstructor {
 
     @Test

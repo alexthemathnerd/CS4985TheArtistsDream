@@ -12,6 +12,13 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Tests ArtworksPaneViewModel::filterArtworks
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ * @see ArtworksPaneViewModel
+ */
 @ExtendWith(MockitoExtension.class)
 public class TestFilterArtworks {
 

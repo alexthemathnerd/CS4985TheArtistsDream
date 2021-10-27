@@ -4,21 +4,13 @@ import edu.westga.devops.theartistsdreamclient.model.FilterManager;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
 import edu.westga.devops.theartistsdreamclient.model.TagManager;
 import edu.westga.devops.theartistsdreamclient.view.popups.FilterPopup;
-
-import javafx.beans.property.SetProperty;
-import javafx.beans.property.SimpleSetProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleListProperty;
-
-
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 
 import java.util.List;
 
 /**
- * The ViewModel for handleing the logic behind the {@link FilterPopup}
+ * The ViewModel for handling the logic behind the {@link FilterPopup}
  *
  * @author Alexander Schmidt
  * @version Fall 2021
@@ -33,7 +25,7 @@ public class FilterPopupViewModel {
     private final SetProperty<Tag> addedTagsProperty;
 
     /**
-     * Creates a instance of {@link FilterPopupViewModel}
+     * Creates an instance of {@link FilterPopupViewModel}
      *
      * @precondition none
      * @postcondition searchStringProperty().isNotNull() && searchTagsSetProperty().isNotNull &&
@@ -46,9 +38,9 @@ public class FilterPopupViewModel {
     }
 
     /**
-     * Searchs the first top tags given the amount of tags.
+     * Searches the first top tags given the amount of tags.
      *
-     * @param amount the amount of tags to be recived
+     * @param amount the amount of tags to be received
      * @precondition none
      * @postcondition searchTagsSetProperty().isNotEmpty()
      */

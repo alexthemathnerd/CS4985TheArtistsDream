@@ -2,12 +2,11 @@ package edu.westga.devops.theartistsdreamclient.view.controls;
 
 import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.model.UserManager;
+import edu.westga.devops.theartistsdreamclient.view.DirectMessage;
+import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
+import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
 import edu.westga.devops.theartistsdreamclient.view.popups.AddArtPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
-import edu.westga.devops.theartistsdreamclient.view.DirectMessage;
-import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
-import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
-
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -39,33 +38,24 @@ public class PortfolioPane extends HBox {
 
     public static final String PORTFOLIO_PANE_FXML = "PortfolioPane.fxml";
     public static final String DIRECT_MESSAGE_FXML = "popups/DirectMessageView.fxml";
-
-    @FXML
-    private ImageView profileImage;
-
-    @FXML
-    private Label artistNameLabel;
-
-    @FXML
-    private Label followingLabel;
-
-    @FXML
-    private Label followersLabel;
-
-    @FXML
-    private Button addArtButton;
-
-    @FXML
-    private Button settingsButton;
-
-    @FXML
-    private ToggleButton followToggleButton;
-
-    @FXML
-    private Button commissionButton;
-
     private final ObjectProperty<User> userProperty;
     private final BooleanProperty isFollowing;
+    @FXML
+    private ImageView profileImage;
+    @FXML
+    private Label artistNameLabel;
+    @FXML
+    private Label followingLabel;
+    @FXML
+    private Label followersLabel;
+    @FXML
+    private Button addArtButton;
+    @FXML
+    private Button settingsButton;
+    @FXML
+    private ToggleButton followToggleButton;
+    @FXML
+    private Button commissionButton;
 
     /**
      * Creates a new PortfolioPane
@@ -136,20 +126,20 @@ public class PortfolioPane extends HBox {
     @FXML
     private void handleAddArt(ActionEvent event) {
         try {
-            Node mainFrame = this.getScene().getRoot();
-            Stage popup = PopupLoader.loadPopup("Add Art", AddArtPopup.class.getResource("AddArtPopup.fxml"), new AddArtPopup(), (Parent) mainFrame);
+            Parent mainFrame = this.getScene().getRoot();
+            Stage popup = PopupLoader.loadPopup("Add Art", AddArtPopup.class.getResource("AddArtPopup.fxml"), new AddArtPopup(), mainFrame);
             popup.setOnCloseRequest((event2) -> {
                 mainFrame.setEffect(null);
-		Object data = popup.getUserData();
-		if (data != null) {
-			try {
-				Stage currentStage = (Stage) this.getScene().getWindow();
-				WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(User.getUser()), "Profile", false);
-				currentStage.setMaximized(true);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+                Object data = popup.getUserData();
+                if (data != null) {
+                    try {
+                        Stage currentStage = (Stage) this.getScene().getWindow();
+                        WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(User.getUser()), "Profile", false);
+                        currentStage.setMaximized(true);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             });
             popup.show();
         } catch (IOException e) {
@@ -188,7 +178,6 @@ public class PortfolioPane extends HBox {
      * Sets the user of the portfolio pane
      *
      * @param user the user of the portfolio
-     *
      * @precondition none
      * @postcondition none
      */

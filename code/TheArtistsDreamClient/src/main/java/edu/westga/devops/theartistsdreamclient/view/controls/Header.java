@@ -1,20 +1,19 @@
 package edu.westga.devops.theartistsdreamclient.view.controls;
 
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
-import edu.westga.devops.theartistsdreamclient.view.popups.ArtworkPopup;
+import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
 import edu.westga.devops.theartistsdreamclient.model.User;
-import edu.westga.devops.theartistsdreamclient.model.Artwork;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
+import edu.westga.devops.theartistsdreamclient.view.FollowingPage;
 import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
 import edu.westga.devops.theartistsdreamclient.view.RecommendedPage;
-import edu.westga.devops.theartistsdreamclient.view.FollowingPage;
 import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
+import edu.westga.devops.theartistsdreamclient.view.popups.ArtworkPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.FilterPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
 import edu.westga.devops.theartistsdreamclient.viewmodel.HeaderViewModel;
-import edu.westga.devops.theartistsdreamclient.utils.UI;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+import javafx.application.Platform;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
@@ -24,21 +23,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.application.Platform;
 
 /**
  * The Controller for the Custom Control for the Header of the application
@@ -54,28 +50,20 @@ public class Header extends HBox {
     private static final String FOLLOWING_PAGE_FXML = "FollowingPage.fxml";
     private static final String ARTWORK_POPUP_FXML = "ArtworkPopup.fxml";
     private static final String PORTFOLIO_PAGE_FXML = "PortfolioPage.fxml";
-
+    private final ListProperty<Tag> tagsToFilterListProperty;
+    private final HeaderViewModel viewModel;
     @FXML
     private ComboBox searchComboBox;
-
     @FXML
     private MenuButton navMenuButton;
-
     @FXML
     private MenuItem recommendedMenuItem;
-
     @FXML
     private MenuItem followingMenuItem;
-
     @FXML
     private MenuItem inSearchOfMenuItem;
-
     @FXML
     private Button profileButton;
-
-    private final ListProperty<Tag> tagsToFilterListProperty;
-
-    private final HeaderViewModel viewModel;
 
     /**
      * Initializes the FXML for the Header control
@@ -112,7 +100,8 @@ public class Header extends HBox {
     private void setupChangeListeners() {
         this.searchComboBox.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
             Platform.runLater(new Runnable() {
-                @Override public void run() {
+                @Override
+                public void run() {
                     if (newValue != null) {
                         Header.this.searchComboBox.getEditor().setText(newValue.toString());
                     }
@@ -121,7 +110,7 @@ public class Header extends HBox {
         });
         this.searchComboBox.getEditor().textProperty().addListener((obs, oldText, newText) -> {
             Platform.runLater(new Runnable() {
-                @Override 
+                @Override
                 public void run() {
                     if (newText != null && !newText.isEmpty()) {
                         if (newText.charAt(0) == '@') {
@@ -164,8 +153,8 @@ public class Header extends HBox {
             Artwork artwork = this.viewModel.getArtwork(searchTerm);
             if (artwork != null) {
                 try {
-                    Node mainFrame = ((Node) event.getSource()).getParent().getParent();
-                    Stage popup = PopupLoader.loadPopup("Artwork", ArtworkPopup.class.getResource(ARTWORK_POPUP_FXML), new ArtworkPopup(artwork, false), (Parent) mainFrame);
+                    Parent mainFrame = ((Node) event.getSource()).getParent().getParent();
+                    Stage popup = PopupLoader.loadPopup("Artwork", ArtworkPopup.class.getResource(ARTWORK_POPUP_FXML), new ArtworkPopup(artwork, false), mainFrame);
                     popup.show();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -181,8 +170,8 @@ public class Header extends HBox {
     @FXML
     void handleFilter(ActionEvent event) {
         try {
-            Node mainFrame = ((Node) event.getSource()).getParent().getParent();
-            Stage popup = PopupLoader.loadPopup("Filter", FilterPopup.class.getResource(FILTER_POPUP_FXML), new FilterPopup(), (Parent) mainFrame);
+            Parent mainFrame = ((Node) event.getSource()).getParent().getParent();
+            Stage popup = PopupLoader.loadPopup("Filter", FilterPopup.class.getResource(FILTER_POPUP_FXML), new FilterPopup(), mainFrame);
             popup.setOnCloseRequest((event2) -> {
                 mainFrame.setEffect(null);
                 this.tagsToFilterListProperty.clear();
@@ -267,10 +256,9 @@ public class Header extends HBox {
     /**
      * Gets the tags to filter list property
      *
+     * @return the tags to filter list property
      * @precondition none
      * @postcondition none
-     *
-     * @return the tags to filter list property
      */
     public ListProperty<Tag> tagsToFilterListProperty() {
         return this.tagsToFilterListProperty;

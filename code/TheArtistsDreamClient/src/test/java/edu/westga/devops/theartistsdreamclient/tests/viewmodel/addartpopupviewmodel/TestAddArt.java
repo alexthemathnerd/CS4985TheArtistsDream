@@ -4,29 +4,26 @@ import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.TagManager;
 import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.viewmodel.AddArtPopupViewModel;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.MockedStatic;
 import org.mockito.Mockito;
-import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+/**
+ * Tests AddArtPopupViewModel::addArt
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ * @see AddArtPopupViewModel
+ */
 @ExtendWith(ApplicationExtension.class)
 @ExtendWith(MockitoExtension.class)
 public class TestAddArt {
@@ -62,7 +59,7 @@ public class TestAddArt {
         test.tagsProperty().setValue("");
         test.titleProperty().setValue("");
         test.addArt();
-        Mockito.verify(this.artworkManager).addArtwork(Mockito.any(),Mockito.eq(""), Mockito.eq(0), Mockito.eq(new ArrayList<>()), Mockito.anyString());
+        Mockito.verify(this.artworkManager).addArtwork(Mockito.any(), Mockito.eq(""), Mockito.eq(0), Mockito.eq(new ArrayList<>()), Mockito.anyString());
     }
 
     @Test
@@ -75,7 +72,7 @@ public class TestAddArt {
         test.tagsProperty().setValue("");
         test.titleProperty().setValue("");
         test.addArt();
-        Mockito.verify(this.artworkManager).addArtwork(Mockito.any(),Mockito.eq(""), Mockito.eq(0), Mockito.eq(new ArrayList<>()), Mockito.anyString());
+        Mockito.verify(this.artworkManager).addArtwork(Mockito.any(), Mockito.eq(""), Mockito.eq(0), Mockito.eq(new ArrayList<>()), Mockito.anyString());
     }
 
     @Test
@@ -88,7 +85,7 @@ public class TestAddArt {
         test.tagsProperty().setValue("");
         test.titleProperty().setValue("");
         test.addArt();
-        Mockito.verify(this.artworkManager).addArtwork(Mockito.any(),Mockito.eq(""), Mockito.eq(0), Mockito.eq(new ArrayList<>()), Mockito.anyString());
+        Mockito.verify(this.artworkManager).addArtwork(Mockito.any(), Mockito.eq(""), Mockito.eq(0), Mockito.eq(new ArrayList<>()), Mockito.anyString());
     }
 
     @Test
@@ -104,6 +101,6 @@ public class TestAddArt {
         test.titleProperty().setValue("");
         test.addArt();
         Mockito.verify(this.tagManager).addTag("tag");
-        Mockito.verify(this.artworkManager).addArtwork(Mockito.any(),Mockito.eq(""), Mockito.eq(0), Mockito.eq(List.of(0)), Mockito.anyString());
+        Mockito.verify(this.artworkManager).addArtwork(Mockito.any(), Mockito.eq(""), Mockito.eq(0), Mockito.eq(List.of(0)), Mockito.anyString());
     }
 }

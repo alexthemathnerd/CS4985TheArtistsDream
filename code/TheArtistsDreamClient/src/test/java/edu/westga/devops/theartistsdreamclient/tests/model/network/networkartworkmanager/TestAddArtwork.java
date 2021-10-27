@@ -1,6 +1,5 @@
 package edu.westga.devops.theartistsdreamclient.tests.model.network.networkartworkmanager;
 
-import com.google.gson.reflect.TypeToken;
 import edu.westga.devops.theartistsdreamclient.model.network.Communicator;
 import edu.westga.devops.theartistsdreamclient.model.network.NetworkArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.network.Request;
@@ -10,9 +9,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests Add Artwork in NetworkArtworkManager

@@ -16,6 +16,13 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests NetworkArtworkManager::getArtworksOfTags
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ * @see NetworkArtworkManager
+ */
 @ExtendWith(MockitoExtension.class)
 public class TestGetArtworksOfTags {
 

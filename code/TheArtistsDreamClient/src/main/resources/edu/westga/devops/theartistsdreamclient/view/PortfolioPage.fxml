@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-
+<?import edu.westga.devops.theartistsdreamclient.view.controls.ArtworksPane?>
 <?import edu.westga.devops.theartistsdreamclient.view.controls.Header?>
 <?import edu.westga.devops.theartistsdreamclient.view.controls.PortfolioPane?>
-<?import edu.westga.devops.theartistsdreamclient.view.controls.ArtworksPane?>
-
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" styleClass="main" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="600.0" styleClass="main" xmlns="http://javafx.com/javafx/16">
     <children>
         <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-          AnchorPane.topAnchor="0.0">
+              AnchorPane.topAnchor="0.0">
             <children>
                 <Header prefHeight="100" fx:id="header" viewOrder="0" VBox.vgrow="NEVER"/>
                 <PortfolioPane prefHeight="100" fx:id="portfolioPane" viewOrder="1" VBox.vgrow="NEVER"/>

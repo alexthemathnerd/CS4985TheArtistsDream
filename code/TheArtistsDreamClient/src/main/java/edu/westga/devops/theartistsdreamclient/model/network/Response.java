@@ -1,10 +1,9 @@
 package edu.westga.devops.theartistsdreamclient.model.network;
 
 /**
- * A data class to store information of the server's responce
- * 
+ * A data class to store information of the server's response
+ *
  * @param <T> The type of the response
- * 
  * @author Alexander Schmidt
  * @version Fall 2021
  */
@@ -17,7 +16,7 @@ public class Response<T> {
      * Creates a response. Should only be used by Gson
      *
      * @param error the error of the response
-     * @param data the data of the response
+     * @param data  the data of the response
      * @precondition none
      * @postcondition getError() == error && getData() == data
      * @see com.google.gson.Gson

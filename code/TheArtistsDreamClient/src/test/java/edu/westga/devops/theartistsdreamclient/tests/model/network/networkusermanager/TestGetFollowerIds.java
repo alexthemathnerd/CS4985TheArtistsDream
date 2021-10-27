@@ -1,7 +1,9 @@
 package edu.westga.devops.theartistsdreamclient.tests.model.network.networkusermanager;
 
-import edu.westga.devops.theartistsdreamclient.model.Tag;
-import edu.westga.devops.theartistsdreamclient.model.network.*;
+import edu.westga.devops.theartistsdreamclient.model.network.Communicator;
+import edu.westga.devops.theartistsdreamclient.model.network.NetworkUserManager;
+import edu.westga.devops.theartistsdreamclient.model.network.Request;
+import edu.westga.devops.theartistsdreamclient.model.network.Response;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -13,6 +15,13 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests NetworkUserManager::getFollowerIds
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ * @see NetworkUserManager
+ */
 @ExtendWith(MockitoExtension.class)
 public class TestGetFollowerIds {
 

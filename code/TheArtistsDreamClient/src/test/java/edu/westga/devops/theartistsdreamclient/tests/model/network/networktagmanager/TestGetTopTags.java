@@ -16,6 +16,13 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests NetworkTagManager::getTopTags
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ * @see NetworkTagManager
+ */
 @ExtendWith(MockitoExtension.class)
 public class TestGetTopTags {
 
@@ -25,7 +32,7 @@ public class TestGetTopTags {
     @Test
     void testOnResult() {
         List<Tag> expected = new ArrayList<>();
-        expected.add(new Tag(0,"test"));
+        expected.add(new Tag(0, "test"));
         Mockito.when(communicator.request(Mockito.any(Request.class), Mockito.any())).thenReturn(new Response<>(null, expected));
         NetworkTagManager testManager = new NetworkTagManager(communicator);
         List<Tag> result = testManager.getTopTags(0, "");

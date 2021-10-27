@@ -1,22 +1,21 @@
 package edu.westga.devops.theartistsdreamclient.tests.model.network.networktagmanager;
 
-import edu.westga.devops.theartistsdreamclient.model.Tag;
-import edu.westga.devops.theartistsdreamclient.model.network.Communicator;
-import edu.westga.devops.theartistsdreamclient.model.network.NetworkTagManager;
-import edu.westga.devops.theartistsdreamclient.model.network.Request;
-import edu.westga.devops.theartistsdreamclient.model.network.Response;
+import edu.westga.devops.theartistsdreamclient.model.network.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+/**
+ * Tests NetworkTagManager::addTag
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ * @see NetworkTagManager
+ */
 @ExtendWith(MockitoExtension.class)
 public class TestAddTag {
 

@@ -10,6 +10,13 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests ArtworkPopupViewModel::new
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ * @see ArtworkPopupViewModel
+ */
 public class TestConstructor {
 
     @Test
@@ -17,8 +24,8 @@ public class TestConstructor {
         Artwork artwork = new Artwork(new byte[0], "test", 0, new ArrayList<>(), 0, LocalDate.now().toString());
         ArtworkPopupViewModel test = new ArtworkPopupViewModel(artwork);
         assertAll(() -> {
-           assertEquals("test",test.titleProperty().get());
-           assertEquals(artwork, test.getArtwork());
+            assertEquals("test", test.titleProperty().get());
+            assertEquals(artwork, test.getArtwork());
         });
     }
 

@@ -3,14 +3,7 @@ package edu.westga.devops.theartistsdreamclient.viewmodel;
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
-
-import edu.westga.devops.theartistsdreamclient.model.User;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 
 import java.util.List;
@@ -42,7 +35,7 @@ public class ArtworksPaneViewModel {
         this.indexProperty = new SimpleIntegerProperty(0);
         this.maxIndexProperty = new SimpleIntegerProperty(50);
         this.userIdProperty = new SimpleIntegerProperty(-1);
-	    this.onFollowingPageProperty = new SimpleBooleanProperty(true);
+        this.onFollowingPageProperty = new SimpleBooleanProperty(true);
     }
 
     /**
@@ -59,10 +52,9 @@ public class ArtworksPaneViewModel {
     /**
      * Gets the tags to filter by property
      *
+     * @return the tags to filter by property
      * @precondition none
      * @postcondition none
-     *
-     * @return the tags to filter by property
      */
     public ListProperty<Tag> filterTagsProperty() {
         return this.filterTagsProperty;
@@ -136,10 +128,9 @@ public class ArtworksPaneViewModel {
     /**
      * Gets the user id property
      *
+     * @return the user id property
      * @precondition none
      * @postcondition none
-     *
-     * @return the user id property
      */
     public IntegerProperty userIdProperty() {
         return this.userIdProperty;
@@ -148,10 +139,9 @@ public class ArtworksPaneViewModel {
     /**
      * Gets the on following page property
      *
+     * @return the on following page property
      * @precondition none
      * @postcondition none
-     *
-     * @return the on following page property
      */
     public BooleanProperty onFollowingPageProperty() {
         return this.onFollowingPageProperty;

@@ -1,16 +1,13 @@
 package edu.westga.devops.theartistsdreamclient.tests.model.local.localartworkmanager;
 
-import edu.westga.devops.theartistsdreamclient.model.local.LocalArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
+import edu.westga.devops.theartistsdreamclient.model.local.LocalArtworkManager;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * JUnit Test Case for LocalArtworkManager method editArtwork
@@ -20,45 +17,45 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
  */
 public class TestEditArtwork {
 
-	@Test
-	void testNullNewTitle() {
-		LocalArtworkManager testManager = new LocalArtworkManager();
+    @Test
+    void testNullNewTitle() {
+        LocalArtworkManager testManager = new LocalArtworkManager();
 
-		assertThrows(IllegalArgumentException.class, () -> testManager.editArtwork(1, null, new ArrayList<Integer>()));
-	}
+        assertThrows(IllegalArgumentException.class, () -> testManager.editArtwork(1, null, new ArrayList<Integer>()));
+    }
 
-	@Test
-	void testEmptyNewTitle() {
-		LocalArtworkManager testManager = new LocalArtworkManager();
+    @Test
+    void testEmptyNewTitle() {
+        LocalArtworkManager testManager = new LocalArtworkManager();
 
-		assertThrows(IllegalArgumentException.class, () -> testManager.editArtwork(1, "", new ArrayList<Integer>()));
-	}
+        assertThrows(IllegalArgumentException.class, () -> testManager.editArtwork(1, "", new ArrayList<Integer>()));
+    }
 
-	@Test
-	void testNullNewTagIDs() {
-		LocalArtworkManager testManager = new LocalArtworkManager();
+    @Test
+    void testNullNewTagIDs() {
+        LocalArtworkManager testManager = new LocalArtworkManager();
 
-		assertThrows(IllegalArgumentException.class, () -> testManager.editArtwork(1, "test", null));
-	}
+        assertThrows(IllegalArgumentException.class, () -> testManager.editArtwork(1, "test", null));
+    }
 
-	@Test
-	void testValidParameters() {
-		LocalArtworkManager testManager = new LocalArtworkManager();
-		        
-                testManager.addArtwork(new Artwork(new byte[0], "test", 0, new ArrayList<Integer>(), 1, "2020-02-02"));
-                assertTrue(testManager.editArtwork(0, "test2", new ArrayList<Integer>(Arrays.asList(1, 2))));
-        }
+    @Test
+    void testValidParameters() {
+        LocalArtworkManager testManager = new LocalArtworkManager();
 
-	@Test
-	void testArtworkIdDoesNotExist() {
-       
-                LocalArtworkManager testManager = new LocalArtworkManager();
+        testManager.addArtwork(new Artwork(new byte[0], "test", 0, new ArrayList<Integer>(), 1, "2020-02-02"));
+        assertTrue(testManager.editArtwork(0, "test2", new ArrayList<Integer>(Arrays.asList(1, 2))));
+    }
 
-                testManager.addArtwork(new Artwork(new byte[0], "test", 1, new ArrayList<Integer>(), 1, "2020-02-02"));
+    @Test
+    void testArtworkIdDoesNotExist() {
 
-		assertFalse(testManager.editArtwork(3, "test", new ArrayList<Integer>()));
+        LocalArtworkManager testManager = new LocalArtworkManager();
 
-        }
+        testManager.addArtwork(new Artwork(new byte[0], "test", 1, new ArrayList<Integer>(), 1, "2020-02-02"));
+
+        assertFalse(testManager.editArtwork(3, "test", new ArrayList<Integer>()));
+
+    }
 
 
 }

@@ -15,6 +15,13 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Tests NetworkArtworkManager::editArtwork
+ *
+ * @author Alexander Schhmidt
+ * @version Fall 2021
+ * @see NetworkArtworkManager
+ */
 @ExtendWith(MockitoExtension.class)
 public class TestEditArtwork {
 

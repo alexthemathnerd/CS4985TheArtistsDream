@@ -9,6 +9,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests NetworkUserManager::addUser
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ * @see NetworkUserManager
+ */
 @ExtendWith(MockitoExtension.class)
 public class TestAddUser {
 

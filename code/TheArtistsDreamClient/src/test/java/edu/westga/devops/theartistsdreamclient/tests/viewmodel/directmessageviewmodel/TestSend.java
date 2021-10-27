@@ -3,20 +3,21 @@ package edu.westga.devops.theartistsdreamclient.tests.viewmodel.directmessagevie
 import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.model.network.Chat;
 import edu.westga.devops.theartistsdreamclient.viewmodel.DirectMessageViewModel;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationExtension;
-
-import java.util.concurrent.TimeoutException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests DirectMessageViewModel::send
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ * @see DirectMessageViewModel
+ */
 @ExtendWith(ApplicationExtension.class)
 @ExtendWith(MockitoExtension.class)
 public class TestSend {

@@ -14,6 +14,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+/**
+ * Tests NetworkUserManager::retrieveSearchedUser
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ * @see NetworkUserManager
+ */
 @ExtendWith(MockitoExtension.class)
 public class TestRetrieveSearchedUser {
 
@@ -22,7 +29,7 @@ public class TestRetrieveSearchedUser {
 
     @Test
     void testOnResult() {
-        User expected = new User(0, "test@test.com","test", "test", new byte[0]);
+        User expected = new User(0, "test@test.com", "test", "test", new byte[0]);
         Mockito.when(communicator.request(Mockito.any(Request.class), Mockito.any())).thenReturn(new Response<>(null, expected));
         NetworkUserManager testManager = new NetworkUserManager(communicator);
         User result = testManager.retrieveSearchedUser("");

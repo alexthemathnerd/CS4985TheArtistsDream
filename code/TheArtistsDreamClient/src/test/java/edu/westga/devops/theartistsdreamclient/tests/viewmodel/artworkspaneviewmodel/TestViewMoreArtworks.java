@@ -2,7 +2,6 @@ package edu.westga.devops.theartistsdreamclient.tests.viewmodel.artworkspaneview
 
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
-import edu.westga.devops.theartistsdreamclient.viewmodel.ArtworkPopupViewModel;
 import edu.westga.devops.theartistsdreamclient.viewmodel.ArtworksPaneViewModel;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,6 +15,13 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests ArtworksPaneViewModel::viewMoreArtworks
+ *
+ * @author Alexander Schmidt
+ * @version Fall 2021
+ * @see ArtworksPaneViewModel
+ */
 @ExtendWith(MockitoExtension.class)
 public class TestViewMoreArtworks {
 

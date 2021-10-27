@@ -1,22 +1,18 @@
 package edu.westga.devops.theartistsdreamclient.view;
 
-import java.io.IOException;
-
+import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.utils.UI;
 import edu.westga.devops.theartistsdreamclient.viewmodel.LoginViewModel;
-import edu.westga.devops.theartistsdreamclient.model.User;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 /**
  * The Controller for the login
@@ -28,34 +24,28 @@ public class Login {
 
     public static final String ICON_PATH = "icon.png";
     public static final String RECOMMENDED_PAGE_FXML = "RecommendedPage.fxml";
-
+    private final LoginViewModel viewModel;
+    private final BooleanProperty isCreatingAccount;
     @FXML
     private TextField usernameTextField;
-
     @FXML
     private PasswordField passwordTextField;
-
     @FXML
     private TextField emailTextField;
-
     @FXML
     private PasswordField confirmPasswordTextField;
-
     @FXML
     private Button loginButton;
-
     @FXML
     private Button createAccountButton;
-
     @FXML
     private Label errorMessageLabel;
 
-    private final LoginViewModel viewModel;
-
-    private final BooleanProperty isCreatingAccount;
-
     /**
-     * Initiailizes ViewModel for Login
+     * Initializes ViewModel for Login
+     *
+     * @precondition none
+     * @postcondition none
      */
     public Login() {
         this.viewModel = new LoginViewModel();
@@ -114,7 +104,7 @@ public class Login {
     }
 
     @FXML
-    void handleLoginButtonClick(ActionEvent event) throws Exception {
+    void handleLoginButtonClick(ActionEvent event) {
         if (this.isCreatingAccount.get()) {
             this.isCreatingAccount.set(false);
         } else {
@@ -130,7 +120,7 @@ public class Login {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-            }   
+            }
         }
     }
 }
