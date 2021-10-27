@@ -4,7 +4,8 @@ import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.model.UserManager;
 import edu.westga.devops.theartistsdreamclient.view.popups.AddArtPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
-import edu.westga.devops.theartistsdreamclient.view.DirectMessage;
+import edu.westga.devops.theartistsdreamclient.view.popups.CommissionFormPopup;
+import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
 import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
 
 import javafx.beans.property.BooleanProperty;
@@ -139,16 +140,16 @@ public class PortfolioPane extends HBox {
             Stage popup = PopupLoader.loadPopup("Add Art", AddArtPopup.class.getResource("AddArtPopup.fxml"), new AddArtPopup(), (Parent) mainFrame);
             popup.setOnCloseRequest((event2) -> {
                 mainFrame.setEffect(null);
-		Object data = popup.getUserData();
-		if (data != null) {
-			try {
-				Stage currentStage = (Stage) this.getScene().getWindow();
-				WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(User.getUser()), "Profile", false);
-				currentStage.setMaximized(true);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		        Object data = popup.getUserData();
+		        if (data != null) {
+			        try {
+				        Stage currentStage = (Stage) this.getScene().getWindow();
+				        WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(User.getUser()), "Profile", false);
+				        currentStage.setMaximized(true);
+			        } catch (IOException e) {
+				        e.printStackTrace();
+			        }
+		        }
             });
             popup.show();
         } catch (IOException e) {
@@ -176,8 +177,9 @@ public class PortfolioPane extends HBox {
     @FXML
     private void handleCommission(ActionEvent event) {
         try {
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            WindowLoader.changeScene(currentStage, DIRECT_MESSAGE_FXML, new DirectMessage(this.userProperty.getValue(), User.getUser()), "The Artist's Dream", true);
+            Node mainFrame = this.getScene().getRoot();
+            Stage popup = PopupLoader.loadPopup("Commision Form", CommissionFormPopup.class.getResource("CommissionFormPopup.fxml"), new CommissionFormPopup(), (Parent) mainFrame);      
+            popup.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
