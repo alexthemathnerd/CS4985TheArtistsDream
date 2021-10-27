@@ -29,7 +29,7 @@ public class Chat {
         try {
             senderUserId = ((Double) data[0]).intValue();
             message = (String) data[1];
-            receiverUserId = ((Double) data[0]).intValue();;
+            receiverUserId = ((Double) data[0]).intValue();
         } catch (ClassCastException e) {
             return new Request(UI.ErrorMessages.INVALID_FORMAT);
         }

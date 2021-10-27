@@ -14,24 +14,20 @@ import javafx.fxml.FXML;
  */
 public class PortfolioPage {
 
+    private final User user;
     @FXML
     private Header header;
-
     @FXML
     private PortfolioPane portfolioPane;
-
     @FXML
     private ArtworksPane artworksPane;
-
-    private final User user;
 
     /**
      * Creates a new PortfolioPage of the specified user
      *
+     * @param user the user
      * @precondition none
      * @postcondition none
-     * 
-     * @param user the user
      */
     public PortfolioPage(User user) {
         this.user = user;

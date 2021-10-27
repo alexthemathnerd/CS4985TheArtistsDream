@@ -19,10 +19,9 @@ public class TagButton extends ToggleButton {
     /**
      * Initializes the FXML for the TagButton control
      *
-     * @precondition tag != null
-     * @postcondition getText().equals(tag.getName()) && getStyleClass().contains("tag-button") && tagProperty().get().equals(tag)
-     *
      * @param tag the tag to be stored in the button
+     * @precondition tag != null
+     * @postcondition getText().equals(tag.getName ()) && getStyleClass().contains("tag-button") && tagProperty().get().equals(tag)
      */
     public TagButton(Tag tag) {
         super();
@@ -37,10 +36,9 @@ public class TagButton extends ToggleButton {
     /**
      * Gets the tag property of the button
      *
+     * @return the tag property
      * @precondition none
      * @postcondition none
-     *
-     * @return the tag property
      */
     public ObjectProperty<Tag> tagProperty() {
         return this.tagProperty;

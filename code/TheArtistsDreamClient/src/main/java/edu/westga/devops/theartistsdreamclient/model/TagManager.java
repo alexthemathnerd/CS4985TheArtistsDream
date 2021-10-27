@@ -10,30 +10,9 @@ import java.util.List;
  * @version Fall 2021
  * @see Tag
  */
-public abstract class TagManager implements Iterable<Tag> {
+public abstract class TagManager {
 
     private static TagManager tagManager = null;
-
-    /**
-     * Gets the top tags that contains the given content with the size given by the amount.
-     *
-     * @param content the searched string
-     * @param amount the amount of string to be returned
-     * @return a list of top tag containing the given content with a size of the given amount
-     * @precondition amount >= 0 && content != null
-     * @postcondition none
-     */
-    public abstract List<Tag> getTopTags(int amount, String content);
-
-    /**
-     * Adds a tag to the tag manager and returns it id.
-     *
-     * @param name the name of the tag
-     * @precondition name != null && !name.isEmpty()
-     * @postcondition none
-     * @return the id of the added tag
-     */
-    public abstract int addTag(String name);
 
     /**
      * Gets the singleton of the tag manager
@@ -50,15 +29,33 @@ public abstract class TagManager implements Iterable<Tag> {
      * Sets the tagManager singleton
      *
      * @param tagManager the new tag manager
-     * @preconditon tagManager != null
+     * @preconditon none
      * @postcondition TagManager.getTagManager().equals(tagManager)
      */
     public static void setTagManager(TagManager tagManager) {
-        if (tagManager == null) {
-            throw new IllegalArgumentException();
-        }
         TagManager.tagManager = tagManager;
     }
+
+    /**
+     * Gets the top tags that contains the given content with the size given by the amount.
+     *
+     * @param content the searched string
+     * @param amount  the amount of string to be returned
+     * @return a list of top tag containing the given content with a size of the given amount
+     * @precondition amount >= 0 && content != null
+     * @postcondition none
+     */
+    public abstract List<Tag> getTopTags(int amount, String content);
+
+    /**
+     * Adds a tag to the tag manager and returns it id.
+     *
+     * @param name the name of the tag
+     * @return the id of the added tag
+     * @precondition name != null && !name.isEmpty()
+     * @postcondition none
+     */
+    public abstract int addTag(String name);
 
 
 }

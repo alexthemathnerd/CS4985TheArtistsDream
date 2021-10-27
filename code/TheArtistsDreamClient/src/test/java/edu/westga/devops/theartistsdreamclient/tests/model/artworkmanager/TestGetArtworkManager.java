@@ -2,11 +2,11 @@ package edu.westga.devops.theartistsdreamclient.tests.model.artworkmanager;
 
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalArtworkManager;
-
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * JUnit Test Case for User Method getUser
@@ -16,15 +16,20 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  */
 public class TestGetArtworkManager {
 
-	@Test
-	void testNull() {
-		assertNull(ArtworkManager.getArtworkManager());
-	}
+    @BeforeEach
+    void init() {
+        ArtworkManager.setArtworkManager(null);
+    }
 
-	@Test
-	void testNotNull() {
-		ArtworkManager.setArtworkManager(new LocalArtworkManager());
-		assertNotNull(ArtworkManager.getArtworkManager());
-	}
+    @Test
+    void testNull() {
+        assertNull(ArtworkManager.getArtworkManager());
+    }
+
+    @Test
+    void testNotNull() {
+        ArtworkManager.setArtworkManager(new LocalArtworkManager());
+        assertNotNull(ArtworkManager.getArtworkManager());
+    }
 }
 

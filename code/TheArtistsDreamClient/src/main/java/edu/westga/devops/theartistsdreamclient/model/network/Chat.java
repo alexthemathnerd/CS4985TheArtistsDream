@@ -1,25 +1,20 @@
 package edu.westga.devops.theartistsdreamclient.model.network;
 
-import edu.westga.devops.theartistsdreamclient.utils.UI;
-import edu.westga.devops.theartistsdreamclient.model.ChatRecord;
-import edu.westga.devops.theartistsdreamclient.model.User;
-import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
-
 import com.google.gson.reflect.TypeToken;
+import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
+import edu.westga.devops.theartistsdreamclient.model.ChatRecord;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
 
 import java.lang.reflect.Type;
 
-import java.util.List;
-import java.util.ArrayList;
-
 /**
  * The class chat
- * 
+ *
  * @author Jamia Echols
  * @version Fall 2021
  */
 public class Chat {
-    private Communicator communicator;
+    private final Communicator communicator;
 
     /**
      * Creates a new chat
@@ -32,16 +27,24 @@ public class Chat {
     }
 
     /**
-     * Sends the message
-     * 
+     * Creates a new chat (Use only for tests)
+     *
      * @precondition none
      * @postcondition none
-     * 
+     */
+    public Chat(Communicator communicator) {
+        this.communicator = communicator;
+    }
+
+    /**
+     * Sends the message
+     *
      * @param receiverId the id of user that is receiving the message
-     * @param message the message being sent
-     * @param senderId the id of the user sending the message
-     * 
+     * @param message    the message being sent
+     * @param senderId   the id of the user sending the message
      * @return the chat record
+     * @precondition none
+     * @postcondition none
      */
     public ChatRecord sendMessage(int receiverId, String message, int senderId) {
         Type type = new TypeToken<Response<ChatRecord>>() {

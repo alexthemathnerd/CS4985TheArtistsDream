@@ -2,7 +2,6 @@ package edu.westga.devops.theartistsdreamclient.tests.model.tagmanager;
 
 import edu.westga.devops.theartistsdreamclient.model.TagManager;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalTagManager;
-
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -16,16 +15,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 public class TestSetTagManager {
 
-        @Test
-        void setToNewTagManager() {
-                TagManager.setTagManager(new LocalTagManager());
-                assertNotNull(TagManager.getTagManager());
-        }
+    @Test
+    void setToNewTagManager() {
+        TagManager.setTagManager(new LocalTagManager());
+        assertNotNull(TagManager.getTagManager());
+    }
 
-        @Test
-        void setToNull() {
-                assertThrows(IllegalArgumentException.class, () -> TagManager.setTagManager(null));
-        }
+    @Test
+    void setToNull() {
+        assertThrows(IllegalArgumentException.class, () -> TagManager.setTagManager(null));
+    }
 
 }
 

@@ -24,7 +24,7 @@ public class TagsPane extends FlowPane {
      * Creates a TagPane object
      *
      * @precondition none
-     * @postcondition getStyleClass().contains('tags-pane') && tagsSetProperty().isEmpty()
+     * @postcondition getStyleClass().contains(' tags - pane ') && tagsSetProperty().isEmpty()
      */
     public TagsPane() {
         this.getStyleClass().add("tags-pane");
@@ -71,24 +71,12 @@ public class TagsPane extends FlowPane {
     /**
      * Gets the added buttons
      *
+     * @return the added buttons
      * @precondition none
      * @postcondition none
-     *
-     * @return the added buttons
      */
     public List<TagButton> getAddedButtons() {
         return this.selectedTagsButtons;
-    }
-
-    /**
-     * Get the added tags set property
-     *
-     * @return the addedTagsSet Property
-     * @preconditon none
-     * @postcondtion none
-     */
-    public ListProperty<Tag> addedTagsSetProperty() {
-        return this.addedTagsListProperty;
     }
 
 }

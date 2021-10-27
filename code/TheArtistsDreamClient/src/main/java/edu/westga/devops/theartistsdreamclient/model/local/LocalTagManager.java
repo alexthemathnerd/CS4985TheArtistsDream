@@ -10,14 +10,14 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * A locol implementation of the {@link TagManager}
+ * A local implementation of the {@link TagManager}
  *
  * @author Alexander Schmidt
  * @version Fall 2021
  * @see TagManager
  * @see Tag
  */
-public class LocalTagManager extends TagManager {
+public class LocalTagManager extends TagManager implements Iterable<Tag> {
 
     private final ArrayList<Tag> tags;
 
@@ -53,7 +53,7 @@ public class LocalTagManager extends TagManager {
         if (content.isEmpty()) {
             return filteredTags;
         }
-        for (Tag aTag: this) {
+        for (Tag aTag : this) {
             if (aTag.getName().contains(content.toLowerCase())) {
                 filteredTags.add(aTag);
             }
@@ -76,7 +76,7 @@ public class LocalTagManager extends TagManager {
 
     @Override
     public Iterator<Tag> iterator() {
-	    return this.tags.iterator();
+        return this.tags.iterator();
     }
 
 }

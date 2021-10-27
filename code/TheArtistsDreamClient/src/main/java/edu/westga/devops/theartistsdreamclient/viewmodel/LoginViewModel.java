@@ -1,10 +1,10 @@
 package edu.westga.devops.theartistsdreamclient.viewmodel;
 
-import edu.westga.devops.theartistsdreamclient.utils.UI;
-import javafx.beans.property.StringProperty;
-import javafx.beans.property.SimpleStringProperty;
 import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.model.UserManager;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  * The Login View Model
@@ -36,10 +36,9 @@ public class LoginViewModel {
     /**
      * Gets the error label property
      *
-     * @precondition none
-     * @postcondition noen
-     *
      * @return the error label property
+     * @precondition none
+     * @postcondition none
      */
     public StringProperty errorProperty() {
         return this.errorProperty;
@@ -48,10 +47,9 @@ public class LoginViewModel {
     /**
      * Gets the username property
      *
+     * @return the username property
      * @precondition none
      * @postcondition none
-     *
-     * @return the username property
      */
     public StringProperty usernameProperty() {
         return this.usernameProperty;
@@ -60,22 +58,20 @@ public class LoginViewModel {
     /**
      * Gets the password property
      *
+     * @return the password property
      * @precondition none
      * @postcondition none
-     *
-     * @return the password property
      */
     public StringProperty passwordProperty() {
         return this.passwordProperty;
     }
 
     /**
-     * Gets the confirm password property
+     * Gets the confirmed password property
      *
+     * @return the confirmed password property
      * @precondition none
      * @postcondition none
-     *
-     * @return the confirm password property
      */
     public StringProperty confirmPasswordProperty() {
         return this.confirmPasswordProperty;
@@ -84,10 +80,9 @@ public class LoginViewModel {
     /**
      * Gets the email property
      *
+     * @return the email property
      * @precondition none
      * @postcondition none
-     *
-     * @return the email property
      */
     public StringProperty emailProperty() {
         return this.emailProperty;
@@ -106,10 +101,9 @@ public class LoginViewModel {
     /**
      * Gets the user that logged in
      *
+     * @return the user
      * @precondition usernameProperty().get() != "" passwordProperty().get() != ""
      * @postcondition none
-     * 
-     * @return the user
      */
     public User getUser() {
         return UserManager.getUserManager().findUser(this.usernameProperty.get(), this.passwordProperty.get());
@@ -118,10 +112,9 @@ public class LoginViewModel {
     /**
      * Validates the values entered in when creating an account
      *
+     * @return true if the entered information is valid. False if otherwise
      * @precondition emailProperty().get() != "" && passwordProperty().get() != ""
      * @postcondition none
-     * 
-     * @return true if the the entered information is valid. False if otherwise
      */
     public boolean validateCreateAccount() {
         if (!this.emailProperty.get().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")) {

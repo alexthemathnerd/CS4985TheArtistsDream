@@ -8,7 +8,6 @@ import edu.westga.devops.theartistsdreamclient.utils.UI;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -31,6 +30,17 @@ public class NetworkTagManager extends TagManager {
         this.communicator = new Communicator("tcp://localhost:4444");
     }
 
+    /**
+     * Creates a new NetworkTagManager (Use only for testing)
+     *
+     * @param communicator the communicator to connect with
+     * @precondition none
+     * @postcondition none
+     */
+    public NetworkTagManager(Communicator communicator) {
+        this.communicator = communicator;
+    }
+
     @Override
     public List<Tag> getTopTags(int amount, String content) {
         Type type = new TypeToken<Response<ArrayList<Tag>>>() {
@@ -47,17 +57,12 @@ public class NetworkTagManager extends TagManager {
     public int addTag(String name) {
         Type type = new TypeToken<Response<Double>>() {
         }.getType();
-        Response<Double> response = this.communicator.request(new Request(UI.ServerCodes.ADD_TAG, new Object[]{name}));
+        Response<Double> response = this.communicator.request(new Request(UI.ServerCodes.ADD_TAG, new Object[]{name}), type);
         if (response.getError() != null) {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
             return -1;
         }
         return (response.getData()).intValue();
-    }
-
-    @Override
-    public Iterator<Tag> iterator() {
-        return null;
     }
 
 }
