@@ -70,6 +70,15 @@ public class UI {
         public static final String SEARCH_TERM_NULL = "Search term cannot be null";
         public static final String TITLE_NULL = "Title cannot be null";
         public static final String TITLE_EMPTY = "Title cannot be empty";
+        public static final String NAME_NULL = "Name cannot be null";
+        public static final String NAME_EMPTY = "Name cannot be empty";
+        public static final String DESCRIPTION_NULL = "Description cannot be null";
+        public static final String DESCRIPTION_EMPTY = "Description cannot be empty";
+        public static final String BUDGET_NOT_POSITIVE = "Budget must be positive";
+        public static final String STYLE_NULL = "Style cannot  be null";
+        public static final String STYLE_EMPTY = "Style cannot be empty";
+        public static final String SIZE_NULL = "Size cannot be null";
+        public static final String SIZE_EMPTY = "Size cannot be empty";
     }
 
     /**

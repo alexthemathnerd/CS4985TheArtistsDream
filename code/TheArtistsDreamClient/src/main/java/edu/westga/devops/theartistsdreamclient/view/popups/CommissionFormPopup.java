@@ -15,6 +15,12 @@ import javafx.stage.WindowEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+/**
+ * The commission form class
+ * 
+ * @author Jamia Echols
+ * @version Fall 2021
+ */
 public class CommissionFormPopup {
 
     @FXML
@@ -59,11 +65,14 @@ public class CommissionFormPopup {
     @FXML
     private Label filesLabel;
 
-    private List<File> files;
-
-    public CommissionFormPopup() {
-        this.files = new ArrayList<File>();
-    }
+    /**
+     * Creates a new commission form popup
+     * 
+     * @precondition none
+     * @postcondition none
+     * 
+     */
+    public CommissionFormPopup() {}
 
     @FXML
     void handleCancelButtonClick(ActionEvent event) {
@@ -74,18 +83,12 @@ public class CommissionFormPopup {
 
     @FXML
     void handleSubmitButtonClick(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleUploadFilesClick(ActionEvent event) {
-        FileChooser chooser = new FileChooser();
-        chooser.setTitle("Select Files");
-        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All Files", "*.*"));
-        File file = chooser.showOpenDialog(null);
-        this.files.add(file);
-        String fileList = this.filesLabel.getText() + " " + file.getName();
-        this.filesLabel.setText(fileList);
+        try {
+            Commision newCommission = new Commission(this.nameTextField.getText(), this.styleTextField.getText(), Double.parseDouble(this.budgetTextField.getText()), this.sizeTextField.getText(), this.descriptionTextArea.getText());
+        } catch (Exception e) {
+            Alert alert = new Alert(AlertType.ERROR, e.getMessage());
+            alert.show(); 
+        }
     }
 
 }
