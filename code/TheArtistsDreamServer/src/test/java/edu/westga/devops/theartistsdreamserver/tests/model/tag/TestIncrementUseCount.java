@@ -19,7 +19,8 @@ public class TestIncrementUseCount {
 	void testIncrement() {
 		Tag testTag = new Tag(1, "test");
 		testTag.incrementUseCount();
-		assertEquals(2, testTag.getUseCount());
+		testTag.incrementUseCount();
+		assertEquals(3, testTag.getUseCount());
 	}
 
 }

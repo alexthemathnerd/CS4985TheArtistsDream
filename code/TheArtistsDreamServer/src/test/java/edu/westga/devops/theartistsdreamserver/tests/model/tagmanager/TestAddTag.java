@@ -6,7 +6,6 @@ import edu.westga.devops.theartistsdreamserver.utils.UI;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -23,12 +22,22 @@ public class TestAddTag {
     }
 
     @Test
-    void testValidNonexistingTag() {
-	    assertNotNull(TagManager.addTag(new Object[] {"tag"}).getData());
+    void testValidNonexistingTagEmptyManager() {
+	    TheArtistsDreamServer.TAGS.clear();
+	    assertEquals(0, TagManager.addTag(new Object[] {"tag"}).getData());
      }
 
     @Test
+    void testValidNonexistingTagNonemptyManager() {
+            TheArtistsDreamServer.TAGS.clear();
+            TagManager.addTag(new Object[] {"test"});
+            TagManager.addTag(new Object[] {"devops"});
+            assertEquals(0, TagManager.addTag(new Object[] {"test"}).getData());
+    }
+
+    @Test
     void testValidExistingTag() {
+	    TheArtistsDreamServer.TAGS.clear();
 	    TagManager.addTag(new Object[] {"tag"});
 	    assertEquals(0, (int) TagManager.addTag(new Object[] {"TAG"}).getData());
     }

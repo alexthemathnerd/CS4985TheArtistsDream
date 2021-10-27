@@ -1,25 +1,39 @@
-package edu.westga.devops.theartistsdreamserver.tag;
+package edu.westga.devops.theartistsdreamserver.tests.model.tag;
 
-import edu.westga.devops.theartistsdreamserver.model.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import edu.westga.devops.theartistsdreamserver.model.Tag;
+
 import org.junit.jupiter.api.Test;
-import edu.westga.devops.theartistsdreamserver.*;
-import edu.westga.devops.theartistsdreamserver.utils.UI;
+
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
- * Junit test class for the constructor in the tag class
+ * JUnit Test Case for Tag Constructor
  * 
- * @author Jamia Echols
+ * @author Aznella Joseph
  * @version Fall 2021
  */
 public class TestConstructor {
-    @Test
-    void TestConstructor() {
-        Tag testTag = new Tag(0,"Test");
-        assertAll(
-            () -> assertEquals(0, testTag.getId()), 
-            () -> assertEquals("test", testTag.getName()), 
-            () -> assertEquals(1, testTag.getUseCount()));
-    }
+
+	@Test
+	void testNegativeId() {
+		assertThrows(IllegalArgumentException.class, () -> new Tag(-1, "test"));
+	}
+
+	@Test
+	void testNullName() {
+		assertThrows(IllegalArgumentException.class, () -> new Tag(1, null));
+	}
+
+	@Test
+	void testEmptyName() {
+		assertThrows(IllegalArgumentException.class, () -> new Tag(1, ""));
+	}
+
+	@Test
+	void testValidParameters() {
+		Tag testTag = new Tag(1, "TEST");
+		assertAll(() -> assertEquals(1, testTag.getId()), () -> assertEquals("test", testTag.getName()), () -> assertEquals(1, testTag.getUseCount()));
+	}
 }

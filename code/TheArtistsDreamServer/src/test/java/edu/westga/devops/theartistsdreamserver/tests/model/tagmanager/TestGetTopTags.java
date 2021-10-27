@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
- * Junit test class for the method getTopTags in the tag manager class
+ * JUnit Test Case for TagManager Method getTopTags
  * 
  * @author Jamia Echols
  * @version Fall 2021
@@ -27,15 +27,33 @@ public class TestGetTopTags {
     }
 
     @Test
-    void testValidAmountLessThanSize() { 
-	    TheArtistsDreamServer.TAGS.clear();
+    void testValidEmptyContent() {
+            TheArtistsDreamServer.TAGS.clear();
             TagManager.addTag(new Object[] {"tag1"});
             TagManager.addTag(new Object[] {"tag2"});
             TagManager.addTag(new Object[] {"tag3"});
 
 
-	    assertEquals(1, ((List<Tag>)TagManager.getTopTags(new Object[] {1.0, "tag"}).getData()).size());
+            assertEquals(0, ((List<Tag>)TagManager.getTopTags(new Object[] {1.0, ""}).getData()).size());
     }
+
+    @Test
+    void testValidEmptyManager() {
+            TheArtistsDreamServer.TAGS.clear();
+	    assertEquals(0, ((List<Tag>)TagManager.getTopTags(new Object[] {1.0, "tag"}).getData()).size());
+    }
+
+    @Test
+    void testValidAmountLessThanSize() {
+            TheArtistsDreamServer.TAGS.clear();
+            TagManager.addTag(new Object[] {"tag1"});
+            TagManager.addTag(new Object[] {"tag2"});
+            TagManager.addTag(new Object[] {"tag3"});
+
+
+            assertEquals(1, ((List<Tag>)TagManager.getTopTags(new Object[] {1.0, "tag"}).getData()).size());
+    }
+
 
     @Test
     void testValidAmountGreaterThanSize() {
@@ -47,4 +65,14 @@ public class TestGetTopTags {
 	    assertEquals(3, ((List<Tag>) TagManager.getTopTags(new Object[] {5.0, "tag"}).getData()).size());
     }
 
+    @Test
+    void testValidAmountEqualToSize() {
+            TheArtistsDreamServer.TAGS.clear();
+            TagManager.addTag(new Object[] {"tag1"});
+            TagManager.addTag(new Object[] {"tag2"});
+            TagManager.addTag(new Object[] {"tag3"});
+
+
+            assertEquals(3, ((List<Tag>)TagManager.getTopTags(new Object[] {3.0, "tag"}).getData()).size());
+    }
 }

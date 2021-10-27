@@ -1,6 +1,7 @@
 package edu.westga.devops.theartistsdreamserver.tests.model.chat;
 
 import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
+import edu.westga.devops.theartistsdreamserver.model.User;
 import edu.westga.devops.theartistsdreamserver.model.Chat;
 import edu.westga.devops.theartistsdreamserver.model.UserManager;
 import edu.westga.devops.theartistsdreamserver.model.Request;
@@ -28,20 +29,25 @@ public class TestSendMessage {
 	}
 
 	@Test
-	void testValidFormat() {
+	void testValidSenderFirst() {
 		TheArtistsDreamServer.USERS.clear();
 		UserManager.addUser(new Object[] {"student", "student123", "student@my.westga.edu"});
 		UserManager.addUser(new Object[] {"test", "test123", "test@my.westga.edu"});
+		User testUser = (User) UserManager.getUser(new Object[] {0.0}).getData();
+		User testUser2 = (User) UserManager.getUser(new Object[] {1.0}).getData();
 		Request testRequest = Chat.sendMessage(new Object[] {1.0, "hello", 0.0});
-		assertAll(() -> assertNotNull(testRequest.getData()), () -> assertNull(testRequest.getError()));
+		assertAll(() -> assertNotNull(testRequest.getData()), () -> assertNull(testRequest.getError()), () -> assertEquals(0, testUser.getMessages().size()), () -> assertEquals(1, testUser2.getMessages().size()));
 	}
 
 	@Test
-	void testReceiver() {
-		TheArtistsDreamServer.USERS.clear();
+	void testValidReceiverFirst() {
+                TheArtistsDreamServer.USERS.clear();
                 UserManager.addUser(new Object[] {"student", "student123", "student@my.westga.edu"});
                 UserManager.addUser(new Object[] {"test", "test123", "test@my.westga.edu"});
+                User testUser = (User) UserManager.getUser(new Object[] {0.0}).getData();
+                User testUser2 = (User) UserManager.getUser(new Object[] {1.0}).getData();
                 Request testRequest = Chat.sendMessage(new Object[] {0.0, "hello", 1.0});
-                assertAll(() -> assertNotNull(testRequest.getData()), () -> assertNull(testRequest.getError()));
+                assertAll(() -> assertNotNull(testRequest.getData()), () -> assertNull(testRequest.getError()), () -> assertEquals(1, testUser.getMessages().size()), () -> assertEquals(0, testUser2.getMessages().size()));
 	}
+
 }	
