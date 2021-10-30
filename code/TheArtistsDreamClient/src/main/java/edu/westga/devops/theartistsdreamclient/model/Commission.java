@@ -10,55 +10,44 @@ import edu.westga.devops.theartistsdreamclient.utils.UI;
  */
 public class Commission {
     
-    private String name;
+    private int userId;
 
-    private String style;
+    private UI.Style style;
 
     private double budget;
-
-    private String size;
 
     private String description;
 
     /**
      * Create a new commission
      * 
-     * @precondition name != null && name is not empty and style is not null and style is not empty and 
-     *              budget is not null and budget greater than zero and size is not null and size is not empty and
-     *              and description is not null and description is not empty
-     * @postcondition getName() == name and getStyle() == style and getBudget() = budget and getSize() == size
+     * @precondition userId < 0 and userId != nulland style is not null and budget is not null 
+     *               and budget greater than zero and and description is not null and description is not empty
+     * @postcondition getUserId() == userId and getStyle() == style and getBudget() = budget
      *                getDescription() = description
      * 
-     * @param name the name of the user requesting the commission
+     * @param userId the userid of the user wanting the commission
      * @param style the style the user wants the commission done in
      * @param budget the budget the user wants stay in
-     * @param size the size of the are piece
      * @param description the description of what thw user wants
      */
-    public Commission(String name, String style, double budget, String size, String description) {
-        this.checkPreconditions(name, style, budget, size, description);
-        this.name = name;
+    public Commission(int userId, UI.Style style, double budget, String description) {
+        this.checkPreconditions(userId, style, budget, description);
+        this.userId = userId;
         this.style = style;
         this.budget = budget;
-        this.size = size;
         this.description = description;
     }
 
-    private void checkPreconditions(String name, String style, double budget, String size, String description) {
-        if (name == null) {
-            throw new IllegalArgumentException(UI.ErrorMessages.NAME_NULL);
-        }
+    private void checkPreconditions(int userId, UI.Style style, double budget, String description) {
         if (style == null) {
-            throw new IllegalArgumentException(UI.ErrorMessages.NAME_EMPTY);
-        }
-        if (size == null) {
-            throw new IllegalArgumentException(UI.ErrorMessages.SIZE_NULL);
+            throw new IllegalArgumentException(UI.ErrorMessages.STYLE_NULL);
         }
         if (description == null) {
             throw new IllegalArgumentException(UI.ErrorMessages.DESCRIPTION_NULL);
         }
-        if (name.isEmpty()) {
-            throw new IllegalArgumentException(UI.ErrorMessages.NAME_EMPTY);
+        if (userId < 0) {
+            throw new IllegalArgumentException(UI.ErrorMessages.INVALID_USERID);
         }
         if (description.isEmpty()) {
             throw new IllegalArgumentException(UI.ErrorMessages.DESCRIPTION_EMPTY);
@@ -66,21 +55,18 @@ public class Commission {
         if (budget <= 0.0) {
             throw new IllegalArgumentException(UI.ErrorMessages.BUDGET_NOT_POSITIVE);
         }
-        if (style.isEmpty()) {
-            throw new IllegalArgumentException(UI.ErrorMessages.STYLE_EMPTY);
-        }
     }
 
     /**
-     * Gets the name of the of the user requesting th commission
+     * Gets the userid of the of the user requesting th commission
      * 
      * @precondition none
      * @postcondition none
      * 
-     * @return the name of the user
+     * @return the userId of the user
      */
-    public String getName() {
-        return this.name;
+    public int getUserId() {
+        return this.userId;
     }
 
     /**
@@ -91,20 +77,8 @@ public class Commission {
      * 
      * @return the style of the commission
      */
-    public String getStyle() {
+    public UI.Style getStyle() {
         return this.style;
-    }
-
-    /**
-     * Gets the size of the commission
-     * 
-     * @precondition none
-     * @postcondition none
-     * 
-     * @return the size of the commission
-     */
-    public String getSize() {
-        return this.size;
     }
 
     /**

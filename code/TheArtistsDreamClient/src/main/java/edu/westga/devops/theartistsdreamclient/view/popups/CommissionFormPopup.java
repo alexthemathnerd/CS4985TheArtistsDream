@@ -5,15 +5,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ComboBox;
 import javafx.event.ActionEvent;
-import java.io.File;
-import java.util.List;
-import java.util.ArrayList;
 import javafx.scene.Node;
 import javafx.stage.WindowEvent;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import edu.westga.devops.theartistsdreamclient.model.Commission;
+import edu.westga.devops.theartistsdreamclient.model.CommissionManager;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
+
 
 /**
  * The commission form class
@@ -24,19 +26,10 @@ import javafx.stage.Stage;
 public class CommissionFormPopup {
 
     @FXML
-    private VBox referencesLabel;
-
-    @FXML
-    private Label nameLabel;
-
-    @FXML
-    private TextField nameTextField;
-
-    @FXML
     private Label styleLabel;
 
     @FXML
-    private TextField styleTextField;
+    private ComboBox styleComboBox;
 
     @FXML
     private Label budgetLabel;
@@ -45,16 +38,7 @@ public class CommissionFormPopup {
     private TextField budgetTextField;
 
     @FXML
-    private Label sizelabel;
-
-    @FXML
-    private TextField sizeTextField;
-
-    @FXML
     private TextArea descriptionTextArea;
-
-    @FXML
-    private Button uploadFilesButton;
 
     @FXML
     private Button cancelButton;
@@ -62,17 +46,30 @@ public class CommissionFormPopup {
     @FXML
     private Button submitButton;
 
-    @FXML
-    private Label filesLabel;
-
+    private int userId;
     /**
      * Creates a new commission form popup
      * 
      * @precondition none
      * @postcondition none
      * 
+     * @param userId the userId of the user
+     * 
      */
-    public CommissionFormPopup() {}
+    public CommissionFormPopup(int userId) {
+        this.userId = userId;
+    }
+
+    @FXML
+    void initialize() {
+        this.styleComboBox.getItems().addAll(
+            UI.Style.ABSTRACT, 
+            UI.Style.MODERN, 
+            UI.Style.FANTASY, 
+            UI.Style.CHARCOAL, 
+            UI.Style.SURREALISM, 
+            UI.Style.MINIMALIST);
+    }
 
     @FXML
     void handleCancelButtonClick(ActionEvent event) {
@@ -84,10 +81,14 @@ public class CommissionFormPopup {
     @FXML
     void handleSubmitButtonClick(ActionEvent event) {
         try {
-            Commision newCommission = new Commission(this.nameTextField.getText(), this.styleTextField.getText(), Double.parseDouble(this.budgetTextField.getText()), this.sizeTextField.getText(), this.descriptionTextArea.getText());
+            Commission newCommission = new Commission(this.userId, (UI.Style) this.styleComboBox.getSelectionModel().getSelectedItem(), Double.parseDouble(this.budgetTextField.getText()), this.descriptionTextArea.getText());
+            CommissionManager.getCommissionManager().addCommission(newCommission);
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
+            currentStage.close();
         } catch (Exception e) {
             Alert alert = new Alert(AlertType.ERROR, e.getMessage());
-            alert.show(); 
+            alert.show();
         }
     }
 

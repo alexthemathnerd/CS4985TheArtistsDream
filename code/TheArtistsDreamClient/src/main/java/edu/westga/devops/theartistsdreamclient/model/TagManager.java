@@ -59,6 +59,4 @@ public abstract class TagManager implements Iterable<Tag> {
         }
         TagManager.tagManager = tagManager;
     }
-
-
 }

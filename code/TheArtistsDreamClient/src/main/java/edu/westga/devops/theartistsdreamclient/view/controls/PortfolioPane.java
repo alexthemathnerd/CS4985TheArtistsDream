@@ -178,7 +178,7 @@ public class PortfolioPane extends HBox {
     private void handleCommission(ActionEvent event) {
         try {
             Node mainFrame = this.getScene().getRoot();
-            Stage popup = PopupLoader.loadPopup("Commision Form", CommissionFormPopup.class.getResource("CommissionFormPopup.fxml"), new CommissionFormPopup(), (Parent) mainFrame);      
+            Stage popup = PopupLoader.loadPopup("Commision Form", CommissionFormPopup.class.getResource("CommissionFormPopup.fxml"), new CommissionFormPopup(this.userProperty.get().getUserId()), (Parent) mainFrame);      
             popup.show();
         } catch (IOException e) {
             throw new RuntimeException(e);

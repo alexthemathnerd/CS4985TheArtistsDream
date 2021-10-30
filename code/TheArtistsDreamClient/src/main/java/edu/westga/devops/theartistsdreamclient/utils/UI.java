@@ -9,6 +9,21 @@ package edu.westga.devops.theartistsdreamclient.utils;
 public class UI {
 
     /**
+    * The enum style
+    * 
+    * @author Jamia Echols
+    * @version Fall 2021
+    */
+    public enum Style {
+        ABSTRACT, 
+        MODERN, 
+        FANTASY, 
+        CHARCOAL, 
+        SURREALISM, 
+        MINIMALIST;
+    }
+
+    /**
      * The ServerCodes Enum that holds codes of method names to be used in the Server project
      *
      * @author Alexander Schmidt
@@ -79,6 +94,7 @@ public class UI {
         public static final String STYLE_EMPTY = "Style cannot be empty";
         public static final String SIZE_NULL = "Size cannot be null";
         public static final String SIZE_EMPTY = "Size cannot be empty";
+        public static final String INVALID_USERID = "Userid is invalid";
     }
 
     /**
