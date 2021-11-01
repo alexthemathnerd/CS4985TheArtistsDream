@@ -1,7 +1,12 @@
-package edu.westga.devops.theartistsdreamserver.tests.model;
+package edu.westga.devops.theartistsdreamserver.tests.model.artworkmanager;
 
+import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
+import edu.westga.devops.theartistsdreamserver.model.User;
+import edu.westga.devops.theartistsdreamserver.model.Artwork;
 import edu.westga.devops.theartistsdreamserver.model.ArtworkManager;
 import edu.westga.devops.theartistsdreamserver.utils.UI;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,6 +29,8 @@ public class TestGetNextTenArtworks {
 
 	@Test
 	void testIndexAndIdValidFormat() {
+		TheArtistsDreamServer.USERS.add(new User(0, "test@my.westga.edu", "test", "test123", new byte[0]));
+		TheArtistsDreamServer.ARTWORKS.add(new Artwork(new byte[0], "test", 1, new ArrayList<Integer>(), 0, "2021-10-10"));
 		assertNotNull(ArtworkManager.getNextTenArtworks(new Object[] {0.0, 0.0}).getData());
 	}
 

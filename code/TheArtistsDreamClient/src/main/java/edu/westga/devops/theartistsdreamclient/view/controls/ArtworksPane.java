@@ -2,25 +2,17 @@ package edu.westga.devops.theartistsdreamclient.view.controls;
 
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleListProperty;
+import edu.westga.devops.theartistsdreamclient.viewmodel.ArtworksPaneViewModel;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
-import javafx.fxml.FXMLLoader;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
-import javafx.scene.control.ScrollPane;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.TilePane;
 
-import javafx.event.ActionEvent;
-
 import java.io.IOException;
-
-import edu.westga.devops.theartistsdreamclient.viewmodel.ArtworksPaneViewModel;
 
 /**
  * The Controller for the Custom Control for the Artworks view of the application
@@ -31,19 +23,15 @@ import edu.westga.devops.theartistsdreamclient.viewmodel.ArtworksPaneViewModel;
 public class ArtworksPane extends ScrollPane {
 
     public static final String ARTWORKS_PANE_FXML = "ArtworksPane.fxml";
-
-    @FXML
-    private TilePane artworksTilePane;
-
-    @FXML
-    private Button viewMoreButton;
-
     private final ArtworksPaneViewModel viewModel;
-
     private final IntegerProperty userIdProperty;
     private final ListProperty<Tag> tagsToFilterListProperty;
     private final BooleanProperty onFollowingPageProperty;
     private final BooleanProperty onProfileProperty;
+    @FXML
+    private TilePane artworksTilePane;
+    @FXML
+    private Button viewMoreButton;
 
     /**
      * Initializes the FXML for the ArtworksPane control
@@ -56,8 +44,8 @@ public class ArtworksPane extends ScrollPane {
         try {
             this.tagsToFilterListProperty = new SimpleListProperty<Tag>(FXCollections.observableArrayList());
             this.userIdProperty = new SimpleIntegerProperty(-1);
-	        this.onFollowingPageProperty = new SimpleBooleanProperty(false);
-	        this.onProfileProperty = new SimpleBooleanProperty();
+            this.onFollowingPageProperty = new SimpleBooleanProperty(false);
+            this.onProfileProperty = new SimpleBooleanProperty();
             loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -104,10 +92,9 @@ public class ArtworksPane extends ScrollPane {
     /**
      * Gets the tags to filter list property
      *
+     * @return the tags to filter list property
      * @precondition none
      * @postcondition none
-     *
-     * @return the tags to filter list property
      */
     public ListProperty<Tag> tagsToFilterListProperty() {
         return this.tagsToFilterListProperty;
@@ -116,10 +103,9 @@ public class ArtworksPane extends ScrollPane {
     /**
      * Gets the userid property
      *
+     * @return the userid property
      * @precondition none
      * @postcondition none
-     *
-     * @return the userid property
      */
     public IntegerProperty userIdProperty() {
         return this.userIdProperty;
@@ -129,7 +115,6 @@ public class ArtworksPane extends ScrollPane {
      * Sets the userid property
      *
      * @param id the id to set the userid to
-     *
      * @precondition none
      * @postcondition userIdProperty().get() == id
      */
@@ -141,7 +126,6 @@ public class ArtworksPane extends ScrollPane {
      * Sets the on following page property
      *
      * @param onFollowingPage the value if the pane is on the following page
-     *
      * @precondition none
      * @postcondition none
      */
@@ -153,7 +137,6 @@ public class ArtworksPane extends ScrollPane {
      * Sets the on profile property
      *
      * @param onProfile the value of if the pane is on a profile page
-     *
      * @precondition none
      * @postcondition none
      */

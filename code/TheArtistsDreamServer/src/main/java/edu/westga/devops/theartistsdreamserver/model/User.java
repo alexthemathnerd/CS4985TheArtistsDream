@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class User {
 
-    private HashMap<Integer, ArrayList<ChatRecord>> messages;
+    private final HashMap<Integer, ArrayList<ChatRecord>> messages;
     private final int userId;
     private final String email;
     private final String username;
@@ -148,6 +148,7 @@ public class User {
     public ArrayList<ChatRecord> updateChat(int userId, ArrayList<ChatRecord> chat) {
         return this.messages.replace(userId, chat);
     }
+    
     public boolean addFollowing(int userId) {
         return this.followingIds.add(userId);
     }

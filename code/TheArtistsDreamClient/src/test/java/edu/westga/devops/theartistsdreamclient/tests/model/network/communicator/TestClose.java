@@ -1,7 +1,6 @@
 package edu.westga.devops.theartistsdreamclient.tests.model.network.communicator;
 
 import edu.westga.devops.theartistsdreamclient.model.network.Communicator;
-
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -14,11 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class TestClose {
 
-	@Test
-	void testClose() {
-		Communicator testCommunicator = new Communicator("tcp://localhost:4444");
-		testCommunicator.close();
-		assertTrue(testCommunicator.isClosed());
-	}
+    @Test
+    void testClose() {
+        Communicator testCommunicator = new Communicator("tcp://localhost:4444");
+        testCommunicator.close();
+        assertTrue(testCommunicator.isClosed());
+    }
 
 }

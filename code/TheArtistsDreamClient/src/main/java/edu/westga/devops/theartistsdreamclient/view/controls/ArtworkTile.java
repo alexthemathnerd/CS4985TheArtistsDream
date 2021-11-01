@@ -1,27 +1,24 @@
 package edu.westga.devops.theartistsdreamclient.view.controls;
 
+import edu.westga.devops.theartistsdreamclient.model.Artwork;
+import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.model.UserManager;
 import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
 import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
-import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.view.popups.ArtworkPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
-import edu.westga.devops.theartistsdreamclient.model.User;
-
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
-
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
-import javafx.scene.layout.VBox;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.Node;
-import javafx.scene.Parent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
 
 
 /**
@@ -66,11 +63,10 @@ public class ArtworkTile extends VBox {
     /**
      * Creates an ArtworkTile with a specified artwork
      *
+     * @param artwork   the artwork
+     * @param onProfile whether the artwork is on the profile
      * @precondition artwork != null
      * @postcondition none
-     * 
-     * @param artwork the artwork
-     * @param onProfile whether the artwork is on the profile
      */
     public ArtworkTile(Artwork artwork, boolean onProfile) {
         FXMLLoader loader = new FXMLLoader(Header.class.getResource(ARTWORK_TILE_FXML));
@@ -78,7 +74,7 @@ public class ArtworkTile extends VBox {
         loader.setController(this);
         try {
             this.currentArtwork = artwork;
-	        this.onProfile = onProfile;
+            this.onProfile = onProfile;
             loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -95,22 +91,22 @@ public class ArtworkTile extends VBox {
     @FXML
     void handleViewImage(MouseEvent event) {
         try {
-            Node mainFrame = ((Node) event.getSource()).getParent().getParent();
-            Stage popup = PopupLoader.loadPopup("Artwork", ArtworkPopup.class.getResource(ARTWORK_POPUP_FXML), new ArtworkPopup(this.currentArtwork, this.onProfile), (Parent) mainFrame);
+            Parent mainFrame = ((Node) event.getSource()).getParent().getParent();
+            Stage popup = PopupLoader.loadPopup("Artwork", ArtworkPopup.class.getResource(ARTWORK_POPUP_FXML), new ArtworkPopup(this.currentArtwork, this.onProfile), mainFrame);
             popup.setOnCloseRequest((event2) -> {
                 mainFrame.setEffect(null);
                 Object data = popup.getUserData();
                 if (data != null) {
                     try {
-			    int userId = (int) data;
-			    Stage currentStage = (Stage) this.getScene().getWindow();
-			    if (userId == User.getUser().getUserId()) {
-				    WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(User.getUser()), "Profile", false);
-			    } else {
-				    WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(UserManager.getUserManager().getUser(userId)), "Profile", false);
-			    }
-			    currentStage.setMaximized(true);
-		    } catch (IOException e) {
+                        int userId = (int) data;
+                        Stage currentStage = (Stage) this.getScene().getWindow();
+                        if (userId == User.getUser().getUserId()) {
+                            WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(User.getUser()), "Profile", false);
+                        } else {
+                            WindowLoader.changeScene(currentStage, "PortfolioPage.fxml", new PortfolioPage(UserManager.getUserManager().getUser(userId)), "Profile", false);
+                        }
+                        currentStage.setMaximized(true);
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }

@@ -1,57 +1,39 @@
 package edu.westga.devops.theartistsdreamserver.tests.model.usermanager;
 
 import edu.westga.devops.theartistsdreamserver.model.UserManager;
-import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
+import edu.westga.devops.theartistsdreamserver.utils.UI;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
- * Junit test class for the Find user method in the User Manager class
- * 
- * @author Jamia Echols
+ * JUnit Test Case for UserManager Method findUser
+ *
+ * @author Aznella Joseph
  * @version Fall 2021
+ *
  */
 public class TestFindUser {
-    @Test
-    void TestInvalidArgument() {
-        TheArtistsDreamServer.USERS.clear();
-		UserManager testManager = new UserManager();
-        Object[] param = new Object[]{null, null};
-		assertNull(testManager.findUser(param).getData());
-    }
 
-    @Test
-    void testFindUserOnEmptyManager() {
-        TheArtistsDreamServer.USERS.clear();
-		UserManager testManager = new UserManager();
-        Object[] param = new Object[]{"test","test"};
-		assertNull(testManager.findUser(param).getData());
+	@Test
+	void testInvalidFormat() {
+		assertEquals(UI.ErrorMessages.INVALID_FORMAT, UserManager.findUser(new Object[] {1, 1}).getError());
 	}
 
-    @Test
-    void testFindUserOnManagerWithOneUser() {
-        TheArtistsDreamServer.USERS.clear();
-		UserManager testManager = new UserManager();
-        Object[] user = new Object[]{"test", "test", "test"};
-        testManager.addUser(user);
-        Object[] param = new Object[]{"test", "test"};
-		assertNotNull(testManager.findUser(param).getData());
+	@Test
+	void testValidNotFound() {
+		UserManager.addUser(new Object[] {"test", "test123", "test@westga.edu"});
+		assertNull(UserManager.findUser(new Object[] {"test2", "test456"}).getData());
 	}
 
-    @Test
-    void testFindUserOnManagerWithMultipleUser() {
-        TheArtistsDreamServer.USERS.clear();
-		UserManager testManager = new UserManager();
-        Object[] user = new Object[]{"test", "test", "test"};
-        Object[] user1 = new Object[]{"test1", "test1", "test1"};
-        Object[] user2 = new Object[]{"test2", "test2", "test2"};
-        testManager.addUser(user);
-        testManager.addUser(user1);
-        testManager.addUser(user2);
-        Object[] param = new Object[]{"test1", "test1"};
-		assertNotNull(testManager.findUser(param).getData());
+	@Test
+	void testValidFound() {
+		UserManager.addUser(new Object[] {"test", "test123", "test@westga.edu"});
+		UserManager.addUser(new Object[] {"test2", "test456", "test2@westga.edu"});
+		assertNotNull(UserManager.findUser(new Object[] {"test2", "test456"}).getData());
 	}
+
 }

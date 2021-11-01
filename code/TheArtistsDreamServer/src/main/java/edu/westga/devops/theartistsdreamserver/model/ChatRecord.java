@@ -7,8 +7,8 @@ package edu.westga.devops.theartistsdreamserver.model;
  * @version Fall 2021
  */
 public class ChatRecord {
-    private int userId;
-    private String message;
+    private final int userId;
+    private final String message;
     
     /**
      * Creates a new chat record

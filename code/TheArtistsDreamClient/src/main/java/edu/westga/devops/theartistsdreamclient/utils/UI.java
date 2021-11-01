@@ -1,7 +1,7 @@
 package edu.westga.devops.theartistsdreamclient.utils;
 
 /**
- * The UI Class 
+ * The UI Class
  *
  * @author Alexander Schmidt
  * @version Fall 2021
@@ -37,7 +37,7 @@ public class UI {
         GET_USER,
         SEARCH_USERS,
         RETRIEVE_USER,
-	    FIND_USER,
+        FIND_USER,
         RETRIEVE_ARTWORK,
         SEARCH_ARTWORKS,
         GET_FIRST_FIFTY_ARTWORKS,
@@ -54,7 +54,7 @@ public class UI {
         UNFOLLOW_ARTIST,
         GET_FOLLOWERS,
         GET_FOLLOWINGS,
-        IS_FOLLOWING;
+        IS_FOLLOWING
     }
 
     /**
@@ -75,7 +75,7 @@ public class UI {
         public static final String COMMUNICATOR_NULL = "Communicator cannot be null";
         public static final String COMMUNICATOR_IS_CLOSED = "Communicator must be open";
         public static final String EMAIL_NULL = "Email cannot be null";
-        public static final String EMAIL_EMPTY = "Email connot be empty";
+        public static final String EMAIL_EMPTY = "Email cannot be empty";
         public static final String USERNAME_NULL = "User name cannot be null";
         public static final String USERNAME_EMPTY = "Username cannot be empty";
         public static final String PASSWORD_NULL = "Password cannot be null";

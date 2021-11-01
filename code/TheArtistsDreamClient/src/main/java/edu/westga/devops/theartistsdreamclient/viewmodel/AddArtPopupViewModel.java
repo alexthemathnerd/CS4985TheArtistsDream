@@ -1,8 +1,8 @@
 package edu.westga.devops.theartistsdreamclient.viewmodel;
 
-import edu.westga.devops.theartistsdreamclient.model.User;
-import edu.westga.devops.theartistsdreamclient.model.TagManager;
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
+import edu.westga.devops.theartistsdreamclient.model.TagManager;
+import edu.westga.devops.theartistsdreamclient.model.User;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -23,7 +23,6 @@ import java.util.List;
  *
  * @author Alexander Schmidt
  * @version Fall 2021
- *
  */
 public class AddArtPopupViewModel {
 
@@ -36,7 +35,6 @@ public class AddArtPopupViewModel {
      *
      * @precondition none
      * @postcondition imageProperty() != null && titleProperty().get() == "" && tagsProperty().get() == ""
-     *
      */
     public AddArtPopupViewModel() {
         this.imageProperty = new SimpleObjectProperty<>();
@@ -61,34 +59,33 @@ public class AddArtPopupViewModel {
      *
      * @precondition none
      * @postcondition none
-     *
      */
     public void addArt() {
+        byte[] buffer = this.parseImage();
+        ArtworkManager.getArtworkManager().addArtwork(buffer, this.titleProperty.get(), User.getUser().getUserId(), this.addTags(), LocalDate.now().toString());
+    }
+
+    private byte[] parseImage() {
         Image image = this.imageProperty.get();
         BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
         try (ByteArrayOutputStream byteArrayInputStream = new ByteArrayOutputStream()) {
-            if (image.getUrl().matches(".\\.jpg")) {
+            if (image.getUrl().matches(".+\\.(jpg|jpeg)$")) {
                 ImageIO.write(bufferedImage, "jpeg", byteArrayInputStream);
             } else {
                 ImageIO.write(bufferedImage, "png", byteArrayInputStream);
             }
-            byte[] buffer = byteArrayInputStream.toByteArray();
-            ArtworkManager.getArtworkManager().addArtwork(buffer, this.titleProperty.get(), User.getUser().getUserId(), this.addTags(), LocalDate.now().toString());
+            return byteArrayInputStream.toByteArray();
         } catch (IOException e) {
-            e.printStackTrace();
+            return null;
         }
-
-
     }
 
     /**
      * Gets the titleProperty
      *
+     * @return the title property
      * @precondition none
      * @postcondition none
-     *
-     * @return the title property
-     *
      */
     public StringProperty titleProperty() {
         return this.titleProperty;
@@ -97,10 +94,9 @@ public class AddArtPopupViewModel {
     /**
      * gets the tagsProperty
      *
+     * @return the tagsProperty
      * @precondition none
      * @postcondition none
-     *
-     * @return the tagsProperty
      */
     public StringProperty tagsProperty() {
         return this.tagsProperty;
@@ -109,10 +105,9 @@ public class AddArtPopupViewModel {
     /**
      * Gets the imageProperty
      *
+     * @return the imageProperty
      * @precondition none
      * @postcondition none
-     *
-     * @return the imageProperty
      */
     public ObjectProperty<Image> imageProperty() {
         return this.imageProperty;

@@ -1,0 +1,23 @@
+on: 
+ push:
+  branches: [development]
+jobs:
+ test:
+  runs-on: windows-latest
+  steps:
+  - name: Step 1 - Check out branch from Github
+    uses: actions/checkout@v2
+  - name: Step 2 - Set up JDK
+    uses: actions/setup-java@v1
+    with:
+     java-version: 16
+     distribution: adopt
+  - name: Step 3 - Test Client and Server with Maven
+    run: |
+     echo TESTING CLIENT
+     cd code/TheArtistsDreamClient || exit 255
+     mvn --batch-mode --update-snapshots clean verify
+     cd ../TheArtistsDreamServer || exit 255
+     echo TESTING SERVER
+     mvn --batch-mode --update-snapshots clean verify
+     cd ../..

@@ -1,4 +1,4 @@
-package edu.westga.devops.theartistsdreamserver.tests.model;
+package edu.westga.devops.theartistsdreamserver.tests.model.artwork;
 
 import edu.westga.devops.theartistsdreamserver.model.Artwork;
 
@@ -56,7 +56,7 @@ public class TestConstructor {
 	}
 
 	@Test
-	void testValidConstructorWithByteArray() {
+	void testValidConstructor() {
 		Artwork testArtwork = new Artwork(new byte[0], "title", 0, new ArrayList<Integer>(), 1, "2020-01-01");
 
 		assertAll(() -> assertNotNull(testArtwork.getImageData()), () -> assertEquals("title", testArtwork.getTitle()), () -> assertEquals(0, testArtwork.getArtistID()), () -> assertEquals(0, testArtwork.getTagIDs().size()), () -> assertEquals(1, testArtwork.getID()), () -> assertEquals("2020-01-01", testArtwork.getDate()));

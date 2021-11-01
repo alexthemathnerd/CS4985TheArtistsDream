@@ -12,12 +12,12 @@ import java.time.LocalDate;
  */
 public class Artwork implements Comparable<Artwork> {
 
-	private byte[] imageData;
+	private final byte[] imageData;
 	private String title;
-	private int artistID;
+	private final int artistID;
 	private List<Integer> tagIDs;
-	private int id;
-	private String date;
+	private final int id;
+	private final String date;
 
 	/**
 	 * Creates a new Artwork

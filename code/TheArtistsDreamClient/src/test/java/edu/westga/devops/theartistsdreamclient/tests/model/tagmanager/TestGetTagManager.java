@@ -2,11 +2,10 @@ package edu.westga.devops.theartistsdreamclient.tests.model.tagmanager;
 
 import edu.westga.devops.theartistsdreamclient.model.TagManager;
 import edu.westga.devops.theartistsdreamclient.model.local.LocalTagManager;
-
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * JUnit Test Case for User Method getUser
@@ -16,15 +15,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  */
 public class TestGetTagManager {
 
-        @Test
-        void testNull() {
-                assertNull(TagManager.getTagManager());
-        }
+    @Test
+    void testNull() {
+        assertNull(TagManager.getTagManager());
+    }
 
-        @Test
-        void testNotNull() {
-                TagManager.setTagManager(new LocalTagManager());
-                assertNotNull(TagManager.getTagManager());
-        }
+    @Test
+    void testNotNull() {
+        TagManager.setTagManager(new LocalTagManager());
+        assertNotNull(TagManager.getTagManager());
+    }
 }
 
