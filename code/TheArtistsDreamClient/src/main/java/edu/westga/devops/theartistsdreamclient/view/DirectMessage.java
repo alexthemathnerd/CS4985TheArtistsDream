@@ -90,7 +90,7 @@ public class DirectMessage {
             final var rowSpan = 1;
 
             final VBox vBox = getVBox(username, messageFlow);
-            chatGridPane.add(vBox, columnIndex, rowIndex, columnSpan, rowSpan);
+            this.chatGridPane.add(vBox, columnIndex, rowIndex, columnSpan, rowSpan);
         });
     }
 

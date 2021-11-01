@@ -42,7 +42,7 @@ public class NetworkArtworkManager extends ArtworkManager {
      */
     public NetworkArtworkManager(Communicator communicator) {
         if (communicator == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(UI.ErrorMessages.COMMUNICATOR_NULL);
         }
         this.communicator = communicator;
     }

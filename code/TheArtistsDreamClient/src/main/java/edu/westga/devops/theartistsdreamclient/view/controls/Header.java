@@ -24,7 +24,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.*;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -54,16 +59,22 @@ public class Header extends HBox {
     private static final String IN_SEARCH_OF_PAGE_FXML = "InSearchOfPage.fxml";
     private final ListProperty<Tag> tagsToFilterListProperty;
     private final HeaderViewModel viewModel;
+
     @FXML
     private ComboBox searchComboBox;
+
     @FXML
     private MenuButton navMenuButton;
+
     @FXML
     private MenuItem recommendedMenuItem;
+
     @FXML
     private MenuItem followingMenuItem;
+
     @FXML
     private MenuItem inSearchOfMenuItem;
+
     @FXML
     private Button profileButton;
 

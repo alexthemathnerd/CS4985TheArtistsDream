@@ -1,6 +1,7 @@
 package edu.westga.devops.theartistsdreamclient.model;
 
 import javafx.scene.image.Image;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
 
 import java.io.ByteArrayInputStream;
 import java.util.List;
@@ -37,20 +38,36 @@ public class Artwork {
      * getID == id && getDate() == date
      */
     public Artwork(Image image, String title, int artistID, List<Integer> tagIDs, int id, String date) {
-        if (image == null) throw new IllegalArgumentException();
-        if (title == null) throw new IllegalArgumentException();
-        if (title.isEmpty()) throw new IllegalArgumentException();
-        if (artistID < 0) throw new IllegalArgumentException();
-        if (tagIDs == null) throw new IllegalArgumentException();
-        if (id < 0) throw new IllegalArgumentException();
-        if (date == null) throw new IllegalArgumentException();
-        if (date.isEmpty()) throw new IllegalArgumentException();
-        this.image = image;
-        this.title = title;
-        this.artistID = artistID;
-        this.tagIDs = tagIDs;
-        this.id = id;
-        this.date = date;
+	    if (image == null) {
+		    throw new IllegalArgumentException(UI.ErrorMessages.IMAGE_NULL);
+	    }
+	    if (title == null) {
+		    throw new IllegalArgumentException(UI.ErrorMessages.TITLE_NULL);
+	    }
+	    if (title.isEmpty()) {
+		    throw new IllegalArgumentException(UI.ErrorMessages.TITLE_EMPTY);
+	    }
+	    if (artistID < 0) {
+		    throw new IllegalArgumentException(UI.ErrorMessages.NEGATIVE_ID);
+	    }
+	    if (tagIDs == null) {
+		    throw new IllegalArgumentException(UI.ErrorMessages.TAG_IDS_NULL);
+	    }
+	    if (id < 0) {
+		    throw new IllegalArgumentException(UI.ErrorMessages.NEGATIVE_ID);
+	    }
+	    if (date == null) {
+		    throw new IllegalArgumentException(UI.ErrorMessages.DATE_NULL);
+	    }
+	    if (date.isEmpty()) {
+		    throw new IllegalArgumentException(UI.ErrorMessages.DATE_EMPTY);
+	    }
+	    this.image = image;
+	    this.title = title;
+	    this.artistID = artistID;
+	    this.tagIDs = tagIDs;
+	    this.id = id;
+	    this.date = date;
     }
 
     /**
@@ -69,20 +86,36 @@ public class Artwork {
      * getID == id && getDate() == date
      */
     public Artwork(byte[] imageData, String title, int artistID, List<Integer> tagIDs, int id, String date) {
-        if (imageData == null) throw new IllegalArgumentException();
-        if (title == null) throw new IllegalArgumentException();
-        if (title.isEmpty()) throw new IllegalArgumentException();
-        if (artistID < 0) throw new IllegalArgumentException();
-        if (tagIDs == null) throw new IllegalArgumentException();
-        if (id < 0) throw new IllegalArgumentException();
-        if (date == null) throw new IllegalArgumentException();
-        if (date.isEmpty()) throw new IllegalArgumentException();
-        this.imageData = imageData;
-        this.title = title;
-        this.artistID = artistID;
-        this.tagIDs = tagIDs;
-        this.id = id;
-        this.date = date;
+	    if (imageData == null) {
+		    throw new IllegalArgumentException(UI.ErrorMessages.IMAGE_DATA_NULL);
+	    }
+	    if (title == null) {
+		    throw new IllegalArgumentException(UI.ErrorMessages.TITLE_NULL);
+	    }
+	    if (title.isEmpty()) {
+		    throw new IllegalArgumentException(UI.ErrorMessages.TITLE_EMPTY);
+	    }
+	    if (artistID < 0) {
+		    throw new IllegalArgumentException(UI.ErrorMessages.NEGATIVE_ID);
+	    }
+	    if (tagIDs == null) {
+		    throw new IllegalArgumentException(UI.ErrorMessages.TAG_IDS_NULL);
+	    }
+	    if (id < 0) {
+		    throw new IllegalArgumentException(UI.ErrorMessages.NEGATIVE_ID);
+	    }
+	    if (date == null) {
+		    throw new IllegalArgumentException(UI.ErrorMessages.DATE_NULL);
+	    }
+	    if (date.isEmpty()) {
+		    throw new IllegalArgumentException(UI.ErrorMessages.DATE_EMPTY);
+	    }
+	    this.imageData = imageData;
+	    this.title = title;
+	    this.artistID = artistID;
+	    this.tagIDs = tagIDs;
+	    this.id = id;
+	    this.date = date;
     }
 
     /**
@@ -93,8 +126,10 @@ public class Artwork {
      * @postcondition none
      */
     public Image getImage() {
-        if (image == null) return new Image(new ByteArrayInputStream(imageData));
-        return this.image;
+	    if (this.image == null) {
+		    return new Image(new ByteArrayInputStream(this.imageData));
+	    }
+	    return this.image;
     }
 
     /**
@@ -117,10 +152,10 @@ public class Artwork {
      */
     public void setTitle(String newTitle) {
         if (newTitle == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(UI.ErrorMessages.TITLE_NULL);
         }
         if (newTitle.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(UI.ErrorMessages.TITLE_EMPTY);
         }
         this.title = newTitle;
     }
@@ -178,7 +213,7 @@ public class Artwork {
      */
     public void setTags(List<Integer> newTagIDs) {
         if (newTagIDs == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(UI.ErrorMessages.TAG_IDS_NULL);
         }
         this.tagIDs = newTagIDs;
     }

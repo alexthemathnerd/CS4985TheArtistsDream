@@ -52,4 +52,10 @@ public class TagButton extends ToggleButton {
         }
         return false;
     }
+
+    @Override
+    public int hashCode() {
+	    return this.tagProperty.get().hashCode();
+    }
+
 }

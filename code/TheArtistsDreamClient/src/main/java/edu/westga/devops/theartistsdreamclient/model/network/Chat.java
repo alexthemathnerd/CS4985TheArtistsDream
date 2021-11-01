@@ -29,6 +29,8 @@ public class Chat {
     /**
      * Creates a new chat (Use only for tests)
      *
+     * @param communicator the communicator to use
+     *
      * @precondition none
      * @postcondition none
      */

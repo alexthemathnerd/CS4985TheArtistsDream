@@ -23,6 +23,8 @@ public class ArtworkPopupViewModel {
     /**
      * Creates a new ArtworkPopupViewModel with the specified artwork
      *
+     * @param artwork the artwork being displayed in the popup
+     *
      * @precondition none
      * @postcondition getArtwork() == artwork && titleProperty().get() == artwork.getTitle()
      */

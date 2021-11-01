@@ -1,6 +1,7 @@
 package edu.westga.devops.theartistsdreamclient.model;
 
 import edu.westga.devops.theartistsdreamclient.model.local.LocalTagManager;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,24 +24,25 @@ public class FilterManager {
      * @postcondition none
      */
     public static List<Tag> filterTagsByName(TagManager tagManager, String content) {
-        if (tagManager == null) {
-            throw new IllegalArgumentException();
-        }
-        if (content == null) {
-            throw new IllegalArgumentException();
-        }
-        List<Tag> filteredTags = new ArrayList<Tag>();
-        if (content.isEmpty()) {
-            return filteredTags;
-        }
-        if (tagManager instanceof LocalTagManager localTagManager) {
-            for (Tag aTag : localTagManager) {
-                if (aTag.getName().contains(content.toLowerCase())) {
-                    filteredTags.add(aTag);
-                }
-            }
-            return filteredTags;
-        }
+	    if (tagManager == null) {
+		    throw new IllegalArgumentException(UI.ErrorMessages.TAG_MANAGER_NULL);
+	    }
+	    if (content == null) {
+		    throw new IllegalArgumentException(UI.ErrorMessages.CONTENT_NULL);
+	    }
+	    List<Tag> filteredTags = new ArrayList<Tag>();
+	    if (content.isEmpty()) {
+		    return filteredTags;
+	    }
+	    if (tagManager instanceof LocalTagManager) {
+		    LocalTagManager localTagManager = (LocalTagManager) tagManager;
+		    for (Tag aTag : localTagManager) {
+			    if (aTag.getName().contains(content.toLowerCase())) {
+				    filteredTags.add(aTag);
+			    }
+		    }
+		    return filteredTags;
+	    }
         return null;
     }
 

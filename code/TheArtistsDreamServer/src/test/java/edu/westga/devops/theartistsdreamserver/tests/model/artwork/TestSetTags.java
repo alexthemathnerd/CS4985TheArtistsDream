@@ -1,6 +1,7 @@
 package edu.westga.devops.theartistsdreamserver.tests.model.artwork;
 
 import edu.westga.devops.theartistsdreamserver.model.Artwork;
+import edu.westga.devops.theartistsdreamserver.utils.UI;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +23,7 @@ public class TestSetTags {
 	@Test
 	void testNewTagsInInvalidFormat() {
 		Artwork testArtwork = new Artwork(new byte[0], "title", 0, new ArrayList<Integer>(), 1, "2020-01-01");
-		assertEquals("Invalid Format", testArtwork.setTags(new Object[]{1, 2}).getError());
+		assertEquals(UI.ErrorMessages.INVALID_FORMAT, testArtwork.setTags(new Object[]{1, 2}).getError());
 	}
 
 	@Test

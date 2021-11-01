@@ -22,6 +22,8 @@ public class WindowLoader {
      * @param fxmlOfNewWindow the fxml of new window
      * @param controller      the controller
      * @param newWindowTitle  the new window title
+     * @param isMaximized  the value of if the loaded window should be maximized
+     *
      * @throws IOException Signals that an I/O exception has occurred.
      */
     public static void changeScene(Stage currentStage, String fxmlOfNewWindow, Object controller, String newWindowTitle, boolean isMaximized)

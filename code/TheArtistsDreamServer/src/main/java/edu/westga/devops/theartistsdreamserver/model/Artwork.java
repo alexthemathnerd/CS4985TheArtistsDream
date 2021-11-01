@@ -3,6 +3,8 @@ package edu.westga.devops.theartistsdreamserver.model;
 import java.util.List;
 import java.time.LocalDate;
 
+import edu.westga.devops.theartistsdreamserver.utils.UI;
+
 /**
  * Model Class Artwork
  *
@@ -154,7 +156,7 @@ public class Artwork implements Comparable<Artwork> {
 	    try {
 		    newTagIDs = (List<Integer>) data[0];
 	    } catch (ClassCastException e) {
-		    return new Request("Invalid Format");
+		    return new Request(UI.ErrorMessages.INVALID_FORMAT);
 	    }
 	    this.tagIDs = newTagIDs;
 	    return new Request(this.tagIDs);
@@ -176,7 +178,7 @@ public class Artwork implements Comparable<Artwork> {
 	    try {
 		    newTitle = (String) data[0];
 	    } catch (ClassCastException e) {
-		    return new Request("Invalid Format");
+		    return new Request(UI.ErrorMessages.INVALID_FORMAT);
 	    }
 
 	    this.title = newTitle;

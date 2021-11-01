@@ -5,7 +5,6 @@ import edu.westga.devops.theartistsdreamserver.model.Chat;
 import edu.westga.devops.theartistsdreamserver.model.TagManager;
 import edu.westga.devops.theartistsdreamserver.model.UserManager;
 import edu.westga.devops.theartistsdreamserver.model.ArtworkManager;
-import edu.westga.devops.theartistsdreamserver.model.*;
 
 /**
  * UI Class
@@ -85,16 +84,15 @@ public class UI {
      * @version Fall 2021
      */
     public static class ErrorMessages {
-
-        public static final String SERVER_START = "server failed to start check address";
-        public static final String SERVER_CLOSED = "server already closed";
-        public static final String CODE_NULL = "server code cannot be null";
-        public static final String INVALID_FORMAT = "Invalid format";
-        public static final String ARTWORK_NOT_FOUND = "Artwork not found";
-        public static final String USER_EXISTS = "User already exists";
-        public static final String USER_NOT_FOUND = "User not found";
-	public static final String NEGATIVE_ID = "Id cannot be negative";
-	public static final String TAG_NAME_NULL = "Tag name cannot be null";
-	public static final String TAG_NAME_EMPTY = "Tag name cannot be empty";
+	    public static final String SERVER_START = "server failed to start check address";
+	    public static final String SERVER_CLOSED = "server already closed";
+	    public static final String CODE_NULL = "server code cannot be null";
+	    public static final String INVALID_FORMAT = "Invalid format";
+	    public static final String ARTWORK_NOT_FOUND = "Artwork not found";
+	    public static final String USER_EXISTS = "User already exists";
+	    public static final String USER_NOT_FOUND = "User not found";
+	    public static final String NEGATIVE_ID = "Id cannot be negative";
+	    public static final String TAG_NAME_NULL = "Tag name cannot be null";
+	    public static final String TAG_NAME_EMPTY = "Tag name cannot be empty";
     }
 }

@@ -78,23 +78,8 @@ public class PortfolioPane extends HBox {
 
     @FXML
     private void initialize() {
-        this.followToggleButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) {
-                this.followToggleButton.setText("FOLLOW");
-            } else {
-                this.followToggleButton.setText("FOLLOWING");
-            }
-        });
-        this.followToggleButton.hoverProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue && this.followToggleButton.isSelected()) {
-                this.followToggleButton.setText("UNFOLLOW");
-            } else if (!newValue && this.followToggleButton.isSelected()) {
-                this.followToggleButton.setText("FOLLOWING");
-            } else {
-                this.followToggleButton.setText("FOLLOW");
-            }
-        });
-        this.userProperty.addListener((observable, oldValue, newValue) -> {
+	    this.createToggleButtonListeners();
+	    this.userProperty.addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 if (newValue.equals(User.getUser())) {
                     this.followToggleButton.setVisible(false);
@@ -119,6 +104,26 @@ public class PortfolioPane extends HBox {
                 this.profileImage.setImage(new Image(new ByteArrayInputStream(this.userProperty.get().getProfilePic())));
                 this.profileImage.setClip(new Circle(75, 75, 75));
                 this.followToggleButton.setSelected(UserManager.getUserManager().isFollowing(User.getUser().getUserId(), this.userProperty.get().getUserId()));
+            }
+        });
+    }
+
+    @FXML
+    private void createToggleButtonListeners() {
+	    this.followToggleButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
+		    if (!newValue) {
+			    this.followToggleButton.setText("FOLLOW");
+		    } else {
+			    this.followToggleButton.setText("FOLLOWING");
+		    }
+	    });
+        this.followToggleButton.hoverProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue && this.followToggleButton.isSelected()) {
+                this.followToggleButton.setText("UNFOLLOW");
+            } else if (!newValue && this.followToggleButton.isSelected()) {
+                this.followToggleButton.setText("FOLLOWING");
+            } else {
+                this.followToggleButton.setText("FOLLOW");
             }
         });
     }
@@ -185,6 +190,13 @@ public class PortfolioPane extends HBox {
         this.userProperty.set(user);
     }
 
+    /**
+     * Sets the is following property of the portfolio pane
+     *
+     * @param following the value of the following property
+     * @precondition none
+     * @postcondition none
+     */
     public void setIsFollowing(boolean following) {
         this.isFollowing.set(following);
     }

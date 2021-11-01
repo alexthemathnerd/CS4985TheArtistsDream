@@ -1,6 +1,7 @@
 package edu.westga.devops.theartistsdreamclient.model;
 
 import java.util.Objects;
+import edu.westga.devops.theartistsdreamclient.utils.UI;
 
 /**
  * A data class for a Tag
@@ -25,13 +26,13 @@ public class Tag implements Comparable<Tag> {
      */
     public Tag(int id, String name) {
         if (id < 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(UI.ErrorMessages.NEGATIVE_ID);
         }
         if (name == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(UI.ErrorMessages.TAG_NAME_NULL);
         }
         if (name.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(UI.ErrorMessages.TAG_NAME_EMPTY);
         }
         this.id = id;
         this.name = name;
@@ -50,17 +51,16 @@ public class Tag implements Comparable<Tag> {
      */
     public Tag(int id, String name, int useCount) {
         if (id < 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(UI.ErrorMessages.NEGATIVE_ID);
         }
         if (name == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(UI.ErrorMessages.TAG_NAME_NULL);
         }
         if (name.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(UI.ErrorMessages.TAG_NAME_EMPTY);
         }
-
         if (useCount < 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(UI.ErrorMessages.NEGATIVE_USE_COUNT);
         }
         this.id = id;
         this.name = name;
@@ -112,21 +112,21 @@ public class Tag implements Comparable<Tag> {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Tag tag) {
-            return this.getId() == tag.getId();
+        if (obj instanceof Tag) {
+            return this.getId() == ((Tag) obj).getId();
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, useCount);
+        return Objects.hash(this.id, this.name, this.useCount);
     }
 
     @Override
     public int compareTo(Tag otherTag) {
         if (otherTag == null) {
-            throw new NullPointerException();
+            throw new NullPointerException(UI.ErrorMessages.TAG_NULL);
         }
         int result = otherTag.getUseCount() - this.useCount;
 

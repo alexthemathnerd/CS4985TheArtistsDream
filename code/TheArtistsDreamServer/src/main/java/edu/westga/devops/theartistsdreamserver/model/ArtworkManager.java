@@ -4,7 +4,6 @@ import com.google.gson.internal.LinkedTreeMap;
 import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
 import edu.westga.devops.theartistsdreamserver.utils.UI;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
@@ -150,19 +149,18 @@ public class ArtworkManager {
      * @param data the objects data
      */
     public static Request getArtwork(Object[] data) {
-        int id;
-        try {
-            id = (Integer) data[0];
-	    for (Artwork artwork : TheArtistsDreamServer.ARTWORKS) {
-                if (artwork.getID() == id) {
-                    return new Request(artwork);
-                }
+	    int id;
+	    try {
+		    id = (Integer) data[0];
+		    for (Artwork artwork : TheArtistsDreamServer.ARTWORKS) {
+			    if (artwork.getID() == id) {
+				    return new Request(artwork);
+			    }
+		    }
+	    } catch (ClassCastException e) {
+		    return new Request(UI.ErrorMessages.INVALID_FORMAT);
 	    }
-        } catch (ClassCastException e) {
-            return new Request(UI.ErrorMessages.INVALID_FORMAT);
-        }
-
-        return new Request(UI.ErrorMessages.ARTWORK_NOT_FOUND);
+	    return new Request(UI.ErrorMessages.ARTWORK_NOT_FOUND);
     }
 
     /**
@@ -176,30 +174,30 @@ public class ArtworkManager {
      * @param data the objects data
      */
     public static Request addArtwork(Object[] data) {
-        byte[] imageBytes;
-        String title;
-        int artistID;
-        List<Integer> tagIDs;
-        String date;
-        try {
-            ArrayList<Double> bytes = (ArrayList<Double>) data[0];
-            imageBytes = new byte[bytes.size()];
-            int count = 0;
-            for (Double aDouble: bytes) {
-                imageBytes[count] = aDouble.byteValue();
-                count++;
-            }
-            title = (String) data[1];
-            artistID = ((Double) data[2]).intValue();
-            tagIDs = (List<Integer>) data[3];
-            date = (String) data[4];
-        } catch (ClassCastException e) {
-            return new Request(e.getMessage());
-        }
-        Artwork newArtwork = new Artwork(imageBytes, title, artistID, tagIDs, TheArtistsDreamServer.ARTWORKS.size(), date);
-        boolean isAdded = TheArtistsDreamServer.ARTWORKS.add(newArtwork);
-        Collections.sort(TheArtistsDreamServer.ARTWORKS);
-        return new Request(isAdded);
+	    byte[] imageBytes;
+	    String title;
+	    int artistID;
+	    List<Integer> tagIDs;
+	    String date;
+	    try {
+		    ArrayList<Double> bytes = (ArrayList<Double>) data[0];
+		    imageBytes = new byte[bytes.size()];
+		    int count = 0;
+		    for (Double aDouble: bytes) {
+			    imageBytes[count] = aDouble.byteValue();
+			    count++;
+		    }
+		    title = (String) data[1];
+		    artistID = ((Double) data[2]).intValue();
+		    tagIDs = (List<Integer>) data[3];
+		    date = (String) data[4];
+	    } catch (ClassCastException e) {
+		    return new Request(e.getMessage());
+	    }
+	    Artwork newArtwork = new Artwork(imageBytes, title, artistID, tagIDs, TheArtistsDreamServer.ARTWORKS.size(), date);
+	    boolean isAdded = TheArtistsDreamServer.ARTWORKS.add(newArtwork);
+	    Collections.sort(TheArtistsDreamServer.ARTWORKS);
+	    return new Request(isAdded);
     }
 
     /**

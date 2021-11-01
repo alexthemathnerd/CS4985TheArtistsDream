@@ -76,45 +76,35 @@ public class TheArtistsDreamServer {
     }
 
     private static void setupFakeTagData() {
-        Tag pop = new Tag(0, "pop");
-        pop.incrementUseCount();
-        pop.incrementUseCount();
-        pop.incrementUseCount();
-        pop.incrementUseCount();
-        pop.incrementUseCount();
-        TAGS.add(pop);
-        Tag green = new Tag(1, "green");
-        green.incrementUseCount();
-        green.incrementUseCount();
-        green.incrementUseCount();
-        TAGS.add(green);
-        Tag oil = new Tag(2, "oil");
-        oil.incrementUseCount();
-        TAGS.add(oil);
-        Tag sad = new Tag(3, "sad");
-        sad.incrementUseCount();
-        sad.incrementUseCount();
-        TAGS.add(sad);
-        Tag happy = new Tag(4, "happy");
-        TAGS.add(happy);
-        Tag nature = new Tag(5, "nature");
-        TAGS.add(nature);
-        Tag animals = new Tag(6, "animals");
-        TAGS.add(animals);
-        Tag portrait = new Tag(7, "portrait");
-        TAGS.add(portrait);
-        Tag landscapes = new Tag(8, "landscapes");
-        TAGS.add(landscapes);
-        Tag abst = new Tag(9, "abstract");
-        TAGS.add(abst);
-        Tag threeD = new Tag(10, "3d");
-        TAGS.add(threeD);
-        Tag sciFi = new Tag(11, "sci-fi");
-        TAGS.add(sciFi);
-        Tag material = new Tag(12, "material");
-        TAGS.add(material);
-        Tag contemporary = new Tag(13, "contemporary");
-        TAGS.add(contemporary);
+	    Tag pop = new Tag(0, "pop");
+	    pop.incrementUseCount();
+	    pop.incrementUseCount();
+	    pop.incrementUseCount();
+	    pop.incrementUseCount();
+	    pop.incrementUseCount();
+	    TAGS.add(pop);
+	    Tag green = new Tag(1, "green");
+	    green.incrementUseCount();
+	    green.incrementUseCount();
+	    green.incrementUseCount();
+	    TAGS.add(green);
+	    Tag oil = new Tag(2, "oil");
+	    oil.incrementUseCount();
+	    TAGS.add(oil);
+	    Tag sad = new Tag(3, "sad");
+	    sad.incrementUseCount();
+	    sad.incrementUseCount();
+	    TAGS.add(sad);
+	    TAGS.add(new Tag(4, "happy"));
+	    TAGS.add(new Tag(5, "nature"));
+	    TAGS.add(new Tag(6, "animals"));
+	    TAGS.add(new Tag(7, "portrait"));
+	    TAGS.add(new Tag(8, "landscapes"));
+	    TAGS.add(new Tag(9, "abstract"));
+	    TAGS.add(new Tag(10, "3d"));
+	    TAGS.add(new Tag(11, "sci-fi"));
+	    TAGS.add(new Tag(12, "material"));
+	    TAGS.add(new Tag(13, "contemporary"));
     }
 
     private static void setupFakeArtworkData() {
