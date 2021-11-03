@@ -13,14 +13,17 @@ public abstract class CommissionManager implements Iterable<Commission> {
     /**
      * Adds a Commission to the Commission manager and returns it's id.
      *
-     * @param commission the commission to be added
+     * @param userId the id of the user wanting the commission
+     * @param style the style the user wants the commission done in
+     * @param description the description of what the user wants
+     * @param budget the budget the user wants to stay in
      * 
      * @precondition commisison != null 
      * @postcondition none
      * 
      * @return the id of the added commission
      */
-    public abstract int addCommission(Commission commission);
+    public abstract int addCommission(int userId, Style style, double budget, String description, String title);
 
     /**
      * Gets the singleton of the commission manager

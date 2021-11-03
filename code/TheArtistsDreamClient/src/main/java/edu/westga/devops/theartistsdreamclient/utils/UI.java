@@ -9,21 +9,6 @@ package edu.westga.devops.theartistsdreamclient.utils;
 public class UI {
 
     /**
-    * The enum style
-    * 
-    * @author Jamia Echols
-    * @version Fall 2021
-    */
-    public enum Style {
-        ABSTRACT, 
-        MODERN, 
-        FANTASY, 
-        CHARCOAL, 
-        SURREALISM, 
-        MINIMALIST;
-    }
-
-    /**
      * The ServerCodes Enum that holds codes of method names to be used in the Server project
      *
      * @author Alexander Schmidt

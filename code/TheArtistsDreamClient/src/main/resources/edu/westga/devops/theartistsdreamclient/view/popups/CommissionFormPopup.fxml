@@ -17,6 +17,8 @@
          <children>
             <VBox prefHeight="432.0" prefWidth="372.0" spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
+                  <Label fx:id="titleLabel" text="Title" />
+                  <TextField fx:id="titleTextField" />
                   <Label fx:id="styleLabel" prefHeight="22.0" prefWidth="32.0" text="Style:" />
                   <ComboBox fx:id="styleComboBox" prefHeight="25.0" prefWidth="491.0" promptText="SELECT STYLE" />
                   <Label fx:id="budgetLabel" text="Budget:" />

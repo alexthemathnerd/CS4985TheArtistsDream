@@ -13,6 +13,7 @@ import javafx.scene.Node;
 import javafx.stage.WindowEvent;
 import javafx.stage.Stage;
 import edu.westga.devops.theartistsdreamclient.model.Commission;
+import edu.westga.devops.theartistsdreamclient.model.Style;
 import edu.westga.devops.theartistsdreamclient.model.CommissionManager;
 import edu.westga.devops.theartistsdreamclient.utils.UI;
 
@@ -46,6 +47,9 @@ public class CommissionFormPopup {
     @FXML
     private Button submitButton;
 
+    @FXML
+    private TextField titleTextField;
+
     private int userId;
     /**
      * Creates a new commission form popup
@@ -63,12 +67,12 @@ public class CommissionFormPopup {
     @FXML
     void initialize() {
         this.styleComboBox.getItems().addAll(
-            UI.Style.ABSTRACT, 
-            UI.Style.MODERN, 
-            UI.Style.FANTASY, 
-            UI.Style.CHARCOAL, 
-            UI.Style.SURREALISM, 
-            UI.Style.MINIMALIST);
+            Style.ABSTRACT, 
+            Style.MODERN, 
+            Style.FANTASY, 
+            Style.CHARCOAL, 
+            Style.SURREALISM, 
+            Style.MINIMALIST);
     }
 
     @FXML
@@ -81,8 +85,7 @@ public class CommissionFormPopup {
     @FXML
     void handleSubmitButtonClick(ActionEvent event) {
         try {
-            Commission newCommission = new Commission(this.userId, (UI.Style) this.styleComboBox.getSelectionModel().getSelectedItem(), Double.parseDouble(this.budgetTextField.getText()), this.descriptionTextArea.getText());
-            CommissionManager.getCommissionManager().addCommission(newCommission);
+            CommissionManager.getCommissionManager().addCommission(this.userId, (Style) this.styleComboBox.getSelectionModel().getSelectedItem(), Double.parseDouble(this.budgetTextField.getText()), this.descriptionTextArea.getText(), this.titleTextField.getText());
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
             currentStage.close();

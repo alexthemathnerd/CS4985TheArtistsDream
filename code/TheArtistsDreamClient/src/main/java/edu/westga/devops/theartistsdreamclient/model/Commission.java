@@ -12,11 +12,13 @@ public class Commission {
     
     private int userId;
 
-    private UI.Style style;
+    private Style style;
 
     private double budget;
 
     private String description;
+
+    private String title;
 
     /**
      * Create a new commission
@@ -30,21 +32,29 @@ public class Commission {
      * @param style the style the user wants the commission done in
      * @param budget the budget the user wants stay in
      * @param description the description of what thw user wants
+     * @param title the title of the commission
      */
-    public Commission(int userId, UI.Style style, double budget, String description) {
-        this.checkPreconditions(userId, style, budget, description);
+    public Commission(int userId, Style style, double budget, String description, String title) {
+        this.checkPreconditions(userId, style, budget, description, title);
         this.userId = userId;
         this.style = style;
         this.budget = budget;
         this.description = description;
+        this.title = title;
     }
 
-    private void checkPreconditions(int userId, UI.Style style, double budget, String description) {
+    private void checkPreconditions(int userId, Style style, double budget, String description, String title) {
         if (style == null) {
             throw new IllegalArgumentException(UI.ErrorMessages.STYLE_NULL);
         }
         if (description == null) {
             throw new IllegalArgumentException(UI.ErrorMessages.DESCRIPTION_NULL);
+        }
+        if (title == null) {
+            throw new IllegalArgumentException("Title cannot be null");
+        }
+        if (title.isEmpty()) {
+            throw new IllegalArgumentException("Title cannot be empty");
         }
         if (userId < 0) {
             throw new IllegalArgumentException(UI.ErrorMessages.INVALID_USERID);
@@ -77,7 +87,7 @@ public class Commission {
      * 
      * @return the style of the commission
      */
-    public UI.Style getStyle() {
+    public Style getStyle() {
         return this.style;
     }
 
@@ -103,5 +113,17 @@ public class Commission {
      */
     public double getBudget() {
         return this.budget;
+    }
+
+    /**
+     * Gets the title of the commission
+     * 
+     * @precondition none
+     * @postcondition none
+     * 
+     * @return he title of the commission
+     */
+    public String getTitle() {
+        return this.title;
     }
 }
