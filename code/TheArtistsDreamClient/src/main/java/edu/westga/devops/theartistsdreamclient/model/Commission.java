@@ -51,19 +51,19 @@ public class Commission {
             throw new IllegalArgumentException(UI.ErrorMessages.DESCRIPTION_NULL);
         }
         if (title == null) {
-            throw new IllegalArgumentException("Title cannot be null");
+            throw new IllegalArgumentException(UI.ErrorMessages.TITLE_NULL);
         }
         if (title.isEmpty()) {
-            throw new IllegalArgumentException("Title cannot be empty");
+            throw new IllegalArgumentException(UI.ErrorMessages.TITLE_EMPTY);
         }
         if (userId < 0) {
-            throw new IllegalArgumentException(UI.ErrorMessages.INVALID_USERID);
+            throw new IllegalArgumentException(UI.ErrorMessages.NEGATIVE_ID);
         }
         if (description.isEmpty()) {
             throw new IllegalArgumentException(UI.ErrorMessages.DESCRIPTION_EMPTY);
         }
         if (budget <= 0.0) {
-            throw new IllegalArgumentException(UI.ErrorMessages.BUDGET_NOT_POSITIVE);
+            throw new IllegalArgumentException(UI.ErrorMessages.NEGATIVE_BUDGET);
         }
     }
 

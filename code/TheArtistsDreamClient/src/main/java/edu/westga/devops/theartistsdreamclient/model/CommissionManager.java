@@ -17,7 +17,8 @@ public abstract class CommissionManager implements Iterable<Commission> {
      * @param style the style the user wants the commission done in
      * @param description the description of what the user wants
      * @param budget the budget the user wants to stay in
-     * 
+     * @param title the title of the commission to add
+     *
      * @precondition commisison != null 
      * @postcondition none
      * 

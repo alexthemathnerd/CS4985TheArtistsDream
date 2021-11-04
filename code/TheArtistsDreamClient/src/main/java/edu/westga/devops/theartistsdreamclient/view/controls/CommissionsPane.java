@@ -39,7 +39,7 @@ public class CommissionsPane extends ScrollPane {
 
 	@FXML
 	void initialize() {
-		this.commissionsVBox.getChildren().add(new CommissionTile());
+
 	}
 
 	@FXML

@@ -12,11 +12,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.stage.WindowEvent;
 import javafx.stage.Stage;
-import edu.westga.devops.theartistsdreamclient.model.Commission;
 import edu.westga.devops.theartistsdreamclient.model.Style;
 import edu.westga.devops.theartistsdreamclient.model.CommissionManager;
-import edu.westga.devops.theartistsdreamclient.utils.UI;
-
 
 /**
  * The commission form class

@@ -198,8 +198,8 @@ public class User {
         if (this == other) {
             return true;
         }
-        if (other instanceof User user) {
-            return this.userId == user.userId;
+        if (other instanceof User) {
+            return this.userId == ((User) user).userId;
         }
         return false;
     }
