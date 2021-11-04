@@ -7,15 +7,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.event.ActionEvent;
-import javafx.scene.control.ComboBox;
 
 import java.io.IOException;
 
-import javafx.collections.FXCollections;
-
 import edu.westga.devops.theartistsdreamclient.viewmodel.CommissionTileViewModel;
 import edu.westga.devops.theartistsdreamclient.model.Commission;
-import edu.westga.devops.theartistsdreamclient.model.Style;
+import edu.westga.devops.theartistsdreamclient.model.User;
 
 /**
  * Controller for CommissionTile
@@ -47,9 +44,10 @@ public class CommissionTile extends VBox {
 	private Label budgetLabel;
 
 	@FXML
-	private ComboBox styleComboBox;
+	private Label styleLabel;
 
 	private CommissionTileViewModel viewModel;
+	private Commission commission;
 
 	/**
 	 * Creates a new CommissionTile of the specified Commission
@@ -64,9 +62,10 @@ public class CommissionTile extends VBox {
 		FXMLLoader loader = new FXMLLoader(Header.class.getResource(COMMISSION_TILE_FXML));
 		loader.setRoot(this);
 		loader.setController(this);
+		this.commission = commission;
+		this.viewModel = new CommissionTileViewModel(commission);
 		try {
 			loader.load();
-			this.viewModel = new CommissionTileViewModel(commission);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -78,8 +77,9 @@ public class CommissionTile extends VBox {
 		this.commissionerLabel.textProperty().bind(this.viewModel.commissionerProperty());
 		this.descriptionTextArea.textProperty().bind(this.viewModel.descriptionProperty());
 		this.budgetLabel.textProperty().bind(this.viewModel.budgetProperty());
-		this.styleComboBox.setItems(FXCollections.observableArrayList(Style.values()));
-		this.styleComboBox.getSelectionModel().select(this.viewModel.styleProperty().get());
+		this.styleLabel.textProperty().bind(this.viewModel.styleStringProperty());
+		this.applyButton.setDisable(User.getUser().getUserId() == this.commission.getUserId());
+		this.viewApplicantsButton.setDisable(User.getUser().getUserId() != this.commission.getUserId());
 	}
 
 	@FXML

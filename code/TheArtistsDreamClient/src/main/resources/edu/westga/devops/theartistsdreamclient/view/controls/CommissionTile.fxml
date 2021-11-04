@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.HBox?>
@@ -19,18 +18,18 @@
             <Insets left="10.0" top="5.0" />
          </VBox.margin>
       </Label>
-      <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+      <HBox alignment="CENTER" spacing="20.0">
          <children>
-            <Label prefHeight="18.0" prefWidth="95.0" text="Requested By:">
+            <Label text="Requested By:">
                <padding>
                   <Insets left="5.0" />
                </padding>
             </Label>
-            <Label fx:id="commissionerLabel" prefHeight="18.0" prefWidth="218.0" />
-            <Label text="Budget" />
+            <Label fx:id="commissionerLabel" />
+            <Label text="Budget:" />
             <Label fx:id="budgetLabel" />
-            <Label text="Style" />
-            <ComboBox fx:id="styleComboBox" />
+            <Label text="Style:" />
+            <Label fx:id="styleLabel" />
          </children>
          <VBox.margin>
             <Insets left="10.0" />
@@ -47,7 +46,7 @@
             <Button fx:id="viewApplicantsButton" mnemonicParsing="false" onAction="#handleViewApplicants" text="VIEW APPLICANTS" />
          </children>
          <padding>
-            <Insets bottom="5.0" left="10.0" />
+            <Insets bottom="10.0" left="10.0" />
          </padding>
       </HBox>
    </children>

@@ -27,6 +27,7 @@ public class CommissionTileViewModel {
 	private StringProperty descriptionProperty;
 	private StringProperty budgetProperty;
 	private ObjectProperty<Style> styleProperty;
+	private StringProperty styleStringProperty;
 
 	/**
 	 * Creates a new CommissionTileViewModel of the specified commission
@@ -43,6 +44,7 @@ public class CommissionTileViewModel {
 		this.descriptionProperty = new SimpleStringProperty(commission.getDescription());
 		this.budgetProperty = new SimpleStringProperty(currencyFormatter.format(commission.getBudget()));
 		this.styleProperty = new SimpleObjectProperty<Style>(commission.getStyle());
+		this.styleStringProperty = new SimpleStringProperty(this.styleProperty().get().toString());
 	}
 
 	/**
@@ -103,6 +105,10 @@ public class CommissionTileViewModel {
 	 */
 	public ObjectProperty<Style> styleProperty() {
 		return this.styleProperty;
+	}
+
+	public StringProperty styleStringProperty() {
+		return this.styleStringProperty;
 	}
 
 	public void apply() {
