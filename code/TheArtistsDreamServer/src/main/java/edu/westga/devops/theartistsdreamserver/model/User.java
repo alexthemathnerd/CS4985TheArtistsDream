@@ -147,7 +147,7 @@ public class User {
     public ArrayList<ChatRecord> updateChat(int userId, ArrayList<ChatRecord> chat) {
         return this.messages.replace(userId, chat);
     }
-
+    
     public boolean addFollowing(int userId) {
         return this.followingIds.add(userId);
     }

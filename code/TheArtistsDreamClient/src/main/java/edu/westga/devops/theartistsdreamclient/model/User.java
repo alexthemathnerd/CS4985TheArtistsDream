@@ -195,13 +195,13 @@ public class User {
 
     @Override
     public boolean equals(Object other) {
-	    if (this == other) {
-		    return true;
-	    }
-	    if (other instanceof User) {
-		    return this.userId == ((User) other).userId;
-	    }
-	    return false;
+        if (this == other) {
+            return true;
+        }
+        if (other instanceof User user) {
+            return this.userId == user.userId;
+        }
+        return false;
     }
 
     @Override
