@@ -113,12 +113,12 @@ public abstract class ArtworkManager {
      *
      * @param id        the id of the artwork to edit
      * @param newTitle  the new title of the artwork
-     * @param newTagIDs the IDs of the new tags of the artwork
+     * 
      * @return true if the artwork was successfully edited, false otherwise
-     * @precondition !newTitle.isEmpty() && newTitle != null && newTags != null
-     * @postcondition getArtwork(id).getTitle() == newTitle && getArtwork(id).getTags() == newTags
+     * @precondition !newTitle.isEmpty() && newTitle != null
+     * @postcondition getArtwork(id).getTitle() == newTitle
      */
-    public abstract boolean editArtwork(int id, String newTitle, List<Integer> newTagIDs);
+    public abstract boolean editArtwork(int id, String newTitle);
 
     /**
      * Gets the artworks specified by the tags

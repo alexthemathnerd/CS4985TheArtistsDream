@@ -204,19 +204,5 @@ public class Artwork {
         return this.date;
     }
 
-    /**
-     * Sets the tags of the artwork
-     *
-     * @param newTagIDs the tag Ids for the new tags on the artwork
-     * @precondition newTagIDs != null
-     * @postcondition getTagIDs() == newTagIDs
-     */
-    public void setTags(List<Integer> newTagIDs) {
-        if (newTagIDs == null) {
-            throw new IllegalArgumentException(UI.ErrorMessages.TAG_IDS_NULL);
-        }
-        this.tagIDs = newTagIDs;
-    }
-
 }
 

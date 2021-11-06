@@ -7,8 +7,6 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import java.util.ArrayList;
-
 /**
  * ViewModel for ArtworkPopup
  *
@@ -62,7 +60,7 @@ public class ArtworkPopupViewModel {
      * @postcondition getArtwork().getTitle() == titleProperty().get()
      */
     public void editArtwork() {
-        ArtworkManager.getArtworkManager().editArtwork(this.artworkProperty.get().getID(), this.titleProperty.get(), new ArrayList<Integer>());
+        ArtworkManager.getArtworkManager().editArtwork(this.artworkProperty.get().getID(), this.titleProperty.get());
     }
 
     /**

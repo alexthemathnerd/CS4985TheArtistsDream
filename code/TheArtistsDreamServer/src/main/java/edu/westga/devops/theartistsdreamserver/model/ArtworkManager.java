@@ -247,7 +247,6 @@ public class ArtworkManager {
         try {
             id = ((Double) data[0]).intValue();
             newTitle = (String) data[1];
-            newTagIDs = (List<Integer>) data[2];
         } catch (ClassCastException e) {
             return new Request(UI.ErrorMessages.INVALID_FORMAT);
         }
@@ -260,7 +259,6 @@ public class ArtworkManager {
 
         Artwork artworkToEdit = (Artwork) artworkRequest.getData();
 
-        artworkToEdit.setTags(new Object[]{newTagIDs});
         artworkToEdit.setTitle(new Object[]{newTitle});
 
         return new Request(true);

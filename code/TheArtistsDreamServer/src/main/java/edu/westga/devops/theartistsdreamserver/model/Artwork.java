@@ -141,28 +141,6 @@ public class Artwork implements Comparable<Artwork> {
     }
 
     /**
-     * Sets the tags of the artwork
-     *
-     * @param data the set of data with the new tags
-     *
-     * @precondition none
-     * @postcondition none
-     *
-     * @return a request to set the tags of the artwork
-     *
-     */
-    public Request setTags(Object[] data) {
-	    List<Integer> newTagIDs;
-	    try {
-		    newTagIDs = (List<Integer>) data[0];
-	    } catch (ClassCastException e) {
-		    return new Request(UI.ErrorMessages.INVALID_FORMAT);
-	    }
-	    this.tagIDs = newTagIDs;
-	    return new Request(this.tagIDs);
-    }
-
-    /**
      * Sets the title of the artwork
      *
      * @param data the data that has the new title

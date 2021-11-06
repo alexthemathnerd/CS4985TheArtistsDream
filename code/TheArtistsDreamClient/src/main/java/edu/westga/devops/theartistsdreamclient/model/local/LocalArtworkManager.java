@@ -68,15 +68,12 @@ public class LocalArtworkManager extends ArtworkManager {
     }
 
     @Override
-    public boolean editArtwork(int id, String newTitle, List<Integer> newTagIDs) {
+    public boolean editArtwork(int id, String newTitle) {
         if (newTitle == null) {
             throw new IllegalArgumentException(UI.ErrorMessages.TITLE_NULL);
         }
         if (newTitle.isEmpty()) {
             throw new IllegalArgumentException(UI.ErrorMessages.TITLE_EMPTY);
-        }
-        if (newTagIDs == null) {
-            throw new IllegalArgumentException(UI.ErrorMessages.TAG_IDS_NULL);
         }
         if (id < 0 || id >= this.size()) {
             return false;
@@ -86,7 +83,6 @@ public class LocalArtworkManager extends ArtworkManager {
             return false;
         }
         artworkToEdit.setTitle(newTitle);
-        artworkToEdit.setTags(newTagIDs);
         return true;
     }
 
