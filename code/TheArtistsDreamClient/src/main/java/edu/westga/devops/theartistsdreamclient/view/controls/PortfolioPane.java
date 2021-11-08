@@ -2,11 +2,11 @@ package edu.westga.devops.theartistsdreamclient.view.controls;
 
 import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.model.UserManager;
-import edu.westga.devops.theartistsdreamclient.view.DirectMessage;
-import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
-import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
 import edu.westga.devops.theartistsdreamclient.view.popups.AddArtPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
+import edu.westga.devops.theartistsdreamclient.view.popups.CommissionFormPopup;
+import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
+import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -78,23 +78,8 @@ public class PortfolioPane extends HBox {
 
     @FXML
     private void initialize() {
-        this.followToggleButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) {
-                this.followToggleButton.setText("FOLLOW");
-            } else {
-                this.followToggleButton.setText("FOLLOWING");
-            }
-        });
-        this.followToggleButton.hoverProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue && this.followToggleButton.isSelected()) {
-                this.followToggleButton.setText("UNFOLLOW");
-            } else if (!newValue && this.followToggleButton.isSelected()) {
-                this.followToggleButton.setText("FOLLOWING");
-            } else {
-                this.followToggleButton.setText("FOLLOW");
-            }
-        });
-        this.userProperty.addListener((observable, oldValue, newValue) -> {
+	    this.createToggleButtonListeners();
+	    this.userProperty.addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 if (newValue.equals(User.getUser())) {
                     this.followToggleButton.setVisible(false);
@@ -119,6 +104,26 @@ public class PortfolioPane extends HBox {
                 this.profileImage.setImage(new Image(new ByteArrayInputStream(this.userProperty.get().getProfilePic())));
                 this.profileImage.setClip(new Circle(75, 75, 75));
                 this.followToggleButton.setSelected(UserManager.getUserManager().isFollowing(User.getUser().getUserId(), this.userProperty.get().getUserId()));
+            }
+        });
+    }
+
+    @FXML
+    private void createToggleButtonListeners() {
+	    this.followToggleButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
+		    if (!newValue) {
+			    this.followToggleButton.setText("FOLLOW");
+		    } else {
+			    this.followToggleButton.setText("FOLLOWING");
+		    }
+	    });
+        this.followToggleButton.hoverProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue && this.followToggleButton.isSelected()) {
+                this.followToggleButton.setText("UNFOLLOW");
+            } else if (!newValue && this.followToggleButton.isSelected()) {
+                this.followToggleButton.setText("FOLLOWING");
+            } else {
+                this.followToggleButton.setText("FOLLOW");
             }
         });
     }
@@ -167,8 +172,9 @@ public class PortfolioPane extends HBox {
     @FXML
     private void handleCommission(ActionEvent event) {
         try {
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            WindowLoader.changeScene(currentStage, DIRECT_MESSAGE_FXML, new DirectMessage(this.userProperty.getValue(), User.getUser()), "The Artist's Dream", true);
+            Node mainFrame = this.getScene().getRoot();
+            Stage popup = PopupLoader.loadPopup("Commision Form", CommissionFormPopup.class.getResource("CommissionFormPopup.fxml"), new CommissionFormPopup(this.userProperty.get().getUserId()), (Parent) mainFrame);      
+            popup.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -185,6 +191,13 @@ public class PortfolioPane extends HBox {
         this.userProperty.set(user);
     }
 
+    /**
+     * Sets the is following property of the portfolio pane
+     *
+     * @param following the value of the following property
+     * @precondition none
+     * @postcondition none
+     */
     public void setIsFollowing(boolean following) {
         this.isFollowing.set(following);
     }

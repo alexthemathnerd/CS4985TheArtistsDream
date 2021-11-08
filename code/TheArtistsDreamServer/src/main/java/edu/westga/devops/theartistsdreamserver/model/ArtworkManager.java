@@ -303,7 +303,6 @@ public class ArtworkManager {
 
         Artwork artworkToEdit = (Artwork) artworkRequest.getData();
 
-        artworkToEdit.setTags(new Object[]{newTagIDs});
         artworkToEdit.setTitle(new Object[]{newTitle});
 
         return new Request(true);

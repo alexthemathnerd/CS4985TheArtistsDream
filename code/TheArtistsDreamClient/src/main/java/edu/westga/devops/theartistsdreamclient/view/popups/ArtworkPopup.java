@@ -74,7 +74,6 @@ public class ArtworkPopup {
                 this.titleTextField.setEditable(false);
                 this.removeButton.setVisible(true);
                 this.editButton.setText("EDIT");
-                this.viewModel.editArtwork();
             }
         });
     }
@@ -99,6 +98,7 @@ public class ArtworkPopup {
     void handleEdit(ActionEvent event) {
         if (this.isEditing.get()) {
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            this.viewModel.editArtwork();
             currentStage.setUserData(this.viewModel.getArtwork().getArtistID());
             currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
             currentStage.close();

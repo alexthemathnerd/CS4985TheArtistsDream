@@ -19,7 +19,6 @@ public class User {
 
     private final int userId;
 
-
     private final String email;
     private final String username;
     private final String password;
@@ -196,15 +195,17 @@ public class User {
 
     @Override
     public boolean equals(Object other) {
-        if (this == other) return true;
-        if (other instanceof User user) {
-            return userId == user.userId;
+        if (this == other) {
+            return true;
+        }
+        if (other instanceof User) {
+            return this.userId == ((User) user).userId;
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId);
+        return Objects.hash(this.userId);
     }
 }

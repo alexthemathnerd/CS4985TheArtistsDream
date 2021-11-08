@@ -32,7 +32,7 @@ public class TestEditArtwork {
         ArtworkPopupViewModel test = new ArtworkPopupViewModel(artwork);
         test.titleProperty().setValue("new");
         test.editArtwork();
-        Mockito.verify(artworkManager).editArtwork(0, "new", new ArrayList<>());
+        Mockito.verify(artworkManager).editArtwork(0, "new");
     }
 
 }

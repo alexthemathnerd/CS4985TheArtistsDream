@@ -21,21 +21,14 @@ public class TestEditArtwork {
     void testNullNewTitle() {
         LocalArtworkManager testManager = new LocalArtworkManager();
 
-        assertThrows(IllegalArgumentException.class, () -> testManager.editArtwork(1, null, new ArrayList<Integer>()));
+        assertThrows(IllegalArgumentException.class, () -> testManager.editArtwork(1, null));
     }
 
     @Test
     void testEmptyNewTitle() {
         LocalArtworkManager testManager = new LocalArtworkManager();
 
-        assertThrows(IllegalArgumentException.class, () -> testManager.editArtwork(1, "", new ArrayList<Integer>()));
-    }
-
-    @Test
-    void testNullNewTagIDs() {
-        LocalArtworkManager testManager = new LocalArtworkManager();
-
-        assertThrows(IllegalArgumentException.class, () -> testManager.editArtwork(1, "test", null));
+        assertThrows(IllegalArgumentException.class, () -> testManager.editArtwork(1, ""));
     }
 
     @Test
@@ -43,7 +36,7 @@ public class TestEditArtwork {
         LocalArtworkManager testManager = new LocalArtworkManager();
 
         testManager.addArtwork(new Artwork(new byte[0], "test", 0, new ArrayList<Integer>(), 1, "2020-02-02"));
-        assertTrue(testManager.editArtwork(0, "test2", new ArrayList<Integer>(Arrays.asList(1, 2))));
+        assertTrue(testManager.editArtwork(0, "test2"));
     }
 
     @Test
@@ -53,7 +46,7 @@ public class TestEditArtwork {
 
         testManager.addArtwork(new Artwork(new byte[0], "test", 1, new ArrayList<Integer>(), 1, "2020-02-02"));
 
-        assertFalse(testManager.editArtwork(3, "test", new ArrayList<Integer>()));
+        assertFalse(testManager.editArtwork(3, "test"));
 
     }
 

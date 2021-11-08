@@ -42,7 +42,7 @@ public class NetworkArtworkManager extends ArtworkManager {
      */
     public NetworkArtworkManager(Communicator communicator) {
         if (communicator == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(UI.ErrorMessages.COMMUNICATOR_NULL);
         }
         this.communicator = communicator;
     }
@@ -150,10 +150,10 @@ public class NetworkArtworkManager extends ArtworkManager {
     }
 
     @Override
-    public boolean editArtwork(int id, String newTitle, List<Integer> newTagIDs) {
+    public boolean editArtwork(int id, String newTitle) {
         Type type = new TypeToken<Response<Boolean>>() {
         }.getType();
-        Response<Boolean> response = this.communicator.request(new Request(UI.ServerCodes.EDIT_ARTWORK, new Object[]{id, newTitle, newTagIDs}), type);
+        Response<Boolean> response = this.communicator.request(new Request(UI.ServerCodes.EDIT_ARTWORK, new Object[]{id, newTitle}), type);
         if (response.getError() != null) {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
             return false;

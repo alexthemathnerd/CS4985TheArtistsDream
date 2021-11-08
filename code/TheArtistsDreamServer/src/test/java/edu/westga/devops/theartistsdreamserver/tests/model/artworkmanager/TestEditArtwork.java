@@ -22,18 +22,18 @@ public class TestEditArtwork {
 
 	@Test
 	void testInvalidFormat() {
-		assertEquals(UI.ErrorMessages.INVALID_FORMAT, ArtworkManager.editArtwork(new Object[] {1, 2, 2}).getError());
+		assertEquals(UI.ErrorMessages.INVALID_FORMAT, ArtworkManager.editArtwork(new Object[] {1, 2}).getError());
 	}
 
 	@Test
 	void testValidFormatArtworkDoesNotExist() {
-		assertEquals(UI.ErrorMessages.ARTWORK_NOT_FOUND, ArtworkManager.editArtwork(new Object[] {111.0, "new", new ArrayList<Integer>()}).getError());
+		assertEquals(UI.ErrorMessages.ARTWORK_NOT_FOUND, ArtworkManager.editArtwork(new Object[] {111.0, "new"}).getError());
 	}
 
 	@Test
 	void testValidArtworkExists() {
 		ArtworkManager.addArtwork(new Object[]{new ArrayList<Double>(Arrays.asList(1.1, 2.2, 3.3)), "title", 1.0, new ArrayList<Integer>(), "2021-01-01"});
-		assertTrue((boolean) ArtworkManager.editArtwork(new Object[] {1.0, "new", new ArrayList<Integer>()}).getData());
+		assertTrue((boolean) ArtworkManager.editArtwork(new Object[] {1.0, "new"}).getData());
 	}
 
 }
