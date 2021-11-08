@@ -32,7 +32,7 @@ public class ArtworksPaneViewModel {
     public ArtworksPaneViewModel() {
         this.artworksProperty = new SimpleListProperty<Artwork>(FXCollections.observableArrayList());
         this.filterTagsProperty = new SimpleListProperty<Tag>(FXCollections.observableArrayList());
-        this.indexProperty = new SimpleIntegerProperty(0);
+        this.indexProperty = new SimpleIntegerProperty(50);
         this.maxIndexProperty = new SimpleIntegerProperty(50);
         this.userIdProperty = new SimpleIntegerProperty(-1);
         this.onFollowingPageProperty = new SimpleBooleanProperty(true);
@@ -92,8 +92,10 @@ public class ArtworksPaneViewModel {
     public void viewMoreArtworks() {
         if (this.userIdProperty.isEqualTo(-1).get()) {
             this.artworksProperty.addAll(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue()));
-        } else {
+        } else if (this.onFollowingPageProperty.not().get()) {
             this.artworksProperty.addAll(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue(), this.userIdProperty.get()));
+        } else {
+            this.artworksProperty.addAll(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue(), this.onFollowingPageProperty.get()));
         }
         this.indexProperty.setValue(this.artworksProperty.getSize());
     }

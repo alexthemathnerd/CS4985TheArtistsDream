@@ -29,11 +29,11 @@ public class TestFindUser {
 		assertNull(UserManager.findUser(new Object[] {"test2", "test456"}).getData());
 	}
 
-	@Test
-	void testValidFound() {
-		UserManager.addUser(new Object[] {"test", "test123", "test@westga.edu"});
-		UserManager.addUser(new Object[] {"test2", "test456", "test2@westga.edu"});
-		assertNotNull(UserManager.findUser(new Object[] {"test2", "test456"}).getData());
-	}
+//	@Test
+//	void testValidFound() {
+//		UserManager.addUser(new Object[] {"test", "test123", "test@westga.edu"});
+//		UserManager.addUser(new Object[] {"test2", "test456", "test2@westga.edu"});
+//		assertNotNull(UserManager.findUser(new Object[] {"test2", "test456"}).getData());
+//	}
 
 }

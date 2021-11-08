@@ -56,7 +56,6 @@ public class ArtworksPane extends ScrollPane {
     void initialize() {
         this.userIdProperty.bindBidirectional(this.viewModel.userIdProperty());
         this.onFollowingPageProperty.bindBidirectional(this.viewModel.onFollowingPageProperty());
-        this.viewMoreButton.disableProperty().bind(this.viewModel.indexProperty().isEqualTo(this.viewModel.maxIndexProperty()));
         this.tagsToFilterListProperty.addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 if (!newValue.isEmpty()) {

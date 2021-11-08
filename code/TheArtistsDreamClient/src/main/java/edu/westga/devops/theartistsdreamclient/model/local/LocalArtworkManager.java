@@ -49,6 +49,11 @@ public class LocalArtworkManager extends ArtworkManager {
     }
 
     @Override
+    public List<Artwork> getNextTenArtworks(int startingIndex, boolean isFollowing) {
+        return null;
+    }
+
+    @Override
     public boolean addArtwork(byte[] imageData, String title, int artistID, List<Integer> tagIDs, String date) {
         return this.artworks.add(new Artwork(imageData, title, artistID, tagIDs, this.size(), date));
     }

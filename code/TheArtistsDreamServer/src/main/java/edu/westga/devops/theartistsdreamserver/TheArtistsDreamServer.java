@@ -130,7 +130,7 @@ public class TheArtistsDreamServer {
                 String[] artworkTags = artworkParts[2].split(",");
                 List<Integer> artworkTagIDs = new ArrayList<Integer>();
                 for (String tag : artworkTags) {
-                    artworkTagIDs.add(Integer.parseInt(tag));
+                    artworkTagIDs.add(Integer.parseInt(tag) - 1);
                 }
                 int artworkID = Integer.parseInt(artworkParts[3]);
                 String artworkDate = artworkParts[4];

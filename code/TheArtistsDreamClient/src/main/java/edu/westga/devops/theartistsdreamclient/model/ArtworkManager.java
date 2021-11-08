@@ -85,6 +85,18 @@ public abstract class ArtworkManager {
     public abstract List<Artwork> getNextTenArtworks(int startingIndex, int userId);
 
     /**
+     * Gets the next ten artworks of the specified user
+     *
+     * @param startingIndex the starting index to get the next 10 artworks from
+     * @param isFollowing determines if the user is following
+     *
+     * @return the next ten artworks of the user from the starting index
+     * @precondition none
+     * @postcondition none
+     */
+    public abstract List<Artwork> getNextTenArtworks(int startingIndex, boolean isFollowing);
+
+    /**
      * Adds the artwork
      *
      * @param imageData the image data of the artwork
