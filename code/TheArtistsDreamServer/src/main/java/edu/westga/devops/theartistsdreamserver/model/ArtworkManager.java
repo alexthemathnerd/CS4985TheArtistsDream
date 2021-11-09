@@ -4,7 +4,6 @@ import com.google.gson.internal.LinkedTreeMap;
 import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
 import edu.westga.devops.theartistsdreamserver.utils.UI;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
@@ -98,7 +97,6 @@ public class ArtworkManager {
      * @param data the objects data
      */
     public static Request getNextTenArtworks(Object[] data) {
-        System.out.println(Arrays.toString(data));
         if (data.length == 3) {
             int startingIndex;
             int userId;
@@ -111,9 +109,7 @@ public class ArtworkManager {
             } catch (ClassCastException e) {
                 return new Request(UI.ErrorMessages.INVALID_FORMAT);
             }
-        }
-
-        if (data.length == 2) {
+        } else if (data.length == 2) {
             int startingIndex;
             int userId;
             try {
@@ -123,13 +119,18 @@ public class ArtworkManager {
             } catch (ClassCastException e) {
                 return new Request(UI.ErrorMessages.INVALID_FORMAT);
             }
+        } else {
+            int startingIndex;
+            try {
+                startingIndex = ((Double) data[0]).intValue();
+                return getNextTenArtworks(startingIndex);
+            } catch (ClassCastException e) {
+                return new Request(UI.ErrorMessages.INVALID_FORMAT);
+            }
         }
-        int startingIndex;
-        try {
-            startingIndex = ((Double) data[0]).intValue();
-        } catch (ClassCastException e) {
-            return new Request(UI.ErrorMessages.INVALID_FORMAT);
-        }
+    }
+
+    private static Request getNextTenArtworks(int startingIndex) {
         if (startingIndex > TheArtistsDreamServer.ARTWORKS.size()) {
             return new Request(new ArrayList<>());
         }
@@ -190,12 +191,12 @@ public class ArtworkManager {
     public static Request getArtwork(Object[] data) {
         int id;
         try {
-            id = (Integer) data[0];
-	    for (Artwork artwork : TheArtistsDreamServer.ARTWORKS) {
+            id = (int) data[0];
+	        for (Artwork artwork : TheArtistsDreamServer.ARTWORKS) {
                 if (artwork.getID() == id) {
                     return new Request(artwork);
                 }
-	    }
+	        }
         } catch (ClassCastException e) {
             return new Request(UI.ErrorMessages.INVALID_FORMAT);
         }
@@ -285,12 +286,10 @@ public class ArtworkManager {
     public static Request editArtwork(Object[] data) {
         int id;
         String newTitle;
-        List<Integer> newTagIDs;
 
         try {
             id = ((Double) data[0]).intValue();
             newTitle = (String) data[1];
-            newTagIDs = (List<Integer>) data[2];
         } catch (ClassCastException e) {
             return new Request(UI.ErrorMessages.INVALID_FORMAT);
         }
@@ -302,9 +301,7 @@ public class ArtworkManager {
         }
 
         Artwork artworkToEdit = (Artwork) artworkRequest.getData();
-
         artworkToEdit.setTitle(new Object[]{newTitle});
-
         return new Request(true);
     }
 

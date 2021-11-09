@@ -19,10 +19,10 @@ public class TestConstructor {
         assertAll(
                 () -> assertNotNull(testViewModel.artworksProperty()),
                 () -> assertNotNull(testViewModel.filterTagsProperty()),
-                () -> assertEquals(0, testViewModel.indexProperty().get()),
+                () -> assertEquals(50, testViewModel.indexProperty().get()),
                 () -> assertEquals(50, testViewModel.maxIndexProperty().get()),
                 () -> assertEquals(-1, testViewModel.userIdProperty().get()),
-                () -> assertTrue(testViewModel.onFollowingPageProperty().get()));
+                () -> assertFalse(testViewModel.onFollowingPageProperty().get()));
     }
 
 }

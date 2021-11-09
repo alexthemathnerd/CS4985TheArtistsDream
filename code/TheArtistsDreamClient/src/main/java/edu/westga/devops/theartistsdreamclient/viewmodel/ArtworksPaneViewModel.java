@@ -40,7 +40,7 @@ public class ArtworksPaneViewModel {
         this.indexProperty = new SimpleIntegerProperty(50);
         this.maxIndexProperty = new SimpleIntegerProperty(50);
         this.userIdProperty = new SimpleIntegerProperty(-1);
-        this.onFollowingPageProperty = new SimpleBooleanProperty(true);
+        this.onFollowingPageProperty = new SimpleBooleanProperty(false);
     }
 
     /**
@@ -102,7 +102,7 @@ public class ArtworksPaneViewModel {
         } else {
             this.artworksProperty.addAll(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue(), this.onFollowingPageProperty.get()));
         }
-        this.indexProperty.setValue(this.artworksProperty.getSize());
+        this.indexProperty.set(this.indexProperty.get() + this.artworksProperty.getSize());
     }
 
     /**
