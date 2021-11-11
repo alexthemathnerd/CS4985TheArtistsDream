@@ -1,8 +1,10 @@
 package edu.westga.devops.theartistsdreamserver.tests.model.usermanager;
 
+import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
 import edu.westga.devops.theartistsdreamserver.model.UserManager;
 import edu.westga.devops.theartistsdreamserver.utils.UI;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,6 +20,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  */
 public class TestFindUser {
 
+	@AfterEach
+	void destroy() {
+		TheArtistsDreamServer.USERS.clear();
+	}
+
 	@Test
 	void testInvalidFormat() {
 		assertEquals(UI.ErrorMessages.INVALID_FORMAT, UserManager.findUser(new Object[] {1, 1}).getError());
@@ -29,11 +36,11 @@ public class TestFindUser {
 		assertNull(UserManager.findUser(new Object[] {"test2", "test456"}).getData());
 	}
 
-//	@Test
-//	void testValidFound() {
-//		UserManager.addUser(new Object[] {"test", "test123", "test@westga.edu"});
-//		UserManager.addUser(new Object[] {"test2", "test456", "test2@westga.edu"});
-//		assertNotNull(UserManager.findUser(new Object[] {"test2", "test456"}).getData());
-//	}
+	@Test
+	void testValidFound() {
+		UserManager.addUser(new Object[] {"test", "test123", "test@westga.edu"});
+		UserManager.addUser(new Object[] {"test2", "test456", "test2@westga.edu"});
+		assertNotNull(UserManager.findUser(new Object[] {"test2", "test456"}).getData());
+	}
 
 }

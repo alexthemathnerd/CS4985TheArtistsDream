@@ -163,12 +163,12 @@ public class ArtworkManager {
         for (Artwork aArtwork: TheArtistsDreamServer.ARTWORKS) {
             for (int aUserId : user.getFollowingIds()) {
                 if (aArtwork.getArtistID() == aUserId) {
-                    System.out.println(aArtwork.getTitle());
                     artworks.add(aArtwork);
                     break;
                 }
             }
         }
+
         if (startingIndex > artworks.size()) {
             return new Request(new ArrayList<>());
         }
