@@ -26,7 +26,7 @@ public class TestGetUser {
 	void testValidNonexistingUser() {
 		UserManager.addUser(new Object[] {"test", "test123", "test@westga.edu"});
 		UserManager.addUser(new Object[] {"test2", "test456", "test2@westga.edu"});
-		assertEquals(UI.ErrorMessages.USER_NOT_FOUND, UserManager.getUser(new Object[] {5.0}).getError());
+		assertEquals(UI.ErrorMessages.USER_NOT_FOUND, UserManager.getUser(new Object[] {1000.0}).getError());
 	}
 
 	@Test

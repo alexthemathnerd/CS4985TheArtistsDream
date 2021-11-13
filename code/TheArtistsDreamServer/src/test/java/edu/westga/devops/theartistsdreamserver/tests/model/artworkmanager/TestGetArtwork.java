@@ -1,10 +1,12 @@
 package edu.westga.devops.theartistsdreamserver.tests.model.artworkmanager;
 
+import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
 import edu.westga.devops.theartistsdreamserver.model.ArtworkManager;
 import edu.westga.devops.theartistsdreamserver.utils.UI;
 
 import java.util.ArrayList;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,6 +21,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  */
 public class TestGetArtwork {
 
+	@AfterEach
+	void clean() {
+		TheArtistsDreamServer.ARTWORKS.clear();
+	}
+
 	@Test
 	void testInvalidFormat() {
 		assertEquals(UI.ErrorMessages.INVALID_FORMAT, ArtworkManager.getArtwork(new Object[] {"0"}).getError());
@@ -27,7 +34,7 @@ public class TestGetArtwork {
 	@Test
 	void testValidFound() {
 		ArtworkManager.addArtwork(new Object[] {new ArrayList<Double>(), "title", 1.0, new ArrayList<Integer>(), "2021-01-01"});
-		assertNotNull(ArtworkManager.getArtwork(new Object[] {1}).getData());
+		assertNotNull(ArtworkManager.getArtwork(new Object[] {0}).getData());
 	}
 
 	@Test

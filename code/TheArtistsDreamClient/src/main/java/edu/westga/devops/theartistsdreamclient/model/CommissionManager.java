@@ -41,13 +41,10 @@ public abstract class CommissionManager implements Iterable<Commission> {
      * Sets the CommissionManager singleton
      *
      * @param commissionManager the new commission manager
-     * @preconditon commissionManager != null
+     * @preconditon none
      * @postcondition CommissionManager.getCommissionManager().equals(commissionManager)
      */
     public static void setCommissionManager(CommissionManager commissionManager) {
-        if (commissionManager == null) {
-            throw new IllegalArgumentException();
-        }
         CommissionManager.commissionManager = commissionManager;
     }
 }

@@ -85,15 +85,15 @@ public class TestGetFirstFiftyArtworks {
 
 	@Test
 	void testIdAndFollowingSizeEqualToFifty() {
-                TheArtistsDreamServer.ARTWORKS.clear();
-                for (int i = 0; i < 50; i++) {
-                        TheArtistsDreamServer.ARTWORKS.add(new Artwork(new byte[0], "test", 1, new ArrayList<Integer>(), i, "2021-10-10"));
-                }
+		TheArtistsDreamServer.ARTWORKS.clear();
+		for (int i = 0; i < 50; i++) {
+			TheArtistsDreamServer.ARTWORKS.add(new Artwork(new byte[0], "test", 1, new ArrayList<Integer>(), i, "2021-10-10"));
+		}
 		UserManager.addUser(new Object[] {"test", "test123", "test@my.westga.edu"});
 		UserManager.addUser(new Object[] {"test2", "test456", "test2@my.westga.edu"});
 		User testUser = (User) UserManager.getUser(new Object[] {0.0}).getData();
 		testUser.addFollowing(1);
-                assertEquals(50, ((List<Artwork>)ArtworkManager.getFirstFiftyArtworks(new Object[] {0.0,true}).getData()).size());
+		assertEquals(50, ((List<Artwork>)ArtworkManager.getFirstFiftyArtworks(new Object[] {0.0,true}).getData()).size());
 	}
 
 }
