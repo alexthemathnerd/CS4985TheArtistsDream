@@ -106,7 +106,7 @@ public class CommissionTile extends VBox {
             ApplicantsListPopup controller = new ApplicantsListPopup(this.applicantList);
 			Stage popup = PopupLoader.loadPopup("Applicant List", ApplicantsListPopup.class.getResource("ApplicantsListPopup.fxml"), controller, mainFrame);      
 			popup.show();
-			controller.getResult();
+			this.applicantList = controller.getApplicants();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

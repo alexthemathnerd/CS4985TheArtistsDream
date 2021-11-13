@@ -5,7 +5,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
-import javafx.scene.control.Dialog;
 import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
@@ -16,7 +15,7 @@ import javafx.scene.Parent;
 import java.io.IOException;
 
 
-public class ApplicantsListPopup extends Dialog<List<User>> {
+public class ApplicantsListPopup {
     private static final String PORTFOLIO_PAGE_FXML = "PortfolioPage.fxml";
 
     @FXML
@@ -51,7 +50,6 @@ public class ApplicantsListPopup extends Dialog<List<User>> {
         if (user != null) {
             this.applicantsListView.getItems().clear();
             this.applicantsListView.getItems().add(user);
-            this.setResult(this.applicantsListView.getItems());
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
             currentStage.close();
@@ -61,7 +59,6 @@ public class ApplicantsListPopup extends Dialog<List<User>> {
     @FXML
     void handleCloseButtonClick(ActionEvent event) {
         try {
-            this.setResult(this.applicantsListView.getItems());
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
             currentStage.close();
@@ -80,14 +77,24 @@ public class ApplicantsListPopup extends Dialog<List<User>> {
     void handleViewProfileButtonClick(ActionEvent event) {
         try {
             User user = this.applicantsListView.getSelectionModel().getSelectedItem();
-            //Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            //WindowLoader.changeScene(currentStage, PORTFOLIO_PAGE_FXML, new PortfolioPage(user), "The Artist's Dream", false);
             Parent mainFrame = ((Node) event.getSource()).getParent();
             Stage popup = PopupLoader.loadPopup("Portfolio", PortfolioPage.class.getResource(PORTFOLIO_PAGE_FXML), new PortfolioPage(user), mainFrame);      
 			popup.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * Returns the new list of applicants
+     * 
+     * @precondition none
+     * @postcondition none
+     * 
+     * @return the list of applicants
+     */
+    public List<User> getApplicants() {
+        return this.applicantsListView.getItems();
     }
 
 }
