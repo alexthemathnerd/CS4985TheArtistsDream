@@ -174,6 +174,10 @@ public class Header extends HBox {
                 }
             } else {
                 Alert alert = new Alert(AlertType.ERROR, UI.ErrorMessages.USER_NOT_FOUND);
+                DialogPane dialogPane = alert.getDialogPane();
+                dialogPane.getStylesheets().add(
+                    getClass().getResource("core-design.css").toExternalForm());
+                dialogPane.getStyleClass().add("myAlert");
                 alert.show();
             }
         } else {
@@ -189,6 +193,10 @@ public class Header extends HBox {
                 }
             } else {
                 Alert alert = new Alert(AlertType.ERROR, UI.ErrorMessages.ARTWORK_NOT_FOUND);
+                DialogPane dialogPane = alert.getDialogPane();
+                dialogPane.getStylesheets().add(
+                    getClass().getResource("core-design.css").toExternalForm());
+                dialogPane.getStyleClass().add("myAlert");
                 alert.show();
             }
         }

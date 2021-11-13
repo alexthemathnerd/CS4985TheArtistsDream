@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
@@ -115,6 +116,10 @@ public class Login {
             User user = this.viewModel.getUser();
             if (user == null) {
                 Alert alert = new Alert(AlertType.ERROR, UI.ErrorMessages.USER_NOT_FOUND);
+                DialogPane dialogPane = alert.getDialogPane();
+                dialogPane.getStylesheets().add(
+                    getClass().getResource("core-design.css").toExternalForm());
+                dialogPane.getStyleClass().add("myAlert");
                 alert.show();
             } else {
                 User.setUser(user);
