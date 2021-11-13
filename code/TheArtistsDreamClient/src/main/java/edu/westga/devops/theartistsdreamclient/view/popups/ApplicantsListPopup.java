@@ -11,7 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
+import javafx.scene.Parent;
 
 import java.io.IOException;
 
@@ -80,8 +80,11 @@ public class ApplicantsListPopup extends Dialog<List<User>> {
     void handleViewProfileButtonClick(ActionEvent event) {
         try {
             User user = this.applicantsListView.getSelectionModel().getSelectedItem();
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            WindowLoader.changeScene(currentStage, PORTFOLIO_PAGE_FXML, new PortfolioPage(user), "The Artist's Dream", true);
+            //Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            //WindowLoader.changeScene(currentStage, PORTFOLIO_PAGE_FXML, new PortfolioPage(user), "The Artist's Dream", false);
+            Parent mainFrame = ((Node) event.getSource()).getParent();
+            Stage popup = PopupLoader.loadPopup("Portfolio", PortfolioPage.class.getResource(PORTFOLIO_PAGE_FXML), new PortfolioPage(user), mainFrame);      
+			popup.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

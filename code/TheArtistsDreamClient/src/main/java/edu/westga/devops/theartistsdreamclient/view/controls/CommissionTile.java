@@ -13,6 +13,7 @@ import java.io.IOException;
 import edu.westga.devops.theartistsdreamclient.viewmodel.CommissionTileViewModel;
 import edu.westga.devops.theartistsdreamclient.model.Commission;
 import edu.westga.devops.theartistsdreamclient.model.User;
+import edu.westga.devops.theartistsdreamclient.model.UserManager;
 
 import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
 import edu.westga.devops.theartistsdreamclient.view.popups.ApplicantsListPopup;
@@ -21,7 +22,6 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 
 import java.util.List;
-import java.util.ArrayList;
 
 /**
  * Controller for CommissionTile
@@ -58,6 +58,8 @@ public class CommissionTile extends VBox {
 	private CommissionTileViewModel viewModel;
 	private Commission commission;
 
+	private List<User> applicantList;
+
 	/**
 	 * Creates a new CommissionTile of the specified Commission
 	 *
@@ -78,6 +80,7 @@ public class CommissionTile extends VBox {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+		this.applicantList = UserManager.getUserManager().searchForUsers("a");
 	}
 
 	@FXML
@@ -98,12 +101,12 @@ public class CommissionTile extends VBox {
 
 	@FXML
 	void handleViewApplicants(ActionEvent event) {
-		//this.viewModel.viewApplicants();
 		try {
-			List<User> users = new ArrayList<User>();
             Parent mainFrame = ((Node) event.getSource()).getParent().getParent().getParent();
-            Stage popup = PopupLoader.loadPopup("Applicant List", ApplicantsListPopup.class.getResource("ApplicantsListPopup.fxml"), new ApplicantsListPopup(users), mainFrame);      
-            popup.show();
+            ApplicantsListPopup controller = new ApplicantsListPopup(this.applicantList);
+			Stage popup = PopupLoader.loadPopup("Applicant List", ApplicantsListPopup.class.getResource("ApplicantsListPopup.fxml"), controller, mainFrame);      
+			popup.show();
+			controller.getResult();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

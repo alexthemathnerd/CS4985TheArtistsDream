@@ -208,4 +208,9 @@ public class User {
     public int hashCode() {
         return Objects.hash(this.userId);
     }
+
+    @Override
+    public String toString() {
+        return this.username;
+    }
 }
