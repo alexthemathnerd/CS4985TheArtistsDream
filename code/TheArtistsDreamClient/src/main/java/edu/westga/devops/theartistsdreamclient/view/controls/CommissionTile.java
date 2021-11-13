@@ -14,6 +14,15 @@ import edu.westga.devops.theartistsdreamclient.viewmodel.CommissionTileViewModel
 import edu.westga.devops.theartistsdreamclient.model.Commission;
 import edu.westga.devops.theartistsdreamclient.model.User;
 
+import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
+import edu.westga.devops.theartistsdreamclient.view.popups.ApplicantsListPopup;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
+import javafx.scene.Node;
+
+import java.util.List;
+import java.util.ArrayList;
+
 /**
  * Controller for CommissionTile
  *
@@ -89,7 +98,15 @@ public class CommissionTile extends VBox {
 
 	@FXML
 	void handleViewApplicants(ActionEvent event) {
-		this.viewModel.viewApplicants();
+		//this.viewModel.viewApplicants();
+		try {
+			List<User> users = new ArrayList<User>();
+            Parent mainFrame = ((Node) event.getSource()).getParent().getParent().getParent();
+            Stage popup = PopupLoader.loadPopup("Applicant List", ApplicantsListPopup.class.getResource("ApplicantsListPopup.fxml"), new ApplicantsListPopup(users), mainFrame);      
+            popup.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 	}
 
 }
