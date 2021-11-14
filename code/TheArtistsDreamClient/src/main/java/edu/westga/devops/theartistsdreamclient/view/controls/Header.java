@@ -5,10 +5,11 @@ import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
 import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.utils.UI;
+import edu.westga.devops.theartistsdreamclient.view.CommissionView;
 import edu.westga.devops.theartistsdreamclient.view.FollowingPage;
+import edu.westga.devops.theartistsdreamclient.view.InSearchOfPage;
 import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
 import edu.westga.devops.theartistsdreamclient.view.RecommendedPage;
-import edu.westga.devops.theartistsdreamclient.view.InSearchOfPage;
 import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
 import edu.westga.devops.theartistsdreamclient.view.popups.ArtworkPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.FilterPopup;
@@ -57,6 +58,7 @@ public class Header extends HBox {
     private static final String FOLLOWING_PAGE_FXML = "FollowingPage.fxml";
     private static final String ARTWORK_POPUP_FXML = "ArtworkPopup.fxml";
     private static final String PORTFOLIO_PAGE_FXML = "PortfolioPage.fxml";
+    private static final String COMMISION_VIEW_FXML = "CommissionView.fxml";
     private static final String IN_SEARCH_OF_PAGE_FXML = "InSearchOfPage.fxml";
     private final ListProperty<Tag> tagsToFilterListProperty;
     private final HeaderViewModel viewModel;
@@ -240,7 +242,13 @@ public class Header extends HBox {
 
     @FXML
     void handleMessages(ActionEvent event) {
-
+        try {
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            WindowLoader.changeScene(currentStage, COMMISION_VIEW_FXML, new CommissionView(), "The Artist's Dream", false);
+            currentStage.setMaximized(true);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

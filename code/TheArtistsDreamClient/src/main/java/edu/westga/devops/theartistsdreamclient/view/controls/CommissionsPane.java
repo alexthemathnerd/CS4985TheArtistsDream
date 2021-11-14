@@ -1,5 +1,8 @@
 package edu.westga.devops.theartistsdreamclient.view.controls;
 
+import edu.westga.devops.theartistsdreamclient.model.CommissionType;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ObjectPropertyBase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +35,8 @@ public class CommissionsPane extends ScrollPane {
 	@FXML
 	private Button postCommissionButton;
 
+	private ObjectProperty<CommissionType> commissionType;
+
 	public CommissionsPane() {
 		FXMLLoader loader = new FXMLLoader(Header.class.getResource(COMMISSIONS_PANE_FXML));
 		loader.setRoot(this);
@@ -45,7 +50,12 @@ public class CommissionsPane extends ScrollPane {
 
 	@FXML
 	void initialize() {
-		this.commissionsVBox.getChildren().add(new CommissionTile(new Commission(1, Style.ABSTRACT, 100.00, "An abstract art piece with lots of red", "Red Abstract Art")));
+
+		this.postCommissionButton.managedProperty().bind(this.commissionTypeProperty().isNotEqualTo(CommissionType.OPEN));
+	}
+
+	public void initCommissions() {
+		this.commissionsVBox.getChildren().add(new CommissionTile(new Commission(1, Style.ABSTRACT, 100.01, "COMMISSION!", "HELLO!"), this.getCommissionType()));
 	}
 
 	@FXML
@@ -57,5 +67,31 @@ public class CommissionsPane extends ScrollPane {
 	void handlePostNewCommission(ActionEvent event) {
 
 	}
+
+	public final CommissionType getCommissionType() {
+		return this.commissionTypeProperty().get();
+	}
+
+	public final void setCommissionType(CommissionType commissionType) {
+		this.commissionTypeProperty().set(commissionType);
+	}
+
+	public final ObjectProperty<CommissionType> commissionTypeProperty() {
+		if (this.commissionType == null) {
+			this.commissionType = new ObjectPropertyBase<CommissionType>(CommissionType.DIRECT) {
+				@Override
+				public Object getBean() {
+					return CommissionsPane.this;
+				}
+
+				@Override
+				public String getName() {
+					return "commissionType";
+				}
+			};
+		}
+		return this.commissionType;
+	}
+
 
 }

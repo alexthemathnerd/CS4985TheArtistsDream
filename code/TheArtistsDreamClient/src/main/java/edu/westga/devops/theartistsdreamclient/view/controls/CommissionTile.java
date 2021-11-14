@@ -1,5 +1,6 @@
 package edu.westga.devops.theartistsdreamclient.view.controls;
 
+import edu.westga.devops.theartistsdreamclient.model.CommissionType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -41,6 +42,15 @@ public class CommissionTile extends VBox {
 	private Button viewApplicantsButton;
 
 	@FXML
+	private Button approveButton;
+
+	@FXML
+	private Button denyButton;
+
+	@FXML
+	private Button submitButton;
+
+	@FXML
 	private Label budgetLabel;
 
 	@FXML
@@ -48,22 +58,25 @@ public class CommissionTile extends VBox {
 
 	private CommissionTileViewModel viewModel;
 	private Commission commission;
+	private CommissionType type;
 
 	/**
 	 * Creates a new CommissionTile of the specified Commission
 	 *
 	 * @param commission the commission being displayed in the tile
+	 * @param type the type of the commission
 	 *
 	 * @precondition none
 	 * @postcondition none
 	 *
 	 */
-	public CommissionTile(Commission commission) {
+	public CommissionTile(Commission commission, CommissionType type) {
 		FXMLLoader loader = new FXMLLoader(Header.class.getResource(COMMISSION_TILE_FXML));
 		loader.setRoot(this);
 		loader.setController(this);
 		this.commission = commission;
 		this.viewModel = new CommissionTileViewModel(commission);
+		this.type = type;
 		try {
 			loader.load();
 		} catch (IOException e) {
@@ -78,8 +91,11 @@ public class CommissionTile extends VBox {
 		this.descriptionTextArea.textProperty().bind(this.viewModel.descriptionProperty());
 		this.budgetLabel.textProperty().bind(this.viewModel.budgetProperty());
 		this.styleLabel.textProperty().bind(this.viewModel.styleStringProperty());
-		this.applyButton.setDisable(User.getUser().getUserId() == this.commission.getUserId());
-		this.viewApplicantsButton.setDisable(User.getUser().getUserId() != this.commission.getUserId());
+		this.applyButton.setManaged(User.getUser().getUserId() != this.commission.getUserId() && this.type == CommissionType.OPEN);
+		this.viewApplicantsButton.setManaged(User.getUser().getUserId() == this.commission.getUserId() && this.type == CommissionType.OPEN);
+		this.approveButton.setManaged(this.type == CommissionType.DIRECT);
+		this.denyButton.setManaged(this.type == CommissionType.DIRECT);
+		this.submitButton.setManaged(this.type == CommissionType.ONGOING);
 	}
 
 	@FXML
@@ -90,6 +106,21 @@ public class CommissionTile extends VBox {
 	@FXML
 	void handleViewApplicants(ActionEvent event) {
 		this.viewModel.viewApplicants();
+	}
+
+	@FXML
+	void handleAprove(ActionEvent event) {
+
+	}
+
+	@FXML
+	void handleDeny(ActionEvent event) {
+
+	}
+
+	@FXML
+	void handleSubmit(ActionEvent event) {
+
 	}
 
 }
