@@ -2,6 +2,7 @@ package edu.westga.devops.theartistsdreamserver.model;
 
 public class Commission {
 
+    private int id;
     private int artistId;
     private int userId;
     private Style style;
@@ -13,6 +14,7 @@ public class Commission {
     /**
      * Create a new commission
      *
+     * @param id          the id of the commission
      * @param artistId    the artist doing the commission
      * @param userId      the userid of the user wanting the commission
      * @param style       the style the user wants the commission done in
@@ -24,8 +26,9 @@ public class Commission {
      * @postcondition getUserId() == userId and getStyle() == style and getBudget() = budget
      * getDescription() = description
      */
-    public Commission(int artistId, int userId, Style style, double budget, String description, String title) {
+    public Commission(int id, int artistId, int userId, Style style, double budget, String description, String title) {
         this.checkPreconditions(userId, style, budget, description, title);
+        this.id = id;
         this.artistId = artistId;
         this.userId = userId;
         this.style = style;

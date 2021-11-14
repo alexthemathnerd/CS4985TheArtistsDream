@@ -80,9 +80,9 @@ public class TheArtistsDreamServer {
     }
 
     private static void setupFakeCommissionData() {
-        COMMISSIONS.add(new Commission(0, 1, Style.ABSTRACT, 50.00, "hello", "ART"));
-        COMMISSIONS.add(new Commission(-1, 1, Style.CHARCOAL, 50.00, "hellofsf", "ARTsfsdf"));
-        Commission commission = new Commission(0, 2, Style.FANTASY, 50.00, "hellsdsdfo", "AFDADRT");
+        COMMISSIONS.add(new Commission(0, 0, 1, Style.ABSTRACT, 50.00, "hello", "ART"));
+        COMMISSIONS.add(new Commission(1, -1, 1, Style.CHARCOAL, 50.00, "hellofsf", "ARTsfsdf"));
+        Commission commission = new Commission(2, 0, 2, Style.FANTASY, 50.00, "hellsdsdfo", "AFDADRT");
         commission.setOngoing(true);
         COMMISSIONS.add(commission);
     }

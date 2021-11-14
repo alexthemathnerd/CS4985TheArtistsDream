@@ -58,6 +58,30 @@ public class CommissionManager {
         return new Request(commissions.subList(0, 5));
     }
 
+    public static Request approveCommission(Object[] data) {
+        int id;
+        Commission commission;
+        try {
+            id = ((Double) data[0]).intValue();
+            commission = TheArtistsDreamServer.COMMISSIONS.get(id);
+        } catch (ClassCastException | IndexOutOfBoundsException e) {
+            return new Request(e.getMessage());
+        }
+        commission.setOngoing(true);
+        return new Request(true);
+    }
+
+    public static Request denyCommission(Object[] data) {
+        int id;
+        Commission commission;
+        try {
+            id = ((Double) data[0]).intValue();
+            commission = TheArtistsDreamServer.COMMISSIONS.get(id);
+        } catch (ClassCastException | IndexOutOfBoundsException e) {
+            return new Request(e.getMessage());
+        }
+        return new Request(TheArtistsDreamServer.COMMISSIONS.remove(commission));
+    }
 
     public static Request addCommission(Object[] data) {
         int artistId;
@@ -74,9 +98,10 @@ public class CommissionManager {
             description = (String) data[4];
             title = (String) data[5];
         } catch (ClassCastException e) {
+            System.out.println(e.getMessage());
             return new Request(e.getMessage());
         }
-        TheArtistsDreamServer.COMMISSIONS.add(new Commission(artistId, userId, style, budget, description, title));
+        TheArtistsDreamServer.COMMISSIONS.add(new Commission(TheArtistsDreamServer.COMMISSIONS.size(), artistId, userId, style, budget, description, title));
         return new Request(TheArtistsDreamServer.COMMISSIONS.size() - 1);
     }
 

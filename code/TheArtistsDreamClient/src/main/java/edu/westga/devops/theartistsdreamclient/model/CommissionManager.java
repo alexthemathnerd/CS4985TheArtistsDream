@@ -31,6 +31,10 @@ public abstract class CommissionManager {
      */
     public abstract int addCommission(int userId, Style style, double budget, String description, String title);
 
+    public abstract boolean approveCommission(int id);
+
+    public abstract boolean denyCommission(int id);
+
     /**
      * Gets the singleton of the commission manager
      *

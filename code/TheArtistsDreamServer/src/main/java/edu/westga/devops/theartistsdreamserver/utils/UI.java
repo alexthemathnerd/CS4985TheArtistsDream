@@ -45,7 +45,9 @@ public class UI {
         GET_FOLLOWINGS(UserManager::getFollowingIds),
         IS_FOLLOWING(UserManager::isFollowing),
         ADD_COMMISSION(CommissionManager::addCommission),
-        GET_FIRST_FIVE_COMMISSIONS(CommissionManager::getFirstFiveCommissions);
+        GET_FIRST_FIVE_COMMISSIONS(CommissionManager::getFirstFiveCommissions),
+        APPROVE_COMMISSION(CommissionManager::approveCommission),
+        DENY_COMMISSION(CommissionManager::denyCommission);
 
         private final ServerAction action;
 

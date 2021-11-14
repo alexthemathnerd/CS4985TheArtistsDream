@@ -1,5 +1,6 @@
 package edu.westga.devops.theartistsdreamclient.view.controls;
 
+import edu.westga.devops.theartistsdreamclient.model.CommissionManager;
 import edu.westga.devops.theartistsdreamclient.model.CommissionType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -110,12 +111,12 @@ public class CommissionTile extends VBox {
 
 	@FXML
 	void handleAprove(ActionEvent event) {
-
+		CommissionManager.getCommissionManager().approveCommission(this.commission.getId());
 	}
 
 	@FXML
 	void handleDeny(ActionEvent event) {
-
+		CommissionManager.getCommissionManager().denyCommission(this.commission.getId());
 	}
 
 	@FXML

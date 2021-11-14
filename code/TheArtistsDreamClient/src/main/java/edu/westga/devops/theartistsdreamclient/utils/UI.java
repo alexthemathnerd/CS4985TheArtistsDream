@@ -42,7 +42,9 @@ public class UI {
         IS_FOLLOWING,
         GET_FIRST_FIVE_COMMISSIONS,
         GET_NEXT_FIVE_COMMISSIONS,
-        ADD_COMMISSION;
+        ADD_COMMISSION,
+        APPROVE_COMMISSION,
+        DENY_COMMISSION;
     }
 
     /**

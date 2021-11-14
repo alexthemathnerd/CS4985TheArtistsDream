@@ -32,7 +32,7 @@
      -fx-border-radius: 20;
 }
 
-.label {
+.main .label {
     -fx-text-fill: #E01A4F;
     -fx-background-color: #1E1E24;
     -fx-allignment: CENTER
