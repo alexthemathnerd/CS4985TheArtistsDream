@@ -31,25 +31,38 @@ public class TestViewMoreArtworks {
     @Test
     void testViewMoreOnRecommendedPage() {
         Artwork artwork = new Artwork(new byte[0], "test", 0, new ArrayList<>(), 0, LocalDate.now().toString());
-        Mockito.when(artworkManager.getNextTenArtworks(0)).thenReturn(List.of(artwork));
+        Mockito.when(artworkManager.getNextTenArtworks(50)).thenReturn(List.of(artwork));
         ArtworkManager.setArtworkManager(artworkManager);
         ArtworksPaneViewModel test = new ArtworksPaneViewModel();
         test.userIdProperty().setValue(-1);
         test.viewMoreArtworks();
-        Mockito.verify(artworkManager).getNextTenArtworks(0);
-        assertEquals(1, test.indexProperty().get());
+        Mockito.verify(artworkManager).getNextTenArtworks(50);
+        assertEquals(51, test.indexProperty().get());
     }
 
     @Test
     void testViewMoreOnPortfolioPage() {
         Artwork artwork = new Artwork(new byte[0], "test", 0, new ArrayList<>(), 0, LocalDate.now().toString());
-        Mockito.when(artworkManager.getNextTenArtworks(0, 0)).thenReturn(List.of(artwork));
+        Mockito.when(artworkManager.getNextTenArtworks(50, 0)).thenReturn(List.of(artwork));
         ArtworkManager.setArtworkManager(artworkManager);
         ArtworksPaneViewModel test = new ArtworksPaneViewModel();
         test.userIdProperty().setValue(0);
         test.viewMoreArtworks();
-        Mockito.verify(artworkManager).getNextTenArtworks(0, 0);
-        assertEquals(1, test.indexProperty().get());
+        Mockito.verify(artworkManager).getNextTenArtworks(50, 0);
+        assertEquals(51, test.indexProperty().get());
+    }
+
+    @Test
+    void testViewMoreOnFollowingPage() {
+        Artwork artwork = new Artwork(new byte[0], "test", 0, new ArrayList<>(), 0, LocalDate.now().toString());
+        Mockito.when(artworkManager.getNextTenArtworks(50, true)).thenReturn(List.of(artwork));
+        ArtworkManager.setArtworkManager(artworkManager);
+        ArtworksPaneViewModel test = new ArtworksPaneViewModel();
+        test.userIdProperty().setValue(0);
+        test.onFollowingPageProperty().setValue(true);
+        test.viewMoreArtworks();
+        Mockito.verify(artworkManager).getNextTenArtworks(50, true);
+        assertEquals(51, test.indexProperty().get());
     }
 
 }

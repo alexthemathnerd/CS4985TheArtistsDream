@@ -1,4 +1,4 @@
-package edu.westga.devops.theartistsdreamclient.its;
+package edu.westga.devops.theartistsdreamclient.tests.view;
 
 import edu.westga.devops.theartistsdreamclient.TheArtistsDreamApplication;
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
@@ -6,6 +6,7 @@ import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.model.UserManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,17 +15,21 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.testfx.api.FxRobot;
+import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
+import org.testfx.framework.junit5.Stop;
 import org.testfx.matcher.base.NodeMatchers;
 import org.testfx.matcher.control.LabeledMatchers;
 import org.testfx.util.DebugUtils;
+
+import java.util.concurrent.TimeoutException;
 
 import static org.testfx.api.FxAssert.verifyThat;
 
 @ExtendWith(ApplicationExtension.class)
 @ExtendWith(MockitoExtension.class)
-public class LoginIT {
+public class TestLoginGUI {
 
     @Mock
     private UserManager userManager;
@@ -32,23 +37,31 @@ public class LoginIT {
     @Mock
     private ArtworkManager artworkManager;
 
+    private Application application;
+
+    @Start
+    public void start(Stage stage) throws Exception {
+        this.application = new TheArtistsDreamApplication();
+        this.application.start(stage);
+    }
+
     @BeforeEach
-    public void init() {
+    public void init() throws TimeoutException {
         UserManager.setUserManager(this.userManager);
         ArtworkManager.setArtworkManager(this.artworkManager);
+        FxToolkit.registerStage(Stage::new);
     }
 
     @AfterEach
-    public void finish() {
+    public void finish() throws TimeoutException {
         UserManager.setUserManager(null);
         ArtworkManager.setArtworkManager(null);
     }
 
-    @Start
-    public void start(Stage stage) throws Exception {
-        Application application = new TheArtistsDreamApplication();
-        application.start(stage);
-        stage.toFront();
+    @Stop
+    public void stop() throws Exception {
+        FxToolkit.hideStage();
+        this.application.stop();
     }
 
     @Test

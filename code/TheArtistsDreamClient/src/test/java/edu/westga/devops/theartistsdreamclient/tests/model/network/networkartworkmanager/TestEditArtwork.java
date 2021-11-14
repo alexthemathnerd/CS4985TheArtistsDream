@@ -32,21 +32,21 @@ public class TestEditArtwork {
     void testOnResultSuccess() {
         Mockito.when(communicator.request(Mockito.any(Request.class), Mockito.any())).thenReturn(new Response<>(null, true));
         NetworkArtworkManager testManager = new NetworkArtworkManager(communicator);
-        assertTrue(testManager.editArtwork(0, "test", new ArrayList<>()));
+        assertTrue(testManager.editArtwork(0, "test"));
     }
 
     @Test
     void testOnResultFail() {
         Mockito.when(communicator.request(Mockito.any(Request.class), Mockito.any())).thenReturn(new Response<>(null, false));
         NetworkArtworkManager testManager = new NetworkArtworkManager(communicator);
-        assertFalse(testManager.editArtwork(0, "test", new ArrayList<>()));
+        assertFalse(testManager.editArtwork(0, "test"));
     }
 
     @Test
     void testOnError() {
         Mockito.when(communicator.request(Mockito.any(Request.class), Mockito.any())).thenReturn(new Response<>("error", null));
         NetworkArtworkManager testManager = new NetworkArtworkManager(communicator);
-        assertFalse(testManager.editArtwork(0, "test", new ArrayList<>()));
+        assertFalse(testManager.editArtwork(0, "test"));
     }
 
 }

@@ -49,6 +49,11 @@ public class LocalArtworkManager extends ArtworkManager {
     }
 
     @Override
+    public List<Artwork> getNextTenArtworks(int startingIndex, boolean isFollowing) {
+        return null;
+    }
+
+    @Override
     public boolean addArtwork(byte[] imageData, String title, int artistID, List<Integer> tagIDs, String date) {
         return this.artworks.add(new Artwork(imageData, title, artistID, tagIDs, this.size(), date));
     }
@@ -68,15 +73,12 @@ public class LocalArtworkManager extends ArtworkManager {
     }
 
     @Override
-    public boolean editArtwork(int id, String newTitle, List<Integer> newTagIDs) {
+    public boolean editArtwork(int id, String newTitle) {
         if (newTitle == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(UI.ErrorMessages.TITLE_NULL);
         }
         if (newTitle.isEmpty()) {
-            throw new IllegalArgumentException();
-        }
-        if (newTagIDs == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(UI.ErrorMessages.TITLE_EMPTY);
         }
         if (id < 0 || id >= this.size()) {
             return false;
@@ -86,7 +88,6 @@ public class LocalArtworkManager extends ArtworkManager {
             return false;
         }
         artworkToEdit.setTitle(newTitle);
-        artworkToEdit.setTags(newTagIDs);
         return true;
     }
 

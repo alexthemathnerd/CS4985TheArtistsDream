@@ -49,11 +49,12 @@ public class UI {
      * @version Fall 2021
      */
     public static class ErrorMessages {
-        public static final String NEGATIVE_ID = "id cannot be negative";
-        public static final String CONTENT_NULL = "content cannot be null";
-        public static final String TAG_NAME_NULL = "tag name cannot be null";
-        public static final String NEGATIVE_AMOUNT = "amount cannot be negative";
-        public static final String TAG_NAME_EMPTY = "tag name cannot be empty";
+        public static final String IMAGE_NULL = "Image cannot be null";
+        public static final String NEGATIVE_ID = "ID cannot be negative";
+        public static final String CONTENT_NULL = "Content cannot be null";
+        public static final String TAG_NAME_NULL = "Tag name cannot be null";
+        public static final String TAG_NAME_EMPTY = "Tag name cannot be empty";
+        public static final String NEGATIVE_AMOUNT = "Amount cannot be negative";
         public static final String SEVER_CONNECTION = "server connection failed, check address";
         public static final String CODE_NULL = "server code cannot be null";
         public static final String USER_NOT_FOUND = "User is not found";
@@ -70,6 +71,22 @@ public class UI {
         public static final String SEARCH_TERM_NULL = "Search term cannot be null";
         public static final String TITLE_NULL = "Title cannot be null";
         public static final String TITLE_EMPTY = "Title cannot be empty";
+        public static final String TAG_IDS_NULL = "Tag IDs cannot be null";
+        public static final String DATE_EMPTY = "Date cannot be empty";
+        public static final String DATE_NULL = "Date cannot be null";
+        public static final String IMAGE_DATA_NULL = "Image data cannot be null";
+        public static final String TAG_MANAGER_NULL = "Tag manager cannot be null";
+        public static final String NEGATIVE_USE_COUNT = "Use count cannot be negative";
+        public static final String TAG_NULL = "Tag cannot be null";
+        public static final String NAME_NULL = "Name cannot be null";
+        public static final String NAME_EMPTY = "Name cannot be empty";
+        public static final String DESCRIPTION_NULL = "Description cannot be null";
+        public static final String DESCRIPTION_EMPTY = "Description cannot be empty";
+        public static final String NEGATIVE_BUDGET = "Budget cannot be negative";
+        public static final String STYLE_NULL = "Style cannot  be null";
+        public static final String STYLE_EMPTY = "Style cannot be empty";
+        public static final String SIZE_NULL = "Size cannot be null";
+        public static final String SIZE_EMPTY = "Size cannot be empty";
     }
 
     /**

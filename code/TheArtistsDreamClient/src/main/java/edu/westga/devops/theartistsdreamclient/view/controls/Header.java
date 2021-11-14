@@ -8,6 +8,7 @@ import edu.westga.devops.theartistsdreamclient.utils.UI;
 import edu.westga.devops.theartistsdreamclient.view.FollowingPage;
 import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
 import edu.westga.devops.theartistsdreamclient.view.RecommendedPage;
+import edu.westga.devops.theartistsdreamclient.view.InSearchOfPage;
 import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
 import edu.westga.devops.theartistsdreamclient.view.popups.ArtworkPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.FilterPopup;
@@ -23,7 +24,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.*;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -33,6 +39,7 @@ import javafx.stage.Stage;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,18 +57,25 @@ public class Header extends HBox {
     private static final String FOLLOWING_PAGE_FXML = "FollowingPage.fxml";
     private static final String ARTWORK_POPUP_FXML = "ArtworkPopup.fxml";
     private static final String PORTFOLIO_PAGE_FXML = "PortfolioPage.fxml";
+    private static final String IN_SEARCH_OF_PAGE_FXML = "InSearchOfPage.fxml";
     private final ListProperty<Tag> tagsToFilterListProperty;
     private final HeaderViewModel viewModel;
+
     @FXML
     private ComboBox searchComboBox;
+
     @FXML
     private MenuButton navMenuButton;
+
     @FXML
     private MenuItem recommendedMenuItem;
+
     @FXML
     private MenuItem followingMenuItem;
+
     @FXML
     private MenuItem inSearchOfMenuItem;
+
     @FXML
     private Button profileButton;
 
@@ -72,6 +86,20 @@ public class Header extends HBox {
      * @postcondition none
      */
     public Header() {
+        FXMLLoader loader = new FXMLLoader(Header.class.getResource(HEADER_FXML));
+        loader.setRoot(this);
+        loader.setController(this);
+        try {
+            this.tagsToFilterListProperty = new SimpleListProperty<Tag>(FXCollections.observableArrayList());
+            loader.load();
+            this.toFront();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        this.viewModel = new HeaderViewModel();
+    }
+
+    public Header(URL fxmlURL, HeaderViewModel viewModel) {
         FXMLLoader loader = new FXMLLoader(Header.class.getResource(HEADER_FXML));
         loader.setRoot(this);
         loader.setController(this);
@@ -250,7 +278,13 @@ public class Header extends HBox {
 
     @FXML
     void handleInSearchOf(ActionEvent event) {
-
+        try {
+            Stage currentStage = (Stage) this.navMenuButton.getScene().getWindow();
+            WindowLoader.changeScene(currentStage, IN_SEARCH_OF_PAGE_FXML, new InSearchOfPage(), "The Artist's Dream", false);
+            currentStage.setMaximized(true);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**

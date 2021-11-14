@@ -85,6 +85,18 @@ public abstract class ArtworkManager {
     public abstract List<Artwork> getNextTenArtworks(int startingIndex, int userId);
 
     /**
+     * Gets the next ten artworks of the specified user
+     *
+     * @param startingIndex the starting index to get the next 10 artworks from
+     * @param isFollowing determines if the user is following
+     *
+     * @return the next ten artworks of the user from the starting index
+     * @precondition none
+     * @postcondition none
+     */
+    public abstract List<Artwork> getNextTenArtworks(int startingIndex, boolean isFollowing);
+
+    /**
      * Adds the artwork
      *
      * @param imageData the image data of the artwork
@@ -113,12 +125,12 @@ public abstract class ArtworkManager {
      *
      * @param id        the id of the artwork to edit
      * @param newTitle  the new title of the artwork
-     * @param newTagIDs the IDs of the new tags of the artwork
+     * 
      * @return true if the artwork was successfully edited, false otherwise
-     * @precondition !newTitle.isEmpty() && newTitle != null && newTags != null
-     * @postcondition getArtwork(id).getTitle() == newTitle && getArtwork(id).getTags() == newTags
+     * @precondition !newTitle.isEmpty() && newTitle != null
+     * @postcondition getArtwork(id).getTitle() == newTitle
      */
-    public abstract boolean editArtwork(int id, String newTitle, List<Integer> newTagIDs);
+    public abstract boolean editArtwork(int id, String newTitle);
 
     /**
      * Gets the artworks specified by the tags

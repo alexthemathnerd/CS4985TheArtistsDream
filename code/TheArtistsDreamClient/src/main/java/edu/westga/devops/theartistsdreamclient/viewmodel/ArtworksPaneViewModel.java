@@ -3,7 +3,12 @@ package edu.westga.devops.theartistsdreamclient.viewmodel;
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
-import javafx.beans.property.*;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 
 import java.util.List;
@@ -32,10 +37,10 @@ public class ArtworksPaneViewModel {
     public ArtworksPaneViewModel() {
         this.artworksProperty = new SimpleListProperty<Artwork>(FXCollections.observableArrayList());
         this.filterTagsProperty = new SimpleListProperty<Tag>(FXCollections.observableArrayList());
-        this.indexProperty = new SimpleIntegerProperty(0);
+        this.indexProperty = new SimpleIntegerProperty(50);
         this.maxIndexProperty = new SimpleIntegerProperty(50);
         this.userIdProperty = new SimpleIntegerProperty(-1);
-        this.onFollowingPageProperty = new SimpleBooleanProperty(true);
+        this.onFollowingPageProperty = new SimpleBooleanProperty(false);
     }
 
     /**
@@ -92,10 +97,12 @@ public class ArtworksPaneViewModel {
     public void viewMoreArtworks() {
         if (this.userIdProperty.isEqualTo(-1).get()) {
             this.artworksProperty.addAll(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue()));
-        } else {
+        } else if (this.onFollowingPageProperty.not().get()) {
             this.artworksProperty.addAll(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue(), this.userIdProperty.get()));
+        } else {
+            this.artworksProperty.addAll(ArtworkManager.getArtworkManager().getNextTenArtworks(this.indexProperty.getValue(), this.onFollowingPageProperty.get()));
         }
-        this.indexProperty.setValue(this.artworksProperty.getSize());
+        this.indexProperty.set(this.indexProperty.get() + this.artworksProperty.getSize());
     }
 
     /**

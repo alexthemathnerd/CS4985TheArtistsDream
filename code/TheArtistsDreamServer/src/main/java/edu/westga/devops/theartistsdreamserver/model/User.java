@@ -1,6 +1,5 @@
 package edu.westga.devops.theartistsdreamserver.model;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -148,7 +147,7 @@ public class User {
     public ArrayList<ChatRecord> updateChat(int userId, ArrayList<ChatRecord> chat) {
         return this.messages.replace(userId, chat);
     }
-
+    
     public boolean addFollowing(int userId) {
         return this.followingIds.add(userId);
     }

@@ -3,7 +3,12 @@ package edu.westga.devops.theartistsdreamclient.view.controls;
 import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
 import edu.westga.devops.theartistsdreamclient.viewmodel.ArtworksPaneViewModel;
-import javafx.beans.property.*;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -56,7 +61,6 @@ public class ArtworksPane extends ScrollPane {
     void initialize() {
         this.userIdProperty.bindBidirectional(this.viewModel.userIdProperty());
         this.onFollowingPageProperty.bindBidirectional(this.viewModel.onFollowingPageProperty());
-        this.viewMoreButton.disableProperty().bind(this.viewModel.indexProperty().isEqualTo(this.viewModel.maxIndexProperty()));
         this.tagsToFilterListProperty.addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 if (!newValue.isEmpty()) {

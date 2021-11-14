@@ -44,6 +44,7 @@ public class DirectMessageViewModel {
      *
      * @param sender   the user sending the message
      * @param receiver the user receiving the message
+     * @param chat the chat
      * @precondition none
      * @postcondition none
      */

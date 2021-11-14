@@ -42,7 +42,7 @@ public class NetworkArtworkManager extends ArtworkManager {
      */
     public NetworkArtworkManager(Communicator communicator) {
         if (communicator == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(UI.ErrorMessages.COMMUNICATOR_NULL);
         }
         this.communicator = communicator;
     }
@@ -111,6 +111,19 @@ public class NetworkArtworkManager extends ArtworkManager {
     }
 
     @Override
+    public List<Artwork> getNextTenArtworks(int startingIndex, boolean isFollowing) {
+        Type type = new TypeToken<Response<ArrayList<Artwork>>>() {
+        }.getType();
+
+        Response<ArrayList<Artwork>> response = this.communicator.request(new Request(UI.ServerCodes.GET_NEXT_TEN_ARTWORKS, new Object[]{startingIndex, User.getUser().getUserId(), isFollowing}), type);
+        if (response.getError() != null) {
+            TheArtistsDreamApplication.LOGGER.warning(response.getError());
+            return new ArrayList<Artwork>();
+        }
+        return response.getData();
+    }
+
+    @Override
     public boolean addArtwork(byte[] imageData, String title, int artistID, List<Integer> tagIDs, String date) {
         Type type = new TypeToken<Response<Boolean>>() {
         }.getType();
@@ -137,10 +150,10 @@ public class NetworkArtworkManager extends ArtworkManager {
     }
 
     @Override
-    public boolean editArtwork(int id, String newTitle, List<Integer> newTagIDs) {
+    public boolean editArtwork(int id, String newTitle) {
         Type type = new TypeToken<Response<Boolean>>() {
         }.getType();
-        Response<Boolean> response = this.communicator.request(new Request(UI.ServerCodes.EDIT_ARTWORK, new Object[]{id, newTitle, newTagIDs}), type);
+        Response<Boolean> response = this.communicator.request(new Request(UI.ServerCodes.EDIT_ARTWORK, new Object[]{id, newTitle}), type);
         if (response.getError() != null) {
             TheArtistsDreamApplication.LOGGER.warning(response.getError());
             return false;
