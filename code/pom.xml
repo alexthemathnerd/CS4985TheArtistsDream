@@ -109,11 +109,9 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.22.2</version>
 			</plugin>	
-			<!-- For integration testing 
-			
+			<!-- For integration testing
 				Integration tests should be titled as ITNameOfTest.java
 				Unit tests should be titled as TestNameOfMethod.java
-			
 			-->
             <plugin>
 				<groupId>org.apache.maven.plugins</groupId>

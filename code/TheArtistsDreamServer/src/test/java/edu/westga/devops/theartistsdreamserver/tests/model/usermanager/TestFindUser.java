@@ -1,8 +1,10 @@
 package edu.westga.devops.theartistsdreamserver.tests.model.usermanager;
 
+import edu.westga.devops.theartistsdreamserver.TheArtistsDreamServer;
 import edu.westga.devops.theartistsdreamserver.model.UserManager;
 import edu.westga.devops.theartistsdreamserver.utils.UI;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,6 +19,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  *
  */
 public class TestFindUser {
+
+	@AfterEach
+	void destroy() {
+		TheArtistsDreamServer.USERS.clear();
+	}
 
 	@Test
 	void testInvalidFormat() {

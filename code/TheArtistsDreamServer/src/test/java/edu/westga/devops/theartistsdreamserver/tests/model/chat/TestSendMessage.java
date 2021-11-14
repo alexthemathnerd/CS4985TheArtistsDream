@@ -36,7 +36,7 @@ public class TestSendMessage {
 		User testUser = (User) UserManager.getUser(new Object[] {0.0}).getData();
 		User testUser2 = (User) UserManager.getUser(new Object[] {1.0}).getData();
 		Request testRequest = Chat.sendMessage(new Object[] {1.0, "hello", 0.0});
-		assertAll(() -> assertNotNull(testRequest.getData()), () -> assertNull(testRequest.getError()), () -> assertEquals(0, testUser.getMessages().size()), () -> assertEquals(1, testUser2.getMessages().size()));
+		assertAll(() -> assertNotNull(testRequest.getData()), () -> assertNull(testRequest.getError()), () -> assertEquals(1, testUser.getMessages().size()), () -> assertEquals(1, testUser2.getMessages().size()));
 	}
 
 	@Test
@@ -47,7 +47,7 @@ public class TestSendMessage {
                 User testUser = (User) UserManager.getUser(new Object[] {0.0}).getData();
                 User testUser2 = (User) UserManager.getUser(new Object[] {1.0}).getData();
                 Request testRequest = Chat.sendMessage(new Object[] {0.0, "hello", 1.0});
-                assertAll(() -> assertNotNull(testRequest.getData()), () -> assertNull(testRequest.getError()), () -> assertEquals(1, testUser.getMessages().size()), () -> assertEquals(0, testUser2.getMessages().size()));
+                assertAll(() -> assertNotNull(testRequest.getData()), () -> assertNull(testRequest.getError()), () -> assertEquals(1, testUser.getMessages().size()), () -> assertEquals(1, testUser2.getMessages().size()));
 	}
 
 }	

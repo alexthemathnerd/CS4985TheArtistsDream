@@ -88,6 +88,7 @@ public class ArtworkManager {
     /**
      * Gets the next ten artworks
      *
+     *
      * @return a request for the next 10 artworks
      * 
      * @precondition data != null
@@ -96,34 +97,69 @@ public class ArtworkManager {
      * @param data the objects data
      */
     public static Request getNextTenArtworks(Object[] data) {
-        if (data.length == 2) {
+        if (data.length == 3) {
+            int startingIndex;
+            int userId;
+            boolean isFollowing;
+            try {
+                startingIndex = ((Double) data[0]).intValue();
+                userId = ((Double) data[1]).intValue();
+                isFollowing = (boolean) data[2];
+                return getNextTenArtworks(startingIndex, userId, isFollowing);
+            } catch (ClassCastException e) {
+                return new Request(UI.ErrorMessages.INVALID_FORMAT);
+            }
+        } else if (data.length == 2) {
             int startingIndex;
             int userId;
             try {
                 startingIndex = ((Double) data[0]).intValue();
-                userId = ((Double) data[0]).intValue();
+                userId = ((Double) data[1]).intValue();
                 return getNextTenArtworks(startingIndex, userId);
             } catch (ClassCastException e) {
                 return new Request(UI.ErrorMessages.INVALID_FORMAT);
             }
+        } else {
+            int startingIndex;
+            try {
+                startingIndex = ((Double) data[0]).intValue();
+                return getNextTenArtworks(startingIndex);
+            } catch (ClassCastException e) {
+                return new Request(UI.ErrorMessages.INVALID_FORMAT);
+            }
         }
-        int startingIndex;
-        try {
-            startingIndex = ((Double) data[0]).intValue();
-        } catch (ClassCastException e) {
-            return new Request(UI.ErrorMessages.INVALID_FORMAT);
+    }
+
+    private static Request getNextTenArtworks(int startingIndex) {
+        if (startingIndex > TheArtistsDreamServer.ARTWORKS.size()) {
+            return new Request(new ArrayList<>());
         }
         if (startingIndex + 10 > TheArtistsDreamServer.ARTWORKS.size()) {
-            return new Request(TheArtistsDreamServer.ARTWORKS);
+            return new Request(TheArtistsDreamServer.ARTWORKS.subList(startingIndex, TheArtistsDreamServer.ARTWORKS.size()));
         }
         return new Request(TheArtistsDreamServer.ARTWORKS.subList(startingIndex, startingIndex + 10));
-
     }
 
     private static Request getNextTenArtworks(int startingIndex, int userId) {
         List<Artwork> artworks = new ArrayList<>();
-        User user = TheArtistsDreamServer.USERS.get(userId);
 
+        for (Artwork aArtwork: TheArtistsDreamServer.ARTWORKS) {
+            if (aArtwork.getArtistID() == userId) {
+                artworks.add(aArtwork);
+            }
+        }
+        if (startingIndex > artworks.size()) {
+            return new Request(new ArrayList<>());
+        }
+        if (artworks.size() < startingIndex + 10) {
+            return new Request(artworks.subList(startingIndex, artworks.size()));
+        }
+        return new Request(TheArtistsDreamServer.ARTWORKS.subList(startingIndex, startingIndex + 10));
+    }
+
+    private static Request getNextTenArtworks(int startingIndex, int userId, boolean isFollowing) {
+        List<Artwork> artworks = new ArrayList<>();
+        User user = TheArtistsDreamServer.USERS.get(userId);
         for (Artwork aArtwork: TheArtistsDreamServer.ARTWORKS) {
             for (int aUserId : user.getFollowingIds()) {
                 if (aArtwork.getArtistID() == aUserId) {
@@ -132,8 +168,12 @@ public class ArtworkManager {
                 }
             }
         }
+
+        if (startingIndex > artworks.size()) {
+            return new Request(new ArrayList<>());
+        }
         if (artworks.size() < startingIndex + 10) {
-            return new Request(artworks);
+            return new Request(artworks.subList(startingIndex, artworks.size()));
         }
         return new Request(TheArtistsDreamServer.ARTWORKS.subList(startingIndex, startingIndex + 10));
     }
@@ -149,18 +189,19 @@ public class ArtworkManager {
      * @param data the objects data
      */
     public static Request getArtwork(Object[] data) {
-	    int id;
-	    try {
-		    id = (Integer) data[0];
-		    for (Artwork artwork : TheArtistsDreamServer.ARTWORKS) {
-			    if (artwork.getID() == id) {
-				    return new Request(artwork);
-			    }
-		    }
-	    } catch (ClassCastException e) {
-		    return new Request(UI.ErrorMessages.INVALID_FORMAT);
-	    }
-	    return new Request(UI.ErrorMessages.ARTWORK_NOT_FOUND);
+        int id;
+        try {
+            id = (int) data[0];
+	        for (Artwork artwork : TheArtistsDreamServer.ARTWORKS) {
+                if (artwork.getID() == id) {
+                    return new Request(artwork);
+                }
+	        }
+        } catch (ClassCastException e) {
+            return new Request(UI.ErrorMessages.INVALID_FORMAT);
+        }
+
+        return new Request(UI.ErrorMessages.ARTWORK_NOT_FOUND);
     }
 
     /**
@@ -174,30 +215,33 @@ public class ArtworkManager {
      * @param data the objects data
      */
     public static Request addArtwork(Object[] data) {
-	    byte[] imageBytes;
-	    String title;
-	    int artistID;
-	    List<Integer> tagIDs;
-	    String date;
-	    try {
-		    ArrayList<Double> bytes = (ArrayList<Double>) data[0];
-		    imageBytes = new byte[bytes.size()];
-		    int count = 0;
-		    for (Double aDouble: bytes) {
-			    imageBytes[count] = aDouble.byteValue();
-			    count++;
-		    }
-		    title = (String) data[1];
-		    artistID = ((Double) data[2]).intValue();
-		    tagIDs = (List<Integer>) data[3];
-		    date = (String) data[4];
-	    } catch (ClassCastException e) {
-		    return new Request(e.getMessage());
-	    }
-	    Artwork newArtwork = new Artwork(imageBytes, title, artistID, tagIDs, TheArtistsDreamServer.ARTWORKS.size(), date);
-	    boolean isAdded = TheArtistsDreamServer.ARTWORKS.add(newArtwork);
-	    Collections.sort(TheArtistsDreamServer.ARTWORKS);
-	    return new Request(isAdded);
+        byte[] imageBytes;
+        String title;
+        int artistID;
+        List<Integer> tagIDs = new ArrayList<>();
+        String date;
+        try {
+            ArrayList<Double> bytes = (ArrayList<Double>) data[0];
+            imageBytes = new byte[bytes.size()];
+            int count = 0;
+            for (Double aDouble: bytes) {
+                imageBytes[count] = aDouble.byteValue();
+                count++;
+            }
+            title = (String) data[1];
+            artistID = ((Double) data[2]).intValue();
+            List<Double> doubleTagIDs = (List<Double>) data[3];
+            for (Double aTag: doubleTagIDs) {
+                tagIDs.add(aTag.intValue());
+            }
+            date = (String) data[4];
+        } catch (ClassCastException e) {
+            return new Request(e.getMessage());
+        }
+        Artwork newArtwork = new Artwork(imageBytes, title, artistID, tagIDs, TheArtistsDreamServer.ARTWORKS.size(), date);
+        boolean isAdded = TheArtistsDreamServer.ARTWORKS.add(newArtwork);
+        Collections.sort(TheArtistsDreamServer.ARTWORKS);
+        return new Request(isAdded);
     }
 
     /**
@@ -242,7 +286,6 @@ public class ArtworkManager {
     public static Request editArtwork(Object[] data) {
         int id;
         String newTitle;
-        List<Integer> newTagIDs;
 
         try {
             id = ((Double) data[0]).intValue();
@@ -258,9 +301,7 @@ public class ArtworkManager {
         }
 
         Artwork artworkToEdit = (Artwork) artworkRequest.getData();
-
         artworkToEdit.setTitle(new Object[]{newTitle});
-
         return new Request(true);
     }
 
@@ -326,7 +367,6 @@ public class ArtworkManager {
         List tags;
         try {
             tags = (ArrayList) data[0];
-            System.out.println(tags.getClass());
         } catch (Exception e) {
             return new Request(UI.ErrorMessages.INVALID_FORMAT);
         }
@@ -334,7 +374,6 @@ public class ArtworkManager {
         List<Artwork> tagArtworks = new ArrayList<>();
         for (Artwork aArtwork: TheArtistsDreamServer.ARTWORKS) {
             for (Object aTag: tags) {
-
                 LinkedTreeMap<String, Object> tag = (LinkedTreeMap<String, Object>) aTag;
                 if (aArtwork.getTagIDs().contains(((Double) tag.get("id")).intValue())) {
                     tagArtworks.add(aArtwork);

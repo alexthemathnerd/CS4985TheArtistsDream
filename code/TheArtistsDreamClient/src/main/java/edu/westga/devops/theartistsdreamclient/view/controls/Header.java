@@ -39,6 +39,7 @@ import javafx.stage.Stage;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,6 +86,20 @@ public class Header extends HBox {
      * @postcondition none
      */
     public Header() {
+        FXMLLoader loader = new FXMLLoader(Header.class.getResource(HEADER_FXML));
+        loader.setRoot(this);
+        loader.setController(this);
+        try {
+            this.tagsToFilterListProperty = new SimpleListProperty<Tag>(FXCollections.observableArrayList());
+            loader.load();
+            this.toFront();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        this.viewModel = new HeaderViewModel();
+    }
+
+    public Header(URL fxmlURL, HeaderViewModel viewModel) {
         FXMLLoader loader = new FXMLLoader(Header.class.getResource(HEADER_FXML));
         loader.setRoot(this);
         loader.setController(this);
