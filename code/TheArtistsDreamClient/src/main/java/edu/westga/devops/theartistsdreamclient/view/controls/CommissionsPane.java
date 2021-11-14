@@ -1,5 +1,6 @@
 package edu.westga.devops.theartistsdreamclient.view.controls;
 
+import edu.westga.devops.theartistsdreamclient.model.CommissionManager;
 import edu.westga.devops.theartistsdreamclient.model.CommissionType;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ObjectPropertyBase;
@@ -10,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.ScrollPane;
 
-import edu.westga.devops.theartistsdreamclient.model.Style;
 import edu.westga.devops.theartistsdreamclient.model.Commission;
 
 import java.io.IOException;
@@ -50,12 +50,13 @@ public class CommissionsPane extends ScrollPane {
 
 	@FXML
 	void initialize() {
-
 		this.postCommissionButton.managedProperty().bind(this.commissionTypeProperty().isNotEqualTo(CommissionType.OPEN));
 	}
 
 	public void initCommissions() {
-		this.commissionsVBox.getChildren().add(new CommissionTile(new Commission(1, Style.ABSTRACT, 100.01, "COMMISSION!", "HELLO!"), this.getCommissionType()));
+		for (Commission aCommission : CommissionManager.getCommissionManager().getFirstFiveCommissions(this.getCommissionType())) {
+			this.commissionsVBox.getChildren().add(new CommissionTile(aCommission, this.getCommissionType()));
+		}
 	}
 
 	@FXML

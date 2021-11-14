@@ -1,5 +1,6 @@
 package edu.westga.devops.theartistsdreamserver.utils;
 
+import edu.westga.devops.theartistsdreamserver.model.CommissionManager;
 import edu.westga.devops.theartistsdreamserver.model.Request;
 import edu.westga.devops.theartistsdreamserver.model.Chat;
 import edu.westga.devops.theartistsdreamserver.model.TagManager;
@@ -42,7 +43,9 @@ public class UI {
         UNFOLLOW_ARTIST(UserManager::unfollowArtist),
         GET_FOLLOWERS(UserManager::getFollowerIds),
         GET_FOLLOWINGS(UserManager::getFollowingIds),
-        IS_FOLLOWING(UserManager::isFollowing);
+        IS_FOLLOWING(UserManager::isFollowing),
+        ADD_COMMISSION(CommissionManager::addCommission),
+        GET_FIRST_FIVE_COMMISSIONS(CommissionManager::getFirstFiveCommissions);
 
         private final ServerAction action;
 

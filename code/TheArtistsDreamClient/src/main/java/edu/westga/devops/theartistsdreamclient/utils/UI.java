@@ -39,7 +39,10 @@ public class UI {
         UNFOLLOW_ARTIST,
         GET_FOLLOWERS,
         GET_FOLLOWINGS,
-        IS_FOLLOWING
+        IS_FOLLOWING,
+        GET_FIRST_FIVE_COMMISSIONS,
+        GET_NEXT_FIVE_COMMISSIONS,
+        ADD_COMMISSION;
     }
 
     /**

@@ -1,5 +1,6 @@
 package edu.westga.devops.theartistsdreamclient.view.popups;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -63,13 +64,7 @@ public class CommissionFormPopup {
 
     @FXML
     void initialize() {
-        this.styleComboBox.getItems().addAll(
-            Style.ABSTRACT, 
-            Style.MODERN, 
-            Style.FANTASY, 
-            Style.CHARCOAL, 
-            Style.SURREALISM, 
-            Style.MINIMALIST);
+        this.styleComboBox.setItems(FXCollections.observableArrayList(Style.values()));
     }
 
     @FXML

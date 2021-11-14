@@ -1,14 +1,19 @@
 package edu.westga.devops.theartistsdreamclient.model;
 
+import java.util.List;
+
 /**
  * The commission manager class
  * 
  * @author Jamia Echol
  * @version Fall 2021
  */
-public abstract class CommissionManager implements Iterable<Commission> {
+public abstract class CommissionManager {
     
     private static CommissionManager commissionManager = null;
+
+    public abstract List<Commission> getFirstFiveCommissions(CommissionType type);
+    public abstract List<Commission> getNextFiveCommissions(CommissionType type, int startIndex);
 
     /**
      * Adds a Commission to the Commission manager and returns it's id.
