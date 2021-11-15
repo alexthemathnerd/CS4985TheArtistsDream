@@ -47,7 +47,9 @@ public class UI {
         ADD_COMMISSION(CommissionManager::addCommission),
         GET_FIRST_FIVE_COMMISSIONS(CommissionManager::getFirstFiveCommissions),
         APPROVE_COMMISSION(CommissionManager::approveCommission),
-        DENY_COMMISSION(CommissionManager::denyCommission);
+        DENY_COMMISSION(CommissionManager::denyCommission),
+        GET_SUBMISSION(CommissionManager::getSubmission),
+        SUBMIT_IMAGE(CommissionManager::submitImage);
 
         private final ServerAction action;
 

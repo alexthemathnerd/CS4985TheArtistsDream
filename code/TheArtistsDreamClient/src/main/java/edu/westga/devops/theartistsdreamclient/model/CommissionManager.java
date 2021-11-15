@@ -35,6 +35,10 @@ public abstract class CommissionManager {
 
     public abstract boolean denyCommission(int id);
 
+    public abstract boolean submitImage(int id, byte[] image);
+
+    public abstract byte[] getSubmission(int id);
+
     /**
      * Gets the singleton of the commission manager
      *

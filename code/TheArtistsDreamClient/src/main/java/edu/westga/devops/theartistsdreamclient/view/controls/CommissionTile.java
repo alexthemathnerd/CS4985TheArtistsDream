@@ -2,19 +2,29 @@ package edu.westga.devops.theartistsdreamclient.view.controls;
 
 import edu.westga.devops.theartistsdreamclient.model.CommissionManager;
 import edu.westga.devops.theartistsdreamclient.model.CommissionType;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.event.ActionEvent;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 import edu.westga.devops.theartistsdreamclient.viewmodel.CommissionTileViewModel;
 import edu.westga.devops.theartistsdreamclient.model.Commission;
 import edu.westga.devops.theartistsdreamclient.model.User;
+import javafx.stage.FileChooser;
+
+import javax.imageio.ImageIO;
 
 /**
  * Controller for CommissionTile
@@ -50,6 +60,9 @@ public class CommissionTile extends VBox {
 
 	@FXML
 	private Button submitButton;
+
+	@FXML
+	private Button getButton;
 
 	@FXML
 	private Label budgetLabel;
@@ -96,7 +109,8 @@ public class CommissionTile extends VBox {
 		this.viewApplicantsButton.setManaged(User.getUser().getUserId() == this.commission.getUserId() && this.type == CommissionType.OPEN);
 		this.approveButton.setManaged(this.type == CommissionType.DIRECT);
 		this.denyButton.setManaged(this.type == CommissionType.DIRECT);
-		this.submitButton.setManaged(this.type == CommissionType.ONGOING);
+		this.submitButton.setManaged(this.type == CommissionType.ONGOING && User.getUser().getUserId() == this.commission.getArtistId());
+		this.getButton.setManaged(this.type == CommissionType.ONGOING && User.getUser().getUserId() == this.commission.getUserId());
 	}
 
 	@FXML
@@ -120,8 +134,37 @@ public class CommissionTile extends VBox {
 	}
 
 	@FXML
-	void handleSubmit(ActionEvent event) {
+	void handleSubmit(ActionEvent event) throws MalformedURLException {
+		FileChooser chooser = new FileChooser();
+		chooser.setTitle("Submit Art");
+		chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png"));
+		File file = chooser.showOpenDialog(null);
+		if (file != null) {
+			Image image = new Image(file.toURI().toURL().toExternalForm());
+			BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
+			try (ByteArrayOutputStream byteArrayInputStream = new ByteArrayOutputStream()) {
+				ImageIO.write(bufferedImage, "png", byteArrayInputStream);
+				byte[] imageBytes = byteArrayInputStream.toByteArray();
+				CommissionManager.getCommissionManager().submitImage(this.commission.getId(), imageBytes);
+			} catch (IOException e) {
+				// todo
+			}
+		}
+	}
 
+	@FXML
+	void handleGet(ActionEvent event) throws IOException {
+		byte[] image = CommissionManager.getCommissionManager().getSubmission(this.commission.getId());
+		if (image != null) {
+			Image javafxImage = new Image(new ByteArrayInputStream(image));
+			BufferedImage bufferedImage = SwingFXUtils.fromFXImage(javafxImage, null);
+			FileChooser chooser = new FileChooser();
+			chooser.setTitle("Save Submission");
+			File file = chooser.showSaveDialog(null);
+			if (file != null) {
+				ImageIO.write(bufferedImage, "png", file);
+			}
+		}
 	}
 
 }

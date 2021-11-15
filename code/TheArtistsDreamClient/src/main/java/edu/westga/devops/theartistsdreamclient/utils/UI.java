@@ -44,7 +44,9 @@ public class UI {
         GET_NEXT_FIVE_COMMISSIONS,
         ADD_COMMISSION,
         APPROVE_COMMISSION,
-        DENY_COMMISSION;
+        DENY_COMMISSION,
+        GET_SUBMISSION,
+        SUBMIT_IMAGE;
     }
 
     /**

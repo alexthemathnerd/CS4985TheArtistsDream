@@ -47,6 +47,7 @@
             <Button fx:id="approveButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAprove" text="APROVE"/>
             <Button fx:id="denyButton" mnemonicParsing="false" onAction="#handleDeny" text="DENY"/>
             <Button fx:id="submitButton" mnemonicParsing="false" onAction="#handleSubmit" text="SUBMIT"/>
+            <Button fx:id="getButton" mnemonicParsing="false" onAction="#handleGet" text="GET"/>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" />

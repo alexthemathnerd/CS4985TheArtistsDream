@@ -10,6 +10,7 @@ public class Commission {
     private String description;
     private String title;
     private transient boolean isOngoing;
+    private transient byte[] submission;
 
     /**
      * Create a new commission
@@ -78,4 +79,11 @@ public class Commission {
         return this.artistId;
     }
 
+    public byte[] getSubmission() {
+        return this.submission;
+    }
+
+    public void setSubmission(byte[] image) {
+        this.submission = image;
+    }
 }
