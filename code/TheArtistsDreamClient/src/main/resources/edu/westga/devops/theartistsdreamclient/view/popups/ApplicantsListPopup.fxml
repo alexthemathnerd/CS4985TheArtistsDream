@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="388.0" prefWidth="600.0" style="-fx-background-color: #1e1e24;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ListView fx:id="applicantsListView" layoutX="39.0" layoutY="37.0" prefHeight="286.0" prefWidth="522.0" style="-fx-background-color: #2c2c32; -fx-text-fill: #E01A4F;" />
+      <HBox layoutX="38.0" layoutY="343.0" prefHeight="27.0" prefWidth="522.0" spacing="80.0">
+         <children>
+            <Button fx:id="viewProfileButton" mnemonicParsing="false" onAction="#handleViewProfileButtonClick" text="VIEW PROFILE" />
+            <Button fx:id="acceptButton" mnemonicParsing="false" onAction="#handleAcceptButtonClick" text="ACCEPT" />
+            <Button fx:id="declineButton" mnemonicParsing="false" onAction="#handleDeclineButtonClick" text="DECLINE" />
+            <Button fx:id="closeButton" mnemonicParsing="false" onAction="#handleCloseButtonClick" text="CLOSE" />
+         </children>
+      </HBox>
+   </children>
+   <stylesheets>
+      <URL value="@popup-design.css" />
+      <URL value="@../core-design.css" />
+   </stylesheets>
+</AnchorPane>

@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * The commission manager class
  * 
- * @author Jamia Echol
+ * @author Jamia Echols
  * @version Fall 2021
  */
 public abstract class CommissionManager {

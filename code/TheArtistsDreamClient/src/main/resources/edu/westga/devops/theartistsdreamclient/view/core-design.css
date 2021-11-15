@@ -1,4 +1,4 @@
-.main {
+.main, .myAlert, .myAlert:header *.header-panel {
     -fx-background-color: #1E1E24;
 }
 
