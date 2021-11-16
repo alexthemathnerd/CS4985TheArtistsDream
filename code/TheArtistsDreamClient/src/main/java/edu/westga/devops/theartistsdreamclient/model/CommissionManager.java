@@ -3,7 +3,7 @@ package edu.westga.devops.theartistsdreamclient.model;
 /**
  * The commission manager class
  * 
- * @author Jamia Echol
+ * @author Jamia Echols
  * @version Fall 2021
  */
 public abstract class CommissionManager implements Iterable<Commission> {

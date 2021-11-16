@@ -26,6 +26,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuButton;
@@ -173,8 +174,7 @@ public class Header extends HBox {
                     throw new RuntimeException(e);
                 }
             } else {
-                Alert alert = new Alert(AlertType.ERROR, UI.ErrorMessages.USER_NOT_FOUND);
-                alert.show();
+                this.showAlert(AlertType.ERROR, UI.ErrorMessages.USER_NOT_FOUND);
             }
         } else {
             String searchTerm = (String) this.searchComboBox.getValue();
@@ -188,13 +188,18 @@ public class Header extends HBox {
                     throw new RuntimeException(e);
                 }
             } else {
-                Alert alert = new Alert(AlertType.ERROR, UI.ErrorMessages.ARTWORK_NOT_FOUND);
-                alert.show();
+                this.showAlert(AlertType.ERROR, UI.ErrorMessages.ARTWORK_NOT_FOUND);
             }
         }
-
     }
-
+    private void showAlert(AlertType alertType, String errorMessage) {
+        Alert alert = new Alert(alertType, errorMessage);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(
+            getClass().getResource("core-design.css").toExternalForm());
+        dialogPane.getStyleClass().add("myAlert");
+        alert.show();
+    }
     @FXML
     void handleFilter(ActionEvent event) {
         try {
