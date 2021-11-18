@@ -7,6 +7,7 @@ import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
 import edu.westga.devops.theartistsdreamclient.view.popups.CommissionFormPopup;
 import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
 import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -171,13 +172,16 @@ public class PortfolioPane extends HBox {
 
     @FXML
     private void handleCommission(ActionEvent event) {
-        try {
-            Node mainFrame = this.getScene().getRoot();
-            Stage popup = PopupLoader.loadPopup("Commision Form", CommissionFormPopup.class.getResource("CommissionFormPopup.fxml"), new CommissionFormPopup(this.userProperty.get().getUserId()), (Parent) mainFrame);      
-            popup.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+	    try {
+		    Node mainFrame = this.getScene().getRoot();
+		    Stage popup = PopupLoader.loadPopup("Commision Form", CommissionFormPopup.class.getResource("CommissionFormPopup.fxml"), new CommissionFormPopup(this.userProperty.get().getUserId()), (Parent) mainFrame);
+		    popup.setOnCloseRequest((event2) -> {
+			    mainFrame.setEffect(null);
+		    });
+		    popup.show();
+	    } catch (IOException e) {
+		    throw new RuntimeException(e);
+	    }
     }
 
     /**
