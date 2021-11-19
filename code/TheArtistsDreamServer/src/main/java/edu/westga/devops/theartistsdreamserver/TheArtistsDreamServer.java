@@ -1,6 +1,8 @@
 package edu.westga.devops.theartistsdreamserver;
 
+import edu.westga.devops.theartistsdreamserver.model.Commission;
 import edu.westga.devops.theartistsdreamserver.model.Receiver;
+import edu.westga.devops.theartistsdreamserver.model.Style;
 import edu.westga.devops.theartistsdreamserver.model.Tag;
 import edu.westga.devops.theartistsdreamserver.model.User;
 import edu.westga.devops.theartistsdreamserver.model.Artwork;
@@ -32,6 +34,7 @@ public class TheArtistsDreamServer {
     public static final List<Tag> TAGS = new ArrayList<Tag>();
     public static final List<User> USERS = new ArrayList<User>();
     public static final List<Artwork> ARTWORKS = new ArrayList<Artwork>();
+    public static final List<Commission> COMMISSIONS = new ArrayList<Commission>();
 
     /**
      * Starts the Server
@@ -55,6 +58,7 @@ public class TheArtistsDreamServer {
         setupFakeUserData();
         setupFakeTagData();
         setupFakeArtworkData();
+        setupFakeCommissionData();
         Receiver receiver = new Receiver("tcp://localhost:4444");
         receiver.start();
         LOGGER.info("Receiver is ending.");
@@ -73,6 +77,14 @@ public class TheArtistsDreamServer {
         USERS.add(new User(2, "aznella@aznella.com", "aznella", "aznella", image));
         USERS.add(new User(3, "jamia@jamia.com", "jamia", "jamia", image));
         USERS.add(new User(4, "corley@corley.com", "corley", "corley", image));
+    }
+
+    private static void setupFakeCommissionData() {
+        COMMISSIONS.add(new Commission(0, 0, 1, Style.ABSTRACT, 50.00, "hello", "ART"));
+        COMMISSIONS.add(new Commission(1, -1, 1, Style.CHARCOAL, 50.00, "hellofsf", "ARTsfsdf"));
+        Commission commission = new Commission(2, 0, 2, Style.FANTASY, 50.00, "hellsdsdfo", "AFDADRT");
+        commission.setOngoing(true);
+        COMMISSIONS.add(commission);
     }
 
     private static void setupFakeTagData() {

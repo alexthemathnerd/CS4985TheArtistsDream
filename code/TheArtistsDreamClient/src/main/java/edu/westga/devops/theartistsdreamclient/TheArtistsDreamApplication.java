@@ -1,9 +1,11 @@
 package edu.westga.devops.theartistsdreamclient;
 
 import edu.westga.devops.theartistsdreamclient.model.ArtworkManager;
+import edu.westga.devops.theartistsdreamclient.model.CommissionManager;
 import edu.westga.devops.theartistsdreamclient.model.TagManager;
 import edu.westga.devops.theartistsdreamclient.model.UserManager;
 import edu.westga.devops.theartistsdreamclient.model.network.NetworkArtworkManager;
+import edu.westga.devops.theartistsdreamclient.model.network.NetworkCommissionManager;
 import edu.westga.devops.theartistsdreamclient.model.network.NetworkTagManager;
 import edu.westga.devops.theartistsdreamclient.model.network.NetworkUserManager;
 import javafx.application.Application;
@@ -59,6 +61,8 @@ public class TheArtistsDreamApplication extends Application {
         ArtworkManager.setArtworkManager(artworkManager);
         NetworkUserManager userManager = new NetworkUserManager();
         UserManager.setUserManager(userManager);
+        NetworkCommissionManager commissionManager = new NetworkCommissionManager();
+        CommissionManager.setCommissionManager(commissionManager);
     }
 
     @Override

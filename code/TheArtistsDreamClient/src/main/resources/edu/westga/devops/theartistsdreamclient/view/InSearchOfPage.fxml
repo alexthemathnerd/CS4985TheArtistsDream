@@ -10,7 +10,7 @@
               AnchorPane.topAnchor="0.0">
             <children>
                 <Header prefHeight="100" fx:id='header' viewOrder="0" VBox.vgrow="NEVER"/>
-                <CommissionsPane fx:id="commissionsPane" viewOrder="1" VBox.vgrow="ALWAYS"/>
+                <CommissionsPane fx:id="commissionsPane" commissionType="OPEN" viewOrder="1" VBox.vgrow="ALWAYS"/>
             </children>
         </VBox>
     </children>

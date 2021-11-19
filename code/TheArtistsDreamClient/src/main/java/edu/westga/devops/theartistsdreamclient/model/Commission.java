@@ -20,6 +20,9 @@ public class Commission {
 
     private String title;
 
+    private int id;
+    private int artistId;
+
     /**
      * Create a new commission
      * 
@@ -27,16 +30,20 @@ public class Commission {
      *               and budget greater than zero and and description is not null and description is not empty
      * @postcondition getUserId() == userId and getStyle() == style and getBudget() = budget
      *                getDescription() = description
-     * 
+     *
+     * @param id the id of the commission
      * @param userId the userid of the user wanting the commission
+     * @param artistId the artistId of the user who is doing the commission
      * @param style the style the user wants the commission done in
      * @param budget the budget the user wants stay in
      * @param description the description of what thw user wants
      * @param title the title of the commission
      */
-    public Commission(int userId, Style style, double budget, String description, String title) {
+    public Commission(int id, int userId, int artistId, Style style, double budget, String description, String title) {
         this.checkPreconditions(userId, style, budget, description, title);
+        this.id = id;
         this.userId = userId;
+        this.artistId = artistId;
         this.style = style;
         this.budget = budget;
         this.description = description;
@@ -77,6 +84,14 @@ public class Commission {
      */
     public int getUserId() {
         return this.userId;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public int getArtistId() {
+        return this.artistId;
     }
 
     /**

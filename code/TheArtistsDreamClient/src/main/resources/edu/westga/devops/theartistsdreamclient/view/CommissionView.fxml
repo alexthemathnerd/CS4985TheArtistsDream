@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import edu.westga.devops.theartistsdreamclient.view.controls.Header?>
+<?import edu.westga.devops.theartistsdreamclient.view.controls.CommissionsPane?>
+<?import javafx.geometry.Insets?>
+<?import java.net.URL?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml">
+    <VBox AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
+        <Header prefHeight="100" viewOrder="0" VBox.vgrow="NEVER"/>
+        <HBox styleClass="main" viewOrder="1" VBox.vgrow="ALWAYS">
+            <VBox HBox.hgrow="ALWAYS" alignment="TOP_CENTER">
+                <Label text="Unapproved Commissions" VBox.vgrow="NEVER" textAlignment="CENTER"/>
+                <CommissionsPane fx:id="unapprovedCommissions" commissionType="DIRECT" VBox.vgrow="ALWAYS"/>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS" alignment="TOP_CENTER">
+                <Label text="Ongoing Commissions" VBox.vgrow="NEVER"  textAlignment="CENTER"/>
+                <CommissionsPane fx:id="ongoingCommissions" commissionType="ONGOING" VBox.vgrow="ALWAYS"/>
+            </VBox>
+            <padding>
+                <Insets top="20"/>
+            </padding>
+        </HBox>
+    </VBox>
+    <stylesheets>
+        <URL value="@core-design.css"/>
+    </stylesheets>
+</AnchorPane>
