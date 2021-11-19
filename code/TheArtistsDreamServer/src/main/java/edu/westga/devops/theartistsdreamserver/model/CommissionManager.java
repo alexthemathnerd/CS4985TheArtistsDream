@@ -14,7 +14,7 @@ public class CommissionManager {
         try {
             type = CommissionType.valueOf((String) data[0]);
             userId = ((Double) data[1]).intValue();
-        } catch (ClassCastException | IndexOutOfBoundsException e) {
+        } catch (ClassCastException | IndexOutOfBoundsException | IllegalArgumentException e) {
             return new Request(e.getMessage());
         }
         switch (type) {
@@ -33,10 +33,10 @@ public class CommissionManager {
         List<Commission> commissions = TheArtistsDreamServer.COMMISSIONS.stream().filter((commission) -> {
             return commission.getArtistId() == -1;
         }).collect(Collectors.toList());
-        if (commissions.size() < 50) {
+        if (commissions.size() < 5) {
             return new Request(commissions);
         }
-        return new Request(commissions.subList(0, 50));
+        return new Request(commissions.subList(0, 5));
     }
 
     private static Request getDirectCommissions(int userId) {
@@ -98,7 +98,7 @@ public class CommissionManager {
             budget = (Double) data[3];
             description = (String) data[4];
             title = (String) data[5];
-        } catch (ClassCastException e) {
+        } catch (ClassCastException | IndexOutOfBoundsException e) {
             return new Request(e.getMessage());
         }
         TheArtistsDreamServer.COMMISSIONS.add(new Commission(TheArtistsDreamServer.COMMISSIONS.size(), artistId, userId, style, budget, description, title));
