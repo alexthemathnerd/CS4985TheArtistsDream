@@ -5,10 +5,11 @@ import edu.westga.devops.theartistsdreamclient.model.Artwork;
 import edu.westga.devops.theartistsdreamclient.model.Tag;
 import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.utils.UI;
+import edu.westga.devops.theartistsdreamclient.view.CommissionView;
 import edu.westga.devops.theartistsdreamclient.view.FollowingPage;
+import edu.westga.devops.theartistsdreamclient.view.InSearchOfPage;
 import edu.westga.devops.theartistsdreamclient.view.PortfolioPage;
 import edu.westga.devops.theartistsdreamclient.view.RecommendedPage;
-import edu.westga.devops.theartistsdreamclient.view.InSearchOfPage;
 import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
 import edu.westga.devops.theartistsdreamclient.view.popups.ArtworkPopup;
 import edu.westga.devops.theartistsdreamclient.view.popups.FilterPopup;
@@ -26,6 +27,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuButton;
@@ -57,6 +59,7 @@ public class Header extends HBox {
     private static final String FOLLOWING_PAGE_FXML = "FollowingPage.fxml";
     private static final String ARTWORK_POPUP_FXML = "ArtworkPopup.fxml";
     private static final String PORTFOLIO_PAGE_FXML = "PortfolioPage.fxml";
+    private static final String COMMISION_VIEW_FXML = "CommissionView.fxml";
     private static final String IN_SEARCH_OF_PAGE_FXML = "InSearchOfPage.fxml";
     private final ListProperty<Tag> tagsToFilterListProperty;
     private final HeaderViewModel viewModel;
@@ -173,8 +176,7 @@ public class Header extends HBox {
                     throw new RuntimeException(e);
                 }
             } else {
-                Alert alert = new Alert(AlertType.ERROR, UI.ErrorMessages.USER_NOT_FOUND);
-                alert.show();
+                this.showAlert(AlertType.ERROR, UI.ErrorMessages.USER_NOT_FOUND);
             }
         } else {
             String searchTerm = (String) this.searchComboBox.getValue();
@@ -188,13 +190,18 @@ public class Header extends HBox {
                     throw new RuntimeException(e);
                 }
             } else {
-                Alert alert = new Alert(AlertType.ERROR, UI.ErrorMessages.ARTWORK_NOT_FOUND);
-                alert.show();
+                this.showAlert(AlertType.ERROR, UI.ErrorMessages.ARTWORK_NOT_FOUND);
             }
         }
-
     }
-
+    private void showAlert(AlertType alertType, String errorMessage) {
+        Alert alert = new Alert(alertType, errorMessage);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(
+            getClass().getResource("core-design.css").toExternalForm());
+        dialogPane.getStyleClass().add("myAlert");
+        alert.show();
+    }
     @FXML
     void handleFilter(ActionEvent event) {
         try {
@@ -240,7 +247,13 @@ public class Header extends HBox {
 
     @FXML
     void handleMessages(ActionEvent event) {
-
+        try {
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            WindowLoader.changeScene(currentStage, COMMISION_VIEW_FXML, new CommissionView(), "The Artist's Dream", false);
+            currentStage.setMaximized(true);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

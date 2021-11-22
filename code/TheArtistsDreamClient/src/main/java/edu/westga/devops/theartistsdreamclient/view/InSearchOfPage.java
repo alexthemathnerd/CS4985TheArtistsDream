@@ -22,7 +22,7 @@ public class InSearchOfPage {
 
 	@FXML
 	private void initialize() {
-
+		this.commissionsPane.initCommissions();
 	}
 
 }

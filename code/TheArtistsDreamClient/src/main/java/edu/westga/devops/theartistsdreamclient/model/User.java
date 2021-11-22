@@ -199,7 +199,7 @@ public class User {
             return true;
         }
         if (other instanceof User) {
-            return this.userId == ((User) user).userId;
+            return this.userId == ((User) other).userId;
         }
         return false;
     }
@@ -207,5 +207,10 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(this.userId);
+    }
+
+    @Override
+    public String toString() {
+        return this.username;
     }
 }
