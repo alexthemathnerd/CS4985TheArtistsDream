@@ -13,8 +13,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 
-<<<<<<< HEAD
-import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
 import edu.westga.devops.theartistsdreamclient.view.popups.CommissionFormPopup;
 import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
@@ -58,7 +56,7 @@ public class CommissionsPane extends ScrollPane {
 
 	@FXML
 	void initialize() {
-		this.postCommissionButton.managedProperty().bind(this.commissionTypeProperty().isNotEqualTo(CommissionType.OPEN));
+		this.postCommissionButton.managedProperty().bind(this.commissionTypeProperty().isEqualTo(CommissionType.OPEN));
 	}
 
 	public void initCommissions() {
@@ -76,7 +74,7 @@ public class CommissionsPane extends ScrollPane {
 	void handlePostNewCommission(ActionEvent event) {
 	    try {
 		    Parent mainFrame = this.getScene().getRoot();
-		    Stage popup = PopupLoader.loadPopup("Commision Form", CommissionFormPopup.class.getResource("CommissionFormPopup.fxml"), new CommissionFormPopup(User.getUser().getUserId()), mainFrame);
+		    Stage popup = PopupLoader.loadPopup("Commision Form", CommissionFormPopup.class.getResource("CommissionFormPopup.fxml"), new CommissionFormPopup(-1), mainFrame);
 		    popup.setOnCloseRequest((event2) -> {
 			    mainFrame.setEffect(null);
 			    Object data = popup.getUserData();
