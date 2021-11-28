@@ -23,9 +23,11 @@ import edu.westga.devops.theartistsdreamclient.viewmodel.CommissionTileViewModel
 import edu.westga.devops.theartistsdreamclient.model.Commission;
 import edu.westga.devops.theartistsdreamclient.model.User;
 import edu.westga.devops.theartistsdreamclient.model.UserManager;
-
 import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
 import edu.westga.devops.theartistsdreamclient.view.popups.ApplicantsListPopup;
+import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
+import edu.westga.devops.theartistsdreamclient.view.CommissionView;
+
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 import javafx.scene.Node;
@@ -146,11 +148,25 @@ public class CommissionTile extends VBox {
 	@FXML
 	void handleAprove(ActionEvent event) {
 		CommissionManager.getCommissionManager().approveCommission(this.commission.getId());
+		try {
+			Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			WindowLoader.changeScene(currentStage, "CommissionView.fxml", new CommissionView(), "The Artist's Dream", false);
+			currentStage.setMaximized(true);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@FXML
 	void handleDeny(ActionEvent event) {
 		CommissionManager.getCommissionManager().denyCommission(this.commission.getId());
+		try {
+			Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			WindowLoader.changeScene(currentStage, "CommissionView.fxml", new CommissionView(), "The Artist's Dream", false);
+			currentStage.setMaximized(true);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@FXML
@@ -167,7 +183,7 @@ public class CommissionTile extends VBox {
 				byte[] imageBytes = byteArrayInputStream.toByteArray();
 				CommissionManager.getCommissionManager().submitImage(this.commission.getId(), imageBytes);
 			} catch (IOException e) {
-				// todo
+				throw new RuntimeException(e);
 			}
 		}
 	}

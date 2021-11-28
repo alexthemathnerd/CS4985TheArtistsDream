@@ -10,7 +10,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
 
+import edu.westga.devops.theartistsdreamclient.view.popups.PopupLoader;
+import edu.westga.devops.theartistsdreamclient.view.popups.CommissionFormPopup;
+import edu.westga.devops.theartistsdreamclient.view.WindowLoader;
+import edu.westga.devops.theartistsdreamclient.view.InSearchOfPage;
 import edu.westga.devops.theartistsdreamclient.model.Commission;
 
 import java.io.IOException;
@@ -50,7 +56,7 @@ public class CommissionsPane extends ScrollPane {
 
 	@FXML
 	void initialize() {
-		this.postCommissionButton.managedProperty().bind(this.commissionTypeProperty().isNotEqualTo(CommissionType.OPEN));
+		this.postCommissionButton.managedProperty().bind(this.commissionTypeProperty().isEqualTo(CommissionType.OPEN));
 	}
 
 	public void initCommissions() {
@@ -66,7 +72,26 @@ public class CommissionsPane extends ScrollPane {
 
 	@FXML
 	void handlePostNewCommission(ActionEvent event) {
-
+	    try {
+		    Parent mainFrame = this.getScene().getRoot();
+		    Stage popup = PopupLoader.loadPopup("Commision Form", CommissionFormPopup.class.getResource("CommissionFormPopup.fxml"), new CommissionFormPopup(-1), mainFrame);
+		    popup.setOnCloseRequest((event2) -> {
+			    mainFrame.setEffect(null);
+			    Object data = popup.getUserData();
+			    if (data != null) {
+				    try {
+					    Stage currentStage = (Stage) this.getScene().getWindow();
+					    WindowLoader.changeScene(currentStage, "InSearchOfPage.fxml", new InSearchOfPage(), "In Search Of", false);
+					    currentStage.setMaximized(true);
+				    } catch (IOException e) {
+					    e.printStackTrace();
+				    }
+			    }
+		    });
+		    popup.show();
+	    } catch (IOException e) {
+		    throw new RuntimeException(e);
+	    }
 	}
 
 	public final CommissionType getCommissionType() {

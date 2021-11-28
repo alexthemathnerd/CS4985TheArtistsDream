@@ -2,6 +2,7 @@ package edu.westga.devops.theartistsdreamclient.view;
 
 import edu.westga.devops.theartistsdreamclient.view.controls.CommissionsPane;
 import edu.westga.devops.theartistsdreamclient.view.controls.Header;
+import edu.westga.devops.theartistsdreamclient.model.CommissionType;
 
 import javafx.fxml.FXML;
 
@@ -22,6 +23,7 @@ public class InSearchOfPage {
 
 	@FXML
 	private void initialize() {
+		this.commissionsPane.setCommissionType(CommissionType.OPEN);
 		this.commissionsPane.initCommissions();
 	}
 

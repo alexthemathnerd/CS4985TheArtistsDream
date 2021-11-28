@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="431.0" styleClass="main" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="431.0" styleClass="main" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="TOP_CENTER" layoutY="25.0" prefHeight="515.0" prefWidth="431.0" AnchorPane.bottomAnchor="58.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" layoutY="25.0" AnchorPane.bottomAnchor="58.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox prefHeight="432.0" prefWidth="372.0" spacing="10.0" VBox.vgrow="ALWAYS">
+            <VBox spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Label fx:id="titleLabel" text="Title" />
+                  <Label fx:id="titleLabel" text="Title:" />
                   <TextField fx:id="titleTextField" />
                   <Label fx:id="styleLabel" prefHeight="22.0" prefWidth="32.0" text="Style:" />
                   <ComboBox fx:id="styleComboBox" prefHeight="25.0" prefWidth="491.0" promptText="SELECT STYLE" />
@@ -30,7 +30,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </padding>
             </VBox>
-            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="391.0" spacing="10.0" VBox.vgrow="NEVER">
+            <HBox alignment="CENTER" spacing="10.0" VBox.vgrow="NEVER">
                <children>
                   <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#handleCancelButtonClick" prefHeight="30.0" prefWidth="211.0" text="CANCEL" HBox.hgrow="ALWAYS" />
                   <Button fx:id="submitButton" mnemonicParsing="false" onAction="#handleSubmitButtonClick" prefHeight="30.0" prefWidth="211.0" text="SUBMIT" HBox.hgrow="ALWAYS" />
@@ -44,5 +44,6 @@
    </children>
    <stylesheets>
       <URL value="@../core-design.css" />
+      <URL value="@popup-design.css" />
    </stylesheets>
 </AnchorPane>
