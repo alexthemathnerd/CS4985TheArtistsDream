@@ -80,11 +80,19 @@ public class TheArtistsDreamServer {
     }
 
     private static void setupFakeCommissionData() {
-        COMMISSIONS.add(new Commission(0, 0, 1, Style.ABSTRACT, 50.00, "hello", "ART"));
-        COMMISSIONS.add(new Commission(1, -1, 1, Style.CHARCOAL, 50.00, "hellofsf", "ARTsfsdf"));
-        Commission commission = new Commission(2, 0, 2, Style.FANTASY, 50.00, "hellsdsdfo", "AFDADRT");
+        COMMISSIONS.add(new Commission(0, 0, 1, Style.ABSTRACT, 89.50, "I want some splash of paint everywhere.", "Blobs"));
+        COMMISSIONS.add(new Commission(3, 1, 0, Style.MODERN, 20.00, "I wish to have a drawing or painting of a modern house.", "House"));
+        COMMISSIONS.add(new Commission(4, 0, 2, Style.MINIMALIST, 75.50, "I want shapes, just a bunch of overlaping shapes.", "Shapes"));
+        COMMISSIONS.add(new Commission(1, -1, 1, Style.CHARCOAL, 35.00, "Can I have someone make a charcoal portrait of me.", "Portrait of Me"));
+        COMMISSIONS.add(new Commission(5, -1, 3, Style.ABSTRACT, 100.90, "I want a weird and funcky sculpt about the size of a vase.", "A Weird Thing"));
+        COMMISSIONS.add(new Commission(6, -1, 2, Style.FANTASY, 50.99, "I love dragons so can someone draw me dragons.", "DRAGONS!!"));
+        Commission commission = new Commission(2, 0, 2, Style.FANTASY, 50.99, "I love dragons so can you draw me a dragon.", "Dragon");
         commission.setOngoing(true);
         COMMISSIONS.add(commission);
+
+        Commission commission2 = new Commission(7, 1, 0, Style.SURREALISM, 25.99, "I want a picture of a cat and dogs that look like humans.", "Dogman and Catwoman");
+        commission2.setOngoing(true);
+        COMMISSIONS.add(commission2);
     }
 
     private static void setupFakeTagData() {
